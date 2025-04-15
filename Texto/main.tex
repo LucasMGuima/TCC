@@ -225,11 +225,43 @@ Texto de introdução do capítulo de introdução
 
 Texto do contexto do trabalho.
 
-\section{Objetivos}
+\section{Justificativa}
 
-Os objetivos deste trabalho estão divididos em objetivo geral, que se propõe a responder a questão de pesquisa, e objetivos específicos, que detalham os passos necessários para se atingir o objetivo geral.
+Identificar a distribuição de espécies em um dado ambiente, em um determinado intervalo de tempo, 
+é importante para termos noção de como as espécies estão respondendo a mudanças no ambiente, no aumento 
+ou diminuição de outra espécie.
 
-\subsection{Objetivo Geral}
+Uma vez que essas mudanças podem ser geradas pela ação humana, na construção civil e de infraestrutura 
+\cite{impactConstruction}, conseguir estimar o impacto dessas ações é vantajoso para a preservação de espécies.
+
+Além disso, estas abordagens aumentam as possibilidades para integrar a infraestrutura necessária, 
+contribuindo para a sobrevivência de espécies que estão em níveis populacionais baixos.
+
+Modelos estatísticos, que tem a capacidade de demonstrar estes eventos, aplicam de maneiras diferentes algumas 
+linhas de abordagem, como o Bayesian community ecology analysis (BC), com uma abordagem Baesiana, 
+o Generalized Additive Models (GAM), Generalized Linear Model (GLM), e o Multivariate Adaptive Regression Spline (MARS), 
+ambos com uma abordagem de Maximum likelihood (ML), variando em sua capacidade de atuar com um determinado tipo de dado 
+e o custo levado para seu treinamento e utilização \cite{predPerform33models}.
+
+Modelos que são utilizados na modelagem de distribuição de espécies necessitam de uma quantidade elevada de dados 
+\cite{sampleSize}, de ocorrência e ausência, sendo os dados de ausência não necessários em todos os tipos de modelos.
+
+Nem todas as espécies são facilmente modeláveis devido à dificuldade de coleta de dados, seja pela sua raridade ou habitat 
+\cite{especiesDificies}. A colaboração de cidadãos 
+na coleta de dados pode auxiliar na identificação de áreas prioritárias para pesquisa. Portanto, a identificação de bons 
+modelos que trabalham com esses dados é vantajosa.
+
+Dentro destes modelos, além da quantidade e tipo de dados necessários, precisamos levar em consideração, o custo necessário de 
+processamento e o espaço de memória utilizado pelo mesmo, para este fim utilizamos a análise de complexidade e espaço \cite{introductionAlgorthms}, 
+já que um modelo mais barato nesse quesito pode ser criado em computadores mais acessíveis \cite{introductionAnalysis}, 
+e ser possível a construção de mais de um modelo de modo simultâneo.
+
+Os pontos levantados anteriormente podem afetar a acurácia de um modelo, mesmo atendendo os requisitos, 
+de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenham uma boa acurácia, 
+quando trabalham somente com dados de ocorrência, assim como uma melhor avaliação computacional, 
+se vê vantajoso para situações em que queremos criar uma análise inicial de um determinado senário.
+
+\section{Objetivo}
 
 Avaliação e comparação de modelos de distribuição de espécies trabalhando com dados de
 ocorrência.
