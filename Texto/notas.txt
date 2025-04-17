@@ -1,0 +1,18 @@
+# Alterar
+Adicionar ao contexto os trabalhos encontrados
+apontando a conclusão que foram encontrados
+mas levantar a falta de claresa quando se informando
+o cousto computacional
+
+Começar diretamente falando de ferramentas 
+computacionais direto da biologia
+
+Apontar que sera analisado as aplicações em R dos 
+modelos que são o estado da arte e indentificando as bibliotecas.
+
+Remover o máximo possivel a primeira pessoa
+
+Noticia para o custo dos modelos e uso de máquinas
+virtuais para a modelagem
+
+Exclarecer no objetivo que sera analisado os modelos em R
