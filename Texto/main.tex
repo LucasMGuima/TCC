@@ -231,9 +231,18 @@ da fauna e flora de determinada região, podendo mostrar como estas estão se
 comportando no decorrer do tempo \cite{speciesDistributionModels}.
 
 Entr os modelos mais utilizados estão, o Generalized Additive Models (GAM) \cite{GAM}, 
-Generalized Linear Model (GLM) \cite{GLM}, e o Multivariate Adaptive Regression Spline (MARS) 
-\cite{MARS}, ambos com uma abordagem de Maximum likelihood (ML) \cite{predPerform33models}. 
-Onde as implementações mais utilizadas destes são encontradas nas bibliotecas da linguagem 
+o Generalized Linear Model (GLM) \cite{GLM}, esses dois modelos usam uma função para 
+estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
+das variáveis explanatórias, sendo o GLM uma estenção de modelos lineares que não
+forçam o dado a escalas não naturais, e o GAM uma extenção semi-parametrizada do GLM,
+tendo a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
+
+E o Multivariate Adaptive Regression Spline (MARS), que combina partição recursiva e ajustes
+por splines, de modo a manter seus aspectos positivos, enquanto sendo menos vulneravel a 
+suas propriedades não favoraveis. Gerando um conjunto de regras para prever
+valores futuros apartir de uma análise regressiva. \cite{MARS} 
+
+As implementações mais utilizadas destes são encontradas nas bibliotecas da linguagem 
 R, mgcv \cite{mgcv} para GAM e GLM, e mda \cite{mda} para MARS.
 
 Porem, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
