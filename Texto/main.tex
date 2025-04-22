@@ -203,7 +203,6 @@ Texto do resumo
 % LISTA DE ABREVIATURAS E SIGLAS
 % ========================================================================
 \begin{siglas}
-  \item[BC] Bayesian community ecology analysis
   \item[GAM] Generalized Additive Models
   \item[GLM] Generalized Linear Model
   \item[MARS] Multivariate Adaptive Regression Spline
@@ -223,27 +222,29 @@ Texto do resumo
 % ========================================================================
 \chapter{Introdução}
 
-Texto de introdução do capítulo de introdução
-
 \section{Contexto}
 
-O uso de ferramentas computacionais é uma realidade no dia a dia, e a integração de computadores nas 
-mais diversas áreas é um modo de gerar um impulso na capacidade de produção em várias 
-escalas \cite{comp_conceitosAplicacoes}.
+O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes
+estudos \cite{modelagem_comp}, uma destas aplicações são os modelos de distribuição 
+de especies, que são capazes de fornecer uma visualização da situação 
+da fauna e flora de determinada região, podendo mostrar como estas estão se 
+comportando no decorrer do tempo \cite{speciesDistributionModels}.
 
-Os modelos computacionais são uma dessas ferramentas, possuindo uma vasta área de aplicação
-\cite{modelagem_comp}, e a Biologia não fica de fora, aqui eles podem ser aplicados como modelos de distribuição
-de especies, onde são capazes de nos fornecer uma visualização da situação da fauna e flora de
-determinada região, podendo mostrar como estas estão se comportando no decorrer do tempo \cite{speciesDistributionModels}.
+Entr os modelos mais utilizados estão, o Generalized Additive Models (GAM) \cite{GAM}, 
+Generalized Linear Model (GLM) \cite{GLM}, e o Multivariate Adaptive Regression Spline (MARS) 
+\cite{MARS}, ambos com uma abordagem de Maximum likelihood (ML) \cite{predPerform33models}. 
+Onde as implementações mais utilizadas destes são encontradas nas bibliotecas da linguagem 
+R, mgcv \cite{mgcv} para GAM e GLM, e mda \cite{mda} para MARS.
 
-Porem estes modelos podem requisitar uma alta demanda de processamento e memória do computador
-hospedeiro, como indicado por Cosme. Logo mesmo com a facilidade de se adquirir um computador, o acesso a maquinas com maior capacidade
-de processamento não é uma realidade, tornando o processo de treinamento do modelo lento ou criando a necessidade de se
-alugar maquinas virtuais para está finalidade.
+Porem, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
+como citado por \cite{modelagem_comp}, ponto este, que não é repassado nos trabalhos referentes a análise 
+ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um computador, tais modelos
+requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
+a necessidade de se alugar maquinas virtuais para está finalidade \cite{global_cloud_maketing}. 
 
-E quando colocamos a necessidade de se manter um controle das populações de espécies, dentro ou próximo
+E quando se colocam a necessidade de se manter um controle das populações de espécies, dentro ou próximo
 a centros urbanos, a velocidade de preparo destes modelos se torna mais critica, já que precisamos ir des
-dá coleta dos dados, treino e validação do modelo, e análise dos resultados obtidos.
+dá coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
  
 \section{Justificativa}
 
@@ -258,41 +259,39 @@ Além disso, estas abordagens aumentam as possibilidades para integrar a infraes
 contribuindo para a sobrevivência de espécies que estão em níveis populacionais baixos.
 
 Modelos estatísticos, que tem a capacidade de demonstrar estes eventos, aplicam de maneiras diferentes algumas 
-linhas de abordagem, como o Bayesian community ecology analysis (BC), com uma abordagem Baesiana, 
-o Generalized Additive Models (GAM), Generalized Linear Model (GLM), e o Multivariate Adaptive Regression Spline (MARS), 
-ambos com uma abordagem de Maximum likelihood (ML), variando em sua capacidade de atuar com um determinado tipo de dado 
-e o custo levado para seu treinamento e utilização \cite{predPerform33models}.
+linhas de abordagem. O Generalized Additive Models (GAM), Generalized Linear Model (GLM), e o 
+Multivariate Adaptive Regression Spline (MARS), ambos com uma abordagem de Maximum likelihood (ML), 
+variando em sua capacidade de atuar com um determinado tipo de dado e o custo levado para seu treinamento 
+e utilização \cite{predPerform33models}.
 
 Modelos que são utilizados na modelagem de distribuição de espécies necessitam de uma quantidade elevada de dados 
 \cite{sampleSize}, de ocorrência e ausência, sendo os dados de ausência não necessários em todos os tipos de modelos.
 
 Nem todas as espécies são facilmente modeláveis devido à dificuldade de coleta de dados, seja pela sua raridade ou habitat 
-\cite{especiesDificies}. A colaboração de cidadãos 
-na coleta de dados pode auxiliar na identificação de áreas prioritárias para pesquisa. Portanto, a identificação de bons 
-modelos que trabalham com esses dados é vantajosa.
+\cite{especiesDificies}. A colaboração de cidadãos na coleta de dados pode auxiliar na identificação de áreas prioritárias 
+para pesquisa. Portanto, a identificação de bons modelos que trabalham com esses dados é vantajosa.
 
 Dentro destes modelos, além da quantidade e tipo de dados necessários, precisamos levar em consideração, o custo necessário de 
-processamento e o espaço de memória utilizado pelo mesmo, para este fim utilizamos a análise de complexidade e espaço \cite{introductionAlgorthms}, 
-já que um modelo mais barato nesse quesito pode ser criado em computadores mais acessíveis \cite{introductionAnalysis}, 
-e ser possível a construção de mais de um modelo de modo simultâneo.
+processamento e o espaço de memória utilizado pelo mesmo, para este fim utilizamos a análise de complexidade 
+e espaço \cite{introductionAlgorthms}, já que um modelo mais barato nesse quesito pode ser criado em computadores 
+mais acessíveis \cite{introductionAnalysis}, e ser possível a construção de mais de um modelo de modo simultâneo.
 
 Os pontos levantados anteriormente podem afetar a acurácia de um modelo, mesmo atendendo os requisitos, 
 de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenham uma boa acurácia, 
-quando trabalham somente com dados de ocorrência, assim como uma melhor avaliação computacional, 
-se vê vantajoso para situações em que queremos criar uma análise inicial de um determinado senário.
+quando trabalham somente com dados de ocorrência, assim como uma melhor avaliação computacional, se vê vantajoso para 
+situações em que queremos criar uma análise inicial de um determinado senário.
 
 \section{Objetivo}
 
-Este trabalho tem como o objetivo avaliar e comparar os modelos de distribuição de espécies mais populares, trabalhando com dados de
-ocorrência, levantando o custo computacional de cada um destes apartir de uma análise de complexidade e espaço. Encontrando um
-modelo que melhor aprensente um equilibrio entre a acurácia e o custo computacional.
+Este trabalho tem como o bjetivo avaliar e comparar a implementação encontrada nas bibliotecas mda e mgcv da linguagem R, dos modelos
+de distribuiçção de espécies, GAM, GML e MARS, levantando o custo computacional de cada um destes apartir de uma análise de 
+complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibrio entre a acurácia e o custo computacional.
 
 \subsection{Objetivos Específicos}
 
 \begin{enumerate}
 	\item Análise de complexidade e espaço dos modelos.
 	\begin{itemize}
-		\item Bayesian Community Ecology Analysis.
 		\item Generalized Addtive Model;
 		\item Generalized Linear Model;
 		\item Multivariate Adaptive Regression Spline;
