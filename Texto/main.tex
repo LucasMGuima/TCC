@@ -230,30 +230,27 @@ de especies, que são capazes de fornecer uma visualização da situação
 da fauna e flora de determinada região, podendo mostrar como estas estão se 
 comportando no decorrer do tempo \cite{speciesDistributionModels}.
 
-Entre esses modelos, os mais utilizados são, o Generalized Additive Models (GAM) \cite{GAM}, 
-o Generalized Linear Model (GLM) \cite{GLM}, esses dois modelos usam uma função para 
+Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
+e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
 estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
 das variáveis explanatórias, sendo o GLM uma estenção de modelos lineares que não
 forçam o dado a escalas não naturais, e o GAM uma extenção semi-parametrizada do GLM,
 tendo a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
 
-E o Multivariate Adaptive Regression Spline (MARS), que combina partição recursiva e ajustes
+Já o Multivariate Adaptive Regression Spline (MARS) combina partição recursiva e ajustes
 por splines, de modo a manter seus aspectos positivos, enquanto sendo menos vulneravel a 
 suas propriedades não favoraveis. Gerando um conjunto de regras para prever
 valores futuros apartir de uma análise regressiva. \cite{MARS} 
 
-As implementações mais utilizadas destes modelos são encontradas nas bibliotecas da linguagem 
-R, mgcv \cite{mgcv} para GAM e GLM, e mda \cite{mda} para MARS.
-
-Porem, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
+Porém, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
 como citado por \cite{modelagem_comp}, ponto este, que não é repassado nos trabalhos referentes a análise 
 ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um computador, tais modelos
 requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
 a necessidade de se alugar maquinas virtuais para está finalidade \cite{global_cloud_maketing}. 
 
 E quando se colocam a necessidade de se manter um controle das populações de espécies, dentro ou próximo
-a centros urbanos, a velocidade de preparo destes modelos se torna mais critica, já que precisamos ir des
-dá coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
+a centros urbanos, a velocidade de preparo destes modelos se torna mais critica, já que é necessário ir
+desde a coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
  
 \section{Justificativa}
 
@@ -293,7 +290,7 @@ situações em que queremos criar uma análise inicial de um determinado senári
 \section{Objetivo}
 
 Este trabalho tem como o bjetivo avaliar e comparar a implementação encontrada nas bibliotecas mda e mgcv da linguagem R, dos modelos
-de distribuiçção de espécies, GAM, GML e MARS, levantando o custo computacional de cada um destes apartir de uma análise de 
+de distribuição de espécies, GAM, GML e MARS, levantando o custo computacional de cada um destes apartir de uma análise de 
 complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibrio entre a acurácia e o custo computacional.
 
 \subsection{Objetivos Específicos}
