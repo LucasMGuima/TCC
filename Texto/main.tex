@@ -224,8 +224,12 @@ Texto do resumo
 
 \section{Contexto}
 
+% -----------------------------------------------
+% - Explicar uso da linguagem R
+% -----------------------------------------------
+
 O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes
-estudos \cite{modelagem_comp}, uma destas aplicações são os modelos de distribuição 
+estudos \cite{modelagem_comp}. Uma destas aplicações são os modelos de distribuição 
 de especies, que são capazes de fornecer uma visualização da situação 
 da fauna e flora de determinada região, podendo mostrar como estas estão se 
 comportando no decorrer do tempo \cite{speciesDistributionModels}.
@@ -233,7 +237,7 @@ comportando no decorrer do tempo \cite{speciesDistributionModels}.
 Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
 e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
 estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
-das variáveis explanatórias, sendo o GLM uma estenção de modelos lineares que não
+das variáveis explanatórias, sendo o GLM uma extenção de modelos lineares que não
 forçam o dado a escalas não naturais, e o GAM uma extenção semi-parametrizada do GLM,
 tendo a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
 
@@ -248,7 +252,7 @@ ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um compu
 requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
 a necessidade de se alugar maquinas virtuais para está finalidade \cite{global_cloud_maketing}. 
 
-E quando se colocam a necessidade de se manter um controle das populações de espécies, dentro ou próximo
+E quando se coloca a necessidade de se manter um controle das populações de espécies, dentro ou próximo
 a centros urbanos, a velocidade de preparo destes modelos se torna mais critica, já que é necessário ir
 desde a coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
  
@@ -289,7 +293,7 @@ situações em que queremos criar uma análise inicial de um determinado senári
 
 \section{Objetivo}
 
-Este trabalho tem como o bjetivo avaliar e comparar a implementação encontrada nas bibliotecas mda e mgcv da linguagem R, dos modelos
+Este trabalho tem como objetivo avaliar e comparar a implementação encontrada nas bibliotecas mda e mgcv da linguagem R, dos modelos
 de distribuição de espécies, GAM, GML e MARS, levantando o custo computacional de cada um destes apartir de uma análise de 
 complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibrio entre a acurácia e o custo computacional.
 
@@ -316,14 +320,31 @@ complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibri
 \section{Modelos Computacionais}
 \subsection{Modelos Lineares}
 \subsection{Acurácia}
-\subsection{Maximum Likelihood}
-\subsection{Modelos de distribuição de Especies}
+% -----------------------------------------------
+% - Detalhar oque são os dados de ocorrência e
+% ausência
+% -----------------------------------------------
+\subsection{Modelos de Distribuição de Especies}
+% -----------------------------------------------
+% - Detalhar oque são as variaveis de resposta e
+% variaveis explanatorias
+% -----------------------------------------------
 \subsubsection{GLM}
 \subsubsection{GAM}
+% -----------------------------------------------
+% - Detalhar a partiçõa recursiva e ajustes por
+% splines
+% -----------------------------------------------
 \subsubsection{MARS}
-\section{Análise de algoritmos}
-\subsection{Análise de complexidade}
-\subsection{Análise de espaço}
+\subsection{Análise Regressiva}
+\subsection{Maximum Likelihood}
+\section{Análise de Algoritmos}
+\subsection{Análise de Complexidade}
+\subsection{Análise de Espaço}
+\section{Análise de Dados em larga escala}
+\section{Linguagem R}
+\subsection{Bibliotecas}
+\section{Trabalhos relacionados}
 
 % ========================================================================
 % DESENVOLVIMENTO
