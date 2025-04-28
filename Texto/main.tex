@@ -320,14 +320,14 @@ complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibri
 
 \section{Modelos Computacionais}
 
-Modelos computacionais são modelos que representam fênomenos de modo simplificado, gerando uma aproximação
-do evento real, tendo em vista a visualização ou entendimento de determinado fênomeno, codificados em 
+Modelos computacionais são modelos que representam fenômenos de modo simplificado, gerando uma aproximação
+do evento real, tendo em vista a visualização ou entendimento de determinado fenômeno, codificados em 
 alguma linguagem computacional para ser executado em um computador. Estes modelos podem ser criados
 por especialistas utilizando de equações matemáticas ou, automaticamente utilizando de técnicas de
-iteligência artifical. \cite{modelos_computacionais}
+inteligência artificial. \cite{modelos_computacionais}
 
 Ao processo de criação destes modelos, damos o nome de modelagem computacional, podendo ser aplicado em
-qualquer situação onde uma análise de um sistema complexa se vê necessária, sendo suas principais
+qualquer situação onde uma análise de um sistema complexo se vê necessária, sendo suas principais
 aplicações encontradas nas seguintes áreas, como apresentado por \cite{modelagem_computacional}:
 
 \begin{enumerate}
@@ -335,25 +335,118 @@ aplicações encontradas nas seguintes áreas, como apresentado por \cite{modela
 	\item \textbf{Engenharia}: Essencial para projetos de larga escala, utilizada para testar estruturas antes de
 	começar sua construção.
 	\item \textbf{Medicina}: Permite a modelagem de epidemias, assim prevendo como doenças podem se espalhar em dada
-	população, ajudando a planejar metodos de controle.
+	população, ajudando a planejar métodos de controle.
 \end{enumerate}
 
-O tipo da modelagem depende do tipo de fênomeno ou problema que queromos tratar, onde os tipos principais
+O tipo da modelagem depende do tipo de fenômeno ou problema que queromos tratar, onde os tipos principais
 segundo \cite{modelagem_computacional} são:
 
 \begin{enumerate}
-	\item \textbf{Modelagem determiística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
+	\item \textbf{Modelagem determinística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
 	entrada sempre produzem os mesmos resultados. Mais visto no campo da Física e Engenharia, onde os 
-	fênomenos naturais seguem um conjunto de regras bem definido.
+	fenômenos naturais seguem um conjunto de regras bem definido.
 	\item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriredade, o sistema pode apresentar
 	resultados diferentes para o mesmo conjunto de parâmetros de entrada. Comumente usada onde o acaso 
 	desempenha um papel importante, como na Biologia e Economia.
 	\item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, essencial em áreas como a
-	ecologia e epidemiologia, onde se é preciso prever a evolução de sistemas biológicos ou a propagação
+	Ecologia e Epidemiologia, onde se é preciso prever a evolução de sistemas biológicos ou a propagação
 	de doenças. 
 \end{enumerate}
 
-\subsection{Modelos Lineares} % http://labtrop.ib.usp.br/doku.php?id=cursos:planeco:roteiro:08-lm_base
+% Transição abrupita, possivel melhora?
+
+\subsection{Modelos Lineares}
+
+Modelos lineares são modelos que preveem uma respota linear utilizando de base a relação entre o resultado
+e as propriedades dadas como parâmetros. Sendo uma opção mais simples, possui propriedades mais fáceis de
+serem entendidas e um tempo de desenvolvimento mais curto quando comparado a outros tipos de modelos,
+como redes neurais, ou árvores de decisão, empregadas no mesmo problema. \cite{modelos_lineares}
+
+A linearidade destes modelos, implica que matematicamente a variação dos parâmetros independentes não
+possuem relações entre si, e podem ser separados em dois grupos clássicos \cite{tipos_modelos_lineares}.
+\begin{itemize}
+	\item \textbf{Modelos de Regressão}:
+	Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
+	valores de possível representação numérica, indicando quantidade ou magnitude. Com o intuito de estimar
+	parâmetros, explicando relação ou para fazer predições.
+	\item \textbf{Modelos de Análise de Váriancia}:
+	Estes modelos tem como questão principal comparar a importância de fatores sobre o comportamento da
+	variável de resposta. Para encontrar a relação entre grupos de análise, de modo a indentificar oque
+	gera a diferença entre os grupos estudados.
+\end{itemize}
+
+Ambas as abordagens ao modelo linear, irão gerar uma regressão linear, que é um modelo matemático que 
+descrevem a relação entre as váriveis dependentes e independentes usadas, tendo a possibilidade de ser
+representado graficamente. Podendo ser de dois tipos, simples ou múltipla.
+
+Na regressõa linear simples, queremos estimar os valor de $a$ e $b$ da equação da reta, $y$ = $a$ + $bx$, 
+apartir de um conjunto de dados $x$ e $y$, onde $y$ representa a váriavel dependete e $x$ á váriavel 
+independente, que melhor represente a relação entre $x$ e $y$. Em outras palavras, queremos estimar a 
+inclinação da reta, esta que nos indica o efeito em $y$ das mudanças ocorridas em $x$ 
+\cite{modelos_regressao_linear}.
+
+A essa reta, é dado o nome de reta de regressão linear, está que depende de cinco estátisticas básicas
+\cite{modelos_regressao_linear}:
+
+\begin{enumerate}
+	\item Média de $X$: $\overline{X} = \frac{1}{N} \sum_{i=1}^{N} X_i$;
+	\item Desvio padrão de $X$: $S_x = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (X_i - \overline{X})^2 }$;
+	\item Média de $Y$: $\overline{Y} = \frac{1}{N} \sum_{i=1}^{N} Y_i$;
+	\item Desvio padrão de $Y$: $S_y = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (Y_i - \overline{Y})^2 }$;
+	\item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} . \frac{Y_i - \overline{Y}}{S_Y}$
+\end{enumerate}
+
+Com estas estátisticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
+($\overline{X}, \overline{Y}$). A inclinação da reta será dada por:
+
+\begin{equation}
+	\label{inclinacao_reta}
+	\beta_1 = \frac{r.S_y}{S_x}
+\end{equation}
+
+E o intercepto da reta de regressão, onde a reta corta um dos eixos do plano cartesiano, 
+será dado por:
+
+\begin{equation}
+	\label{intercepto_reta}
+	\beta_0 = \overline{Y} - \beta_1 \overline{X}
+\end{equation}
+
+Assim resultamos na seguinte equação:
+
+\begin{equation}
+\label{eq_reg_simples}
+	Y = \beta_0 + \beta_1X
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item ($X$) é a variável independente;
+	\item ($Y$) é a variável dependente;
+	\item ($\beta_0$) é o intercepto da reta;
+	\item ($\beta_1$) é a inclinação da reta. 
+\end{itemize}
+
+Porém, a equação \ref{eq_reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
+os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a váriavel $X$ que afeta os valores de
+$Y$ quando tratamos de ocorrência no mundo real, assim incluimos um termo de erro $\epsilon$ 
+\cite{modelos_regressao_linear}.
+
+\begin{equation}
+	\label{eq_reg_simples_erro}
+	Y = \beta_0 + \beta_1X + \epsilon
+\end{equation}
+
+Agora com a equação \ref{eq_reg_simples_erro}, podemos criar a reta de regressão, que pode ser
+representada graficamente, possuindo uma estrutura semelhante ao gráfico a seguir:
+
+\begin{figure}[htb]
+    \centering
+    \caption{\label{GPS}Regressão Linear Simples}
+    \includegraphics[width=0.5\textwidth]{../Imgs/reg_linear_simples.png}
+    \legend{Fonte: \citeonline{regressao_linear}}
+\end{figure}
+
 \subsection{Acurácia}
 % -----------------------------------------------
 % - Detalhar oque são os dados de ocorrência e
