@@ -429,8 +429,8 @@ Onde:
 
 Porém, a equação \ref{eq_reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
 os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a váriavel $X$ que afeta os valores de
-$Y$ quando tratamos de ocorrência no mundo real, assim incluimos um termo de erro $\epsilon$ 
-\cite{modelos_regressao_linear}.
+$Y$ quando tratamos de ocorrência no mundo real, assim incluimos um termo de erro $\epsilon$, que é
+o erro qie se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
 	\label{eq_reg_simples_erro}
@@ -446,6 +446,57 @@ representada graficamente, possuindo uma estrutura semelhante ao gráfico a segu
     \includegraphics[width=0.5\textwidth]{../Imgs/reg_linear_simples.png}
     \legend{Fonte: \citeonline{regressao_linear}}
 \end{figure}
+
+A equação \ref{eq_reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nosso dados
+podemos trabalhar com conjuntos de valores, que agrupam valores de $Y$ distintos, para cada valor de $X$.
+Por exemplo, dados que representam a qualidade de vida nos estados brasileiro com o número de postos 
+de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
+
+\begin{equation}
+	\label{eq_reg_simples_geral}
+	Y_i = \beta_0 + _beta_iX_i + \epsilon_i
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado a sima;
+	\item ($Y_i$) é a variável dependente;
+	\item ($X_i$) é a variável independente, representaria o número de postos de saúde em dado estado.
+	\item ($\beta_0$) é o intercepto;
+	\item ($\beta_1$) é a inclinação, e o efeito médio de $X_i$ sobre $Y_i$;
+	\item ($\epsilon$) é o erro médio ao se estimar $Y_i$ por meio de $X_i$;
+\end{itemize}
+
+Já quando tratamos da regressão linear múltipla, é levado em conta que outros fatores podem afetar a
+váriavel de resposta, este que podem também ser correlacionados com a váriavel independente. A formula
+parar este modelo de regressão, pode ser representa da da seguinte forma, onde temos $k$ variáveis, 
+explicativas \cite{modelos_regressao_linear}:
+
+\begin{equation}
+	\label{rq_reg_multipla}
+	Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \epsilon
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item ($\beta_0$) é o intercepto;
+	\item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função
+	\item ($\epsilon$) é o termo de erro.
+\end{itemize}
+
+Aqui temos $\beta_1$ até $\beta_k$ como coeficientes parcias da regressão \cite{modelos_regressao_linear}. Neste caso, a visualização por
+meio de um gráfico, fica comprometida, visto que temos um número $k$ de $X$, para ilustrar, usemos uma
+situação onde temos dois $X$, aqui podemos representar os valores por um gráfico de três dimenções.
+
+\begin{figure}[htb]
+    \centering
+    \caption{\label{GPS}Regressão Linear Multipla}
+    \includegraphics[width=0.5\textwidth]{../Imgs/reg_linear_multipla.png}
+    \legend{Fonte: \citeonline{regressao_linear_multipla_img}}
+\end{figure}
+
+Quando temos mais de dois valores de $X$ a representação gráfica fica confusa para o entendimento humano,
+mas ainda podemos tratar o problema como uma reta.
 
 \subsection{Acurácia}
 % -----------------------------------------------
