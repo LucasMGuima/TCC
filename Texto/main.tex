@@ -442,8 +442,8 @@ representada graficamente, possuindo uma estrutura semelhante ao gráfico a segu
 
 \begin{figure}[htb]
     \centering
-    \caption{\label{GPS}Regressão Linear Simples}
-    \includegraphics[width=0.5\textwidth]{../Imgs/reg_linear_simples.png}
+    \caption{\label{Regressão Linear Simples}Regressão Linear Simples}
+    \includegraphics[width=0.50\textwidth]{../Imgs/reg_linear_simples.png}
     \legend{Fonte: \citeonline{regressao_linear}}
 \end{figure}
 
@@ -490,8 +490,8 @@ situação onde temos dois $X$, aqui podemos representar os valores por um gráf
 
 \begin{figure}[htb]
     \centering
-    \caption{\label{GPS}Regressão Linear Multipla}
-    \includegraphics[width=0.5\textwidth]{../Imgs/reg_linear_multipla.png}
+    \caption{\label{Regressão Linear Multipla}Regressão Linear Multipla}
+    \includegraphics[width=0.50\textwidth]{../Imgs/reg_linear_multipla.png}
     \legend{Fonte: \citeonline{regressao_linear_multipla_img}}
 \end{figure}
 
@@ -499,22 +499,92 @@ Quando temos mais de dois valores de $X$ a representação gráfica fica confusa
 mas ainda podemos tratar o problema como uma reta.
 
 \subsection{Acurácia}
+
+A acurácia é um modo de avaliar s a performance de um modelo, assim identificando se seus resultados podem
+ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula \cite{acuracia}:
+
+\begin{equation}
+	\label{acuracia}
+	A = \frac{PC}{TP}
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item ($A$) é a Acurácia
+	\item ($PC$) é o total de Previsões Corretas, encontrada pela soma, ($Positivos Verdadeiros + Negativos Verdadeiros$);
+	\item ($TP$) é o Total de Previsões, encontrada pela soma, ($PC + Falsos Verdadeiros + Falsos Negativos$).
+\end{itemize}
+
+Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
+com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma médida grosseira da qualidade 
+de um modelo \cite{acuracia_matriz}.
+
+Onde temos mais exemplos de uma classe doque de outras, é importante considerar outras métricas de avaliação, já que esses
+modelos são considerados desbalanceados \cite{acuracia}.
+
+Uma matriz de confusão, por usa vez, é uma representação binária em forma de matriz dos resultados possíveis ao se utilizar 
+o modelo, sendo representada da seguinte forma:
+
+\begin{table}[h!]
+	\centering
+	\caption{\label{Matriz de Confusão}Matriz de Confusão}
+	\begin{tabular}{|c|c|c|}
+	\hline
+					  & Verdadeiro Positivo & Verdadeiro Negativo   \\ \hline
+	Positivo Previsto & Positivo Verdadeiro & Falsos Positivos      \\ \hline
+	Negativo Previsto & Falsos Negativos    & Negativos Verdadeiros \\ \hline
+	\end{tabular}
+\end{table}
+
+Onde:
+\begin{itemize}
+	\item \textbf{Positivos Verdadeiros}: São as classificações positivas corretas;
+	\item \textbf{Falsos Positivos}: São positivos que foram erroneamente classificados como negativos;
+	\item \textbf{Falsos Negativos}: São negativos que foram erroneamente classificados como positivos;
+	\item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
+\end{itemize}
+
 % -----------------------------------------------
 % - Detalhar oque são os dados de ocorrência e
 % ausência
 % -----------------------------------------------
 \subsection{Modelos de Distribuição de Especies}
+
+Definimos um Modelos de Distribuição de Especies, SDM (Spice Distribution Model), como um modelo que relaciona dados de 
+distribuição de especies, com informações sobre as caraceristicas ambientais e/ou epaciais de certas localidades, podendo 
+ser usados para entender e/ou prever a distribuição de uma espécie por uma dada locaclidade \cite{speciesDistributionModels}.
+
+SDMs comtemporaneos combinan conceitos de ecologia e historia natural com os avanços mais recentes em estatísticas e
+tecnologia da informação, as raizes destes modelos são encontradas no estudos mais antigos que descrevem padrões
+biológicos em termos de relações com geografia e/ou gradientes ambientais, e estudos que indicam a resposta individula
+de especies para seus ambientais prove um forte argumento conceitual para se modelar especies de modo individual 
+\cite{speciesDistributionModels}.
+
+As principais fontes de inforamções para a criação destes modelos, são \cite{tiposDados_sdm}: 
+\begin{itemize}
+	\item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a especie foi observada, conhecida como
+	dado de \textbf{ocorrência}, alguns modelos faze uso de dados de \textbf{ausência}, que são coordenadas geograficas 
+	onde se sabe que a espécie não ocorre;
+	\item Dado ambiental: São a descricção do ambiente, podendo conter medições de temperatura e precepitação, como
+	também, a ocorrência e ausência de outras especies, como predadores, competidores ou fontes de alimento.
+\end{itemize}
+
+Dentro dos SDMs, temos varios frameworks de modelagem, sendo os mais utilizados o Generalized Linear Model (GLM), 
+Generalized Addtive Model (GAM) e Multivariate Adaptive Regression Spline (MARS), que são encontradas nos
+softwares mais amigaveis ao usuário e bem documentados \cite{predPerform33models}, assim como podem ser encontrados em 
+bibliotecas de linguagens de programação, como R nas bibliotecas mda, onde encontramos o GLM e GAM \cite{mda} e mgcv 
+onde encontramos o MARS\cite{mgcv}.
 % -----------------------------------------------
 % - Detalhar oque são as variaveis de resposta e
 % variaveis explanatorias
 % -----------------------------------------------
-\subsubsection{GLM}
-\subsubsection{GAM}
+\subsubsection{GLM - Generalized Linear Model}
+\subsubsection{GAM - Generalized Addtive Model}
 % -----------------------------------------------
 % - Detalhar a partiçõa recursiva e ajustes por
 % splines
 % -----------------------------------------------
-\subsubsection{MARS}
+\subsubsection{MARS - Multivariate Adaptive Regression Spline}
 \subsection{Análise Regressiva}
 \subsection{Maximum Likelihood}
 \section{Análise de Algoritmos}
