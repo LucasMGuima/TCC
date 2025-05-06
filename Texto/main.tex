@@ -574,17 +574,55 @@ Generalized Addtive Model (GAM) e Multivariate Adaptive Regression Spline (MARS)
 softwares mais amigaveis ao usuário e bem documentados \cite{predPerform33models}, assim como podem ser encontrados em 
 bibliotecas de linguagens de programação, como R nas bibliotecas mda, onde encontramos o GLM e GAM \cite{mda} e mgcv 
 onde encontramos o MARS\cite{mgcv}.
-% -----------------------------------------------
-% - Detalhar oque são as variaveis de resposta e
-% variaveis explanatorias
-% -----------------------------------------------
+
 \subsubsection{GLM - Generalized Linear Model}
+
+Generalized Linear Models agrupão uma grande quantidade de modelos discretos e continuos, particularmente util para se 
+trabalhar com dados discretos, sendo uma extenção de General Linear Models com a incerção da família exponencial de 
+distribuições de erro junto com a normal \cite{GLM}.
+
+Ao contrário dos classicos modelos lineares, que propoem uma distribuição Gaussiana (normal) e uma função de ligação dos
+valores de $X$ e $Y$, os GLMs permitem que a função de distribuição seja qualquer uma da família de distribuições 
+exponenciais, Gaussiana, Poisson ou Binomial, e a função de ligação pode ser qualquer função função monotonica 
+diferenciavel, como a logaritmica \cite{GAMeGLM_especie_estudo}.
+
+No GLM as variaveis de predição $X_j$, onde $j = 1, ..., p$, são combinadas para se formar uma preditor linear, LP, que
+é relacionado ao valor esperado $\mu = E(Y)$ da váriavel de reposta $Y$ atráves de uma função de junção $g()$ 
+\cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte formula: 
+
+\begin{equation}
+	g(E(Y)) = LP = \alpha + X^T \beta
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item $\alpha$: é uma constante, chamada de intercepto;
+	\item $X$: é um vetor de $p$ preditores, $(X_1, ..., X_p)$;
+	\item $\beta$: é um vetor de $p$ coeficientes de regressão, uma para cada preditor, $(\beta_1, ..., \beta_p)$.
+\end{itemize}
+
 \subsubsection{GAM - Generalized Addtive Model}
+
+Gerados a partir do GLM, este modelo possue uma automatização para se identificar os termos de polinomio apropriado
+e as transformações dos preditores que melhoram a qualidade do modelo linear. Logo podemos dizer que os GAMs estão
+aninhados dentro do GLMs que por usa vez estão aninhados em modelos lineares, LM \cite{GAMeGLM_especie_estudo}:
+
+\begin{equation}
+	LM \subset GLM \subset GAM
+\end{equation}
+
+GAMs são parametrizados como os GLMs, porém alguns preditores podem ser modelados de modo não parametrizado em 
+adção a termos lineares e polinomias para outros preditores. Um passo crucial para se aplicar GAMs é selecionar
+o nível apropriado de "suavização" para os preditores.
+
 % -----------------------------------------------
 % - Detalhar a partiçõa recursiva e ajustes por
 % splines
 % -----------------------------------------------
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
+
+
+
 \subsection{Análise Regressiva}
 \subsection{Maximum Likelihood}
 \section{Análise de Algoritmos}
