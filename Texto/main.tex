@@ -621,8 +621,22 @@ o nível apropriado de "suavização" para os preditores.
 % -----------------------------------------------
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
 
+O foco na modelagem por regressão, é estimar uma função $f'(x_1,...x_n)$, que melhor se assemelhe a função 
+$f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fenômeno, e o seu resultado real.
+\cite{MARS}. 
 
+MARS é um modelo altamente flexivel para se trabalhar com um grande fluxo de dados, tomando a forma de uma expanção
+de formulas spline base, onde o quantidade destas assim como os seus parametros é automaticamente determinado
+pelo dado, atuando melhor com dados que são quase aditivos ou possuem a interação entre vários parametros,
+produzindo modelos continuos \cite{intro_mars}.
 
+Para se fazer o fiting do modelo, MARS se utiliza de splines, sendo a o metodo mais popular o "B-Spline" usado em
+conjunto com o fiting por ultimo-quadrado. O processo de spline, consiste em separa os dados nos
+menores conjuntos possívies, assumindo um formato de um polinomio de $q$ parametros, onde $q$ é o quanto iremos
+aprofundar na regressão, limitiando de tal forma que a função atual e a função de menor $q-1$ são continuos em
+todos os grupos, resultando em uma função com fitting apropriado \cite{intro_mars}.
+
+ 
 \subsection{Análise Regressiva}
 \subsection{Maximum Likelihood}
 \section{Análise de Algoritmos}
