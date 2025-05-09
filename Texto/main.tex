@@ -84,6 +84,20 @@
 % alterando o aspecto da cor azul
 \definecolor{blue}{RGB}{41,5,195}
 
+% formato de código
+\lstdefinestyle{psceudo}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries, 
+    numbers=left, 
+    numberstyle=\tiny, 
+    stepnumber=1,
+    captionpos=b,
+    tabsize=2,
+    breaklines=true,
+    showstringspaces=false
+}
+
 % informações do PDF
 \makeatletter
 \hypersetup{
@@ -640,8 +654,90 @@ todos os grupos, resultando em uma função com fitting apropriado \cite{intro_m
 \subsection{Análise Regressiva}
 \subsection{Maximum Likelihood}
 \section{Análise de Algoritmos}
+
+A análise de algoritmos é o processo de se identificar uma formula matemática que melhor represente o custo de
+utilização de uma dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
+de dados, ou de espaço, quando da memoria do computador o algoritmo ira usar durante seu processo.
+
+Neste processo identificamos a qual fámilia de problemas esse algoritmo pertence, que corresponde ao seu custo de
+computação \cite{introductionAlgorthms} e assim podemos categoriza-lo com báse na notação assintótica.
+
+\begin{table}
+	\centering
+	\caption{\label{Notação Assintótica}Notação Assintótica}
+	\begin{tabular}{|c|c|c|}
+	\hline
+		Complexidade & Nome & Eficiente \\ \hline
+		$O(1)$ & Constante & Sim \\ \hline
+		$O(log n)$ & Logartimica & Sim \\ \hline
+		$O(n)$ & Linear & Sim \\ \hline
+		$O(n log n)$ & "Linearitimica" & Sim \\ \hline
+		$O(n^2)$ & Quadrática & Sim \\ \hline
+		$O(n^3)$ & Cúbica & Sim \\ \hline
+		$O(2^n)$ & Exponencial & Não \\ \hline
+		$O(n!)$ & Fatorial & Não \\ \hline
+	\end{tabular}
+\end{table}
+
+A formula matemática identificada como a representação do custo computacional é "arredondada" para uma das familias
+apresentadas a cima, reduzindo a forumla a sua caractereistica mais presente, visto que aqui assumimos que $n$ sejá
+um valor muito grande. Por exemplos uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, 
+pode ser reduzida a $n^2$, já que esté tera maior peso durante a computação, fazendo está ser caracterizada 
+como $O(n^2)$, onde $O$ é a notação "grande O", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
+
+Com está análise, conseguimos encontrar um algoritmo que melhor se encaixe em determinado problema, antes de se
+desenvolver o mesmo em uma linguagem de programação especifica, ou de utilizarmos algoritmos já implementados de forma
+cega, podendo perder em tempo e consumo desnecessário de memoria.
+
 \subsection{Análise de Complexidade}
+
+Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado um entrada de tamanho $n$, análisando 
+seus comandos, como exemplo podemos utilizar o algoritmo de ordenação bubble-sort. O bubble-sort é algorimo que ordena
+uma sequência de números, encontrando onde o valor atual se encaixa na sequencia, sequindo os sequintes passos:
+
+Assumimos uma sequencia númerica, de tamanho $n=5$, ${5 1 4 2 8}$, e tomemos dois marcadores $i$ e $j$, que representam poisções
+na sequencia númerica.
+
+\begin{itemize}
+	\item \textbf{Passo 1}: Iniciamos com $i=0$ e $j=1$;
+	\item \textbf{Passo 2}: Compara se o valor na posição $i$ é maior que o valore na posição $j$, 
+	até $j$ ser igual a $n$;
+	\item \textbf{Passo 3}: Se sim, incrementa o valor de $j$, e retorna ao passo 2;
+	\item \textbf{Passo 4}: Se não, troca os valores de $i$ e $j-1$, incrementa $i$, atribui $j=i+1$ 
+	e retorna ao passo 2;
+	\item \textbf{Passo 6}: Repete os passos 2 a 4 até que $i$ seja igual a $n$;
+\end{itemize}
+
+Com estes passo, podemos desenvolver um psceudo código que realiza o bubble-sort.
+
+\lstset{style=psceudo}
+\begin{lstlisting}
+func bubble-sort(vetor)
+	for i = 0 to n-1 do
+		for j = i to n-1 do
+			if vetor[j] > vetor[j+1] do
+				swap(vetor[j], vetor[j+1])
+\end{lstlisting}
+
+Apartir do psceudo código a cima, conseguimos realizar a análise de complexidade. Na linha 2 "$for i = 0 to n-1 do$"
+temos uma interação sobre o vetor de tamanho $n$, logo dizemos que nesta linha temos uma complexidade $O(n)$, na
+linha 3 "$for j = i to n-1$" encontramos novamente uma interação pelo vetor, assumimos aqui que temos uma
+complexidade $O(n)$.
+
+A linha 4 atribuimos uma complexidade de $O(1)$ visto que ela roda uma vez para cada laço gerado pela linha 3. Também
+assumimos $O(1)$ para a linha 5, assumindo que a troca é uma ação constante.
+
+No final, facaremos com uma complexidade de $O(n^2)$ visto que percorremos o vetor de entrada duas vezes, e este ponto
+será oque apresentara maior impacto no desempenho com vetores de tamanho $n$ muito grande.
+
 \subsection{Análise de Espaço}
+
+Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e/ou cria, como por exemplo estruturas
+auxiliares como vetores ou matrizes, conseguimos representar o consumo esperado de memória atravez de uma formula
+matemática, assim como ná análise anterior, como exemplo tomemos o algortimo bubble-sort.
+
+
+
 \section{Análise de Dados em larga escala}
 \section{Linguagem R}
 \subsection{Bibliotecas}
