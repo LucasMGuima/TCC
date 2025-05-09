@@ -736,6 +736,20 @@ Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e
 auxiliares como vetores ou matrizes, conseguimos representar o consumo esperado de memória atravez de uma formula
 matemática, assim como ná análise anterior, como exemplo tomemos o algortimo bubble-sort.
 
+No algoritmo ded bubble-sort, temos as seguintes váriaveis:
+
+\begin{itemize}
+	\item $vetor$ a sequencia de $n$ inteiros;
+	\item $i$ um valor inteiro que representa uma posição na sequencia;
+	\item $j$ um valor inteiro que representa uma posição na sequencia;
+\end{itemize}
+
+Assim, o algoritmo não cria nenhuma variavel a mais durante sua execução, acarretando em um custo de mormia costante durante
+a sua execução. Sendo o tamanho de 2 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho $n$ da sequencia de
+inteiros.
+
+Logo o consumo de memoria pode ser descrito por uma função linear, $f(n) = n + 2$, onde $n$ é o tamanho da sequencia de
+entraad.
 
 
 \section{Análise de Dados em larga escala}
