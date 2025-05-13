@@ -372,7 +372,7 @@ segundo \cite{modelagem_computacional} são:
 \subsection{Modelos Lineares}
 
 Modelos lineares são modelos que preveem uma respota linear utilizando de base a relação entre o resultado
-e as propriedades dadas como parâmetros. Sendo uma opção mais simples, possui propriedades mais fáceis de
+e as propriedades dadas como parâmetros. Sendo uma opção mais simples, possuem propriedades mais fáceis de
 serem entendidas e um tempo de desenvolvimento mais curto quando comparado a outros tipos de modelos,
 como redes neurais, ou árvores de decisão, empregadas no mesmo problema. \cite{modelos_lineares}
 
@@ -444,7 +444,7 @@ Onde:
 Porém, a equação \ref{eq_reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
 os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a váriavel $X$ que afeta os valores de
 $Y$ quando tratamos de ocorrência no mundo real, assim incluimos um termo de erro $\epsilon$, que é
-o erro qie se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
+o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
 	\label{eq_reg_simples_erro}
@@ -462,7 +462,7 @@ representada graficamente, possuindo uma estrutura semelhante ao gráfico a segu
 \end{figure}
 
 A equação \ref{eq_reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nosso dados
-podemos trabalhar com conjuntos de valores, que agrupam valores de $Y$ distintos, para cada valor de $X$.
+podemos trabalhar com conjuntos de valores, agrupando valores de $Y$ distintos, para cada valor de $X$.
 Por exemplo, dados que representam a qualidade de vida nos estados brasileiro com o número de postos 
 de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
 
@@ -473,7 +473,7 @@ de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_reg
 
 Onde:
 \begin{itemize}
-	\item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado a sima;
+	\item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado acima;
 	\item ($Y_i$) é a variável dependente;
 	\item ($X_i$) é a variável independente, representaria o número de postos de saúde em dado estado.
 	\item ($\beta_0$) é o intercepto;
@@ -482,8 +482,8 @@ Onde:
 \end{itemize}
 
 Já quando tratamos da regressão linear múltipla, é levado em conta que outros fatores podem afetar a
-váriavel de resposta, este que podem também ser correlacionados com a váriavel independente. A formula
-parar este modelo de regressão, pode ser representa da da seguinte forma, onde temos $k$ variáveis, 
+váriavel de resposta, este que também podem ser correlacionados com a váriavel independente. A formula
+para este modelo de regressão, pode ser representa da seguinte forma, onde temos $k$ variáveis, 
 explicativas \cite{modelos_regressao_linear}:
 
 \begin{equation}
@@ -514,7 +514,7 @@ mas ainda podemos tratar o problema como uma reta.
 
 \subsection{Acurácia}
 
-A acurácia é um modo de avaliar s a performance de um modelo, assim identificando se seus resultados podem
+A acurácia é um modo de avaliar a performance de um modelo, assim identificando se seus resultados podem
 ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula \cite{acuracia}:
 
 \begin{equation}
@@ -558,20 +558,16 @@ Onde:
 	\item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
 \end{itemize}
 
-% -----------------------------------------------
-% - Detalhar oque são os dados de ocorrência e
-% ausência
-% -----------------------------------------------
 \subsection{Modelos de Distribuição de Especies}
 
 Definimos um Modelos de Distribuição de Especies, SDM (Spice Distribution Model), como um modelo que relaciona dados de 
 distribuição de especies, com informações sobre as caraceristicas ambientais e/ou epaciais de certas localidades, podendo 
-ser usados para entender e/ou prever a distribuição de uma espécie por uma dada locaclidade \cite{speciesDistributionModels}.
+ser usados para entender e/ou prever a distribuição de uma espécie em uma dada locaclidade \cite{speciesDistributionModels}.
 
 SDMs comtemporaneos combinan conceitos de ecologia e historia natural com os avanços mais recentes em estatísticas e
-tecnologia da informação, as raizes destes modelos são encontradas no estudos mais antigos que descrevem padrões
-biológicos em termos de relações com geografia e/ou gradientes ambientais, e estudos que indicam a resposta individula
-de especies para seus ambientais prove um forte argumento conceitual para se modelar especies de modo individual 
+tecnologia da informação, as raizes destes modelos são encontradas nos estudos mais antigos que descrevem padrões
+biológicos em termos de relações com geografia e/ou gradientes ambientais, e estudos que indicam a resposta individual
+de especies para seus ambientais, proveem um forte argumento conceitual para se modelar especies de modo individual 
 \cite{speciesDistributionModels}.
 
 As principais fontes de inforamções para a criação destes modelos, são \cite{tiposDados_sdm}: 
@@ -579,7 +575,7 @@ As principais fontes de inforamções para a criação destes modelos, são \cit
 	\item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a especie foi observada, conhecida como
 	dado de \textbf{ocorrência}, alguns modelos faze uso de dados de \textbf{ausência}, que são coordenadas geograficas 
 	onde se sabe que a espécie não ocorre;
-	\item Dado ambiental: São a descricção do ambiente, podendo conter medições de temperatura e precepitação, como
+	\item Dado ambiental: São a descricção do ambiente, podendo conter medições de temperatura e precipitação, como
 	também, a ocorrência e ausência de outras especies, como predadores, competidores ou fontes de alimento.
 \end{itemize}
 
@@ -591,13 +587,13 @@ onde encontramos o MARS\cite{mgcv}.
 
 \subsubsection{GLM - Generalized Linear Model}
 
-Generalized Linear Models agrupão uma grande quantidade de modelos discretos e continuos, particularmente util para se 
+Generalized Linear Models agrupão uma grande quantidade de modelos discretos e continuos, sendo particularmente util para se 
 trabalhar com dados discretos, sendo uma extenção de General Linear Models com a incerção da família exponencial de 
 distribuições de erro junto com a normal \cite{GLM}.
 
-Ao contrário dos classicos modelos lineares, que propoem uma distribuição Gaussiana (normal) e uma função de ligação dos
-valores de $X$ e $Y$, os GLMs permitem que a função de distribuição seja qualquer uma da família de distribuições 
-exponenciais, Gaussiana, Poisson ou Binomial, e a função de ligação pode ser qualquer função função monotonica 
+Ao contrário dos modelos lineares classicos, que propoem uma distribuição Gaussiana (normal) e uma função de ligação dos
+valores de $X$ e $Y$, os GLMs permitem que a função de distribuição seja alguma da família de distribuições 
+exponenciais, Gaussiana, Poisson ou Binomial, e a função de ligação pode ser qualquer função monotonica 
 diferenciavel, como a logaritmica \cite{GAMeGLM_especie_estudo}.
 
 No GLM as variaveis de predição $X_j$, onde $j = 1, ..., p$, são combinadas para se formar uma preditor linear, LP, que
@@ -629,10 +625,6 @@ GAMs são parametrizados como os GLMs, porém alguns preditores podem ser modela
 adção a termos lineares e polinomias para outros preditores. Um passo crucial para se aplicar GAMs é selecionar
 o nível apropriado de "suavização" para os preditores.
 
-% -----------------------------------------------
-% - Detalhar a partiçõa recursiva e ajustes por
-% splines
-% -----------------------------------------------
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
 
 O foco na modelagem por regressão, é estimar uma função $f'(x_1,...x_n)$, que melhor se assemelhe a função 
@@ -649,7 +641,6 @@ conjunto com o fiting por ultimo-quadrado. O processo de spline, consiste em sep
 menores conjuntos possívies, assumindo um formato de um polinomio de $q$ parametros, onde $q$ é o quanto iremos
 aprofundar na regressão, limitiando de tal forma que a função atual e a função de menor $q-1$ são continuos em
 todos os grupos, resultando em uma função com fitting apropriado \cite{intro_mars}.
-
  
 \subsection{Análise Regressiva}
 \subsection{Maximum Likelihood}
@@ -657,7 +648,7 @@ todos os grupos, resultando em uma função com fitting apropriado \cite{intro_m
 
 A análise de algoritmos é o processo de se identificar uma formula matemática que melhor represente o custo de
 utilização de uma dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
-de dados, ou de espaço, quando da memoria do computador o algoritmo ira usar durante seu processo.
+de dados, ou de espaço, quanto da memoria do computador o algoritmo ira usar durante seu processo.
 
 Neste processo identificamos a qual fámilia de problemas esse algoritmo pertence, que corresponde ao seu custo de
 computação \cite{introductionAlgorthms} e assim podemos categoriza-lo com báse na notação assintótica.
@@ -680,20 +671,20 @@ computação \cite{introductionAlgorthms} e assim podemos categoriza-lo com bás
 \end{table}
 
 A formula matemática identificada como a representação do custo computacional é "arredondada" para uma das familias
-apresentadas a cima, reduzindo a forumla a sua caractereistica mais presente, visto que aqui assumimos que $n$ sejá
+apresentadas acima, reduzindo a formula a sua caractereistica mais presente, visto que aqui assumimos que $n$ sejá
 um valor muito grande. Por exemplos uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, 
-pode ser reduzida a $n^2$, já que esté tera maior peso durante a computação, fazendo está ser caracterizada 
-como $O(n^2)$, onde $O$ é a notação "grande O", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
+pode ser reduzida a $n^2$, já que está parte tera maior peso durante a computação, a caracterizando 
+como $O(n^2)$, onde $O$ é a notação "O grande", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
 
 Com está análise, conseguimos encontrar um algoritmo que melhor se encaixe em determinado problema, antes de se
 desenvolver o mesmo em uma linguagem de programação especifica, ou de utilizarmos algoritmos já implementados de forma
-cega, podendo perder em tempo e consumo desnecessário de memoria.
+cega, podendo perder em tempo e em consumo desnecessário de memoria.
 
 \subsection{Análise de Complexidade}
 
-Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado um entrada de tamanho $n$, análisando 
-seus comandos, como exemplo podemos utilizar o algoritmo de ordenação bubble-sort. O bubble-sort é algorimo que ordena
-uma sequência de números, encontrando onde o valor atual se encaixa na sequencia, sequindo os sequintes passos:
+Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado uma entrada de tamanho $n$, análisando 
+seus comandos, como exemplo podemos utilizar o algoritmo de ordenação bubble-sort. O bubble-sort é um algorimo que ordena
+uma sequência de números, encontrando onde o valor atual se encaixa na sequencia \cite{introductionAnalysis}, sequindo os seguintes passos:
 
 Assumimos uma sequencia númerica, de tamanho $n=5$, ${5 1 4 2 8}$, e tomemos dois marcadores $i$ e $j$, que representam poisções
 na sequencia númerica.
@@ -719,7 +710,7 @@ func bubble-sort(vetor)
 				swap(vetor[j], vetor[j+1])
 \end{lstlisting}
 
-Apartir do psceudo código a cima, conseguimos realizar a análise de complexidade. Na linha 2 "$for i = 0 to n-1 do$"
+Apartir do psceudo código acima, conseguimos realizar a análise de complexidade. Na linha 2 "$for i = 0 to n-1 do$"
 temos uma interação sobre o vetor de tamanho $n$, logo dizemos que nesta linha temos uma complexidade $O(n)$, na
 linha 3 "$for j = i to n-1$" encontramos novamente uma interação pelo vetor, assumimos aqui que temos uma
 complexidade $O(n)$.
@@ -727,16 +718,16 @@ complexidade $O(n)$.
 A linha 4 atribuimos uma complexidade de $O(1)$ visto que ela roda uma vez para cada laço gerado pela linha 3. Também
 assumimos $O(1)$ para a linha 5, assumindo que a troca é uma ação constante.
 
-No final, facaremos com uma complexidade de $O(n^2)$ visto que percorremos o vetor de entrada duas vezes, e este ponto
-será oque apresentara maior impacto no desempenho com vetores de tamanho $n$ muito grande.
+No final, temos uma complexidade de $O(n^2)$ visto que percorremos o vetor de entrada duas vezes, e este ponto
+é oque apresenta maior impacto no desempenho com vetores de tamanho $n$ muito grande.
 
 \subsection{Análise de Espaço}
 
 Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e/ou cria, como por exemplo estruturas
 auxiliares como vetores ou matrizes, conseguimos representar o consumo esperado de memória atravez de uma formula
-matemática, assim como ná análise anterior, como exemplo tomemos o algortimo bubble-sort.
+matemática \cite{introductionAnalysis}, assim como ná análise anterior, como exemplo tomemos o algortimo bubble-sort.
 
-No algoritmo ded bubble-sort, temos as seguintes váriaveis:
+No algoritmo de bubble-sort, temos as seguintes váriaveis:
 
 \begin{itemize}
 	\item $vetor$ a sequencia de $n$ inteiros;
@@ -744,18 +735,48 @@ No algoritmo ded bubble-sort, temos as seguintes váriaveis:
 	\item $j$ um valor inteiro que representa uma posição na sequencia;
 \end{itemize}
 
-Assim, o algoritmo não cria nenhuma variavel a mais durante sua execução, acarretando em um custo de mormia costante durante
+Assim, o algoritmo não cria nenhuma variavel a mais durante sua execução, acarretando em um custo de memoria costante durante
 a sua execução. Sendo o tamanho de 2 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho $n$ da sequencia de
 inteiros.
 
 Logo o consumo de memoria pode ser descrito por uma função linear, $f(n) = n + 2$, onde $n$ é o tamanho da sequencia de
-entraad.
+entrada.
 
-
-\section{Análise de Dados em larga escala}
 \section{Linguagem R}
-\subsection{Bibliotecas}
+
+R foi desenvolvido e pensado como uma linguagem e ambiente para computação estatística e gráficos, possue a capacidade
+de trabalhar com vários processos estatísticos, como modelagem linear e não-linear, testes classicos de estatística,
+sériese temporais, entre outros, e ser altamente extensível \cite{ling_r}.
+
+Devido ao seu desenvolvimento focado em aplicações de computação estatística, ser semelhante e compativel 
+com a lingaugem S já existente, e capaz de atuar com códigos feitos nas linguagens C, C++ e Fortran \cite{ling_r},
+tornou o R uma linguagem popular dentro da área de compuatação estatística \cite{linguagem_r}.
+
+O ambiente do R, pode ser fácilmente incrementado, se utilizando de bibliotecas, nomeadas como packages, por padrão,
+temos oito packages que são encontrados junto da distribuição comum do R, outros packages podem ser encontrados em sites
+especializados na distribuição dos mesmos \cite{ling_r}.
+
+Além de ser de facil incrementação, o ambeinte R, possue um interface de desenvolvimento gratuita, o R Studio, onde
+a utilização da linguagem fica concnetrada em uma unica aplicação, facilitando a visualização dos dados, gráficos, alteração
+e manutenção do código e packages \cite{rstudio}.
+
+\subsection{Packages}
+
+Packages, também conhecidos como bibliotecas ou pacotes, dentro do cenario de computação, se refere a agrupamentos de códigos
+desenvolvidos por terceiros ou por si mesmo, para encapsular alguma atividade ou processo, que pode ser utilizado em mais
+de um projeto.
+
+Como exemplo, podemos utilizar os packages, mda e mgcv, presentes neste trabalho, o package mda engloba funções para se aplicar
+um grupo de modelagem de dados, sendo estes o Mixture and Flexible Discriminant Analysis, Multivariate Adaptive Regression 
+Splines (MARS) e Vector-response Smoothing Splines \cite{mda}, já o mgcv, engloba Generalized Additive Models e algumas de suas variações
+, Generalized Cross Validation e similares \cite{mgcv}.
+
+Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
+os pormenores da execução em si, apenas passar os parametros necessários de modo correto.
+
 \section{Trabalhos relacionados}
+
+
 
 % ========================================================================
 % DESENVOLVIMENTO
