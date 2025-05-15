@@ -636,14 +636,23 @@ de formulas spline base, onde o quantidade destas assim como os seus parametros 
 pelo dado, atuando melhor com dados que são quase aditivos ou possuem a interação entre vários parametros,
 produzindo modelos continuos \cite{intro_mars}.
 
-Para se fazer o fiting do modelo, MARS se utiliza de splines, sendo a o metodo mais popular o "B-Spline" usado em
-conjunto com o fiting por ultimo-quadrado. O processo de spline, consiste em separa os dados nos
+Para se fazer o fiting do modelo, MARS utiliza de splines, sendo a o metodo mais popular o "B-Spline" usado em
+conjunto com o fiting por ultimo-quadrado. O processo de spline, consiste em separar os dados nos
 menores conjuntos possívies, assumindo um formato de um polinomio de $q$ parametros, onde $q$ é o quanto iremos
 aprofundar na regressão, limitiando de tal forma que a função atual e a função de menor $q-1$ são continuos em
-todos os grupos, resultando em uma função com fitting apropriado \cite{intro_mars}.
- 
-\subsection{Análise Regressiva}
-\subsection{Maximum Likelihood}
+todos os grupos, resultando em uma função com fitting apropriado \cite{intro_mars}. 
+
+Em outras palavras, podemos definir um spline, como a aproximação de uma curva de formato complexo utilizando do 
+menor número possivel de retas, sendo essa quantidade de retas o prametro $q$, como pode ser visto na figura \ref{Curva Spline}.
+
+\begin{figure}[htb]
+    \centering
+    \caption{\label{Curva Spline}Curva Spline}
+    \includegraphics[width=0.50\textwidth]{../Imgs/B-spline_curve.png}
+    \legend{Fonte: \citeonline{b_spline}}
+\end{figure}
+
+
 \section{Análise de Algoritmos}
 
 A análise de algoritmos é o processo de se identificar uma formula matemática que melhor represente o custo de
@@ -653,7 +662,7 @@ de dados, ou de espaço, quanto da memoria do computador o algoritmo ira usar du
 Neste processo identificamos a qual fámilia de problemas esse algoritmo pertence, que corresponde ao seu custo de
 computação \cite{introductionAlgorthms} e assim podemos categoriza-lo com báse na notação assintótica.
 
-\begin{table}
+\begin{table}[htb]
 	\centering
 	\caption{\label{Notação Assintótica}Notação Assintótica}
 	\begin{tabular}{|c|c|c|}
