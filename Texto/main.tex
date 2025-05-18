@@ -27,6 +27,7 @@
 % ---
 % Pacotes básicos 
 % ---
+\usepackage{tikz}
 \usepackage{lmodern}			% Usa a fonte Latin Modern			
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
@@ -62,6 +63,13 @@
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
 
+\usetikzlibrary{arrows.meta, shapes.geometric}
+
+% Define custom colors for TikZ diagrams
+\definecolor{w}{rgb}{1,1,1}    % white
+\definecolor{b}{rgb}{0,0,0}    % black
+\definecolor{g}{rgb}{0.7,0.7,0.7}  % gray
+
 % Informações de dados para CAPA e FOLHA DE ROSTO
 \titulo{Titulo do Trabalho}
 \autor{Lucas da Mata Guimarães}
@@ -86,13 +94,13 @@
 
 % formato de código
 \lstdefinestyle{psceudo}{
-    language=Python,
+    language=C,
     basicstyle=\ttfamily\small,
     keywordstyle=\bfseries, 
     numbers=left, 
     numberstyle=\tiny, 
     stepnumber=1,
-    captionpos=b,
+    captionpos=t,
     tabsize=2,
     breaklines=true,
     showstringspaces=false
@@ -691,50 +699,122 @@ um valor muito grande. Por exemplos uma função que tenha a forma de $n^2 + n +
 pode ser reduzida a $n^2$, já que está parte tera maior peso durante a computação, a caracterizando 
 como $O(n^2)$, onde $O$ é a notação "O grande", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
 
-Com está análise, conseguimos encontrar um algoritmo que melhor se encaixe em determinado problema, antes de se
+Com está análise, encontramos um algoritmo que melhor se encaixe em determinado problema, antes de se
 desenvolver o mesmo em uma linguagem de programação especifica, ou de utilizarmos algoritmos já implementados de forma
 cega, podendo perder em tempo e em consumo desnecessário de memoria.
 
 \subsection{Análise de Complexidade}
 
 Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado uma entrada de tamanho $n$, análisando 
-seus comandos, como exemplo podemos utilizar o algoritmo de ordenação bubble-sort. O bubble-sort é um algorimo que ordena
-uma sequência de números, encontrando onde o valor atual se encaixa na sequencia \cite{introductionAnalysis}, sequindo os seguintes passos:
+seus comandos, como exemplo podemos utilizar o algoritmo de ordenação insertion sort. 
 
-Assumimos uma sequencia númerica, de tamanho $n=5$, ${5 1 4 2 8}$, e tomemos dois marcadores $i$ e $j$, que representam poisções
-na sequencia númerica.
+O insertion sort é um algoritmo eficiente para ordena uma sequência pequena de números, funciona de modo semelhante a
+como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia, e a cada momento se pega uma
+carta da mesa e se insere na mão em sua poisção correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
 
-\begin{itemize}
-	\item \textbf{Passo 1}: Iniciamos com $i=0$ e $j=1$;
-	\item \textbf{Passo 2}: Compara se o valor na posição $i$ é maior que o valore na posição $j$, 
-	até $j$ ser igual a $n$;
-	\item \textbf{Passo 3}: Se sim, incrementa o valor de $j$, e retorna ao passo 2;
-	\item \textbf{Passo 4}: Se não, troca os valores de $i$ e $j-1$, incrementa $i$, atribui $j=i+1$ 
-	e retorna ao passo 2;
-	\item \textbf{Passo 6}: Repete os passos 2 a 4 até que $i$ seja igual a $n$;
-\end{itemize}
-
-Com estes passos, podemos desenvolver um psceudo código que realiza o bubble-sort.
+Recebendo um vetor $A[1..n]$ contendo a sequencia de tamanho $n$ que será ordenada,  o algoritmo representado pelo
+psceudo código \ref{Insertion-Sort} ordena a sequencia encontrada no vetor $A$, tendo no máximo um valor da sequencia 
+armazenado fora do vetor a cada dado momento, ao final, o vetor $A$, irá conter a sequencia ordenada \cite{introductionAlgorthms}.
 
 \lstset{style=psceudo}
-\begin{lstlisting}
-func bubble-sort(vetor)
-	for i = 0 to n-1 do
-		for j = i to n-1 do
-			if vetor[j] > vetor[j+1] do
-				swap(vetor[j], vetor[j+1])
+\begin{lstlisting}[caption={\label{Insertion-Sort}Insertion-Sort}]
+	Insertion-Sort(A)
+	for j = 2 to n
+		jey = A[j]
+		i = j - 1
+		while i > 0 and A[i] > key
+			A[i + 1] = A[i]
+			i = i - 1
+		A[i + 1] = key	
 \end{lstlisting}
+\legend{Fonte: \citeonline{introductionAlgorthms}}
 
-Apartir do psceudo código acima, conseguimos realizar a análise de complexidade. Na linha 2 "$for i = 0 to n-1 do$"
-temos uma interação sobre o vetor de tamanho $n$, logo dizemos que nesta linha temos uma complexidade $O(n)$, na
-linha 3 "$for j = i to n-1$" encontramos novamente uma interação pelo vetor, assumimos aqui que temos uma
-complexidade $O(n)$.
+Para visualizar a sequencia de passos que o insertion sort executa para a ordenação de dado vetor, 
+tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem \ref{Operação do Insertion Sort}.
 
-A linha 4 atribuimos uma complexidade de $O(1)$ visto que ela roda uma vez para cada laço gerado pela linha 3. Também
-assumimos $O(1)$ para a linha 5, assumindo que a troca é uma ação constante.
+\begin{figure}[htb]
+	\centering
+	\caption{\label{Operação do Insertion Sort}Operação do Insertion Sort}
+	\begin{tikzpicture}[
+		box/.style={draw, rectangle, minimum width=0.8cm, minimum height=0.6cm, align=center},
+		label/.style={above=0.1cm},
+		arrow/.style={draw, -{Latex[length=2mm,width=1.5mm]}}
+	]
 
-No final, temos uma complexidade de $O(n^2)$ visto que percorremos o vetor de entrada duas vezes, e este ponto
-é oque apresenta maior impacto no desempenho com vetores de tamanho $n$ muito grande.
+	% (a)
+	\node at (0, 0) {(a)};
+	\foreach \n/\c [count=\i] in {5/gray,2/black,4/white,6/white,1/white,3/white} {
+		\node[box, fill=\c!30] (box-\i-a) at (\i * 0.8, 0) {\n};
+		\node[label] at (\i * 0.8, 0.4) {\i};
+	}
+	\draw[arrow, color=gray] (box-1-a.south) -- ([yshift=-0.2cm]box-1-a.south) -| ([yshift=-0.2cm]box-2-a.south) -- (box-2-a.south);
+	\draw[arrow, color=black] (box-2-a.north) -- ([yshift=0.2cm]box-2-a.north) -| ([yshift=0.2cm]box-1-a.north) -- (box-1-a.north);
+
+	\vspace{0.5cm}
+
+	% (b)
+	\node at (5.8, 0) {(b)};
+	\foreach \n/\c [count=\i] in {2/gray,5/gray,4/black,6/white,1/white,3/white} {
+		\node[box, fill=\c!30] (box-\i-b) at (\i * 0.8 + 5.8, 0) {\n};
+		\node[label] at (\i * 0.8 + 5.8, 0.4) {\i};
+	}
+	\draw[arrow, color=gray] (box-2-b.south) -- ([yshift=-0.2cm]box-2-b.south) -| ([yshift=-0.2cm]box-3-b.south) -- (box-3-b.south);
+	\draw[arrow, color=black] (box-3-b.north) -- ([yshift=0.2cm]box-3-b.north) -| ([yshift=0.2cm]box-2-b.north) -- (box-2-b.north);
+
+	\vspace{0.5cm}
+
+	% (c)
+	\node at (0, -1.5) {(c)};
+	\foreach \n/\c [count=\i] in {2/white,4/white,5/gray,6/black,1/white,3/white} {
+		\node[box, fill=\c!30] (box-\i-c) at (\i * 0.8, -1.5) {\n};
+	}
+	\draw[arrow, color=black] ([xshift=0.15cm]box-4-c.north) -- ([xshift=0.15cm, yshift=0.2cm]box-4-c.north) -| ([xshift=-0.15cm, yshift=0.2cm]box-4-c.north) -- ([xshift=-0.15cm]box-4-c.north);
+
+	\vspace{0.5cm}
+
+	% (d)
+	\node at (5.8, -1.5) {(d)};
+	\foreach \n/\c [count=\i] in {2/gray,4/gray,5/gray,6/gray,1/black,3/white} {
+		\node[box, fill=\c!30] (box-\i-d) at (\i * 0.8 + 5.8, -1.5) {\n};
+	}
+	\draw[arrow, color=gray] (box-1-d.south) -- ([yshift=-0.2cm]box-1-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-2-d.south) -- ([xshift=-0.15cm]box-2-d.south);
+	\draw[arrow, color=gray] ([xshift=0.15cm]box-2-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-2-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-3-d.south) -- ([xshift=-0.15cm]box-3-d.south);
+	\draw[arrow, color=gray] ([xshift=0.15cm]box-3-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-3-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-d.south) -- ([xshift=-0.15cm]box-4-d.south);
+	\draw[arrow, color=gray] ([xshift=0.15cm]box-4-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-d.south) -| ([yshift=-0.2cm]box-5-d.south) -- (box-5-d.south);
+	\draw[arrow, color=black] (box-5-d.north) -- ([yshift=0.2cm]box-5-d.north) -| ([yshift=0.2cm]box-1-d.north) -- (box-1-d.north);
+
+	\vspace{0.5cm}
+
+	% (e)
+	\node at (0, -3.0) {(e)};
+	\foreach \n/\c [count=\i] in {1/white,2/gray,4/gray,5/gray,6/gray,3/black} {
+		\node[box, fill=\c!30] (box-\i-e) at (\i * 0.8, -3.0) {\n};
+	}
+	\draw[arrow, color=gray] (box-3-e.south) --  ([yshift=-0.2cm]box-3-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-e.south) -- ([xshift=-0.15cm]box-4-e.south);
+	\draw[arrow, color=gray]  ([xshift=0.15cm]box-4-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-5-e.south) -- ([xshift=-0.15cm]box-5-e.south);
+	\draw[arrow, color=gray]  ([xshift=0.15cm]box-5-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-5-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-6-e.south) -- ([xshift=-0.15cm]box-6-e.south);
+	\draw[arrow, color=black] (box-6-e.north) -- ([yshift=0.2cm]box-6-e.north) -| ([yshift=0.2cm]box-3-e.north) -- (box-3-e.north);
+
+	\vspace{0.5cm}
+
+	% (f)
+	\node at (5.8, -3.0) {(f)};
+	\foreach \n/\c [count=\i] in {1/white,2/white,3/white,4/white,5/white,6/white} {
+		\node[box, fill=\c!30] (box-\i-f) at (\i * 0.8 + 5.8, -3.0) {\n};
+	}
+
+	\vspace{0.5cm}
+
+	\end{tikzpicture}
+
+	\legend{Fonte: \citeonline{introductionAlgorthms}}
+
+\end{figure}
+
+A figura \ref{Operação do Insertion Sort}, mostra que o algoritmo \ref{Insertion-Sort} funciona para se ordenar um vetor,
+onde, no inicio de cada interação do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
+de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados e $j$ é o elemento
+que está sendo verificado \cite{introductionAlgorthms}.
 
 \subsection{Análise de Espaço}
 
