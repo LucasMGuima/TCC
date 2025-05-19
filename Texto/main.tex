@@ -816,6 +816,61 @@ onde, no inicio de cada interação do loop for, controlado pelo valor de $j$, o
 de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados e $j$ é o elemento
 que está sendo verificado \cite{introductionAlgorthms}.
 
+Agora com o algoritmo \ref{Insertion-Sort}, conseguimos analisar o custo computacional do insertion sort, mas primeiro
+precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada", que segundo \cite{introductionAlgorthms} é:
+
+\begin{itemize}
+	\item Tamanho da entrada: Varia dependo do problema a ser abordado, porém é comumente o numero de items na entrada,
+	por exemplo, o tamanho do vetor $A$.
+	\item Tempo de execução: É o número de operações ou 'paços' executados, aqui desconsideramos o hardware, e assumimos
+	que mesmo cada paço leva um tempo diferente de outras, o tempo da do $i$ paço é sempre uma constante, $c_i$.  
+\end{itemize}
+
+Em nosso algoritmo \ref{Insertion-Sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
+o loop \textbf{while} da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
+executado uma vez a mais doque o corpo do loop.
+
+Assim conseguimos chegar aa seguinte analise do algoritmo \ref{Insertion-Sort}:
+
+\begin{table}[h!]
+	\centering
+	\caption{\label{Análise-Insertion-Sort} Análise Insertion Sort}
+	\begin{tabular}{lll}
+		\textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\
+		2 & $c_2$ & $n$ \\
+		3 & $c_3$ & $n-1$ \\
+		4 & $c_4$ & $n-1$ \\
+		5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\
+		6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
+		7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
+		8 & $c_8$ & $n-1$ \\
+	\end{tabular}
+	\legend{Fonte: \citeonline{introductionAlgorthms}}
+\end{table}
+
+O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ paços para executar
+e execute $n$ vezes ira contribuir com $c_in$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
+sort \ref{Insertion-Sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{Análise-Insertion-Sort}:
+
+\begin{equation}
+	\label{tempo-execução-insertion-sort}
+	T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
+\end{equation}
+
+O tempo de execução de um algoritmo vária dependendo do dado de entrada, onde podemos cair nó melhor ou pior caso, durante a
+analise de complexidade, se leva em consideração apenas o pior caso \cite{introductionAlgorthms}, onde, no nosso caso de exemplo, 
+o algoritmo será executado por completo percorrendo cada elemento do vetor, que ocorre quando o vetor se econtra em ordem decrescente.
+
+O pior caso no algoritmo \ref{Insertion-Sort}, pode ser representado pela seguinte equação:
+
+\begin{equation}
+	\label{pior-caso-insertion-sort}
+	\begin{split}
+		T(n) &= c_2n + c_3(n - 1) + c_4(n - 1) + c_5(\frac{n(n+1)}{2}-1) + c_6(\frac{n(n-1)}{2}) + c_7(\frac{n(n+1)}{2}) + c_8(n-1) \notag\\
+			 &= (\frac{c_5}{2} + \frac{c_6}{2} + \frac{c_7}{2})n^2 + (c_2 + c_3 + c_4 + \frac{c_5}{2} - \frac{c_6}{2} - \frac{c_7}{2} + c_8)n - (c_3 + c_4 + c_5 + c_8) \\
+	\end{split}
+\end{equation}
+
 \subsection{Análise de Espaço}
 
 Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e/ou cria, como por exemplo estruturas
