@@ -338,9 +338,9 @@ complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibri
 % ========================================================================
 % REVISÃO BIBLIOGRÁFICA
 % [ ] Aprofundar nos modelos
-% [ ] Metodos de avaliação de modelo
+% [x] Metodos de avaliação de modelo
 % [x] Cormam para a analise de complexidade
-% [ ] Análise de espaço
+% [x] Análise de espaço
 % [x] Fonte da tabela
 % [ ] Primeira pessoa
 % ========================================================================
@@ -382,8 +382,6 @@ segundo \cite{modelagem_computacional} são:
 	Ecologia e Epidemiologia, onde se é preciso prever a evolução de sistemas biológicos ou a propagação
 	de doenças. 
 \end{enumerate}
-
-% Transição abrupita, possivel melhora?
 
 \subsection{Modelos Lineares}
 
@@ -528,32 +526,11 @@ situação onde temos dois $X$, aqui podemos representar os valores por um gráf
 Quando temos mais de dois valores de $X$ a representação gráfica fica confusa para o entendimento humano,
 mas ainda podemos tratar o problema como uma reta.
 
-\subsection{Acurácia}
+\subsection{Metodos de avaliação de Modelos Computacionais}
 
-A acurácia é um modo de avaliar a performance de um modelo, assim identificando se seus resultados podem
-ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula \cite{acuracia}:
-
-\begin{equation}
-	\label{acuracia}
-	A = \frac{PC}{TP}
-\end{equation}
-
-Onde:
-\begin{itemize}
-	\item ($A$) é a Acurácia
-	\item ($PC$) é o total de Previsões Corretas, encontrada pela soma, ($Positivos Verdadeiros + Negativos Verdadeiros$);
-	\item ($TP$) é o Total de Previsões, encontrada pela soma, ($PC + Falsos Verdadeiros + Falsos Negativos$).
-\end{itemize}
-
-Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
-com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma médida grosseira da qualidade 
-de um modelo \cite{acuracia_matriz}.
-
-Onde temos mais exemplos de uma classe doque de outras, é importante considerar outras métricas de avaliação, já que esses
-modelos são considerados desbalanceados \cite{acuracia}.
-
-Uma matriz de confusão, por usa vez, é uma representação binária em forma de matriz dos resultados possíveis ao se utilizar 
-o modelo, sendo representada da seguinte forma:
+Antes de apontarmos as metricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
+categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão
+\cite{acuracia_matriz}:
 
 \begin{table}[h!]
 	\centering
@@ -574,6 +551,49 @@ Onde:
 	\item \textbf{Falsos Negativos}: São negativos que foram erroneamente classificados como positivos;
 	\item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
 \end{itemize}
+
+Existem várias metricas para se avaliar a qualidade de um modelo computacional, sendo os metodos mais
+comuns a acurácia, precisão, recall, F1-Score e área da curva ROC (AUC-ROC) \cite{metricas_aval_modelo} onde:
+
+\begin{itemize}
+	\item Acurácia: Uma métrica simples e amplamente utilizada que mede a proporção de precisões corretas feitas pelo modelo;
+	\item Precisão: Uma métrica que mede a proporção de previsões positivas corretas feitas pelo modelos, muito utilizada 
+	quando um falso positivo agrega um custo muito alto;
+	\item Recall: Uma métrica que mede a proporção de exemplos positivos que foram corretamente identificados pelo modelo;
+	\item F1-Score: É uma média harmônica entre a Precisão e Recall, fornece um equilibrio entre essas duas métricas, utilizado
+	quando se quer levar em consideração tanto os falsos positivos quantos os falsos negativos;
+	\item AUC-ROC: Avalia o desempenho de modelos de classificação binária em diferentes limities de decisão, onde quanto
+	maior o valor melhor o modelo separa essas classes.
+\end{itemize}
+
+Como cada métrica possue um campo de atuação, para o porblema abordado neste trabalho, as relevantes são a acurácia e precisão,
+onde a precisão apresenta uma métrica de avaliação onnde se aceita o erro de um falso negativo, pos o erro de um falso positivo
+é algo prejudicial a previsão, isso fazendo um local sem ocorrencia da éspecia analisada pelo modelo poderia ser indicado como 
+um lugar de ocorrencia, torna a métrica por acurácia mais confiavel neste caso.
+
+\subsection{Acurácia}
+
+A acurácia é um modo de avaliar a performance de um modelo, assim identificando se seus resultados podem
+ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula \cite{conta_acuracia}:
+
+\begin{equation}
+	\label{conta_acuracia}
+	A = \frac{PC}{TP}
+\end{equation}
+
+Onde:
+\begin{itemize}
+	\item ($A$) é a Acurácia
+	\item ($PC$) é o total de Previsões Corretas, encontrada pela soma, ($Positivos Verdadeiros + Negativos Verdadeiros$);
+	\item ($TP$) é o Total de Previsões, encontrada pela soma, ($PC + Falsos Verdadeiros + Falsos Negativos$).
+\end{itemize}
+
+Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
+com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma médida grosseira da qualidade 
+de um modelo \cite{acuracia_matriz}.
+
+Onde temos mais exemplos de uma classe doque de outras, é importante considerar outras métricas de avaliação, já que esses
+modelos são considerados desbalanceados \cite{acuracia}.
 
 \subsection{Modelos de Distribuição de Especies}
 
@@ -724,7 +744,7 @@ armazenado fora do vetor a cada dado momento, ao final, o vetor $A$, irá conter
 \begin{lstlisting}[caption={\label{Insertion-Sort}Insertion-Sort}]
 	Insertion-Sort(A)
 	for j = 2 to n
-		jey = A[j]
+		key = A[j]
 		i = j - 1
 		while i > 0 and A[i] > key
 			A[i + 1] = A[i]
@@ -889,24 +909,25 @@ a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a funç
 
 \subsection{Análise de Espaço}
 
-Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e/ou cria, como por exemplo estruturas
+Na análise de espaço, levamos em conta as váriaveis que o algoritmo utiliza e/ou cria, como por exemplo, estruturas
 auxiliares como vetores ou matrizes, conseguimos representar o consumo esperado de memória atravez de uma formula
-matemática \cite{introductionAnalysis}, assim como ná análise anterior, como exemplo tomemos o algortimo bubble-sort.
+matemática \cite{introductionAnalysis}, assim como ná análise anterior, como exemplo tomemos o algortimo insertion sort.
 
-No algoritmo de bubble-sort, temos as seguintes váriaveis:
+No algoritmo de insertion sort, temos as seguintes váriaveis:
 
 \begin{itemize}
-	\item $vetor$ a sequencia de $n$ inteiros;
+	\item $vetor A$ a sequencia de $n$ inteiros;
+	\item $key$ uma váriavel que armazena um valor presente no vetor $A$;
 	\item $i$ um valor inteiro que representa uma posição na sequencia;
 	\item $j$ um valor inteiro que representa uma posição na sequencia;
 \end{itemize}
 
 Assim, o algoritmo não cria nenhuma variavel a mais durante sua execução, acarretando em um custo de memoria costante durante
-a sua execução. Sendo o tamanho de 2 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho $n$ da sequencia de
+a sua execução. Sendo o tamanho de 3 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho $n$ da sequencia de
 inteiros.
 
-Logo o consumo de memoria pode ser descrito por uma função linear, $f(n) = n + 2$, onde $n$ é o tamanho da sequencia de
-entrada.
+Logo o consumo de memoria pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequencia de
+entrada, portanto o crescimento do algoritmo \ref{Insertion-Sort} é de tipo linear.
 
 \section{Linguagem R}
 
