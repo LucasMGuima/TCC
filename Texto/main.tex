@@ -625,11 +625,11 @@ onde encontramos o MARS\cite{mgcv}.
 \subsubsection{GLM - Generalized Linear Model}
 
 Generalized Linear Models agrupão uma grande quantidade de modelos discretos e continuos, sendo particularmente util para se 
-trabalhar com dados discretos, sendo uma extenção de General Linear Models com a incerção da família exponencial de 
-distribuições de erro junto com a normal \cite{GLM}.
+trabalhar com dados discretos, sendo uma extenção de General Linear Models, apresentada por Nelder e Wedderburn (1972), 
+que consiste na incerção da família exponencial de distribuições de erro junto com a distribuição normal \cite{GLM}.
 
-Ao contrário dos modelos lineares classicos, que propoem uma distribuição Gaussiana (normal) e uma função de ligação dos
-valores de $X$ e $Y$, os GLMs permitem que a função de distribuição seja alguma da família de distribuições 
+Ao contrário dos modelos lineares classicos, assim como o General Linear Model, que propoem uma distribuição Gaussiana (normal) 
+e uma função de ligação dos valores de $X$ e $Y$, os GLMs permitem que a função de distribuição seja alguma da família de distribuições 
 exponenciais, Gaussiana, Poisson ou Binomial, e a função de ligação pode ser qualquer função monotonica 
 diferenciavel, como a logaritmica \cite{GAMeGLM_especie_estudo}.
 
@@ -638,6 +638,7 @@ No GLM as variaveis de predição $X_j$, onde $j = 1, ..., p$, são combinadas p
 \cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte formula: 
 
 \begin{equation}
+	\label{GLM_general_eq}
 	g(E(Y)) = LP = \alpha + X^T \beta
 \end{equation}
 
@@ -647,6 +648,18 @@ Onde:
 	\item $X$: é um vetor de $p$ preditores, $(X_1, ..., X_p)$;
 	\item $\beta$: é um vetor de $p$ coeficientes de regressão, uma para cada preditor, $(\beta_1, ..., \beta_p)$.
 \end{itemize}
+
+Assim escrevemos o modelo para variaveis $X$ e $Y$ genericas, os termos correspondes para uma dada observação $i$ da 
+amostra é \cite{GAMeGLM_especie_estudo}:
+
+\begin{equation}
+	\label{GLM_observ_eq}
+	g(\mu_i) = \alpha + \beta_1X_{i1} + \beta_2X_{i2} + ... + \beta_pX_{ip}
+\end{equation}
+
+Aqui a variancia de $Y$ depende de $\mu = E(Y)$ atravez da função de variancia $V(\mu)$, dado $Var(Y) = \phi V(\mu)$, onde $\phi$ (phi)
+é o parametro de dispersão, qundo se espera um $\phi$ seja maior que que o valor antecipado dado a distribuição escolida, o parametro de
+escala pode ser estimado utilizando de quasi-likelihood \cite{GAMeGLM_especie_estudo}.
 
 \subsubsection{GAM - Generalized Addtive Model}
 
