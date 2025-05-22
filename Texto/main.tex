@@ -675,6 +675,68 @@ GAMs são parametrizados como os GLMs, porém alguns preditores podem ser modela
 adção a termos lineares e polinomias para outros preditores. Um passo crucial para se aplicar GAMs é selecionar
 o nível apropriado de "suavização" para os preditores.
 
+Nestes se substitui as função de predição linear $\eta = \sum_{1}^{p}\beta_jX_j$ pela função de predição aditiva 
+$\eta = \sum_{1}^{p}s_j(X_j)$, onde $s_j(X_j)$ é uma função de suavização do valor $X_j$. Onde a forma aussmida
+para a estimativa pelo modelo de regressão linear, possue a seguinte caractereistica \cite{GAM}:
+
+\begin{equation}
+	\label{reg_linear_estimativa}
+	E(Y|X_1,X_2,...,X_p) = \beta_0 + \beta_1X_1 + ... + \beta_pX_p.
+\end{equation}
+
+Enquanto no GAM, se generaliza o modelo de Regressão linear, tornando a equação \ref{reg_linear_estimativa}:
+
+\begin{equation}
+	\label{reg_linear_generalizada}
+	E(Y|X_1,X_2,...,X_p) = s_0 + \sum_{j=1}^{p} s_j(X_j)
+\end{equation}
+
+Como exemplo, tomemos o caso de um preditor simples, neste, nosso modelo séria:
+
+\begin{equation}
+	\label{preditor_simples}
+	E(Y|X) = s(X)
+\end{equation}
+
+Para estimarmos $s(x)$ apartir de nossos dados, podemos usar um estimativa razoável de $E(Y|X=x)$, sendo uma dessas 
+classes de estimativas as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in N_i}(Yj)$, onde $Ave$ representa uma
+operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão proximos a $x_i$, em
+associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
+
+Se assumirmos $x$ sendo um valor inteiro, que é $wn$ é impart, então a span $w$ vizinhança mais próxima simétrica conterá
+$wn$ pontos, o $i$ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$ézimo ponto. Assumindo que os dodos
+estão ordenados de forma crescente em $x$, uma definição formal séria \cite{GAM}:
+
+\begin{equation}
+	\label{eq_vizinhanaça}
+	N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
+\end{equation}
+
+A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponiveis, o span de $w$
+controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dadis a serem usados \cite{GAM}. Se
+$Ave$ representar a média aritmetica, então $\hat{s}(.)$ é a running lines smoother, e sua difinição para estimar valores
+de $x$ é:
+
+\begin{equation}
+	\label{running_lines_smoother}
+	\hat{s}(x_i) = \hat{\beta}_{0i} + \hat{\beta}_{1i}x_i
+\end{equation}
+
+Onde $\hat{\beta}_{0i}$ e $\hat{\beta}_{1i}$ são as estimativas por least square para os ponts de dados de $N_i$:
+
+\begin{equation}
+	\label{least_square_betas}
+	\begin{split}
+		&\hat{\beta}_{1i} = \frac{\sum_{j \in N_i}(x_j - \overline{x}_i)y_j}{\sum_{j \in N_i}(x_j - \overline{x}_i)^2}, \\
+		&\hat{\beta}_{0i} = \overline{y}_i - \hat{\beta}_{1i}\overline{x}_i, \\
+		&\overline{x}_i = \frac{1}{n}\sum_{j \in N_i}x_j, \\
+		&\overline{y}_i = \frac{1}{n}\sum_{j \in N_i}y_j
+	\end{split}
+\end{equation}
+
+Outros metodos de estimar $E(Y|X)$ poderiam ser usados, acarretando na mudança do custo computacional do modelo, podendo
+trabalhar tão bem quanto ou melhor doque o running lines smoother \cite{GAM}.
+
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
 
 O foco na modelagem por regressão, é estimar uma função $f'(x_1,...x_n)$, que melhor se assemelhe a função 
