@@ -566,15 +566,15 @@ comuns a acurácia, precisão, recall, F1-Score e área da curva ROC (AUC-ROC) \
 	maior o valor melhor o modelo separa essas classes.
 \end{itemize}
 
-Como cada métrica possue um campo de atuação, para o porblema abordado neste trabalho, as relevantes são a acurácia e precisão,
-onde a precisão apresenta uma métrica de avaliação onnde se aceita o erro de um falso negativo, pos o erro de um falso positivo
+Como cada métrica possue um campo de atuação, para o problema abordado neste trabalho, as relevantes são a acurácia e precisão,
+onde a precisão apresenta uma métrica de avaliação onde se aceita o erro de um falso negativo, pos o erro de um falso positivo
 é algo prejudicial a previsão, isso fazendo um local sem ocorrencia da éspecia analisada pelo modelo poderia ser indicado como 
 um lugar de ocorrencia, torna a métrica por acurácia mais confiavel neste caso.
 
 \subsection{Acurácia}
 
 A acurácia é um modo de avaliar a performance de um modelo, assim identificando se seus resultados podem
-ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula \cite{conta_acuracia}:
+ser considerados válidos ou não. Para chegarmos na acurácia utilizamos da seguinte formula:
 
 \begin{equation}
 	\label{conta_acuracia}
@@ -610,7 +610,7 @@ de especies para seus ambientais, proveem um forte argumento conceitual para se 
 Segundo \cite{tiposDados_sdm} as principais fontes de inforamções para a criação destes modelos são: 
 \begin{itemize}
 	\item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a especie foi observada, conhecida como
-	dado de \textbf{ocorrência}, alguns modelos faze uso de dados de \textbf{ausência}, que são coordenadas geograficas 
+	dado de \textbf{ocorrência}, alguns modelos fazem uso de dados de \textbf{ausência}, que são coordenadas geograficas 
 	onde se sabe que a espécie não ocorre;
 	\item Dado ambiental: São a descricção do ambiente, podendo conter medições de temperatura e precipitação, como
 	também, a ocorrência e ausência de outras especies, como predadores, competidores ou fontes de alimento.
@@ -633,8 +633,8 @@ e uma função de ligação dos valores de $X$ e $Y$, os GLMs permitem que a fun
 exponenciais, Gaussiana, Poisson ou Binomial, e a função de ligação pode ser qualquer função monotonica 
 diferenciavel, como a logaritmica \cite{GAMeGLM_especie_estudo}.
 
-No GLM as variaveis de predição $X_j$, onde $j = 1, ..., p$, são combinadas para se formar uma preditor linear, LP, que
-é relacionado ao valor esperado $\mu = E(Y)$ da váriavel de reposta $Y$ atráves de uma função de junção $g()$ 
+No GLM as variaveis de predição $X_j$, onde $j = 1, ..., p$ com $p$ sendo a quantidade de $X$s, são combinadas para se formar um 
+preditor linear, LP, que é relacionado ao valor esperado $\mu = E(Y)$ da váriavel de reposta $Y$ atráves de uma função de junção $g()$ 
 \cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte formula: 
 
 \begin{equation}
@@ -658,8 +658,13 @@ amostra é \cite{GAMeGLM_especie_estudo}:
 \end{equation}
 
 Aqui a variancia de $Y$ depende de $\mu = E(Y)$ atravez da função de variancia $V(\mu)$, dado $Var(Y) = \phi V(\mu)$, onde $\phi$ (phi)
-é o parametro de dispersão, qundo se espera um $\phi$ seja maior que que o valor antecipado dado a distribuição escolida, o parametro de
+é o parametro de dispersão, qundo se espera um $\phi$ maior que que o valor antecipado dado a distribuição escolida, o parametro de
 escala pode ser estimado utilizando de quasi-likelihood \cite{GAMeGLM_especie_estudo}.
+
+Por sua vez, quasi-likelihood é um metodo de se generalizar a abordagem pr likelihood-based para GLMs, permitendo se estimar so valores
+de $\beta$ de tal forma que não se é necessário se especificar uma distribuição para a saida. Normalmente utilizado como um mecanismo
+para lidar com dados muitos dispersos, ou, quando não se deseja fazer afirmações solidas de distribuição sobre as variaveis de saida 
+\cite{quase-likehood}.
 
 \subsubsection{GAM - Generalized Addtive Model}
 
@@ -703,7 +708,7 @@ classes de estimativas as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in
 operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão proximos a $x_i$, em
 associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
 
-Se assumirmos $x$ sendo um valor inteiro, que é $wn$ é impart, então a span $w$ vizinhança mais próxima simétrica conterá
+Se assumirmos $x$ sendo um valor inteiro, que $wn$ é impart, então a span $w$ vizinhança mais próxima simétrica conterá
 $wn$ pontos, o $i$ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$ézimo ponto. Assumindo que os dodos
 estão ordenados de forma crescente em $x$, uma definição formal séria \cite{GAM}:
 
@@ -713,7 +718,7 @@ estão ordenados de forma crescente em $x$, uma definição formal séria \cite{
 \end{equation}
 
 A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponiveis, o span de $w$
-controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dadis a serem usados \cite{GAM}. Se
+controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dados a serem usados \cite{GAM}. Se
 $Ave$ representar a média aritmetica, então $\hat{s}(.)$ é a running lines smoother, e sua difinição para estimar valores
 de $x$ é:
 
@@ -739,23 +744,45 @@ trabalhar tão bem quanto ou melhor doque o running lines smoother \cite{GAM}.
 
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
 
-O foco na modelagem por regressão, é estimar uma função $f'(x_1,...x_n)$, que melhor se assemelhe a função 
+O foco na modelagem por regressão, é estimar uma função $\hat{f}(x_1,...x_n)$, que melhor se assemelhe a função 
 $f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fenômeno, e o seu resultado real.
 \cite{MARS}. 
 
-MARS é um modelo altamente flexivel para se trabalhar com um grande fluxo de dados, tomando a forma de uma expanção
-de formulas spline base, onde o quantidade destas assim como os seus parametros é automaticamente determinado
-pelo dado, atuando melhor com dados que são quase aditivos ou possuem a interação entre vários parametros,
-produzindo modelos continuos \cite{intro_mars}.
+\begin{equation}
+	\label{mars_eq_base}
+	y = f(x_1,...,x_n) + \epsilon
+\end{equation}
 
-Para se fazer o fiting do modelo, MARS utiliza de splines, sendo a o metodo mais popular o "B-Spline" usado em
-conjunto com o fiting por ultimo-quadrado. O processo de spline, consiste em separar os dados nos
-menores conjuntos possívies, assumindo um formato de um polinomio de $q$ parametros, onde $q$ é o quanto iremos
-aprofundar na regressão, limitiando de tal forma que a função atual e a função de menor $q-1$ são continuos em
-todos os grupos, resultando em uma função com fitting apropriado \cite{intro_mars}. 
+A função de $n$-dimenções $f$ captura a relação de predição de $y$ em $x_1,...,x_n$, onde o alvo da analise regressiva
+é usar os dados para construir a função $\hat{f}(x_1,...,x_n)$ que serve como uma aproximação rasoavel para
+$f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS prove uma abordagem natural para a modelagem de vairaveis
+categoricas, variaveis aninhadas (variável que contem outra váriavel) e valores faltantes \cite{intro_mars}.
+
+O procedimento MARS, é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
+apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função splien de aproximação $\hat{f}_q(x)$ é obtida por
+dividir a abrangencia de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
+
+\begin{equation}
+	\label{funcao_spline_aproximacao}
+	\hat{f}_q(x) = \sum_{k=0}^{k+q}a_kB_k^{(q)}(x)
+\end{equation}
+
+Onde $B_k^{(q)(x)}$ é um conjunto de funções base que englobam o espaço de dota a função spline de ordem $q$ e $a_k$ é o
+valor do coeficiente de espanção sendo sem limitadores \cite{intro_mars}.
+
+A base mais popular é a 'B-spline' possuindo a superioridade em numeros de propriedades usada em conjunto com o least-squares
+fitting. Sendo a 'B-spline' definida por, $K+2$ locais de pontos adjacentes, onde o função limitadora tem o maior suporte
+mas é definida cada por um por um único local de pontos. Para a seleção destas funções base, que gera um grupo de resultados
+não válidos sera removida, se tivermos um modelo aditivo, onde
+
+\begin{equation}
+	\hat{f}(x) = \sum_{j=1}^{n}f_j(x_j)
+\end{equation}
+
+foce considerado adequado, qualquer função que envolvesse mais de uma váriavel se tornaria ilegitima para inclusção no modelo \cite{intro_mars}.
 
 Em outras palavras, podemos definir um spline, como a aproximação de uma curva de formato complexo utilizando do 
-menor número possivel de retas, sendo essa quantidade de retas o prametro $q$, como pode ser visto na figura \ref{Curva Spline}.
+menor número possivel de retas, sendo essa quantidade de retas o prametro $q$, como pode ser visto na figura a seguir:
 
 \begin{figure}[htb]
     \centering
@@ -764,6 +791,42 @@ menor número possivel de retas, sendo essa quantidade de retas o prametro $q$, 
     \legend{Fonte: \citeonline{b_spline}}
 \end{figure}
 
+O algoritmo MARS usa de uma estrategia de paços forward/backward para produzir o seu conjunto de funções base. A parte de forward é um
+processo recursivo, a cada interação simultaneamente controi um lista expansiva de funções base a serem consideradas e então decide quais
+considerar naquele paço, se repetindo até uma quantidade relativamente grande de funções bases for selecionada. Um conjunto final de 
+funções base de tamanho apropriado é então selecionado por meio de um procedimento de seleção de subconjunto de variáveis passo a passo 
+regressivo, usando as funções base produzidas pelo algoritmo progressivo como 'variáveis' candidatas \cite{intro_mars}.
+
+O paço de forward começa com uma unica função base no modelo:
+
+\begin{equation}
+	\label{inicio_funcao_base}
+	B_0(x) = 1
+\end{equation}
+
+Após a $M$ézimo iteração teremos $2M+1$ funções:
+
+\begin{equation}
+	\label{funcao_base}
+	\left\{B_m(\mathbf{x})\right\}_{0}^{2M}
+\end{equation}
+
+No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
+
+\begin{equation}
+	\label{novas_funcoes}
+	\begin{split}
+		& B_{2M+1}(x) = B_{l(M+1)}(x)\left\{+(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+		& B_{2M+2}(x) = B_{l(M+1)}(x)\left\{-(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+	\end{split}
+\end{equation}
+
+Aqui $B_{l(M+1)}(x)$ é uma das funções base $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variavel preditora, não
+representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nestá váriavel. Os três parametros $l(M+1), v(M+1) e t_{M+1}$ que definem as
+duas novas funções base, são escolhidos para sereme os que melhor melhoram o enciaxe do "novo" modelo com os dados.
+
+Para pequenas amostras o algoritmo MARS ira tentar produzir modelos envolvem interações de baixa ordem, e com grandes amostras ira
+favoravelmente entrar em interações de alta ordem para os pociveis candidatos.
 
 \section{Análise de Algoritmos}
 
@@ -980,7 +1043,7 @@ o pior caso de tempo de execução como $\theta(n^2)$.
 Agora para encontramors a qual classe apresentada na tabela \ref{Notação Assintótica} o algoritmo \ref{Insertion-Sort} pertence, convertemos
 da notação $\theta$ (theta) para a $O$ (O-grande), esta conversão é simples já que o grupo de problemas abordados pela notação $\theta$ engloba
 a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a função de crescimento ($n^2$), portanto, o algoritmo \ref{Insertion-Sort}
-é $O(n^2)$ logo pertence ao grupo de probelmas Quadráticoss \cite{introductionAlgorthms}.
+é $O(n^2)$ logo pertence ao grupo de probelmas Quadráticos \cite{introductionAlgorthms}.
 
 \subsection{Análise de Espaço}
 
