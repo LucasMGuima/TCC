@@ -107,6 +107,21 @@
     showstringspaces=false
 }
 
+\lstdefinestyle{r_code}{
+    language=R,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{blue!70!black},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red!70!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    captionpos=t,
+    tabsize=2,
+    breaklines=true,
+    showstringspaces=false,
+}
+
 % informações do PDF
 \makeatletter
 \hypersetup{
@@ -1093,8 +1108,32 @@ de um projeto.
 
 Como exemplo, podemos utilizar os packages, mda e mgcv, presentes neste trabalho, o package mda engloba funções para se aplicar
 um grupo de modelagem de dados, sendo estes o Mixture and Flexible Discriminant Analysis, Multivariate Adaptive Regression 
-Splines (MARS) e Vector-response Smoothing Splines \cite{mda}, já o mgcv, engloba Generalized Additive Models e algumas de suas variações
-, Generalized Cross Validation e similares \cite{mgcv}.
+Splines (MARS) e Vector-response Smoothing Splines \cite{mda}, o mgcv, engloba Generalized Additive Model e algumas de suas variações
+, Generalized Cross Validation e similares \cite{mgcv} os Generalized Linear Models podem ser encontrados na biblioteca stats que
+vem por padrão na linguagem R.
+
+Para demonstrar a uso de um package, tomemos a utilização da funcão referente ao GAM encontrada no package mgcv, um conjunto de dados
+criado contendo Pontuações médias em ciências por país, segundo o Programa Internacional de Avaliação de Estudantes (PISA) de 2006,
+juntamente com o RNB per capita (Paridade do Poder de Compra, valores de 2005), Índice de Educação, Índice de Saúde e 
+Índice de Desenvolvimento Humano, segundo dados da ONU \cite{gam_exemplo}.
+
+\lstset{style=r_code}
+\begin{lstlisting}[caption={\label{Exemplo uso de package}Exemplo uso de package}]
+	library(mgcv)
+	pisa = read_csv('data/pisasci2006.csv')
+	mod_gam = gam(Overall ~ s(Income, bs = "cr"), data = pisa)
+\end{lstlisting}
+\legend{Fonte: \citeonline{gam_exemplo}}
+
+O código \ref{Exemplo uso de package} gera um Generalized Additive Model, determinando os termos de suavização pela função $s()$ com o
+tipo de suavização sendo a splines de regressão cúbicas \cite{gam_exemplo}. 
+
+A linha $library(mgcv)$ é a responsável por indicar qual package estamos usando, neste caso o mgcv, mas poderia ser outro ou mais 
+de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamente interno é mascarado 
+para o usuário, precisamos apenas "configurar" alguns parametros como a $data$, os dados que o modelo ira utilizar, e quais campos 
+do dados iramos usar $Overall ~ s(Income, bs = "cr")$.  
+
+% Detalhar as bibliotecas
 
 Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
 os pormenores da execução em si, apenas passar os parametros necessários de modo correto.
