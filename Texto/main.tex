@@ -245,6 +245,7 @@ Texto do resumo
   \item[GLM] Generalized Linear Model
   \item[MARS] Multivariate Adaptive Regression Spline
   \item[ML] Maximum likelihood
+  \item[SDM] Modelo de Distribuição de Especie 
 \end{siglas}
 
 % ========================================================================
@@ -1138,19 +1139,34 @@ os pormenores da execução em si, apenas passar os parametros necessários de m
 
 \section{Trabalhos relacionados}
 
-Possuimos uma boa quantidade de trabalhos onde os autores comparam e avaliam tipos de modelos de distribuição de espécies, como
-em \cite{predPerform33models} que avalia a performance de 33 modelos.
+O estudo "A comprehensive evaluation of predictive performance of 33 speceis distribution modelis at species and community levels"
+\cite{predPerform33models} teve como foco a avaliação de 33 modelos distintos de distribuição de especies, se questionando
+performance de cada um trabalhando com comunidades e com especies especificas.
 
-Neste temos uma dicecação das caraceristicas destes modelos quais caraceristicas cada modelo possue, e o tipo de dado que os 
-mesmo trabalham com, sendo dados de presensa, ausência ou ambos, e como ele relaciona a especie com seu ambiente e avalia os
-modelos levando em consideração especies comuns e raras como dois grupos distintos.
+Neste trabalho, os autores, identificam os parametros de cada modelo, e seus tipos, mostrando quais são esperados que trabalhem melhor
+com comunidades ou com especies únicas, indeificando dentro dos modelos selecionadas que os cinco melhores são os HMSC.3, GLM.5,
+MISTN.1, MARS.1 e GNN.1.
 
-Temos uma avaliação do impacto do tamanho do conjunto de dados na performance do modelo dentro do trabalho \cite{sampleSize},
-em um conjunto menor de modelos doque os trabalhos anteriores, mas ainda relevante, demonstrando como cada tipo de modelo
-atua com tamanhos diferentes de dados.
+Onde performance final é influenciada por três fatores, o modelo escolhido, o foco de predição e a qualidade dos dados, e o modelo
+que obiteve a melhor performance quando considerado todas as especeis, comunidade, foi o HMSC.1 e para apenas uma qauando apenas um 
+especies foi levada em consideração o modelo GLM.4 teve uma performance melhor.
 
-Mas não temos uma demonstração do tempo que cada modelo leva para ser preparado, ou a quantidade de memória do computador
-que os modelos utilizam. 
+Podemos ver neste trabalho dois dos três tipos de modelos de SDM mais comunso, GLM (GLM.4 e GLM.5) e MARS (MARS.1), mostrando que
+além do acesso relativamente facil a estes e de possuirem um software bem documenta e amigavel \cite{predPerform33models}, sua 
+qualidade de performance ajuda em serem modelos relevantes.
+
+No estudo "Generalized linear and generalized additive models in studies of species distributions: setting the scene" 
+\cite{GAMeGLM_especie_estudo}, os autores neste fazem uma breve revisçao sobre modelos lineares, GLMs e GAMs. Apresentando algumas
+de esuas caractereisticas e as relações entre os mesmos.
+
+Uma descirção mais teorica dos modelos GLM, GAM e MARS são encontradas nos sequintes trabalhos, respecitivamente, "The generalized 
+linear model and extensions: a review and some biological and environmental applications" \cite{GLM}, "Generalized Additive Models"
+\cite{GAM} e "An introduction to multivariate adaptive regression splines" \cite{MARS}.
+
+Nestes temos uma dicertação sobre a parte matematica dos modelos, como é feito a inferencia de cada um de seus parametros e como o mesmo
+atua sobre os dados de entrada. Em alguns temos exemplos de uso de cada modelo, e suas variações mostrando onde estas são diferentes
+do modelo que é tratado no estudo.
+
 
 % ========================================================================
 % DESENVOLVIMENTO
