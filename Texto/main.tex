@@ -73,11 +73,11 @@
 \definecolor{g}{rgb}{0.7,0.7,0.7}  % gray
 
 % Informações de dados para CAPA e FOLHA DE ROSTO
-\titulo{Titulo do Trabalho}
+\titulo{Comparação e avaliação das implementação em R dos algoritmos GAM, GLM e MARS}
 \autor{Lucas da Mata Guimarães}
 \local{São Paulo - Brasil}
 \data{2025}
-\orientador{Nome do Orientador}
+\orientador{Mario Leandro Pires Toledo}
 %\coorientador{Nome do Coorientador}
 \instituicao{
   Centro Universitário Senac - Santo Amaro
@@ -196,9 +196,7 @@
  \begin{epigrafe}
      \vspace*{\fill}
  	\begin{flushright}
- 		\textit{``A vingança nunca é plena, \\
- 		mata a alma e a envenena. \\
- 		(MADRUGA, Seu, Chaves)}
+ 		\textit{}
  	\end{flushright}
  \end{epigrafe}
 
@@ -1168,31 +1166,33 @@ são diferentes do modelo que é tratado no estudo.
 % ========================================================================
 % DESENVOLVIMENTO
 % ========================================================================
- \chapter{Desenvolvimento}
+\chapter{Desenvolvimento}
 
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin tempor sapien in maximus. Quisque in vulputate dui, ac vestibulum sem. Suspendisse urna velit, dapibus nec egestas a, rhoncus vitae neque. Mauris quis efficitur augue. Aliquam quis tellus eget orci aliquet aliquam. Sed luctus, quam vitae elementum malesuada, quam lacus imperdiet urna, sed ullamcorper libero magna non elit. Cras laoreet arcu a augue volutpat, suscipit pretium tellus tempus. Sed eros tortor, imperdiet eu neque id, interdum egestas tortor.
+O desenvolvimento deste trabalho é separado em três etapas, análise de complexidade e espaço, utilizando da notação O grande, 
+das implementações dos algoritmos referentes ao GLM, GAM e MARS encontrados nas bibliotecas \lstinline|mda| e \lstinline|mgcv| da linguagem de programação R.
+
+Teste do uso das implementações para verificar a acurácia e tempo decorrido, utilizando do ambiente de desenvolvimento R Studio e de dados populacionais de avês, 
+e a comparação e avaliação dos algoritmos levando em consideração um melhor equilibrio entre o custo e a acurácia deste.
+
+O gronograma prposto para o desenvolvimento deste trabalho pode ser visto a seguir, também presente no apêndice \ref{AnexoA}:
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{Cronograma}Cronograma}
+    \includegraphics[width=1\textwidth]{../Imgs/Cronograma.jpg}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
 
 % ========================================================================
 % RESULTADOS
 % ========================================================================
  \chapter{Resultados}
-
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin tempor sapien in maximus. Quisque in vulputate dui, ac vestibulum sem. Suspendisse urna velit, dapibus nec egestas a, rhoncus vitae neque. Mauris quis efficitur augue. Aliquam quis tellus eget orci aliquet aliquam. Sed luctus, quam vitae elementum malesuada, quam lacus imperdiet urna, sed ullamcorper libero magna non elit. Cras laoreet arcu a augue volutpat, suscipit pretium tellus tempus. Sed eros tortor, imperdiet eu neque id, interdum egestas tortor.
-
+ 
 % ========================================================================
 % CONCLUSÃO
 % ========================================================================
- \chapter{Conclusão}
-
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin tempor sapien in maximus. Quisque in vulputate dui, ac vestibulum sem. Suspendisse urna velit, dapibus nec egestas a, rhoncus vitae neque. Mauris quis efficitur augue. Aliquam quis tellus eget orci aliquet aliquam. Sed luctus, quam vitae elementum malesuada, quam lacus imperdiet urna, sed ullamcorper libero magna non elit. Cras laoreet arcu a augue volutpat, suscipit pretium tellus tempus. Sed eros tortor, imperdiet eu neque id, interdum egestas tortor.
-
- \section{Trabalhos Futuros}
-
-\begin{itemize}
-    \item Trabalho Futuro 1
-    \item Trabalho Futuro 2
-    \item Trabalho Futuro 3
-\end{itemize}
+\chapter{Conclusão}
+\section{Trabalhos Futuros}
 
 \postextual
 
@@ -1208,11 +1208,12 @@ são diferentes do modelo que é tratado no estudo.
 
 \partapendices
 
-\chapter{\label{AnexoA}Exemplo de seção de anexo}
-
-\begin{lstlisting}
-EXEMPLO DE CODIGO A SER ADICIONADO
-\end{lstlisting}
+\chapter{\label{AnexoA} Cronograma}
+\begin{figure}[h]
+    \centering
+    \includegraphics[angle=90, width=0.35\textwidth]{../Imgs/Cronograma.jpg}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
 
 \end{apendicesenv}
 
