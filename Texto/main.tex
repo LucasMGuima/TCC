@@ -407,7 +407,7 @@ possui relações entre si, e podem ser separados em dois grupos clássicos \cit
 	\item \textbf{Modelos de Regressão}:
 	Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
 	valores de possível representação numérica, indicando quantidade ou magnitude. Com o intuito de estimar
-	parâmetros, explicando relação ou para fazer predições.
+	parâmetros, explicando relações ou para fazer predições.
 	\item \textbf{Modelos de Análise de Variância}:
 	Estes modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
 	variável de resposta. Para encontrar a relação entre grupos de análise, de modo a indentificar o que
@@ -581,7 +581,7 @@ comuns a acurácia, precisão, recall, F1-Score e área da curva ROC (AUC-ROC) \
 Como cada métrica possue um campo de atuação, para o problema abordado neste trabalho, as relevantes são a acurácia e precisão,
 onde a precisão apresenta uma métrica de avaliação onde se aceita o erro de um falso negativo, pos o erro de um falso positivo
 é algo prejudicial a previsão, isso fazendo um local sem ocorrencia da éspecia analisada pelo modelo poderia ser indicado como 
-um lugar de ocorrencia, torna a métrica por acurácia mais confiavel neste caso.
+um lugar de ocorrencia, torna assim a métrica por acurácia mais confiavel neste caso.
 
 \subsection{Acurácia}
 
@@ -601,7 +601,7 @@ Onde:
 \end{itemize}
 
 Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
-com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma médida grosseira da qualidade 
+com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma medida grosseira da qualidade 
 de um modelo \cite{acuracia_matriz}.
 
 Onde temos mais exemplos de uma classe do que de outras, é importante considerar outras métricas de avaliação, já que esses
@@ -621,7 +621,7 @@ para seus ambientes, provêndo um forte argumento conceitual para se modelar esp
 Segundo \cite{tiposDados_sdm} as principais fontes de informações para a criação destes modelos são: 
 \begin{itemize}
 	\item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a espéciefoi observada, conhecida como
-	dado de \textbf{ocorrência}, alguns modelos fazem uso de dados de \textbf{ausência}, que são coordenadas geograficas 
+	dado de ocorrência, alguns modelos fazem uso de dados de ausência, que são coordenadas geograficas 
 	onde se sabe que a espécie não ocorre;
 	\item Dado ambiental: São a descrição do ambiente, podendo conter medições de temperatura e precipitação, como
 	também, a ocorrência e ausência de outras espécies, como predadores, competidores ou fontes de alimento.
@@ -719,7 +719,7 @@ classes de estimativas as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in
 operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão proximos a $x_i$, em
 associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
 
-Se assumirmos $x$ sendo um valor inteiro, que $wn$ é ímpart, então a span $w$ vizinhança mais próxima simétrica conterá
+Se assumirmos $x$ sendo um valor inteiro, que $wn$ é ímpar, então a abrangência da vizinhança $w$ mais próxima simétrica conterá
 $wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$-ézimo ponto. Assumindo que os dodos
 estão ordenados de forma crescente em $x$, uma definição formal seria \cite{GAM}:
 
@@ -728,7 +728,7 @@ estão ordenados de forma crescente em $x$, uma definição formal seria \cite{G
 	N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
 \end{equation}
 
-A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. O span de $w$
+A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
 controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dados a serem usados \cite{GAM}. Se
 $Ave$ representar a média aritmetica, então $\hat{s}(.)$ é a running lines smoother, e sua definição para estimar valores
 de $x$ é:
@@ -790,7 +790,7 @@ não válidos sera removida, se tivermos um modelo aditivo, onde
 	\hat{f}(x) = \sum_{j=1}^{n}f_j(x_j)
 \end{equation}
 
-fosse considerado adequado, qualquer função que envolvesse mais de uma variável  se tornaria ilegítima para inclusão no modelo \cite{intro_mars}.
+fosse considerado adequado, qualquer função que envolvesse mais de uma variável se tornaria ilegítima para inclusão no modelo \cite{intro_mars}.
 
 Em outras palavras, podemos definir um spline, como a aproximação de uma curva de formato complexo utilizando do 
 menor número possível de retas, sendo essa quantidade de retas o prametro $q$, como pode ser visto na figura a seguir:
@@ -804,10 +804,11 @@ menor número possível de retas, sendo essa quantidade de retas o prametro $q$,
 
 O algoritmo MARS usa de uma estrategia de passos forward/backward para produzir o seu conjunto de funções base. A parte de forward é um
 processo recursivo, a cada iteração, simultaneamente constrói uma lista expansiva de funções base a serem consideradas e então decide 
-uais considerar naquele passo, se repetindo até uma quantidade relativamente grande de funções bases for selecionada. 
+quais considerar naquele passo, se repetindo até uma quantidade relativamente grande de funções bases forem selecionada. 
 
-Um conjunto final de funções base de tamanho apropriado é então selecionado por meio de um procedimento de seleção de subconjunto de variáveis passo a passo 
-regressivo, usando as funções base produzidas pelo algoritmo progressivo como 'variáveis' candidatas \cite{intro_mars}.
+Um conjunto final de funções base de tamanho apropriado é então selecionado por meio de um procedimento de seleção de subconjunto de 
+variáveis passo a passo regressivo, usando as funções base produzidas pelo algoritmo progressivo como 'variáveis' 
+candidatas \cite{intro_mars}.
 
 O passo de forward começa com uma unica função base no modelo:
 
@@ -999,11 +1000,11 @@ precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada"
 	\item Tamanho da entrada: Varia dependendo do problema a ser abordado, porém é comumente o numero de items na entrada,
 	por exemplo, o tamanho do vetor $A$.
 	\item Tempo de execução: É o número de operações ou 'passos' executados, aqui desconsideramos o hardware, e assumimos
-	que mesmo cada passo leva um tempo diferente de outras, o tempo da do $i$ passo é sempre uma constante, $c_i$.  
+	que mesmo cada passo levando um tempo diferente doso utros, o tempo do $i$ passo é sempre uma constante, $c_i$.  
 \end{itemize}
 
 Em nosso algoritmo \ref{Insertion-Sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
-o loop \textbf{while} da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
+o loop while da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
 executado uma vez a mais doque o corpo do loop.
 
 Assim conseguimos chegar aa seguinte análise do algoritmo \ref{Insertion-Sort}:
@@ -1068,7 +1069,7 @@ análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
 No algoritmo de insertion sort, temos as seguintes váriaveis:
 
 \begin{itemize}
-	\item $Vtor A$ a sequência de $n$ inteiros;
+	\item $Vetor A$ a sequência de $n$ inteiros;
 	\item $key$ uma variável  que armazena um valor presente no vetor $A$;
 	\item $i$ um valor inteiro que representa uma posição na sequência;
 	\item $j$ um valor inteiro que representa uma posição na sequência;
@@ -1144,7 +1145,7 @@ com comunidades ou com espécies únicas, indeificando dentro dos modelos seleci
 MISTN.1, MARS.1 e GNN.1.
 
 Onde performance final é influenciada por três fatores, o modelo escolhido, o foco de predição e a qualidade dos dados. O modelo
-que obteve a melhor performance quando considerado todas as espéceis (comunidade) foi o HMSC.1 e para apenas uma quando apenas um 
+que obteve a melhor performance quando considerado todas as espéceis (comunidade) foi o HMSC.1 e quando apenas uma 
 espécies foi levada em consideração o modelo GLM.4 teve uma performance melhor.
 
 Podemos ver neste trabalho dois dos três tipos de modelos de SDM mais comuns: GLM (GLM.4 e GLM.5) e MARS (MARS.1), mostrando que
@@ -1152,7 +1153,7 @@ além do acesso relativamente fácil a estes e de possuírem um software bem doc
 qualidade de performance ajuda a torna-los modelos relevantes.
 
 No estudo "Generalized linear and generalized additive models in studies of species distributions: setting the scene" 
-\cite{GAMeGLM_especie_estudo}, os autores neste fazem uma breve revisão sobre modelos lineares, GLMs e GAMs. Apresentando algumas
+\cite{GAMeGLM_especie_estudo}, os autores fazem uma breve revisão sobre modelos lineares, GLMs e GAMs. Apresentando algumas
 de suas características e as relações entre os mesmos.
 
 Uma descrição mais teórica dos modelos GLM, GAM e MARS são encontradas nos seguintes trabalhos, respectivamente: "The generalized 
