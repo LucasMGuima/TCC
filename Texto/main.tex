@@ -7,35 +7,34 @@
 % CONFIGURAÇÃO DO DOCUMENTO
 % ========================================================================
 
-
 \documentclass[
-	% -- opções da classe memoir --
-	12pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	oneside,			% para impressão em verso e anverso. Oposto a oneside
-	a4paper,			% tamanho do papel. 
-	% -- opções da classe abntex2 --
-	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
-	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
-	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
-	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
-	% -- opções do pacote babel --
-	english,			% idioma adicional para hifenização
-	brazil				% o último idioma é o principal do documento
-	]{abntex2}
+    % -- opções da classe memoir --
+    12pt,               % tamanho da fonte
+    openright,          % capítulos começam em pág ímpar (insere página vazia caso preciso)
+    oneside,            % para impressão em verso e anverso. Oposto a oneside
+    a4paper,            % tamanho do papel. 
+    % -- opções da classe abntex2 --
+    %chapter=TITLE,     % títulos de capítulos convertidos em letras maiúsculas
+    %section=TITLE,     % títulos de seções convertidos em letras maiúsculas
+    %subsection=TITLE,  % títulos de subseções convertidos em letras maiúsculas
+    %subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+    % -- opções do pacote babel --
+    english,            % idioma adicional para hifenização
+    brazil              % o último idioma é o principal do documento
+    ]{abntex2}
 
 % ---
 % Pacotes básicos 
 % ---
 \usepackage{tikz}
-\usepackage{lmodern}			% Usa a fonte Latin Modern			
-\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
-\usepackage{lastpage}			% Usado pela Ficha catalográfica
-\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}				% Controle das cores
-\usepackage{graphicx}			% Inclusão de gráficos
-\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{lmodern}            % Usa a fonte Latin Modern          
+\usepackage[T1]{fontenc}        % Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}     % Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}           % Usado pela Ficha catalográfica
+\usepackage{indentfirst}        % Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}              % Controle das cores
+\usepackage{graphicx}           % Inclusão de gráficos
+\usepackage{microtype}          % para melhorias de justificação
 \usepackage{listings}
 \usepackage{amsmath} % Required for the split environment
 \usepackage{indentfirst}
@@ -45,8 +44,8 @@
 % ---
 % Pacotes de citações
 % ---
-\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[brazilian,hyperpageref]{backref}     % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}   % Citações padrão ABNT
 
 % CONFIGURAÇÕES DE PACOTES
 
@@ -57,13 +56,13 @@
 \renewcommand{\backref}{}
 % Define os textos da citação
 \renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
-		Nenhuma citação no texto.%
-	\or
-		Citado na página #2.%
-	\else
-		Citado #1 vezes nas páginas #2.%
-	\fi}%
+    \ifcase #1 %
+        Nenhuma citação no texto.%
+    \or
+        Citado na página #2.%
+    \else
+        Citado #1 vezes nas páginas #2.%
+    \fi}%
 
 \usetikzlibrary{arrows.meta, shapes.geometric}
 
@@ -73,7 +72,7 @@
 \definecolor{g}{rgb}{0.7,0.7,0.7}  % gray
 
 % Informações de dados para CAPA e FOLHA DE ROSTO
-\titulo{Comparação e avaliação das implementação em R dos algoritmos GAM, GLM e MARS}
+\titulo{Comparação e avaliação das implementações em R dos algoritmos GAM, GLM e MARS}
 \autor{Lucas da Mata Guimarães}
 \local{São Paulo - Brasil}
 \data{2025}
@@ -126,18 +125,18 @@
 % informações do PDF
 \makeatletter
 \hypersetup{
-     	%pagebackref=true,
-		pdftitle={\@title}, 
-		pdfauthor={\@author},
-    	pdfsubject={\imprimirpreambulo},
-	    pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
-		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=blue,          	% color of internal links
-    	citecolor=blue,        		% color of links to bibliography
-    	filecolor=magenta,      		% color of file links
-		urlcolor=blue,
-		bookmarksdepth=4
+        %pagebackref=true,
+        pdftitle={\@title}, 
+        pdfauthor={\@author},
+        pdfsubject={\imprimirpreambulo},
+        pdfcreator={LaTeX with abnTeX2},
+        pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+        colorlinks=true,            % false: boxed links; true: colored links
+        linkcolor=blue,             % color of internal links
+        citecolor=blue,             % color of links to bibliography
+        filecolor=magenta,              % color of file links
+        urlcolor=blue,
+        bookmarksdepth=4
 }
 \makeatother
 
@@ -186,7 +185,7 @@
 % AGRADECIMENTOS
 % ========================================================================
  \begin{agradecimentos}
- Texto de agradecimento.
+ Texto de agradecimento.
 
  \end{agradecimentos}
 
@@ -195,9 +194,9 @@
 % ========================================================================
  \begin{epigrafe}
      \vspace*{\fill}
- 	\begin{flushright}
- 		\textit{}
- 	\end{flushright}
+    \begin{flushright}
+        \textit{}
+    \end{flushright}
  \end{epigrafe}
 
 % ========================================================================
@@ -262,8 +261,7 @@ Texto do resumo
 
 \section{Contexto}
 
-O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes
-estudos \cite{modelagem_comp}. Uma destas aplicações são os modelos de distribuição 
+O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. Uma destas aplicações são os modelos de distribuição 
 de espécies, que são capazes de fornecer uma visualização da situação 
 da fauna e flora de determinada região, podendo mostrar como estas estão se 
 comportando no decorrer do tempo \cite{speciesDistributionModels}.
@@ -271,28 +269,28 @@ comportando no decorrer do tempo \cite{speciesDistributionModels}.
 Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
 e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
 estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
-das variáveis explanatórias, sendo o GLM uma extenção de modelos lineares que não
-forçam o dado a escalas não naturais, e o GAM uma extenção semi-parametrizada do GLM,
+das variáveis explanatórias, sendo o GLM uma extensão de modelos lineares que não
+forçam o dado a escalas não naturais, e o GAM uma extensão semi-parametrizada do GLM,
 tendo a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
 
 Já o Multivariate Adaptive Regression Spline (MARS) combina partição recursiva e ajustes
-por splines, de modo a manter seus aspectos positivos, enquanto sendo menos vulneravel a 
-suas propriedades não favoraveis. Gerando um conjunto de regras para prever
-valores futuros apartir de uma análise regressiva. \cite{MARS} 
+por splines, de modo a manter seus aspectos positivos, enquanto sendo menos vulnerável a 
+suas propriedades não favoráveis. Gerando um conjunto de regras para prever
+valores futuros a partir de uma análise regressiva. \cite{MARS} 
 
-Sendo as aplicações destes modelos encontradas códificadas na linguagem de programação R, que por
+Sendo as aplicações destes modelos encontradas codificadas na linguagem de programação R, que por
 sua vez é a linguagem de programação mais utilizada quando tratamos de ciência de dados, sendo conhecida
-como a lingaugem mais robusta para a área de dados, tendo sido pensada para o uso em cálculos e
+como a linguagem mais robusta para a área de dados, tendo sido pensada para o uso em cálculos e
 análises estatísticas \cite{linguagem_r}.
 
 Porém, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
 como citado por \cite{modelagem_comp}, ponto este, que não é repassado nos trabalhos referentes a análise 
 ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um computador, tais modelos
 requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
-a necessidade de se alugar maquinas virtuais para esta finalidade \cite{global_cloud_maketing}. 
+a necessidade de se alugar máquinas virtuais para esta finalidade \cite{global_cloud_maketing}. 
 
 E quando se coloca a necessidade de se manter um controle das populações de espécies, dentro ou próximo
-a centros urbanos, a velocidade de preparo destes modelos se torna mais critica, já que é necessário ir
+a centros urbanos, a velocidade de preparo destes modelos se torna mais crítica, já que é necessário ir
 desde a coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
  
 \section{Justificativa}
@@ -332,28 +330,29 @@ situações em que queremos criar uma análise inicial de um determinado senári
 
 \section{Objetivo}
 
-Este trabalho tem como objetivo avaliar e comparar a implementação encontrada nas bibliotecas mda e mgcv da linguagem R, dos modelos
-de distribuição de espécies, GAM, GML e MARS, levantando o custo computacional de cada um destes apartir de uma análise de 
-complexidade e espaço. Encontrando um modelo que melhor aprensente um equilibrio entre a acurácia e o custo computacional.
+Este trabalho tem como objetivo avaliar e comparar a implementação encontrada
+nas bibliotecas mda e mgcv da linguagem R, dos modelos de distribuição de espécies,
+GAM, GML e MARS, levantando o custo computacional de cada um destes a partir de
+uma análise de complexidade e espaço. Encontrando um modelo que melhor apresente
+um equilíbrio entre a acurácia e o custo computacional
 
 \subsection{Objetivos Específicos}
 
 \begin{enumerate}
-	\item Análise de complexidade e espaço dos modelos.
-	\begin{itemize}
-		\item Generalized Additive Model;
-		\item Generalized Linear Model;
-		\item Multivariate Adaptive Regression Spline;
-	\end{itemize}
-	\item Avaliação da acurácia dos modelos com dados de ocorrência.
-	\item Comparação dos modelos.
-	\item Avaliação dos modelos com base na relação custo x acurácia.
+    \item Análise de complexidade e espaço dos modelos.
+    \begin{itemize}
+        \item Generalized Additive Model;
+        \item Generalized Linear Model;
+        \item Multivariate Adaptive Regression Spline;
+    \end{itemize}
+    \item Avaliação da acurácia dos modelos com dados de ocorrência.
+    \item Comparação dos modelos.
+    \item Avaliação dos modelos com base na relação custo x acurácia.
 \end{enumerate}
 
 % ========================================================================
 % REVISÃO BIBLIOGRÁFICA
 % ========================================================================
-
 
 \chapter{Revisão Bibliográfica}
 
@@ -370,31 +369,31 @@ qualquer situação onde uma análise de um sistema complexo se vê necessária,
 aplicações encontradas nas seguintes áreas, como apresentado por \cite{modelagem_computacional}:
 
 \begin{enumerate}
-	\item \textbf{Ciência e Pesquisa}: Permite o teste de hipóteses de maneira mais rápida e eficiente.
-	\item \textbf{Engenharia}: Essencial para projetos de larga escala, utilizada para testar estruturas antes de
-	começar sua construção.
-	\item \textbf{Medicina}: Permite a modelagem de epidemias, assim prevendo como doenças podem se espalhar em dada
-	população, ajudando a planejar métodos de controle.
+    \item \textbf{Ciência e Pesquisa}: Permite o teste de hipóteses de maneira mais rápida e eficiente.
+    \item \textbf{Engenharia}: Essencial para projetos de larga escala, utilizada para testar estruturas antes de
+    começar sua construção.
+    \item \textbf{Medicina}: Permite a modelagem de epidemias, assim prevendo como doenças podem se espalhar em dada
+    população, ajudando a planejar métodos de controle.
 \end{enumerate}
 
 O tipo da modelagem depende do tipo de fenômeno ou problema que queremos tratar, onde os tipos principais,
 segundo \cite{modelagem_computacional} são:
 
 \begin{enumerate}
-	\item \textbf{Modelagem determinística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
-	entrada sempre produzem os mesmos resultados. Mais visto no campo da Física e Engenharia, onde os 
-	fenômenos naturais seguem um conjunto de regras bem definido.
-	\item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriedade, o sistema pode apresentar
-	resultados diferentes para o mesmo conjunto de parâmetros de entrada. Comumente usada onde o acaso 
-	desempenha um papel importante, como na Biologia e Economia.
-	\item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, essencial em áreas como a
-	Ecologia e Epidemiologia, onde é preciso prever a evolução de sistemas biológicos ou a propagação
-	de doenças. 
+    \item \textbf{Modelagem determinística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
+    entrada sempre produzem os mesmos resultados. Mais visto no campo da Física e Engenharia, onde os 
+    fenômenos naturais seguem um conjunto de regras bem definido.
+    \item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriedade, o sistema pode apresentar
+    resultados diferentes para o mesmo conjunto de parâmetros de entrada. Comumente usada onde o acaso 
+    desempenha um papel importante, como na Biologia e Economia.
+    \item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, essencial em áreas como a
+    Ecologia e Epidemiologia, onde é preciso prever a evolução de sistemas biológicos ou a propagação
+    de doenças. 
 \end{enumerate}
 
 \subsection{Modelos Lineares}
 
-Modelos lineares são modelos que preveem uma respota linear utilizando como base a relação entre o resultado
+Modelos lineares são modelos que preveem uma resposta linear utilizando como base a relação entre o resultado
 e as propriedades dadas como parâmetros. Sendo uma opção mais simples, possuem propriedades mais fáceis de
 serem entendidas e um tempo de desenvolvimento mais curto quando comparados a outros tipos de modelos,
 como redes neurais, ou árvores de decisão, empregadas no mesmo problema. \cite{modelos_lineares}
@@ -402,76 +401,75 @@ como redes neurais, ou árvores de decisão, empregadas no mesmo problema. \cite
 A linearidade destes modelos, implica que matematicamente a variação dos parâmetros independentes não
 possui relações entre si, e podem ser separados em dois grupos clássicos \cite{tipos_modelos_lineares}.
 \begin{itemize}
-	\item \textbf{Modelos de Regressão}:
-	Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
-	valores de possível representação numérica, indicando quantidade ou magnitude. Com o intuito de estimar
-	parâmetros, explicando relações ou para fazer predições.
-	\item \textbf{Modelos de Análise de Variância}:
-	Estes modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
-	variável de resposta. Para encontrar a relação entre grupos de análise, de modo a indentificar o que
-	gera a diferença entre os grupos estudados.
+    \item \textbf{Modelos de Regressão}:
+    Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
+    valores de possível representação numérica, indicando quantidade ou magnitude. Com o intuito de estimar
+    parâmetros, explicando relações ou para fazer predições.
+    \item \textbf{Modelos de Análise de Variância}:
+    Estes modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
+    variável de resposta. Para encontrar a relação entre grupos de análise, de modo a identificar o que
+    gera a diferença entre os grupos estudados.
 \end{itemize}
 
 Ambas as abordagens ao modelo linear gerarão uma regressão linear, que é um modelo matemático que descreve 
 a relação entre as variáveis dependentes e independentes usadas, tendo a possibilidade de ser representado 
 graficamente. Podendo ser de dois tipos: simples ou múltipla.
 
-Na regressõa linear simples, queremos estimar os valor de $a$ e $b$ da equação da reta, $y$ = $a$ + $bx$, 
-apartir de um conjunto de dados $x$ e $y$, onde $y$ representa a variável  dependete e $x$ á variável  
+Na regressão linear simples, queremos estimar os valores de $a$ e $b$ da equação da reta, $y$ = $a$ + $bx$
+, a partir de um conjunto de dados $x$ e $y$, onde $y$ representa a variável  dependente e $x$ à variável 
 independente, que melhor represente a relação entre $x$ e $y$. Em outras palavras, queremos estimar a 
-inclinação da reta, esta que nos indica o efeito em $y$ das mudanças ocorridas em $x$ 
-\cite{modelos_regressao_linear}.
+inclinação da reta, esta que nos indica o efeito em $y$ das mudanças ocorridas em $x$ \cite{modelos_regressao_linear}.
 
-A essa reta, é dado o nome de reta de regressão linear, esta que depende de cinco estatisticas básicas
+A essa reta, é dado o nome de reta de regressão linear, esta que depende de cinco estatísticas básicas
 \cite{modelos_regressao_linear}:
 
 \begin{enumerate}
-	\item Média de $X$: $\overline{X} = \frac{1}{N} \sum_{i=1}^{N} X_i$;
-	\item Desvio padrão de $X$: $S_x = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (X_i - \overline{X})^2 }$;
-	\item Média de $Y$: $\overline{Y} = \frac{1}{N} \sum_{i=1}^{N} Y_i$;
-	\item Desvio padrão de $Y$: $S_y = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (Y_i - \overline{Y})^2 }$;
-	\item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} . \frac{Y_i - \overline{Y}}{S_Y}$
+    \item Média de $X$: $\overline{X} = \frac{1}{N} \sum_{i=1}^{N} X_i$;
+    \item Desvio padrão de $X$: $S_x = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (X_i - \overline{X})^2 }$;
+    \item Média de $Y$: $\overline{Y} = \frac{1}{N} \sum_{i=1}^{N} Y_i$;
+    \item Desvio padrão de $Y$: $S_y = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (Y_i - \overline{Y})^2 }$;
+    \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} . \frac{Y_i - \overline{Y}}{S_Y}$
 \end{enumerate}
 
-Com estas estatisticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
+Com estas estatísticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
 ($\overline{X}, \overline{Y}$). A inclinação da reta será dada por:
 
 \begin{equation}
-	\label{inclinacao_reta}
-	\beta_1 = \frac{r.S_y}{S_x}
+    \label{inclinacao_reta}
+    \beta_1 = \frac{r.S_y}{S_x}
 \end{equation}
 
 E o intercepto da reta de regressão, onde a reta corta um dos eixos do plano cartesiano, 
 será dado por:
 
 \begin{equation}
-	\label{intercepto_reta}
-	\beta_0 = \overline{Y} - \beta_1 \overline{X}
+    \label{intercepto_reta}
+    \beta_0 = \overline{Y} - \beta_1 \overline{X}
 \end{equation}
 
 Assim resultamos na seguinte equação:
 
 \begin{equation}
 \label{eq_reg_simples}
-	Y = \beta_0 + \beta_1X
+    Y = \beta_0 + \beta_1X
 \end{equation}
 
 Onde:
 \begin{itemize}
-	\item ($X$) é a variável independente;
-	\item ($Y$) é a variável dependente;
-	\item ($\beta_0$) é o intercepto da reta;
-	\item ($\beta_1$) é a inclinação da reta. 
+    \item ($X$) é a variável independente;
+    \item ($Y$) é a variável dependente;
+    \item ($\beta_0$) é o intercepto da reta;
+    \item ($\beta_1$) é a inclinação da reta. 
 \end{itemize}
 
 Porém, a equação \ref{eq_reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
 os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a variável  $X$ que afeta os valores de
-$Y$ quando tratamos de ocorrência no mundo real, assim incluimos um termo de erro $\epsilon$, que é
+$Y$ quando tratamos de ocorrência no mundo real, assim incluímos um termo de erro $\epsilon$, que é
 o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
-	\label{eq_reg_simples_erro}
-	Y = \beta_0 + \beta_1X + \epsilon
+    \label{eq_reg_simples_erro}
+    Y = \beta_0 + \beta_1X + \epsilon
 \end{equation}
 
 Agora com a equação \ref{eq_reg_simples_erro}, podemos criar a reta de regressão, que pode ser
@@ -484,24 +482,24 @@ representada graficamente, possuindo uma estrutura semelhante ao gráfico a segu
     \legend{Fonte: \citeonline{regressao_linear}}
 \end{figure}
 
-A equação \ref{eq_reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nosso dados
+A equação \ref{eq_reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nossos dados
 podemos trabalhar com conjuntos de valores, agrupando valores de $Y$ distintos, para cada valor de $X$.
 Por exemplo, dados que representam a qualidade de vida nos estados brasileiro com o número de postos 
 de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
 
 \begin{equation}
-	\label{eq_reg_simples_geral}
-	Y_i = \beta_0 + _beta_iX_i + \epsilon_i
+    \label{eq_reg_simples_geral}
+    Y_i = \beta_0 + _beta_iX_i + \epsilon_i
 \end{equation}
 
 Onde:
 \begin{itemize}
-	\item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado acima;
-	\item ($Y_i$) é a variável dependente;
-	\item ($X_i$) é a variável independente, representaria o número de postos de saúde em dado estado.
-	\item ($\beta_0$) é o intercepto;
-	\item ($\beta_1$) é a inclinação, e o efeito médio de $X_i$ sobre $Y_i$;
-	\item ($\epsilon$) é o erro médio ao se estimar $Y_i$ por meio de $X_i$;
+    \item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado acima;
+    \item ($Y_i$) é a variável dependente;
+    \item ($X_i$) é a variável independente, representaria o número de postos de saúde em dado estado.
+    \item ($\beta_0$) é o intercepto;
+    \item ($\beta_1$) é a inclinação, e o efeito médio de $X_i$ sobre $Y_i$;
+    \item ($\epsilon$) é o erro médio ao se estimar $Y_i$ por meio de $X_i$;
 \end{itemize}
 
 Já quando tratamos da regressão linear múltipla, é levado em conta que outros fatores podem afetar a 
@@ -510,18 +508,18 @@ para este modelo de regressão pode ser representada da seguinte forma, onde tem
 explicativas \cite{modelos_regressao_linear}:
 
 \begin{equation}
-	\label{rq_reg_multipla}
-	Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \epsilon
+    \label{rq_reg_multipla}
+    Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \epsilon
 \end{equation}
 
 Onde:
 \begin{itemize}
-	\item ($\beta_0$) é o intercepto;
-	\item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função
-	\item ($\epsilon$) é o termo de erro.
+    \item ($\beta_0$) é o intercepto;
+    \item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função
+    \item ($\epsilon$) é o termo de erro.
 \end{itemize}
 
-Aqui temos $\beta_1$ até $\beta_k$ como coeficientes parcias da regressão \cite{modelos_regressao_linear}. 
+Aqui temos $\beta_1$ até $\beta_k$ como coeficientes parceais da regressão \cite{modelos_regressao_linear}. 
 Neste caso, a visualização por meio de um gráfico, fica comprometida, visto que temos um número $k$ de 
 $X$, para ilustrar, usemos uma situação onde temos dois $X$, aqui podemos representar os valores por 
 um gráfico de três dimensões.
@@ -538,42 +536,42 @@ mas ainda podemos tratar o problema como uma reta.
 
 \subsection{Metodos de avaliação de Modelos Computacionais}
 
-Antes de apontarmos as metricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
+Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
 categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão
 \cite{acuracia_matriz}:
 
 \begin{table}[H]
-	\centering
-	\caption{\label{Matriz de Confusão}Matriz de Confusão}
-	\begin{tabular}{|c|c|c|}
-	\hline
-					  & Verdadeiro Positivo & Verdadeiro Negativo   \\ \hline
-	Positivo Previsto & Positivo Verdadeiro & Falsos Positivos      \\ \hline
-	Negativo Previsto & Falsos Negativos    & Negativos Verdadeiros \\ \hline
-	\end{tabular}
-	\legend{Fonte: \cite{acuracia}}
+    \centering
+    \caption{\label{Matriz de Confusão}Matriz de Confusão}
+    \begin{tabular}{|c|c|c|}
+    \hline
+                      & Verdadeiro Positivo & Verdadeiro Negativo   \\ \hline
+    Positivo Previsto & Positivo Verdadeiro & Falsos Positivos      \\ \hline
+    Negativo Previsto & Falsos Negativos    & Negativos Verdadeiros \\ \hline
+    \end{tabular}
+    \legend{Fonte: \cite{acuracia}}
 \end{table}
 
 Onde:
 \begin{itemize}
-	\item \textbf{Positivos Verdadeiros}: São as classificações positivas corretas;
-	\item \textbf{Falsos Positivos}: São positivos que foram erroneamente classificados como negativos;
-	\item \textbf{Falsos Negativos}: São negativos que foram erroneamente classificados como positivos;
-	\item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
+    \item \textbf{Positivos Verdadeiros}: São as classificações positivas corretas;
+    \item \textbf{Falsos Positivos}: São positivos que foram erroneamente classificados como negativos;
+    \item \textbf{Falsos Negativos}: São negativos que foram erroneamente classificados como positivos;
+    \item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
 \end{itemize}
 
-Existem várias metricas para se avaliar a qualidade de um modelo computacional, sendo os metodos mais
+Existem várias métricas para se avaliar a qualidade de um modelo computacional, sendo os metodos mais
 comuns a acurácia, precisão, recall, F1-Score e área da curva ROC (AUC-ROC) \cite{metricas_aval_modelo} onde:
 
 \begin{itemize}
-	\item Acurácia: Uma métrica simples e amplamente utilizada que mede a proporção de precisões corretas feitas pelo modelo;
-	\item Precisão: Uma métrica que mede a proporção de previsões positivas corretas feitas pelo modelos, muito utilizada 
-	quando um falso positivo agrega um custo muito alto;
-	\item Recall: Uma métrica que mede a proporção de exemplos positivos que foram corretamente identificados pelo modelo;
-	\item F1-Score: É uma média harmônica entre a Precisão e Recall, fornece um equilibrio entre essas duas métricas, utilizado
-	quando se quer levar em consideração tanto os falsos positivos quantos os falsos negativos;
-	\item AUC-ROC: Avalia o desempenho de modelos de classificação binária em diferentes limities de decisão, onde quanto
-	maior o valor melhor o modelo separa essas classes.
+    \item Acurácia: Uma métrica simples e amplamente utilizada que mede a proporção de precisões corretas feitas pelo modelo;
+    \item Precisão: Uma métrica que mede a proporção de previsões positivas corretas feitas pelo modelos, muito utilizada 
+    quando um falso positivo agrega um custo muito alto;
+    \item Recall: Uma métrica que mede a proporção de exemplos positivos que foram corretamente identificados pelo modelo;
+    \item F1-Score: É uma média harmônica entre a Precisão e Recall, fornece um equilíbrio entre essas duas métricas, utilizado
+    quando se quer levar em consideração tanto os falsos positivos quantos os falsos negativos;
+    \item AUC-ROC: Avalia o desempenho de modelos de classificação binária em diferentes limites de decisão, onde quanto
+    maior o valor melhor o modelo separa essas classes.
 \end{itemize}
 
 Como cada métrica possue um campo de atuação, para o problema abordado neste trabalho, as relevantes são a acurácia e precisão,
@@ -587,15 +585,15 @@ A acurácia é um modo de avaliar a performance de um modelo, assim identificand
 ser considerados válidos ou não. Para chegarmos na acurácia utilizamos a seguinte fórmula:
 
 \begin{equation}
-	\label{conta_acuracia}
-	A = \frac{PC}{TP}
+    \label{conta_acuracia}
+    A = \frac{PC}{TP}
 \end{equation}
 
 Onde:
 \begin{itemize}
-	\item ($A$) é a Acurácia
-	\item ($PC$) é o total de Previsões Corretas, encontrada pela soma de $Positivos Verdadeiros + Negativos Verdadeiros$;
-	\item ($TP$) é o Total de Previsões, encontrada pela soma de $PC + Falsos Verdadeiros + Falsos Negativos$.
+    \item ($A$) é a Acurácia
+    \item ($PC$) é o total de Previsões Corretas, encontrada pela soma de $Positivos Verdadeiros + Negativos Verdadeiros$;
+    \item ($TP$) é o Total de Previsões, encontrada pela soma de $PC + Falsos Verdadeiros + Falsos Negativos$.
 \end{itemize}
 
 Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
@@ -618,11 +616,11 @@ para seus ambientes, provêndo um forte argumento conceitual para se modelar esp
 
 Segundo \cite{tiposDados_sdm} as principais fontes de informações para a criação destes modelos são: 
 \begin{itemize}
-	\item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a espéciefoi observada, conhecida como
-	dado de ocorrência, alguns modelos fazem uso de dados de ausência, que são coordenadas geograficas 
-	onde se sabe que a espécie não ocorre;
-	\item Dado ambiental: São a descrição do ambiente, podendo conter medições de temperatura e precipitação, como
-	também, a ocorrência e ausência de outras espécies, como predadores, competidores ou fontes de alimento.
+    \item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a espéciefoi observada, conhecida como
+    dado de ocorrência, alguns modelos fazem uso de dados de ausência, que são coordenadas geograficas 
+    onde se sabe que a espécie não ocorre;
+    \item Dado ambiental: São a descrição do ambiente, podendo conter medições de temperatura e precipitação, como
+    também, a ocorrência e ausência de outras espécies, como predadores, competidores ou fontes de alimento.
 \end{itemize}
 
 Dentro dos SDMs, temos vários frameworks de modelagem, sendo os mais utilizados o Generalized Linear Model (GLM), 
@@ -643,76 +641,76 @@ exponenciais (Gaussiana, Poisson ou Binomial), e a função de ligação pode se
 diferenciável, como a logarítmica \cite{GAMeGLM_especie_estudo}.
 
 No GLM as variáveis de predição $X_j$, onde $j = 1, ..., p$ com $p$ sendo a quantidade de $X$s, são combinadas para se formar um 
-preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável  de reposta $Y$ atráves de uma função de ligação $g()$ 
+preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável  de reposta $Y$ atráves de uma função de ligação $g()$ 
 \cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte fórmula: 
 
 \begin{equation}
-	\label{GLM_general_eq}
-	g(E(Y)) = LP = \alpha + X^T \beta
+    \label{GLM_general_eq}
+    g(E(Y)) = LP = \alpha + X^T \beta
 \end{equation}
 
 Onde:
 \begin{itemize}
-	\item $\alpha$: é uma constante, chamada de intercepto;
-	\item $X$: é um vetor de $p$ preditores, $(X_1, ..., X_p)$;
-	\item $\beta$: é um vetor de $p$ coeficientes de regressão, uma para cada preditor, $(\beta_1, ..., \beta_p)$.
+    \item $\alpha$: é uma constante, chamada de intercepto;
+    \item $X$: é um vetor de $p$ preditores, $(X_1, ..., X_p)$;
+    \item $\beta$: é um vetor de $p$ coeficientes de regressão, uma para cada preditor, $(\beta_1, ..., \beta_p)$.
 \end{itemize}
 
 Assim escrevemos o modelo para variáveis $X$ e $Y$ genéricas. Os termos correspondes para uma dada observação $i$ da 
 amostra são \cite{GAMeGLM_especie_estudo}:
 
 \begin{equation}
-	\label{GLM_observ_eq}
-	g(\mu_i) = \alpha + \beta_1X_{i1} + \beta_2X_{i2} + ... + \beta_pX_{ip}
+    \label{GLM_observ_eq}
+    g(\mu_i) = \alpha + \beta_1X_{i1} + \beta_2X_{i2} + ... + \beta_pX_{ip}
 \end{equation}
 
 Aqui a variânciade $Y$ depende de $\mu = E(Y)$ atravez da função de variância $V(\mu)$, dado $Var(Y) = \phi V(\mu)$, onde $\phi$ (phi)
-é o parâmetro de dispersão. Quando se espera um $\phi$ maior que que o valor antecipado dado a distribuição escolhida, o parâmetro de
+é o parâmetro de dispersão. Quando se espera um $\phi$ maior que o valor antecipado dado a distribuição escolhida, o parâmetro de
 escala pode ser estimado utilizando-se de quasi-likelihood \cite{GAMeGLM_especie_estudo}.
 
 Por sua vez, quasi-likelihood é um metodo de se generalizar a abordagem pr likelihood-based para GLMs, permitendo se estimar so valores
 de $\beta$ de tal forma que não é necessário se especificar uma distribuição para a saída. Normalmente utilizado como um mecanismo
-para lidar com dados muitos dispersos, ou quando não se deseja fazer afirmações solidas de distribuição sobre as variáveis de saída 
+para lidar com dados muitos dispersos, ou quando não se deseja fazer afirmações sólidas de distribuição sobre as variáveis de saída 
 \cite{quase-likehood}.
 
 \subsubsection{GAM - Generalized Additive Model}
 
-Gerados a partir do GLM, este modelo possue uma automatização para se identificar os termos de polinômio apropriado
+Gerados a partir do GLM, este modelo possui uma automatização para se identificar os termos de polinômio apropriado
 e as transformações dos preditores que melhoram a qualidade do modelo linear. Logo podemos dizer que os GAMs estão
 aninhados dentro do GLMs que por sua vez estão aninhados em modelos lineares, LM \cite{GAMeGLM_especie_estudo}:
 
 \begin{equation}
-	LM \subset GLM \subset GAM
+    LM \subset GLM \subset GAM
 \end{equation}
 
 GAMs são parametrizados como os GLMs, porém alguns preditores podem ser modelados de modo não parametrizado em 
 adção a termos lineares e polinomiais para outros preditores. Um passo crucial para aplicar GAMs é selecionar
 o nível apropriado de "suavização" para os preditores.
 
-Nestes se substitui-se a função de predição linear $\eta = \sum_{1}^{p}\beta_jX_j$ pela função de predição aditiva 
+Nestes substitui-se a função de predição linear $\eta = \sum_{1}^{p}\beta_jX_j$ pela função de predição aditiva 
 $\eta = \sum_{1}^{p}s_j(X_j)$, onde $s_j(X_j)$ é uma função de suavização do valor $X_j$. A forma assumida
 para a estimativa pelo modelo de regressão linear, possui a seguinte característica \cite{GAM}:
 
 \begin{equation}
-	\label{reg_linear_estimativa}
-	E(Y|X_1,X_2,...,X_p) = \beta_0 + \beta_1X_1 + ... + \beta_pX_p.
+    \label{reg_linear_estimativa}
+    E(Y|X_1,X_2,...,X_p) = \beta_0 + \beta_1X_1 + ... + \beta_pX_p.
 \end{equation}
 
-Enquanto no GAM, se generaliza-se o modelo de regressão linear, tornando a equação \ref{reg_linear_estimativa}:
+Enquanto no GAM, generaliza-se o modelo de regressão linear, tornando a equação \ref{reg_linear_estimativa}:
 
 \begin{equation}
-	\label{reg_linear_generalizada}
-	E(Y|X_1,X_2,...,X_p) = s_0 + \sum_{j=1}^{p} s_j(X_j)
+    \label{reg_linear_generalizada}
+    E(Y|X_1,X_2,...,X_p) = s_0 + \sum_{j=1}^{p} s_j(X_j)
 \end{equation}
 
 Como exemplo, tomemos o caso de um preditor simples, neste, nosso modelo seria:
 
 \begin{equation}
-	\label{preditor_simples}
-	E(Y|X) = s(X)
+    \label{preditor_simples}
+    E(Y|X) = s(X)
 \end{equation}
 
-Para estimarmos $s(x)$ apartir de nossos dados, podemos usar um estimativa razoável de $E(Y|X=x)$, sendo uma dessas 
+Para estimarmos $s(x)$ a partir de nossos dados, podemos usar uma estimativa razoável de $E(Y|X=x)$, sendo uma dessas 
 classes de estimativas as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in N_i}(Yj)$, onde $Ave$ representa uma
 operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão proximos a $x_i$, em
 associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
@@ -722,33 +720,33 @@ $wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do
 estão ordenados de forma crescente em $x$, uma definição formal seria \cite{GAM}:
 
 \begin{equation}
-	\label{eq_vizinhanaça}
-	N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
+    \label{eq_vizinhanaça}
+    N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
 \end{equation}
 
 A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
 controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dados a serem usados \cite{GAM}. Se
-$Ave$ representar a média aritmetica, então $\hat{s}(.)$ é a running lines smoother, e sua definição para estimar valores
+$Ave$ representar a média aritmética, então $\hat{s}(.)$ é a running lines smoother, e sua definição para estimar valores
 de $x$ é:
 
 \begin{equation}
-	\label{running_lines_smoother}
-	\hat{s}(x_i) = \hat{\beta}_{0i} + \hat{\beta}_{1i}x_i
+    \label{running_lines_smoother}
+    \hat{s}(x_i) = \hat{\beta}_{0i} + \hat{\beta}_{1i}x_i
 \end{equation}
 
-Onde $\hat{\beta}_{0i}$ e $\hat{\beta}_{1i}$ são as estimativas por least square para os ponts de dados de $N_i$:
+Onde $\hat{\beta}_{0i}$ e $\hat{\beta}_{1i}$ são as estimativas por least square para os pontos de dados de $N_i$:
 
 \begin{equation}
-	\label{least_square_betas}
-	\begin{split}
-		&\hat{\beta}_{1i} = \frac{\sum_{j \in N_i}(x_j - \overline{x}_i)y_j}{\sum_{j \in N_i}(x_j - \overline{x}_i)^2}, \\
-		&\hat{\beta}_{0i} = \overline{y}_i - \hat{\beta}_{1i}\overline{x}_i, \\
-		&\overline{x}_i = \frac{1}{n}\sum_{j \in N_i}x_j, \\
-		&\overline{y}_i = \frac{1}{n}\sum_{j \in N_i}y_j
-	\end{split}
+    \label{least_square_betas}
+    \begin{split}
+        &\hat{\beta}_{1i} = \frac{\sum_{j \in N_i}(x_j - \overline{x}_i)y_j}{\sum_{j \in N_i}(x_j - \overline{x}_i)^2}, \\
+        &\hat{\beta}_{0i} = \overline{y}_i - \hat{\beta}_{1i}\overline{x}_i, \\
+        &\overline{x}_i = \frac{1}{n}\sum_{j \in N_i}x_j, \\
+        &\overline{y}_i = \frac{1}{n}\sum_{j \in N_i}y_j
+    \end{split}
 \end{equation}
 
-Outros métodos de estimar $E(Y|X)$ poderiam ser usados, acarretando na mudança do custo computacional do modelo, podendo
+Outros métodos de estimar $E(Y|X)$ poderiam ser usados, acarretando a mudança do custo computacional do modelo, podendo
 trabalhar tão bem quanto ou melhor do que o running lines smoother \cite{GAM}.
 
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
@@ -758,8 +756,8 @@ $f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fen�
 \cite{MARS}. 
 
 \begin{equation}
-	\label{mars_eq_base}
-	y = f(x_1,...,x_n) + \epsilon
+    \label{mars_eq_base}
+    y = f(x_1,...,x_n) + \epsilon
 \end{equation}
 
 A função de $n$-dimensões $f$ captura a relação de predição de $y$ em $x_1,...,x_n$, onde o alvo da análise regressiva
@@ -772,20 +770,20 @@ apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função
 dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
 
 \begin{equation}
-	\label{funcao_spline_aproximacao}
-	\hat{f}_q(x) = \sum_{k=0}^{k+q}a_kB_k^{(q)}(x)
+    \label{funcao_spline_aproximacao}
+    \hat{f}_q(x) = \sum_{k=0}^{k+q}a_kB_k^{(q)}(x)
 \end{equation}
 
-Onde $\left\{B_k^{(q)(x)}\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço das função spline de ordem $q$ e $a_k$ é o
+Onde $\left\{B_k^{(q)(x)}\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
 valor do coeficiente de expansão, sendo sem limitadores \cite{intro_mars}.
 
 A base mais popular é a 'B-spline', possuindo superioridade em número de propriedades usadas em conjunto com o least-squares 
 fitting. Sendo a 'B-spline' definida por, $K+2$ locais de pontos adjacentes, onde a função limitadora tem o maior suporte
-mas é definida cada uma por um único local. Para a seleção destas funções base, que gera um grupo de resultados
-não válidos sera removida, se tivermos um modelo aditivo, onde
+mas é definida cada uma por um único local. Para a seleção destas funções bases, que gera um grupo de resultados
+não válidos será removida, se tivermos um modelo aditivo, onde
 
 \begin{equation}
-	\hat{f}(x) = \sum_{j=1}^{n}f_j(x_j)
+    \hat{f}(x) = \sum_{j=1}^{n}f_j(x_j)
 \end{equation}
 
 fosse considerado adequado, qualquer função que envolvesse mais de uma variável se tornaria ilegítima para inclusão no modelo \cite{intro_mars}.
@@ -805,69 +803,69 @@ processo recursivo, a cada iteração, simultaneamente constrói uma lista expan
 quais considerar naquele passo, se repetindo até uma quantidade relativamente grande de funções bases forem selecionada. 
 
 Um conjunto final de funções base de tamanho apropriado é então selecionado por meio de um procedimento de seleção de subconjunto de 
-variáveis passo a passo regressivo, usando as funções base produzidas pelo algoritmo progressivo como 'variáveis' 
+variáveis passo a passo regressivo, usando as funções bases produzidas pelo algoritmo progressivo como 'variáveis' 
 candidatas \cite{intro_mars}.
 
-O passo de forward começa com uma unica função base no modelo:
+O passo de forward começa com uma única função base no modelo:
 
 \begin{equation}
-	\label{inicio_funcao_base}
-	B_0(x) = 1
+    \label{inicio_funcao_base}
+    B_0(x) = 1
 \end{equation}
 
 Após a $M$-ézimo iteração teremos $2M+1$ funções:
 
 \begin{equation}
-	\label{funcao_base}
-	\left\{B_m(\mathbf{x})\right\}_{0}^{2M}
+    \label{funcao_base}
+    \left\{B_m(\mathbf{x})\right\}_{0}^{2M}
 \end{equation}
 
-No modelo, cada iteração $(M + 1)$ adiciona duas novas funções base:
+No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
 
 \begin{equation}
-	\label{novas_funcoes}
-	\begin{split}
-		& B_{2M+1}(x) = B_{l(M+1)}(x)\left\{+(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
-		& B_{2M+2}(x) = B_{l(M+1)}(x)\left\{-(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
-	\end{split}
+    \label{novas_funcoes}
+    \begin{split}
+        & B_{2M+1}(x) = B_{l(M+1)}(x)\left\{+(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+        & B_{2M+2}(x) = B_{l(M+1)}(x)\left\{-(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+    \end{split}
 \end{equation}
 
-Aqui $B_{l(M+1)}(x)$ é uma das funções base $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variável preditora, não
-representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável . Os três parâmetros $l(M+1), v(M+1) e t_{M+1}$ que definem as
-duas novas funções base, são escolhidos para sereme os que melhor melhoram o fitting do "novo" modelo com os dados.
+Aqui $B_{l(M+1)}(x)$ é uma das funções bases $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variável preditora, não
+representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1), v(M+1) e t_{M+1}$ que definem as
+duas novas funções bases, são escolhidos para serem os que melhor melhoram o fitting do "novo" modelo com os dados.
 
 Para pequenas amostras o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem, e com grandes amostras, 
-ele favorecerá interações de alta ordem para os pociveis candidatos.
+ele favorecerá interações de alta ordem para os possíveis candidatos.
 
 \section{Análise de Algoritmos}
 
 A análise de algoritmos é o processo de identificar uma fórmula matemática que melhor represente o custo de
-utilização de uma dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
-de dados, ou de espaço, quanto da memoria do computador o algoritmo ira usar durante seu processo.
+utilização de um dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
+de dados, ou de espaço, quanto da memória do computador o algoritmo ira usar durante seu processo.
 
-Neste processo identificamos a qual familia de problemas esse algoritmo pertence, que corresponde ao seu custo de
-computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com báse na notação assintótica.
+Neste processo identificamos a qual família de problemas esse algoritmo pertence, que corresponde ao seu custo de
+computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com base na notação assintótica.
 
 \begin{table}[H]
-	\centering
-	\caption{\label{Notação Assintótica}Notação Assintótica}
-	\begin{tabular}{|c|c|c|}
-	\hline
-		Complexidade & Nome & Eficiente \\ \hline
-		$O(1)$ & Constante & Sim \\ \hline
-		$O(log n)$ & Logarítmica & Sim \\ \hline
-		$O(n)$ & Linear & Sim \\ \hline
-		$O(n log n)$ & "Linearítimica" & Sim \\ \hline
-		$O(n^2)$ & Quadrática & Sim \\ \hline
-		$O(n^3)$ & Cúbica & Sim \\ \hline
-		$O(2^n)$ & Exponencial & Não \\ \hline
-		$O(n!)$ & Fatorial & Não \\ \hline
-	\end{tabular}
-	\legend{Fonte: \cite{big_o_notation}}
+    \centering
+    \caption{\label{Notação Assintótica}Notação Assintótica}
+    \begin{tabular}{|c|c|c|}
+    \hline
+        Complexidade & Nome & Eficiente \\ \hline
+        $O(1)$ & Constante & Sim \\ \hline
+        $O(log n)$ & Logarítmica & Sim \\ \hline
+        $O(n)$ & Linear & Sim \\ \hline
+        $O(n log n)$ & "Linearítimica" & Sim \\ \hline
+        $O(n^2)$ & Quadrática & Sim \\ \hline
+        $O(n^3)$ & Cúbica & Sim \\ \hline
+        $O(2^n)$ & Exponencial & Não \\ \hline
+        $O(n!)$ & Fatorial & Não \\ \hline
+    \end{tabular}
+    \legend{Fonte: \cite{big_o_notation}}
 \end{table}
 
-A fórmula matemática identificada como a representação do custo computacional é "arredondada" para uma das familias
-apresentadas acima, reduzindo a fórmula a sua caractereistica mais presente, visto que aqui assumimos que $n$ seja
+A fórmula matemática identificada como a representação do custo computacional é "arredondada" para uma das famílias
+apresentadas acima, reduzindo a fórmula a sua característica mais presente, visto que aqui assumimos que $n$ seja
 um valor muito grande. 
 
 Por exemplo uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, pode ser reduzida a $n^2$, 
@@ -876,7 +874,7 @@ já que esta parte terá maior peso durante a computação, a caracterizando-a c
 
 Com esta análise, encontramos um algoritmo que melhor se encaixe em determinado problema, antes de se
 desenvolver o mesmo em uma linguagem de programação específica, ou de utilizar algoritmos já implementados de forma
-cega, podendo perder em tempo e em consumo desnecessário de memoria.
+cega, podendo perder em tempo e em consumo desnecessário de memória.
 
 \subsection{Análise de Complexidade}
 
@@ -887,20 +885,20 @@ O insertion sort é um algoritmo eficiente para ordena uma sequência pequena de
 como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia, e a cada momento, pegamos uma
 carta da mesa e a inserimos na mão em sua posição correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
 
-Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada,  o algoritmo representado pelo
-pseudo código \ref{Insertion-Sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
+Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada,  o algoritmo representado pelo
+pseudocódigo \ref{Insertion-Sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
 armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
 
 \lstset{style=psceudo}
 \begin{lstlisting}[caption={\label{Insertion-Sort}Insertion-Sort}]
-	Insertion-Sort(A)
-	for j = 2 to n
-		key = A[j]
-		i = j - 1
-		while i > 0 and A[i] > key
-			A[i + 1] = A[i]
-			i = i - 1
-		A[i + 1] = key	
+    Insertion-Sort(A)
+    for j = 2 to n
+        key = A[j]
+        i = j - 1
+        while i > 0 and A[i] > key
+            A[i + 1] = A[i]
+            i = i - 1
+        A[i + 1] = key  
 \end{lstlisting}
 \legend{Fonte: \citeonline{introductionAlgorthms}}
 
@@ -908,119 +906,119 @@ Para visualizar a sequência de passos que o insertion sort executa para a orden
 tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem \ref{Operação do Insertion Sort}.
 
 \begin{figure}[H]
-	\centering
-	\caption{\label{Operação do Insertion Sort}Operação do Insertion Sort}
-	\begin{tikzpicture}[
-		box/.style={draw, rectangle, minimum width=0.8cm, minimum height=0.6cm, align=center},
-		label/.style={above=0.1cm},
-		arrow/.style={draw, -{Latex[length=2mm,width=1.5mm]}}
-	]
+    \centering
+    \caption{\label{Operação do Insertion Sort}Operação do Insertion Sort}
+    \begin{tikzpicture}[
+        box/.style={draw, rectangle, minimum width=0.8cm, minimum height=0.6cm, align=center},
+        label/.style={above=0.1cm},
+        arrow/.style={draw, -{Latex[length=2mm,width=1.5mm]}}
+    ]
 
-	% (a)
-	\node at (0, 0) {(a)};
-	\foreach \n/\c [count=\i] in {5/gray,2/black,4/white,6/white,1/white,3/white} {
-		\node[box, fill=\c!30] (box-\i-a) at (\i * 0.8, 0) {\n};
-		\node[label] at (\i * 0.8, 0.4) {\i};
-	}
-	\draw[arrow, color=gray] (box-1-a.south) -- ([yshift=-0.2cm]box-1-a.south) -| ([yshift=-0.2cm]box-2-a.south) -- (box-2-a.south);
-	\draw[arrow, color=black] (box-2-a.north) -- ([yshift=0.2cm]box-2-a.north) -| ([yshift=0.2cm]box-1-a.north) -- (box-1-a.north);
+    % (a)
+    \node at (0, 0) {(a)};
+    \foreach \n/\c [count=\i] in {5/gray,2/black,4/white,6/white,1/white,3/white} {
+        \node[box, fill=\c!30] (box-\i-a) at (\i * 0.8, 0) {\n};
+        \node[label] at (\i * 0.8, 0.4) {\i};
+    }
+    \draw[arrow, color=gray] (box-1-a.south) -- ([yshift=-0.2cm]box-1-a.south) -| ([yshift=-0.2cm]box-2-a.south) -- (box-2-a.south);
+    \draw[arrow, color=black] (box-2-a.north) -- ([yshift=0.2cm]box-2-a.north) -| ([yshift=0.2cm]box-1-a.north) -- (box-1-a.north);
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	% (b)
-	\node at (5.8, 0) {(b)};
-	\foreach \n/\c [count=\i] in {2/gray,5/gray,4/black,6/white,1/white,3/white} {
-		\node[box, fill=\c!30] (box-\i-b) at (\i * 0.8 + 5.8, 0) {\n};
-		\node[label] at (\i * 0.8 + 5.8, 0.4) {\i};
-	}
-	\draw[arrow, color=gray] (box-2-b.south) -- ([yshift=-0.2cm]box-2-b.south) -| ([yshift=-0.2cm]box-3-b.south) -- (box-3-b.south);
-	\draw[arrow, color=black] (box-3-b.north) -- ([yshift=0.2cm]box-3-b.north) -| ([yshift=0.2cm]box-2-b.north) -- (box-2-b.north);
+    % (b)
+    \node at (5.8, 0) {(b)};
+    \foreach \n/\c [count=\i] in {2/gray,5/gray,4/black,6/white,1/white,3/white} {
+        \node[box, fill=\c!30] (box-\i-b) at (\i * 0.8 + 5.8, 0) {\n};
+        \node[label] at (\i * 0.8 + 5.8, 0.4) {\i};
+    }
+    \draw[arrow, color=gray] (box-2-b.south) -- ([yshift=-0.2cm]box-2-b.south) -| ([yshift=-0.2cm]box-3-b.south) -- (box-3-b.south);
+    \draw[arrow, color=black] (box-3-b.north) -- ([yshift=0.2cm]box-3-b.north) -| ([yshift=0.2cm]box-2-b.north) -- (box-2-b.north);
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	% (c)
-	\node at (0, -1.5) {(c)};
-	\foreach \n/\c [count=\i] in {2/white,4/white,5/gray,6/black,1/white,3/white} {
-		\node[box, fill=\c!30] (box-\i-c) at (\i * 0.8, -1.5) {\n};
-	}
-	\draw[arrow, color=black] ([xshift=0.15cm]box-4-c.north) -- ([xshift=0.15cm, yshift=0.2cm]box-4-c.north) -| ([xshift=-0.15cm, yshift=0.2cm]box-4-c.north) -- ([xshift=-0.15cm]box-4-c.north);
+    % (c)
+    \node at (0, -1.5) {(c)};
+    \foreach \n/\c [count=\i] in {2/white,4/white,5/gray,6/black,1/white,3/white} {
+        \node[box, fill=\c!30] (box-\i-c) at (\i * 0.8, -1.5) {\n};
+    }
+    \draw[arrow, color=black] ([xshift=0.15cm]box-4-c.north) -- ([xshift=0.15cm, yshift=0.2cm]box-4-c.north) -| ([xshift=-0.15cm, yshift=0.2cm]box-4-c.north) -- ([xshift=-0.15cm]box-4-c.north);
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	% (d)
-	\node at (5.8, -1.5) {(d)};
-	\foreach \n/\c [count=\i] in {2/gray,4/gray,5/gray,6/gray,1/black,3/white} {
-		\node[box, fill=\c!30] (box-\i-d) at (\i * 0.8 + 5.8, -1.5) {\n};
-	}
-	\draw[arrow, color=gray] (box-1-d.south) -- ([yshift=-0.2cm]box-1-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-2-d.south) -- ([xshift=-0.15cm]box-2-d.south);
-	\draw[arrow, color=gray] ([xshift=0.15cm]box-2-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-2-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-3-d.south) -- ([xshift=-0.15cm]box-3-d.south);
-	\draw[arrow, color=gray] ([xshift=0.15cm]box-3-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-3-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-d.south) -- ([xshift=-0.15cm]box-4-d.south);
-	\draw[arrow, color=gray] ([xshift=0.15cm]box-4-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-d.south) -| ([yshift=-0.2cm]box-5-d.south) -- (box-5-d.south);
-	\draw[arrow, color=black] (box-5-d.north) -- ([yshift=0.2cm]box-5-d.north) -| ([yshift=0.2cm]box-1-d.north) -- (box-1-d.north);
+    % (d)
+    \node at (5.8, -1.5) {(d)};
+    \foreach \n/\c [count=\i] in {2/gray,4/gray,5/gray,6/gray,1/black,3/white} {
+        \node[box, fill=\c!30] (box-\i-d) at (\i * 0.8 + 5.8, -1.5) {\n};
+    }
+    \draw[arrow, color=gray] (box-1-d.south) -- ([yshift=-0.2cm]box-1-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-2-d.south) -- ([xshift=-0.15cm]box-2-d.south);
+    \draw[arrow, color=gray] ([xshift=0.15cm]box-2-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-2-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-3-d.south) -- ([xshift=-0.15cm]box-3-d.south);
+    \draw[arrow, color=gray] ([xshift=0.15cm]box-3-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-3-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-d.south) -- ([xshift=-0.15cm]box-4-d.south);
+    \draw[arrow, color=gray] ([xshift=0.15cm]box-4-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-d.south) -| ([yshift=-0.2cm]box-5-d.south) -- (box-5-d.south);
+    \draw[arrow, color=black] (box-5-d.north) -- ([yshift=0.2cm]box-5-d.north) -| ([yshift=0.2cm]box-1-d.north) -- (box-1-d.north);
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	% (e)
-	\node at (0, -3.0) {(e)};
-	\foreach \n/\c [count=\i] in {1/white,2/gray,4/gray,5/gray,6/gray,3/black} {
-		\node[box, fill=\c!30] (box-\i-e) at (\i * 0.8, -3.0) {\n};
-	}
-	\draw[arrow, color=gray] (box-3-e.south) --  ([yshift=-0.2cm]box-3-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-e.south) -- ([xshift=-0.15cm]box-4-e.south);
-	\draw[arrow, color=gray]  ([xshift=0.15cm]box-4-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-5-e.south) -- ([xshift=-0.15cm]box-5-e.south);
-	\draw[arrow, color=gray]  ([xshift=0.15cm]box-5-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-5-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-6-e.south) -- ([xshift=-0.15cm]box-6-e.south);
-	\draw[arrow, color=black] (box-6-e.north) -- ([yshift=0.2cm]box-6-e.north) -| ([yshift=0.2cm]box-3-e.north) -- (box-3-e.north);
+    % (e)
+    \node at (0, -3.0) {(e)};
+    \foreach \n/\c [count=\i] in {1/white,2/gray,4/gray,5/gray,6/gray,3/black} {
+        \node[box, fill=\c!30] (box-\i-e) at (\i * 0.8, -3.0) {\n};
+    }
+    \draw[arrow, color=gray] (box-3-e.south) --  ([yshift=-0.2cm]box-3-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-e.south) -- ([xshift=-0.15cm]box-4-e.south);
+    \draw[arrow, color=gray]  ([xshift=0.15cm]box-4-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-5-e.south) -- ([xshift=-0.15cm]box-5-e.south);
+    \draw[arrow, color=gray]  ([xshift=0.15cm]box-5-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-5-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-6-e.south) -- ([xshift=-0.15cm]box-6-e.south);
+    \draw[arrow, color=black] (box-6-e.north) -- ([yshift=0.2cm]box-6-e.north) -| ([yshift=0.2cm]box-3-e.north) -- (box-3-e.north);
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	% (f)
-	\node at (5.8, -3.0) {(f)};
-	\foreach \n/\c [count=\i] in {1/white,2/white,3/white,4/white,5/white,6/white} {
-		\node[box, fill=\c!30] (box-\i-f) at (\i * 0.8 + 5.8, -3.0) {\n};
-	}
+    % (f)
+    \node at (5.8, -3.0) {(f)};
+    \foreach \n/\c [count=\i] in {1/white,2/white,3/white,4/white,5/white,6/white} {
+        \node[box, fill=\c!30] (box-\i-f) at (\i * 0.8 + 5.8, -3.0) {\n};
+    }
 
-	\vspace{0.5cm}
+    \vspace{0.5cm}
 
-	\end{tikzpicture}
+    \end{tikzpicture}
 
-	\legend{Fonte: \citeonline{introductionAlgorthms}}
+    \legend{Fonte: \citeonline{introductionAlgorthms}}
 
 \end{figure}
 
 A figura \ref{Operação do Insertion Sort}, mostra que o algoritmo \ref{Insertion-Sort} funciona para se ordenar um vetor,
-onde, no inicio de cada interação do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
+onde, no início de cada interação do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
 de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados e $j$ é o elemento
-que esta sendo verificado \cite{introductionAlgorthms}.
+que está sendo verificado \cite{introductionAlgorthms}.
 
 Agora com o algoritmo \ref{Insertion-Sort}, conseguimos analisar o custo computacional do insertion sort, mas primeiro
 precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada", que segundo \cite{introductionAlgorthms} é:
 
 \begin{itemize}
-	\item Tamanho da entrada: Varia dependendo do problema a ser abordado, porém é comumente o numero de items na entrada,
-	por exemplo, o tamanho do vetor $A$.
-	\item Tempo de execução: É o número de operações ou 'passos' executados, aqui desconsideramos o hardware, e assumimos
-	que mesmo cada passo levando um tempo diferente doso utros, o tempo do $i$ passo é sempre uma constante, $c_i$.  
+    \item Tamanho da entrada: Varia dependendo do problema a ser abordado, porém é comumente o número de itens na entrada,
+    por exemplo, o tamanho do vetor $A$.
+    \item Tempo de execução: É o número de operações ou 'passos' executados, aqui desconsideramos o hardware, e assumimos
+    que mesmo cada passo levando um tempo diferente doso utros, o tempo do $i$ passo é sempre uma constante, $c_i$.  
 \end{itemize}
 
 Em nosso algoritmo \ref{Insertion-Sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
 o loop while da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
-executado uma vez a mais doque o corpo do loop.
+executado uma vez a mais do que o corpo do loop.
 
-Assim conseguimos chegar aa seguinte análise do algoritmo \ref{Insertion-Sort}:
+Assim conseguimos chegar a seguinte análise do algoritmo \ref{Insertion-Sort}:
 
 \begin{table}[H]
-	\centering
-	\caption{\label{Análise-Insertion-Sort} Análise Insertion Sort}
-	\begin{tabular}{lll}
-		\textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\
-		2 & $c_2$ & $n$ \\
-		3 & $c_3$ & $n-1$ \\
-		4 & $c_4$ & $n-1$ \\
-		5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\
-		6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
-		7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
-		8 & $c_8$ & $n-1$ \\
-	\end{tabular}
-	\legend{Fonte: \citeonline{introductionAlgorthms}}
+    \centering
+    \caption{\label{Análise-Insertion-Sort} Análise Insertion Sort}
+    \begin{tabular}{lll}
+        \textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\
+        2 & $c_2$ & $n$ \\
+        3 & $c_3$ & $n-1$ \\
+        4 & $c_4$ & $n-1$ \\
+        5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\
+        6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
+        7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
+        8 & $c_8$ & $n-1$ \\
+    \end{tabular}
+    \legend{Fonte: \citeonline{introductionAlgorthms}}
 \end{table}
 
 O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ passos para executar
@@ -1028,8 +1026,8 @@ e execute $n$ vezes ira contribuir com $c_in$ para o tempo total de execução. 
 sort \ref{Insertion-Sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{Análise-Insertion-Sort}:
 
 \begin{equation}
-	\label{tempo-execução-insertion-sort}
-	T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
+    \label{tempo-execução-insertion-sort}
+    T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
 \end{equation}
 
 O tempo de execução de um algoritmo varia dependendo do dado de entrada, onde podemos cair no melhor ou pior caso. Durante a
@@ -1039,13 +1037,13 @@ o algoritmo será executado por completo percorrendo cada elemento do vetor, que
 O pior caso no algoritmo \ref{Insertion-Sort}, pode ser representado pela seguinte equação:
 
 \begin{equation}
-	\label{pior-caso-insertion-sort}
-	\begin{split}
-		T(n)& = c_2n + c_3(n - 1) + c_4(n - 1) + c_5(\frac{n(n+1)}{2}-1) + \\
-			&   c_6(\frac{n(n-1)}{2}) + c_7(\frac{n(n+1)}{2}) + c_8(n-1) \\
-			& = (\frac{c_5}{2} + \frac{c_6}{2} + \frac{c_7}{2})n^2 + (c_2 + c_3 + c_4 + \frac{c_5}{2} - \\
-			&   \frac{c_6}{2} - \frac{c_7}{2} + c_8)n - (c_3 + c_4 + c_5 + c_8) \\
-	\end{split}
+    \label{pior-caso-insertion-sort}
+    \begin{split}
+        T(n)& = c_2n + c_3(n - 1) + c_4(n - 1) + c_5(\frac{n(n+1)}{2}-1) + \\
+            &   c_6(\frac{n(n-1)}{2}) + c_7(\frac{n(n+1)}{2}) + c_8(n-1) \\
+            & = (\frac{c_5}{2} + \frac{c_6}{2} + \frac{c_7}{2})n^2 + (c_2 + c_3 + c_4 + \frac{c_5}{2} - \\
+            &   \frac{c_6}{2} - \frac{c_7}{2} + c_8)n - (c_3 + c_4 + c_5 + c_8) \\
+    \end{split}
 \end{equation}
 
 Podemos expressar a equação \ref{pior-caso-insertion-sort}, como $an^2 + bn - c$, para constantes $a, b$ e $c$, que dependem do custo de
@@ -1053,10 +1051,10 @@ $c_i$. Mas é a taxa de crescimento que realmente nos interessa, logo consideram
 os outros termos são insignificantes para valores muitos grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto
 o pior caso de tempo de execução como $\theta(n^2)$.
 
-Agora para encontramors a qual classe apresentada na tabela \ref{Notação Assintótica} o algoritmo \ref{Insertion-Sort} pertence, convertemos
+Agora para encontrarmos a qual classe apresentada na tabela \ref{Notação Assintótica} o algoritmo \ref{Insertion-Sort} pertence, convertemos
 da notação $\theta$ (theta) para a $O$ (O-grande), esta conversão é simples já que o grupo de problemas abordados pela notação $\theta$ engloba
 a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a função de crescimento ($n^2$), portanto, o algoritmo \ref{Insertion-Sort}
-é $O(n^2)$ logo pertence ao grupo de probelmas Quadráticos \cite{introductionAlgorthms}.
+é $O(n^2)$ logo pertence ao grupo de problemas Quadráticos \cite{introductionAlgorthms}.
 
 \subsection{Análise de espaço}
 
@@ -1064,16 +1062,16 @@ Na análise de espaço, levamos em conta as variáveis que o algoritmo utiliza e
 matrizes. Conseguimos representar o consumo esperado de memória através de uma fórmula matemática \cite{introductionAnalysis}, assim como na 
 análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
 
-No algoritmo de insertion sort, temos as seguintes váriaveis:
+No algoritmo de insertion sort, temos as seguintes variáveis:
 
 \begin{itemize}
-	\item $Vetor A$ a sequência de $n$ inteiros;
-	\item $key$ uma variável  que armazena um valor presente no vetor $A$;
-	\item $i$ um valor inteiro que representa uma posição na sequência;
-	\item $j$ um valor inteiro que representa uma posição na sequência;
+    \item $Vetor A$ a sequência de $n$ inteiros;
+    \item $key$ uma variável  que armazena um valor presente no vetor $A$;
+    \item $i$ um valor inteiro que representa uma posição na sequência;
+    \item $j$ um valor inteiro que representa uma posição na sequência;
 \end{itemize}
 
-Assim, o algoritmo não cria nenhuma variável a mais durante sua execução, acarretando em um custo de memória constante durante a sua execução. 
+Assim, o algoritmo não cria nenhuma variável a mais durante sua execução, acarretando um custo de memória constante durante a sua execução. 
 Sendo o tamanho de 3 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho n da sequência de inteiros.
 
 Logo, o consumo de memória pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequência de entrada, portanto 
@@ -1108,16 +1106,16 @@ Splines (MARS) e Vector-response Smoothing Splines \cite{mda}, o mgcv, engloba G
 , Generalized Cross Validation e similares \cite{mgcv} os Generalized Linear Models podem ser encontrados na biblioteca stats que
 vem por padrão na linguagem R.
 
-Para demonstrar a uso de um package, tomemos a utilização da funcão referente ao GAM encontrada no package mgcv, um conjunto de dados
+Para demonstrar a uso de um package, tomemos a utilização da função referente ao GAM encontrada no package mgcv, um conjunto de dados
 criado contendo pontuações médias em ciências por país, segundo o Programa Internacional de Avaliação de Estudantes (PISA) de 2006,
-juntamente com o RNB per capita (Paridade do Poder de Compra, valores de 2005), Índice de Educação, Índice de Saúde e 
+junto ao RNB per capita (Paridade do Poder de Compra, valores de 2005), Índice de Educação, Índice de Saúde e 
 Índice de Desenvolvimento Humano, segundo dados da ONU \cite{gam_exemplo}.
 
 \lstset{style=r_code}
 \begin{lstlisting}[caption={\label{Exemplo uso de package}Exemplo uso de package}]
-	library(mgcv)
-	pisa = read_csv('data/pisasci2006.csv')
-	mod_gam = gam(Overall ~ s(Income, bs = "cr"), data = pisa)
+    library(mgcv)
+    pisa = read_csv('data/pisasci2006.csv')
+    mod_gam = gam(Overall ~ s(Income, bs = "cr"), data = pisa)
 \end{lstlisting}
 \legend{Fonte: \citeonline{gam_exemplo}}
 
@@ -1125,9 +1123,9 @@ O código \ref{Exemplo uso de package} gera um Generalized Additive Model, deter
 tipo de suavização sendo a splines de regressão cúbicas \cite{gam_exemplo}. 
 
 A linha $library(mgcv)$ é a responsável por indicar qual package estamos usando, neste caso o mgcv, mas poderia ser outro ou mais 
-de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamente interno é mascarado 
+de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamento interno é mascarado 
 para o usuário, precisamos apenas "configurar" alguns parâmetros como a $data$, os dados que o modelo ira utilizar, e quais campos 
-do dados iramos usar $Overall ~ s(Income, bs = "cr")$.  
+dos dados iramos usar $Overall ~ s(Income, bs = "cr")$.  
 
 Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
 os pormenores da execução em si, apenas passar os parâmetros necessários de modo correto.
@@ -1136,19 +1134,19 @@ os pormenores da execução em si, apenas passar os parâmetros necessários de 
 
 O estudo "A comprehensive evaluation of predictive performance of 33 species distribution models at species and community levels"
 \cite{predPerform33models} teve como foco a avaliação de 33 modelos distintos de distribuição de espécies, questionando a
-performance de cada um trabalhando com comunidades e com espécies especificas.
+performance de cada um trabalhando com comunidades e com espécies específicas.
 
 Neste trabalho, os autores, identificam os parâmetros de cada modelo, e seus tipos, mostrando quais são esperados que trabalhem melhor
-com comunidades ou com espécies únicas, indeificando dentro dos modelos selecionados que os cinco melhores são os HMSC.3, GLM.5,
+com comunidades ou com espécies únicas, identificando dentro dos modelos selecionados que os cinco melhores são os HMSC.3, GLM.5,
 MISTN.1, MARS.1 e GNN.1.
 
 Onde performance final é influenciada por três fatores, o modelo escolhido, o foco de predição e a qualidade dos dados. O modelo
-que obteve a melhor performance quando considerado todas as espéceis (comunidade) foi o HMSC.1 e quando apenas uma 
+que obteve a melhor performance quando considerado todas as espécies (comunidade) foi o HMSC.1 e quando apenas uma 
 espécies foi levada em consideração o modelo GLM.4 teve uma performance melhor.
 
 Podemos ver neste trabalho dois dos três tipos de modelos de SDM mais comuns: GLM (GLM.4 e GLM.5) e MARS (MARS.1), mostrando que
 além do acesso relativamente fácil a estes e de possuírem um software bem documenta e amigavel \cite{predPerform33models}, sua 
-qualidade de performance ajuda a torna-los modelos relevantes.
+qualidade de performance ajuda a torná-los modelos relevantes.
 
 No estudo "Generalized linear and generalized additive models in studies of species distributions: setting the scene" 
 \cite{GAMeGLM_especie_estudo}, os autores fazem uma breve revisão sobre modelos lineares, GLMs e GAMs. Apresentando algumas
@@ -1162,7 +1160,6 @@ Nestes, temos uma dissertação sobre a parte matemática dos modelos, como é f
 como o mesmo atua sobre os dados de entrada. Em alguns, temos exemplos de uso de cada modelo, e suas variações mostrando onde estas 
 são diferentes do modelo que é tratado no estudo.
 
-
 % ========================================================================
 % DESENVOLVIMENTO
 % ========================================================================
@@ -1171,10 +1168,10 @@ são diferentes do modelo que é tratado no estudo.
 O desenvolvimento deste trabalho é separado em três etapas, análise de complexidade e espaço, utilizando da notação O grande, 
 das implementações dos algoritmos referentes ao GLM, GAM e MARS encontrados nas bibliotecas \lstinline|mda| e \lstinline|mgcv| da linguagem de programação R.
 
-Teste do uso das implementações para verificar a acurácia e tempo decorrido, utilizando do ambiente de desenvolvimento R Studio e de dados populacionais de avês, 
-e a comparação e avaliação dos algoritmos levando em consideração um melhor equilibrio entre o custo e a acurácia deste.
+Teste do uso das implementações para verificar a acurácia e tempo decorrido, utilizando do ambiente de desenvolvimento R Studio e de dados populacionais de aves, 
+e a comparação e avaliação dos algoritmos levando em consideração um melhor equilíbrio entre o custo e a acurácia deste.
 
-O gronograma prposto para o desenvolvimento deste trabalho pode ser visto a seguir, também presente no apêndice \ref{AnexoA}:
+O cronograma proposto para o desenvolvimento deste trabalho pode ser visto a seguir, também presente no apêndice \ref{AnexoA}:
 
 \begin{figure}[H]
     \centering
