@@ -15,5 +15,5 @@ def load_data(file, nrows=100):
 st.title("App")
 file = st.file_uploader("Carregar Arquivo CSV.", type=["csv", "xlsx"])
 data = load_data(file)
-if data is not None: 
+if data is not None:
     st.write(data)

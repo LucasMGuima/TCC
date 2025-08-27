@@ -3,9 +3,11 @@ import subprocess
 # Caminho para o seu script R
 r_script_path = "models/gam.r"
 
+file_name = "pisasci2006.csv"
+
 # Comando para rodar o script R
 # 'Rscript' é o executável que roda scripts R a partir da linha de comando
-comando = ["Rscript", r_script_path]
+comando = ["Rscript", r_script_path, file_name]
 
 # Executa o comando e captura a saída
 try:
