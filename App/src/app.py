@@ -1,5 +1,29 @@
 import streamlit as st
 import pandas as pd
+import os
+import call_model
+
+def creat_models_dropbox():
+    model_folder = "models"
+
+    if os.path.exists(model_folder) and os.path.isdir(model_folder):
+        models = os.listdir(model_folder)
+
+        return st.selectbox(
+            'Selecione um modelo:',
+            models
+        )
+
+def creat_data_dropbox():
+    data_folder = "data"
+
+    if os.path.exists(data_folder) and os.path.isdir(data_folder):
+        data = os.listdir(data_folder)
+
+        return st.selectbox(
+            'Selecione um modelo:',
+            data
+        )
 
 @st.cache_data
 def load_data(file, nrows=100):
@@ -17,3 +41,10 @@ file = st.file_uploader("Carregar Arquivo CSV.", type=["csv", "xlsx"])
 data = load_data(file)
 if data is not None:
     st.write(data)
+
+db_models = creat_models_dropbox()
+db_data = creat_data_dropbox()
+
+if st.button("Rodar"): 
+    call_model.run_model(db_data, db_models)
+   
