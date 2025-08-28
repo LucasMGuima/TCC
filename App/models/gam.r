@@ -8,8 +8,13 @@ if (length(args) == 0){
 }
 
 file_name <- args[1]
+response <- args[2]
+predictors <- args[3:length(args)]
 
-pisa <- read_csv(file.path("data", file_name))
+data <- read_csv(file.path("data", file_name))
 
-model <- gam(Overall ~ Income, data = pisa)
+string <- paste(response, "~", paste0(predictors, collapse = " + "))
+formula <- as.formula(string)
+
+model <- gam(formula, data = data)
 summary(model)

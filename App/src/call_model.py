@@ -1,10 +1,12 @@
 import subprocess
 
-def run_model(file_name: str, model: str):
+def run_model(file_name: str, model: str, response: str, predictors: str|list):
     # Caminho para o seu script R
     r_script_path = f"models/{model}"
 
-    comando = ["Rscript", r_script_path, file_name]
+    comando = ["Rscript", r_script_path, file_name, response]
+    for p in predictors:
+        comando.append(p)
 
     # Executa o comando e captura a saída
     try:
