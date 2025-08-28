@@ -40,7 +40,9 @@ st.title("App")
 file = st.file_uploader("Carregar Arquivo CSV.", type=["csv", "xlsx"])
 data = load_data(file)
 if data is not None:
-    st.write(data)
+    path = os.path.join("data", file.name)
+    with open(path, 'w') as f:
+        f.write(data.to_csv())
 
 db_models = creat_models_dropbox()
 db_data = creat_data_dropbox()
