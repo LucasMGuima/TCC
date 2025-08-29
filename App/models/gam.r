@@ -13,6 +13,9 @@ predictors <- args[3:length(args)]
 
 data <- read_csv(file.path("data", file_name))
 
+# Identificar os tipos dos dados dos preditores
+# Gerar a formula dinamicamento com base nisso
+
 string <- paste(response, "~", paste0(predictors, collapse = " + "))
 formula <- as.formula(string)
 
