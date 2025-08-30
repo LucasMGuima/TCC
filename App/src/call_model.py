@@ -1,7 +1,7 @@
 import subprocess
 
 def run_model(file_name: str, model: str, response: str, predictors: str|list):
-    # Caminho para o seu script R
+    # Caminho para o script R
     r_script_path = f"models/{model}"
 
     comando = ["Rscript", r_script_path, file_name, response]
