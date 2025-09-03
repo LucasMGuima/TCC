@@ -16,6 +16,7 @@ def run_model(file_name: str, model: str, response: str, predictors: str|list):
         # Imprime a saída do script R
         print("Saída do script R:")
         print(resultado.stdout)
+        return resultado.stdout
 
     except subprocess.CalledProcessError as e:
         # Trata erros de execução do R

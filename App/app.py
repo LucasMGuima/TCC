@@ -32,7 +32,15 @@ db_data = creat_selectbox(
 
 if db_data:
     path = f"data/{db_data}"
-    lst_param = pd.read_csv(path).columns.to_list()
+    try:
+        lst_param = pd.read_csv(path, encoding='latin1').columns.to_list()
+    except UnicodeDecodeError:
+        # Se falhar, tente uma codificação alternativa
+        lst_param = pd.read_csv(path, encoding='ISO-8859-1').columns.to_list()
+    except Exception as e:
+        # Caso haja outro erro
+        st.error(f"Erro ao ler o arquivo CSV: {e}")
+
     sb_response = creat_selectbox(
         lst_param,
         'Selecione o parametro de resposta'
@@ -43,5 +51,6 @@ if db_data:
     )
 
 if st.button("Rodar"): 
-    src.call_model.run_model(db_data, db_models, sb_response, sb_predictor)
+    resp = src.call_model.run_model(db_data, db_models, sb_response, sb_predictor)
+    st.write(resp)
    
