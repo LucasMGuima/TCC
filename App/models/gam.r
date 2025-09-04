@@ -21,5 +21,5 @@ formula <- as.formula(string)
 
 model <- gam(formula, data = data)
 summary(model)
-file_name <- sprintf("temp/gam_%s.rds", gsub(".csv", "", file_name))
+file_name <- sprintf("modelos/gam_%s.rds", gsub(".csv", "", file_name))
 saveRDS(model, file = file_name)
