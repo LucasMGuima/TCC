@@ -1,12 +1,17 @@
 import streamlit as st
 import pandas as pd
-import os, io
 import src.call_model
-import requests
 import utils.widgets as widgets
+import utils.database as database
+from supabase import Client
 
-# Upload em uma pagina propria ?
-# Paginas para configurações ?
+# -- TODO --
+# Supabase: bucket para salvar os datasets
+db_keys = pd.read_csv("keys.csv")
+url: str = db_keys['NEXT_PUBLIC_SUPABASE_URL'][0]
+key: str = db_keys['NEXT_PUBLIC_SUPABASE_ANON_KEY'][0]
+
+cliente: Client = database.start_conection(url, key)
 
 st.title("App")
 
