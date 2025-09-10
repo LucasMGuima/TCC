@@ -1,5 +1,23 @@
 import os
+import pandas as pd
 from supabase import create_client, Client
+
+class Conection:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Conection, cls).__new__(cls)
+
+            # Pega os dados para a conexão
+            db_keys = pd.read_csv("keys.csv")
+            url: str = db_keys['NEXT_PUBLIC_SUPABASE_URL'][0]
+            key: str = db_keys['NEXT_PUBLIC_SUPABASE_ANON_KEY'][0]
+
+            # Cria a instancia da classe
+            cls._instance.supabase = start_conection(url, key)
+
+        return cls._instance
 
 def start_conection(url: str, key: str) -> Client:
     try:
@@ -15,3 +33,4 @@ def start_conection(url: str, key: str) -> Client:
     except Exception as e:
         print(f"Um erro não experado ocorreu durante a criação do cliente Supabase: {e}")
         return None
+    

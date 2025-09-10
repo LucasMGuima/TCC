@@ -3,15 +3,10 @@ import pandas as pd
 import src.call_model
 import utils.widgets as widgets
 import utils.database as database
-from supabase import Client
 
-# -- TODO --
-# Supabase: bucket para salvar os datasets
-db_keys = pd.read_csv("keys.csv")
-url: str = db_keys['NEXT_PUBLIC_SUPABASE_URL'][0]
-key: str = db_keys['NEXT_PUBLIC_SUPABASE_ANON_KEY'][0]
-
-cliente: Client = database.start_conection(url, key)
+# Inicia a conexão com o banco
+db = database.Conection()
+print(f"ID da conexão: {id(db)}")
 
 st.title("App")
 
