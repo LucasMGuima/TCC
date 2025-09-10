@@ -3,6 +3,23 @@ import pandas as pd
 import src.call_model
 import utils.widgets as widgets
 import utils.database as database
+import io
+
+def contentIn_bucket(folder: str) -> list:
+    db = database.Conection()
+    print(f"ID da conexão: {id(db)}")
+
+    response = db.supabase.storage.from_("data").list(folder,{
+        "limiti": 100,
+        "offset": 0,
+        "sortBy": {"column": "name", "order": "desc"},
+    })
+
+    content = []
+    for item in response:
+        name = item["name"]
+        content.append(name)
+    return content
 
 # Inicia a conexão com o banco
 db = database.Conection()
@@ -15,20 +32,23 @@ db_models = widgets.creat_selectbox(
     'Selecione um modelo:'
 )
 db_data = widgets.creat_selectbox(
-    widgets.contentIn_folder('data'),
+    contentIn_bucket('dados'),
     'Selecione um dataset'
 )
 
 if db_data:
-    path = f"data/{db_data}"
+    # Faz o dowload do arquivo
     try:
-        lst_param = pd.read_csv(path, encoding='latin1').columns.to_list()
-    except UnicodeDecodeError:
-        # Se falhar, tente uma codificação alternativa
-        lst_param = pd.read_csv(path, encoding='ISO-8859-1').columns.to_list()
+        response = db.supabase.storage.from_("data").download(f"dados/{db_data}")
     except Exception as e:
-        # Caso haja outro erro
-        st.error(f"Erro ao ler o arquivo CSV: {e}")
+        st.error(f"Erro ao baixar o arquivo: {e}")
+        st.stop()
+
+    # Convert o objeto de byres 'response' em um fluxo de dados na memória
+    bytes_stream = io.BytesIO(response)
+
+    # Passa o fluxo de dados para o pandas
+    lst_param = pd.read_csv(bytes_stream, encoding='latin1').columns.to_list()
 
     sb_response = widgets.creat_selectbox(
         lst_param,
