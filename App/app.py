@@ -48,7 +48,8 @@ if db_data:
     bytes_stream = io.BytesIO(response)
 
     # Passa o fluxo de dados para o pandas
-    lst_param = pd.read_csv(bytes_stream, encoding='latin1').columns.to_list()
+    data = pd.read_csv(bytes_stream, encoding='latin1')
+    lst_param = data.columns.to_list()
 
     sb_response = widgets.creat_selectbox(
         lst_param,
@@ -59,6 +60,6 @@ if db_data:
         'Selecione um ou mais preditores'
     )
 
-if st.button("Rodar"): 
-    resp = src.call_model.run_model(db_data, db_models, sb_response, sb_predictor)
+if st.button("Rodar"):
+    resp = src.call_model.run_model(db_data, data, db_models, sb_response, sb_predictor)
     st.write(resp)

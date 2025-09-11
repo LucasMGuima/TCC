@@ -26,7 +26,7 @@ if st.button("Carregar"):
     if file is not None:
         try:
             response = db.supabase.storage.from_(bucket_name).upload(
-                path=file.name,
+                path=f"dados/{file.name}",
                 file=file.read(),
                 file_options={
                     "cache-control": "3600",
