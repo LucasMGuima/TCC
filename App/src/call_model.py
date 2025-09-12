@@ -1,14 +1,24 @@
 import subprocess
 import pandas as pd
+from sklearn.model_selection import train_test_split
 import os
 
 # Separa a data com base na porcentagem entrada para
 # a data de teste, retorna o dataset de teste e
 # treino
-def split_data(test_data_percent: int, data: pd.DataFrame):
-    # Cria o data set de teste
-    test = data.sample(frac=(test_data_percent/100), random_state=42)
-    # Remove o data set de teste do data set de treino
+def split_data(test_data_percent: int, data: pd.DataFrame, target_columns: str):
+    test_size_frac = test_data_percent / 100
+
+    # Conte o número de valores ausentes
+    valores_ausentes = data[target_columns].isnull().sum()
+    print(f"Número de valores NaN na coluna de resposta: {valores_ausentes}")
+
+    data.dropna(subset=[target_columns], inplace=True)
+
+    test = data.sample(
+        frac=test_size_frac,
+        random_state=42
+    )
     train = data.drop(test.index)
 
     return test, train
@@ -18,7 +28,7 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
     r_script_path = f"models/{model}"
 
     # Separa o dataset em treino e teste
-    test, train = split_data(20, data)
+    test, train = split_data(20, data, response)
 
     # Salva os dataset de treino e teste
     data_name = data_name.replace("data\\", "")
@@ -48,7 +58,8 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
         print(e.stderr)
 
 def run_teste(model: str, data_test: str):
-    comando = ["Rscript", model, data_test]
+    src_path = "src/score_continuo.r"
+    comando = ["Rscript", src_path, model, data_test]
     print(f"Comando: {comando}")
 
     try:
