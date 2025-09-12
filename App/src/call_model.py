@@ -44,5 +44,20 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
 
     except subprocess.CalledProcessError as e:
         # Trata erros de execução do R
-        print("Erro ao executar o script R:")
+        print("Erro ao executar o script R para treino do modelo:")
+        print(e.stderr)
+
+def run_teste(model: str, data_test: str):
+    comando = ["Rscript", model, data_test]
+    print(f"Comando: {comando}")
+
+    try:
+        resultado = subprocess.run(comando, capture_output=True, text=True, check=True)
+
+        print("Saída do script R:")
+        print(resultado.stdout)
+        return resultado.stdout
+    
+    except subprocess.CalledProcessError as e:
+        print("Erro ao executar o script R para calculo de metricas:")
         print(e.stderr)
