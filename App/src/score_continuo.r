@@ -27,4 +27,9 @@ erros <- y_actual - y_pred
 erros_abs <- abs(erros)
 mae <- mean(erros_abs)
 
+# Calcula o RMSE
+mse <- mean(erros^2)
+rmse <- sqrt(mse)
+
 mae
+rmse
