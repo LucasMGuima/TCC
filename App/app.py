@@ -5,22 +5,6 @@ import utils.widgets as widgets
 import utils.database as database
 import io
 
-def contentIn_bucket(folder: str) -> list:
-    db = database.Conection()
-    print(f"ID da conexão: {id(db)}")
-
-    response = db.supabase.storage.from_("data").list(folder,{
-        "limiti": 100,
-        "offset": 0,
-        "sortBy": {"column": "name", "order": "desc"},
-    })
-
-    content = []
-    for item in response:
-        name = item["name"]
-        content.append(name)
-    return content
-
 # Inicia a conexão com o banco
 db = database.Conection()
 print(f"ID da conexão: {id(db)}")
@@ -32,7 +16,7 @@ db_models = widgets.creat_selectbox(
     'Selecione um modelo:'
 )
 db_data = widgets.creat_selectbox(
-    contentIn_bucket('dados'),
+    database.contentIn_bucket(db, 'dados'),
     'Selecione um dataset'
 )
 

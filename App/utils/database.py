@@ -34,3 +34,17 @@ def start_conection(url: str, key: str) -> Client:
         print(f"Um erro não experado ocorreu durante a criação do cliente Supabase: {e}")
         return None
     
+def contentIn_bucket(conection: Conection, folder: str) -> list:
+    print(f"ID da conexão: {id(conection)}")
+
+    response = conection.supabase.storage.from_("data").list(folder,{
+        "limiti": 100,
+        "offset": 0,
+        "sortBy": {"column": "name", "order": "desc"},
+    })
+
+    content = []
+    for item in response:
+        name = item["name"]
+        content.append(name)
+    return content
