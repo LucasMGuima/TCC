@@ -58,7 +58,7 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
         print(e.stderr)
 
 def run_teste(model: str, data_test: str):
-    src_path = "src/score_continuo.r"
+    src_path = "src/score.r"
     comando = ["Rscript", src_path, model, data_test]
     print(f"Comando: {comando}")
 
