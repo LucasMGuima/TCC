@@ -6,6 +6,7 @@ score_continuo <- function(model, data_test){
   data_test_limpo <- na.omit(data_test)
 
   # Extrai o nome da coluan de resposta
+  print(formula(model))
   response_col_name <- all.vars(formula(model))[1]
 
   y_pred <- predict(model, newdata = data_test_limpo) # Previsão
@@ -14,11 +15,13 @@ score_continuo <- function(model, data_test){
   # Calcula o MAE manual
   erros <- y_actual - y_pred
   erros_abs <- abs(erros)
-  mae <- mean(erros_abs)
+  val_mae <- mean(erros_abs)
 
   # Calcula o RMSE
   mse <- mean(erros^2)
-  rmse <- sqrt(mse)
+  val_rmse <- sqrt(mse)
 
-  return(mae, rmse)
+  # Cria a lista de retorno
+  result <- list(mae = val_mae, rmse = val_rmse)
+  result
 }

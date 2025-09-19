@@ -1,5 +1,6 @@
 import subprocess
 import pandas as pd
+import utils.database as database
 from sklearn.model_selection import train_test_split
 import os
 
@@ -27,16 +28,22 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
     # Caminho para o script R
     r_script_path = f"models/{model}"
 
-    # Separa o dataset em treino e teste
-    test, train = split_data(20, data, response)
-
-    # Salva os dataset de treino e teste
+    # Salva os dataset de treino e teste, se n existir
     data_name = data_name.replace("data\\", "")
     path_test = os.path.join("data", f"test_{data_name}")
     path_train = os.path.join("data", f"train_{data_name}")
 
-    with open(path_test, 'w') as f: f.write(test.to_csv())
-    with open(path_train, 'w') as f: f.write(train.to_csv())
+    if(not os.path.isfile(path_test) and not os.path.isfile(path_train)):
+        # Separa o dataset em treino e teste
+        test, train = split_data(20, data, response)
+
+        with open(path_test, 'w') as f: 
+            f.write(test.to_csv())
+        # database.upload_content(database.Conection(), 'data', path_test)
+
+        with open(path_train, 'w') as f: 
+            f.write(train.to_csv())
+        # database.upload_content(database.Conection(), 'data', path_train)
 
     comando = ["Rscript", r_script_path, path_train.replace("data\\", ""), response]
     for p in predictors:
@@ -47,9 +54,6 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
         # Pega a saída (stdout), erros (stderr) e decodifica para texto
         resultado = subprocess.run(comando, capture_output=True, text=True, check=True)
 
-        # Imprime a saída do script R
-        print("Saída do script R:")
-        print(resultado.stdout)
         return resultado.stdout
 
     except subprocess.CalledProcessError as e:
@@ -65,10 +69,8 @@ def run_teste(model: str, data_test: str):
     try:
         resultado = subprocess.run(comando, capture_output=True, text=True, check=True)
 
-        print("Saída do script R:")
-        print(resultado.stdout)
         return resultado.stdout
     
     except subprocess.CalledProcessError as e:
-        print("Erro ao executar o script R para calculo de metricas:")
+        print(f"Erro ao executar o script R para calculo de metricas para o modelo {model}:")
         print(e.stderr)

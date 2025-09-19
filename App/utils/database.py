@@ -48,3 +48,19 @@ def contentIn_bucket(conection: Conection, folder: str) -> list:
         name = item["name"]
         content.append(name)
     return content
+
+def upload_content(conection: Conection, bucket_name: str, file) -> None:
+    try:
+        response = conection.supabase.storage.from_(bucket_name).upload(
+            path=f"dados/{file.name}",
+            file=file.read(),
+            file_options={
+                "cache-control": "3600",
+                "upsert": "false"  # Set to "true" to replace an existing file
+            }
+        )
+        print(f"Arquivo '{file}' armazenado com sucesso em '{bucket_name}/{file.name}'.")
+        # The response object can contain useful information, but it's often empty on success
+        print("Resposta do Supabase:", response.data)
+    except Exception as e:
+        print(f"Erro ao armazenar arquivo: {e}")

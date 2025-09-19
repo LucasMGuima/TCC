@@ -1,5 +1,5 @@
-source('score_categorico.r')
-source('socre_continuo.r')
+source("src/score_categorico.r")
+source("src/score_continuo.r")
 
 ## Pega os argumentos modelo e dados
 

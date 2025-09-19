@@ -11,9 +11,9 @@ print(f"ID da conexão: {id(db)}")
 
 st.title("App")
 
-db_models = widgets.creat_selectbox(
+db_models = widgets.creat_multselect(
     widgets.contentIn_folder('models'),
-    'Selecione um modelo:'
+    'Selecione um ou mais modelo(s):'
 )
 db_data = widgets.creat_selectbox(
     database.contentIn_bucket(db, 'dados'),
@@ -45,5 +45,7 @@ if db_data:
     )
 
 if st.button("Rodar"):
-    resp = src.call_model.run_model(db_data, data, db_models, sb_response, sb_predictor)
+    resp = []
+    for model in db_models:
+        resp.append(src.call_model.run_model(db_data, data, model, sb_response, sb_predictor))
     st.write(resp)
