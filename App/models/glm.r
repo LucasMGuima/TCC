@@ -1,5 +1,7 @@
 library(readr)
 
+source("models/model_utils.r")
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) < 3){
@@ -20,5 +22,5 @@ formula <- as.formula(string)
 
 model <- glm(formula, data = data)
 
-file_name <- sprintf("modelos/glm_%s.rds", gsub(".csv", "", file_name))
-saveRDS(model, file = file_name)
+save_formula_csv(response, predictors, sprintf("glm_formula_%s", file_name))
+save_model(model, sprintf("glm_%s", gsub(".csv", ".rds", file_name)))

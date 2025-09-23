@@ -1,6 +1,8 @@
 library(mda)
 library(readr)
 
+source("models/model_utils.r")
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if(length(args) < 3){
@@ -31,5 +33,5 @@ y_response <- data_limpa[[response]]
 model <- mars(x_predictors, y_response)
 summary(model)
 
-file_name <- sprintf("modelos/mars_%s.rds", gsub(".csv", "", file_name))
-saveRDS(model, file = file_name)
+save_formula_csv(response, predictors, sprintf("mars_formula_%s", file_name))
+save_model(model, sprintf("mars_%s", gsub(".csv", ".rds", file_name)))

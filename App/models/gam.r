@@ -1,6 +1,8 @@
 library(mgcv)
 library(readr)
 
+source("models/model_utils.r")
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) < 3){
@@ -22,5 +24,6 @@ formula <- as.formula(string)
 
 model <- gam(formula, data = data)
 summary(model)
-file_name <- sprintf("modelos/gam_%s.rds", gsub(".csv", "", file_name))
-saveRDS(model, file = file_name)
+
+save_formula_csv(response, predictors, sprintf("gam_formula_%s", file_name))
+save_model(model, sprintf("gam_%s", gsub(".csv", ".rds", file_name)))
