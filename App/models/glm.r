@@ -21,6 +21,13 @@ string <- paste(response, "~", paste0(predictors, collapse = "+"))
 formula <- as.formula(string)
 
 model <- glm(formula, data = data)
+summary(model)
 
-save_formula_csv(response, predictors, sprintf("glm_formula_%s", file_name))
-save_model(model, sprintf("glm_%s", gsub(".csv", ".rds", file_name)))
+model_name <- gsub("train_", "glm_", file_name)
+model_name <- gsub(".csv", ".rds", model_name)
+model_path <- save_model(model, model_name)
+
+data_path <- file.path("data", file_name)
+data_path <- gsub("train_", "test_", data_path)
+
+save_json(response, predictors, data_path, model_path)
