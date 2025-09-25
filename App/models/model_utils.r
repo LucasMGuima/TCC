@@ -6,7 +6,7 @@ save_json <- function(response, predictors, data_path, model_path){
 
   df <- data.frame(
     model = model_path,
-    reposnse_name = response,
+    response_name = response,
     predictors_name = lst_predictors,
     data_name = data_path
   )

@@ -1,13 +1,23 @@
 library(Metrics)
 library(mgcv)
+library(mda)
+score_continuo <- function(model, data_test, json){
 
-score_continuo <- function(model, data_test){
+  # Substitui valores infinitos por NA
+  data_test[sapply(data_test, is.infinite)] <- NA
+  # Substitui valores indefinidos por NA
+  data_test[sapply(data_test, is.nan)] <- NA
   # Remove todas as linhas do data_test que contêm valores NA
   data_test_limpo <- na.omit(data_test)
 
+  # Remove NULL
+  data_test_limpo |> subset(!mapply(is.null, data_test_limpo))
+
+  data_test_limpo <- data_test_limpo[, 3:ncol(data_test_limpo)]
+
+  print(data_test_limpo)
   # Extrai o nome da coluan de resposta
-  print(formula(model))
-  response_col_name <- all.vars(formula(model))[1]
+  response_col_name <- json$response_name
 
   y_pred <- predict(model, newdata = data_test_limpo) # Previsão
   y_actual <- data_test_limpo[[response_col_name]] # Valor real
