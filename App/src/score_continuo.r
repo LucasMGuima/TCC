@@ -13,13 +13,13 @@ score_continuo <- function(model, data_test, json){
   # Remove NULL
   data_test_limpo |> subset(!mapply(is.null, data_test_limpo))
 
-  data_test_limpo <- data_test_limpo[, 3:ncol(data_test_limpo)]
-
-  print(data_test_limpo)
   # Extrai o nome da coluan de resposta
   response_col_name <- json$response_name
 
-  y_pred <- predict(model, newdata = data_test_limpo) # Previsão
+  predict_col_name <- json$predictors_name
+  data_predict <-  data_test_limpo[predict_col_name]
+
+  y_pred <- predict(model, newdata = data_predict) # Previsão
   y_actual <- data_test_limpo[[response_col_name]] # Valor real
 
   # Calcula o MAE manual
