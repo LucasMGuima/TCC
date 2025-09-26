@@ -1,0 +1,194 @@
+{
+  "title": "Conventional Commits Best Practices",
+  "description": "A comprehensive guide to implementing conventional commits for effective Git versioning",
+  "versioning_principles": [
+    {
+      "type": "Semantic Versioning",
+      "description": "Follow semantic versioning (SemVer) principles with MAJOR.MINOR.PATCH format",
+      "rules": [
+        "BREAKING CHANGES increment MAJOR version",
+        "Features increment MINOR version",
+        "Bug fixes increment PATCH version"
+      ]
+    }
+  ],
+  "commit_types": [
+    {
+      "type": "feat",
+      "description": "A new feature",
+      "impact": "Increment MINOR version"
+    },
+    {
+      "type": "fix",
+      "description": "A bug fix",
+      "impact": "Increment PATCH version"
+    },
+    {
+      "type": "perf",
+      "description": "A code change that improves performance",
+      "impact": "Increment PATCH version"
+    },
+    {
+      "type": "docs",
+      "description": "Documentation only changes",
+      "impact": "No version increment"
+    },
+    {
+      "type": "style",
+      "description": "Changes that do not affect the meaning of the code",
+      "impact": "No version increment"
+    },
+    {
+      "type": "refactor",
+      "description": "A code change that neither fixes a bug nor adds a feature",
+      "impact": "No version increment"
+    },
+    {
+      "type": "test",
+      "description": "Adding missing tests or correcting existing tests",
+      "impact": "No version increment"
+    },
+    {
+      "type": "build",
+      "description": "Changes that affect the build system or external dependencies",
+      "impact": "No version increment"
+    },
+    {
+      "type": "ci",
+      "description": "Changes to CI configuration files and scripts",
+      "impact": "No version increment"
+    },
+    {
+      "type": "chore",
+      "description": "Other changes that don't modify src or test files",
+      "impact": "No version increment"
+    }
+  ],
+  "commit_structure": {
+    "format": "<type>[optional scope]: <description>",
+    "additional_info": "[optional body]\n[optional footer(s)]",
+    "example": "feat(auth): add login functionality"
+  },
+  "commit_parts": {
+    "type": {
+      "required": true,
+      "description": "The type of change being made",
+      "validation": [
+        "Must be lowercase",
+        "Should be one of the standard types",
+        "No spaces allowed"
+      ]
+    },
+    "scope": {
+      "required": false,
+      "description": "The part of the codebase affected",
+      "format": "(optional)",
+      "examples": [
+        "auth",
+        "api",
+        "ui",
+        "database"
+      ]
+    },
+    "description": {
+      "required": true,
+      "description": "A short summary of the change",
+      "validation": [
+        "Must be in present tense",
+        "Must be lowercase",
+        "No period at the end",
+        "Should not exceed 72 characters"
+      ]
+    },
+    "body": {
+      "required": false,
+      "description": "A longer description of the change",
+      "format": "separated by a blank line from the description",
+      "validation": [
+        "Must be in present tense",
+        "Must include motivation for the change",
+        "Must include contrasts with previous behavior"
+      ]
+    },
+    "footer": {
+      "required": false,
+      "description": "Breaking changes or closed issues",
+      "format": "Include breaking changes or issue references",
+      "examples": [
+        "BREAKING CHANGE: <description of breaking change>",
+        "Closes #123",
+        "Refs #456"
+      ]
+    }
+  },
+  "breaking_changes": {
+    "indication": [
+      "Include 'BREAKING CHANGE:' in footer",
+      "Prefix with '!' after type (e.g., feat!: breaking change)"
+    ],
+    "format": "BREAKING CHANGE: <description of breaking change>\n\n<details of the breaking change>",
+    "example": "feat!: remove deprecated login method\n\nBREAKING CHANGE: The old login method has been removed.\n  This affects users who were still using the old authentication flow."
+  },
+  "best_practices": [
+    {
+      "topic": "Clarity",
+      "advice": "Write commit messages that clearly explain the intent of the change"
+    },
+    {
+      "topic": "Granularity",
+      "advice": "Make focused commits that address one issue at a time"
+    },
+    {
+      "topic": "Consistency",
+      "advice": "Maintain consistent formatting across all commits in the repository"
+    },
+    {
+      "topic": "Relevance",
+      "advice": "Ensure each commit type accurately reflects the nature of the changes"
+    },
+    {
+      "topic": "Scope Use",
+      "advice": "Use scope consistently to indicate which part of the codebase was modified"
+    },
+    {
+      "topic": "Testing",
+      "advice": "Include test changes in the same commit as the code changes they test"
+    }
+  ],
+  "tools_integration": {
+    "recommended": [
+      "commitizen",
+      "husky",
+      "lint-staged",
+      "standard-version",
+      "semantic-release"
+    ],
+    "benefits": [
+      "Automated changelog generation",
+      "Automatic version bumping",
+      "Enforced commit format validation"
+    ]
+  },
+  "common_mistakes_to_avoid": [
+    {
+      "mistake": "Vague commit messages",
+      "example": "Fixed bug",
+      "better": "fix(auth): resolve null pointer in login validation"
+    },
+    {
+      "mistake": "Mixing multiple types of changes",
+      "example": "fix and add feature",
+      "better": "Separate into individual commits"
+    },
+    {
+      "mistake": "Improper capitalization",
+      "example": "Fix bug",
+      "better": "fix: resolve null pointer error"
+    },
+    {
+      "mistake": "Excessive scope",
+      "example": "feat(authentication module): add login",
+      "better": "feat(auth): add login"
+    }
+  ]
+}
