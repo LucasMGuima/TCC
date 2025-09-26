@@ -17,7 +17,8 @@ score_continuo <- function(model, data_test, json){
   response_col_name <- json$response_name
 
   predict_col_name <- json$predictors_name
-  data_predict <-  data_test_limpo[predict_col_name]
+  list_predictors <- strsplit(predict_col_name, "\\|")[[1]]
+  data_predict <-  data_test_limpo[, list_predictors]
 
   y_pred <- predict(model, newdata = data_predict) # Previsão
   y_actual <- data_test_limpo[[response_col_name]] # Valor real
