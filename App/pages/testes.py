@@ -18,5 +18,8 @@ if st.button("Cacular Metricas"):
         model = f"modelos/{avaliableModel}"
 
         resp.append(src.call_model.run_teste(model))
-    for r in resp:
-        st.write(f"{r}\n")
+    
+    qtd_models = len(db_avaliableModels)
+    for num in range(qtd_models):
+        st.write(f"{db_avaliableModels[num]}:")
+        st.write(f"{resp[num]}")
