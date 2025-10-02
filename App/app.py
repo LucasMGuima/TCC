@@ -15,8 +15,11 @@ db_models = widgets.creat_multselect(
     widgets.contentIn_folder('models'),
     'Selecione um ou mais modelo(s):'
 )
+
+data_disponivel = filter(lambda x: '.csv' in x, database.contentIn_bucket(db, 'dados'))
+
 db_data = widgets.creat_selectbox(
-    database.contentIn_bucket(db, 'dados'),
+    data_disponivel,
     'Selecione um dataset'
 )
 

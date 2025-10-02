@@ -4,8 +4,11 @@ import streamlit as st
 import re
 import pandas as pd
 
+modelos_disponiveis = filter(lambda x: ".json" in x,  wdg.contentIn_folder('modelos'))
+
+
 db_avaliableModels = wdg.creat_multselect(
-    wdg.contentIn_folder('modelos'),
+    modelos_disponiveis,
     'Selecione um ou mais modelo(s) disponivel(is)'
 )
 
@@ -15,4 +18,5 @@ if st.button("Cacular Metricas"):
         model = f"modelos/{avaliableModel}"
 
         resp.append(src.call_model.run_teste(model))
-    print(resp)
+    for r in resp:
+        st.write(f"{r}\n")

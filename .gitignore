@@ -19,3 +19,5 @@ App/keys.csv
 App/data/test_pisasci2006.csv
 App/data/train_pisasci2006.csv
 *.rds
+*.json
+*.json
