@@ -1,6 +1,8 @@
 library(Metrics)
 library(mgcv)
 library(mda)
+library(jsonlite)
+
 score_continuo <- function(model, data_test, json){
 
   # Substitui valores infinitos por NA
@@ -32,7 +34,19 @@ score_continuo <- function(model, data_test, json){
   mse <- mean(erros^2)
   val_rmse <- sqrt(mse)
 
-  # Cria a lista de retorno
-  result <- list(mae = val_mae, rmse = val_rmse)
-  result
+  # Cria a dataframe de retorno
+  df <- data.frame(
+    mae = val_mae,
+    rmse = val_rmse
+  )
+
+  json_content <- toJSON(df, pretty = TRUE)
+
+  # Cria o JSON
+  name <- gsub("modelos/", "modelos/resp/", json$model)
+  name <- gsub(".rds", ".json", name)
+
+  write(json_content, name)
+
+  df
 }

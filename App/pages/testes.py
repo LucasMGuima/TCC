@@ -18,8 +18,9 @@ if st.button("Cacular Metricas"):
         model = f"modelos/{avaliableModel}"
 
         resp.append(src.call_model.run_teste(model))
-    
+
     qtd_models = len(db_avaliableModels)
+    # Converter o resp (list) para um dicionario
     for num in range(qtd_models):
         st.write(f"{db_avaliableModels[num]}:")
-        st.write(f"{resp[num]}")
+        print(f"{resp[num]}")
