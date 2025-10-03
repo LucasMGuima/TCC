@@ -16,3 +16,18 @@ Noticia para o custo dos modelos e uso de máquinas
 virtuais para a modelagem
 
 Exclarecer no objetivo que sera analisado os modelos em R
+
+--Pontos Levantados Pela Banca--
+
+> Porque o foco em R ?
+> Qual o output destes algortimos ?
+> Pra quem está resolvendo o problema ?
+> Contato com biologo ?
+> Não precisa descrever os modelos lineares
+> Falar das outras metricas
+> Acuracia é uma metrica ruim para problemas com muitos negativos
+> cap 2.1.4 antes do 2.1.2
+> Como é o dataset que sera usado
+> Dá para fazer em uma semana com chatgpt		\
+> Não inclui outros aspectos e Ciência da Computação	| Pontos principais
+> Qual o dataset ? Como ele é ?				/

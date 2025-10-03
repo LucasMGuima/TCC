@@ -1,6 +1,8 @@
 library(mgcv)
 library(readr)
 
+source("models/model_utils.r")
+
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) < 3){
@@ -22,5 +24,12 @@ formula <- as.formula(string)
 
 model <- gam(formula, data = data)
 summary(model)
-file_name <- sprintf("modelos/gam_%s.rds", gsub(".csv", "", file_name))
-saveRDS(model, file = file_name)
+
+model_name <- gsub("train_", "gam_", file_name)
+model_name <- gsub(".csv", ".rds", model_name)
+model_path <- save_model(model, model_name)
+
+data_path <- file.path("data", file_name)
+data_path <- gsub("train_", "test_", data_path)
+
+save_json(response, predictors, data_path, model_path)

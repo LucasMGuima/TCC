@@ -13,3 +13,11 @@ Texto/main.lot
 Texto/main.synctex.gz
 Texto/main.toc
 App/app_dev
+App/keys.txt
+App/keys.csv
+*.pyc
+App/data/test_pisasci2006.csv
+App/data/train_pisasci2006.csv
+*.rds
+*.json
+*.json
