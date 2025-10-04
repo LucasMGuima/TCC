@@ -1,0 +1,21 @@
+[tool.pytest.ini_options]
+addopts = "-q --disable-warnings --maxfail=1 --cov=App/src --cov=App/utils --cov=App/services --cov-report=term-missing"
+testpaths = [
+  "tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = [
+  "App/src",
+  "App/utils",
+  "App/services",
+]
+omit = [
+  "App/pages/*",
+  "**/__init__.py",
+]
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true

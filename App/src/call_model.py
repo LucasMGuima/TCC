@@ -1,7 +1,6 @@
 import subprocess
 import pandas as pd
-import utils.database as database
-from sklearn.model_selection import train_test_split
+from App.utils import database
 import os
 
 # Separa a data com base na porcentagem entrada para

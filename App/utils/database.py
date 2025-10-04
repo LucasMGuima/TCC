@@ -38,7 +38,7 @@ def contentIn_bucket(conection: Conection, folder: str) -> list:
     print(f"ID da conexão: {id(conection)}")
 
     response = conection.supabase.storage.from_("data").list(folder,{
-        "limiti": 100,
+        "limit": 100,
         "offset": 0,
         "sortBy": {"column": "name", "order": "desc"},
     })
