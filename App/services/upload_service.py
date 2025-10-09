@@ -24,7 +24,7 @@ def perform_upload(conection, bucket_name: str, file) -> None:
 
     Essa função é fina e orquestra upload sem acessar Streamlit diretamente.
     """
-    from App.utils import database
+    from utils import database
 
     if file is None:
         return None

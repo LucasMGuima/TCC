@@ -1,5 +1,5 @@
-from App.utils import database
-from App.services.upload_service import load_data as _load_data, perform_upload
+from utils import database
+from services.upload_service import load_data as _load_data, perform_upload
 import streamlit as st
 
 

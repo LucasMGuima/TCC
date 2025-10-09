@@ -1,6 +1,6 @@
 import subprocess
 import pandas as pd
-from App.utils import database
+from utils import database
 import os
 
 # Separa a data com base na porcentagem entrada para
