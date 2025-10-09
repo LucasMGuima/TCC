@@ -21,3 +21,4 @@ App/data/train_pisasci2006.csv
 *.rds
 *.json
 *.json
+App/.env
