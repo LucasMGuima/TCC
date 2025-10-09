@@ -1,6 +1,7 @@
 import os
-import pandas as pd
+
 from supabase import create_client, Client
+from dotenv import load_dotenv
 
 class Conection:
     _instance = None
@@ -9,10 +10,12 @@ class Conection:
         if cls._instance is None:
             cls._instance = super(Conection, cls).__new__(cls)
 
+            # Carrega as variaveis de ambiente
+            load_dotenv()
+
             # Pega os dados para a conexão
-            db_keys = pd.read_csv("keys.csv")
-            url: str = db_keys['NEXT_PUBLIC_SUPABASE_URL'][0]
-            key: str = db_keys['NEXT_PUBLIC_SUPABASE_ANON_KEY'][0]
+            url: str = os.getenv("SUPABASE_URL")
+            key: str = os.getenv("SUPABASE_ANON_KEY")
 
             # Cria a instancia da classe
             cls._instance.supabase = start_conection(url, key)
