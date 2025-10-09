@@ -23,13 +23,18 @@ if st.button("Cacular Metricas"):
     jsons = wdg.contentIn_folder(path)
 
     st.write("Avaliações")
+    avaliacoes = None
+    avaliacoes = []
     for file in jsons:
         if file in db_avaliableModels:
             with open(f"{path}/{file}", 'r') as f:
                 data = json.load(f)
-                chaves = data[0].keys()
+                # Supondo que data[0] contém as métricas
+                linha = {"Model": file}
+                linha.update(data[0])
+                avaliacoes.append(linha)
 
-                st.write(file)
-                for chave in chaves:
-                    st.write(f"{chave}: {data[0][chave]}")
+    if avaliacoes:
+        df_avaliacoes = pd.DataFrame(avaliacoes)
+        st.write(df_avaliacoes)
         
