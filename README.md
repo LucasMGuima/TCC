@@ -145,9 +145,7 @@ resultado = run_model(
 
 O projeto inclui análise de complexidade computacional dos algoritmos:
 
-- **Análise de Tempo**: Notação O-grande para tempo de execução
-- **Análise de Espaço**: Consumo de memória dos algoritmos
-- **Comparação**: Relação custo x acurácia entre os modelos
+- **Comparação**: Relação custo x avaliação entre os modelos
 
 ## 📈 Métricas de Avaliação
 
@@ -190,7 +188,7 @@ Este projeto foi desenvolvido como parte de um Trabalho de Conclusão de Curso (
 **Lucas da Mata Guimarães**
 - Bacharelado em Ciência da Computação
 - Centro Universitário Senac - Santo Amaro
-- Orientador: Mario Leandro Pires Toledo
+- Orientador: Afonso Cesar Lelis Brandão
 
 ## 📞 Contato
 
