@@ -21,7 +21,15 @@ if st.button("Cacular Metricas"):
 
     path = "modelos/resp"
     jsons = wdg.contentIn_folder(path)
+
+    st.write("Avaliações")
     for file in jsons:
-        with open(f"{path}/{file}", 'r') as f:
-            data = json.load(f)
+        if file in db_avaliableModels:
+            with open(f"{path}/{file}", 'r') as f:
+                data = json.load(f)
+                chaves = data[0].keys()
+
+                st.write(file)
+                for chave in chaves:
+                    st.write(f"{chave}: {data[0][chave]}")
         
