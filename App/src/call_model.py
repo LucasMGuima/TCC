@@ -24,29 +24,54 @@ def split_data(test_data_percent: int, data: pd.DataFrame, target_columns: str):
     return test, train
 
 def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, predictors: str|list):
+    """Executa um modelo R com os dados fornecidos"""
+    
+    # Validações de entrada
+    if not data_name or not model or not response or not predictors:
+        raise ValueError("Todos os parâmetros são obrigatórios")
+    
+    if isinstance(predictors, str):
+        predictors = [predictors]
+    
+    if not predictors:
+        raise ValueError("Pelo menos um preditor deve ser fornecido")
+    
+    # Verifica se as colunas existem no dataset
+    missing_cols = [col for col in [response] + predictors if col not in data.columns]
+    if missing_cols:
+        raise ValueError(f"Colunas não encontradas no dataset: {missing_cols}")
+    
     # Caminho para o script R
-    r_script_path = f"models/{model}"
+    r_script_path = os.path.join("models", model)
+    
+    if not os.path.exists(r_script_path):
+        raise FileNotFoundError(f"Script R não encontrado: {r_script_path}")
 
-    # Salva os dataset de treino e teste, se n existir
-    data_name = data_name.replace("data\\", "")
+    # Normaliza o nome do arquivo
+    data_name = os.path.basename(data_name.replace("\\", "/"))
     path_test = os.path.join("data", f"test_{data_name}")
     path_train = os.path.join("data", f"train_{data_name}")
 
-    if(not os.path.isfile(path_test) and not os.path.isfile(path_train)):
+    # Cria a pasta data se não existir
+    os.makedirs("data", exist_ok=True)
+    os.makedirs("modelos", exist_ok=True)
+
+    if not os.path.isfile(path_test) or not os.path.isfile(path_train):
+        print(f"📊 Criando datasets de treino e teste para {data_name}")
         # Separa o dataset em treino e teste
         test, train = split_data(20, data, response)
 
-        with open(path_test, 'w') as f: 
-            f.write(test.to_csv())
-        # database.upload_content(database.Conection(), 'data', path_test)
+        # Salva os arquivos CSV corretamente
+        test.to_csv(path_test, index=False, encoding='utf-8')
+        train.to_csv(path_train, index=False, encoding='utf-8')
+        
+        print(f"✅ Datasets salvos: {path_train} ({len(train)} amostras), {path_test} ({len(test)} amostras)")
+    else:
+        print(f"📁 Usando datasets existentes: {path_train}, {path_test}")
 
-        with open(path_train, 'w') as f: 
-            f.write(train.to_csv())
-        # database.upload_content(database.Conection(), 'data', path_train)
-
-    comando = ["Rscript", r_script_path, path_train.replace("data\\", ""), response]
-    for p in predictors:
-        comando.append(p)
+    # Prepara o comando para execução do R
+    train_filename = os.path.basename(path_train)
+    comando = ["Rscript", r_script_path, train_filename, response] + predictors
 
     # Executa o comando e captura a saída
     try:

@@ -17,8 +17,15 @@ class Conection:
             url: str = os.getenv("SUPABASE_URL")
             key: str = os.getenv("SUPABASE_ANON_KEY")
 
-            # Cria a instancia da classe
-            cls._instance.supabase = start_conection(url, key)
+            # Verifica se as credenciais estão configuradas
+            if not url or not key or url == "https://your-project.supabase.co" or key == "your-anon-key-here":
+                print("⚠️  Credenciais do Supabase não configuradas. Executando em modo offline.")
+                cls._instance.supabase = None
+                cls._instance.offline_mode = True
+            else:
+                # Cria a instancia da classe
+                cls._instance.supabase = start_conection(url, key)
+                cls._instance.offline_mode = cls._instance.supabase is None
 
         return cls._instance
 
@@ -39,18 +46,44 @@ def start_conection(url: str, key: str) -> Client:
     
 def contentIn_bucket(conection: Conection, folder: str) -> list:
     print(f"ID da conexão: {id(conection)}")
+    
+    # Se estiver em modo offline ou sem conexão, lista arquivos locais
+    if conection.offline_mode or conection.supabase is None:
+        print(f"📁 Listando arquivos locais da pasta: {folder}")
+        return list_local_files(folder)
+    
+    try:
+        response = conection.supabase.storage.from_("data").list(folder,{
+            "limit": 100,
+            "offset": 0,
+            "sortBy": {"column": "name", "order": "desc"},
+        })
 
-    response = conection.supabase.storage.from_("data").list(folder,{
-        "limit": 100,
-        "offset": 0,
-        "sortBy": {"column": "name", "order": "desc"},
-    })
+        content = []
+        for item in response:
+            name = item["name"]
+            content.append(name)
+        return content
+    except Exception as e:
+        print(f"⚠️  Erro ao acessar Supabase: {e}. Usando arquivos locais.")
+        return list_local_files(folder)
 
-    content = []
-    for item in response:
-        name = item["name"]
-        content.append(name)
-    return content
+def list_local_files(folder: str) -> list:
+    """Lista arquivos na pasta local quando o Supabase não está disponível"""
+    local_path = os.path.join("data", folder) if folder != "data" else "data"
+    
+    if not os.path.exists(local_path):
+        print(f"📁 Criando pasta: {local_path}")
+        os.makedirs(local_path, exist_ok=True)
+        return []
+    
+    try:
+        files = [f for f in os.listdir(local_path) if os.path.isfile(os.path.join(local_path, f))]
+        print(f"📁 Encontrados {len(files)} arquivos em {local_path}")
+        return files
+    except Exception as e:
+        print(f"⚠️  Erro ao listar arquivos locais: {e}")
+        return []
 
 def upload_content(conection: Conection, bucket_name: str, file) -> None:
     try:
