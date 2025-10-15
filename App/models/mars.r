@@ -21,6 +21,11 @@ predictors <- args[3:length(args)]
 
 data <- read_csv(file.path("data", file_name))
 
+# Sanitize column names and align arguments
+names(data) <- make.names(names(data))
+response <- make.names(response)
+predictors <- make.names(predictors)
+
 # Trata os dados
 data[sapply(data, is.infinite)] <- NA # Substitui valores infinitos por NA
 data[sapply(data, is.nan)] <- NA # Substitui valores indefinidos por NA

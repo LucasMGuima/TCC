@@ -20,6 +20,11 @@ predictors <- args[3:length(args)]
 
 data <- read_csv(file.path("data", file_name))
 
+# Sanitize column names and align arguments
+names(data) <- make.names(names(data))
+response <- make.names(response)
+predictors <- make.names(predictors)
+
 string <- paste(response, "~", paste0(predictors, collapse = "+"))
 formula <- as.formula(string)
 

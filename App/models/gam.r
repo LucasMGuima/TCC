@@ -17,6 +17,11 @@ response <- args[2]
 predictors <- args[3:length(args)]
 
 data <- read_csv(file.path("data", file_name))
+names(data) <- make.names(names(data))
+
+# Ensure response and predictors match sanitized column names
+response <- make.names(response)
+predictors <- make.names(predictors)
 
 # Identificar os tipos dos dados dos preditores
 # Gerar a formula dinamicamento com base nisso
@@ -26,13 +31,3 @@ string <- paste(response, "~", paste0(smoth_predictors, collapse = " + "))
 formula <- as.formula(string)
 
 model <- gam(formula, data = data)
-summary(model)
-
-model_name <- gsub("train_", "gam_", file_name)
-model_name <- gsub(".csv", ".rds", model_name)
-model_path <- save_model(model, model_name)
-
-data_path <- file.path("data", file_name)
-data_path <- gsub("train_", "test_", data_path)
-
-save_json(response, predictors, data_path, model_path)
