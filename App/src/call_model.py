@@ -57,6 +57,28 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
     os.makedirs("modelos", exist_ok=True)
 
     if not os.path.isfile(path_test) or not os.path.isfile(path_train):
+        # Estora colunas categoricas em outras tabelas
+        for predictor in predictors:
+            amostra = data[predictor]
+            if pd.api.types.is_categorical_dtype(amostra) or pd.api.types.is_object_dtype(amostra) or (not pd.api.types.is_numeric_dtype(amostra)):
+                uniques = pd.Series(amostra.dropna().unique())
+                mapping = pd.DataFrame({
+                    predictor: uniques.values,
+                    "code": range(len(uniques))
+                })
+                mapping_path = os.path.join("data", f"{predictor}_mapping_{data_name}.csv")
+                mapping.to_csv(mapping_path, index=False, encoding="utf-8")
+                print(f"Mapping salvo: {mapping_path} ({len(uniques)} níveis)")
+        amostra = data[response]
+        if pd.api.types.is_categorical_dtype(amostra) or pd.api.types.is_object_dtype(amostra) or (not pd.api.types.is_numeric_dtype(amostra)):
+            uniques = pd.Series(amostra.dropna().unique())
+            mapping = pd.DataFrame({
+                "level": uniques.values,
+                "code": range(len(uniques))
+            })
+            mapping_path = os.path.join("data", f"{response}_mapping_{data_name}.csv")
+            mapping.to_csv(mapping_path, index=False, encoding="utf-8")
+            print(f"Mapping salvo: {mapping_path} ({len(uniques)} níveis)")
         print(f"📊 Criando datasets de treino e teste para {data_name}")
         # Separa o dataset em treino e teste
         test, train = split_data(20, data, response)
