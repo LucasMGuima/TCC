@@ -260,10 +260,10 @@ Texto do resumo
 
 \section{Contexto}
 
-O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. Uma destas aplicações são os modelos de distribuição 
-de espécies, que são capazes de fornecer uma visualização da situação 
-da fauna e flora de determinada região, podendo mostrar como estas estão se 
-comportando no decorrer do tempo \cite{speciesDistributionModels}.
+O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. 
+Uma destas aplicações são os modelos de distribuição de espécies, que são capazes de fornecer uma visualização 
+da situação da fauna e flora de determinada região, podendo mostrar como estas estão se comportando no 
+decorrer do tempo \cite{speciesDistributionModels}.
 
 Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
 e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
@@ -427,7 +427,7 @@ A essa reta, é dado o nome de reta de regressão linear, esta que depende de ci
     \item Desvio padrão de $X$: $S_x = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (X_i - \overline{X})^2 }$;
     \item Média de $Y$: $\overline{Y} = \frac{1}{N} \sum_{i=1}^{N} Y_i$;
     \item Desvio padrão de $Y$: $S_y = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (Y_i - \overline{Y})^2 }$;
-    \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} . \frac{Y_i - \overline{Y}}{S_Y}$
+    \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} \cdot \frac{Y_i - \overline{Y}}{S_Y}$
 \end{enumerate}
 
 Com estas estatísticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
@@ -435,7 +435,7 @@ Com estas estatísticas podemos traçar a reta de regressão, sabendo que esta p
 
 \begin{equation}
     \label{eq:inclinacao_reta}
-    \beta_1 = \frac{r.S_y}{S_x}
+    \beta_1 = \frac{r \cdot S_y}{S_x}
 \end{equation}
 
 E o intercepto da reta de regressão, onde a reta corta um dos eixos do plano cartesiano, 
@@ -471,7 +471,7 @@ o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cit
     Y = \beta_0 + \beta_1X + \epsilon
 \end{equation}
 
-Agora com a equação \ref{eq_reg_simples_erro}, podemos criar a reta de regressão, que pode ser
+Agora com a equação \ref{eq:reg_simples_erro}, podemos criar a reta de regressão, que pode ser
 representada graficamente, possuindo uma estrutura semelhante ao gráfico a seguir:
 
 \begin{figure}[H]
@@ -536,8 +536,7 @@ mas ainda podemos tratar o problema como uma reta.
 \subsection{Metodos de avaliação de Modelos Computacionais}
 
 Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
-categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão
-\cite{fig:matrix_confusao}:
+categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão:
 
 \begin{table}[H]
     \centering
@@ -644,7 +643,7 @@ preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da vari�
 \cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte fórmula: 
 
 \begin{equation}
-    \label{eq:glm_general}
+    \label{eq:lp_general}
     g(E(Y)) = LP = \alpha + X^T \beta
 \end{equation}
 
@@ -765,7 +764,7 @@ $f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS provê uma abordag
 categóricas, variáveis aninhadas (variável que contem outra variável ) e valores faltantes \cite{intro_mars}.
 
 O procedimento MARS, é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
-apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
+apenas um preditor, $x(n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
 dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
 
 \begin{equation}
@@ -773,7 +772,7 @@ dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos 
     \hat{f}_q(x) = \sum_{k=0}^{k+q}a_kB_k^{(q)}(x)
 \end{equation}
 
-Onde $\left\{B_k^{(q)(x)}\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
+Onde $\left\{B_k^{(q)}(x)\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
 valor do coeficiente de expansão, sendo sem limitadores \cite{intro_mars}.
 
 A base mais popular é a 'B-spline', possuindo superioridade em número de propriedades usadas em conjunto com o least-squares 
@@ -824,13 +823,13 @@ No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
 \begin{equation}
     \label{eq:novas_funcoes}
     \begin{split}
-        & B_{2M+1}(x) = B_{l(M+1)}(x)\left\{+(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
-        & B_{2M+2}(x) = B_{l(M+1)}(x)\left\{-(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+        & B_{2M+1}(x) = B_{l(M+1)}(x)[+(x_{v(M+1)}-t_{M+1})]_{+}^{q} \\
+        & B_{2M+2}(x) = B_{l(M+1)}(x)[-(x_{v(M+1)}-t_{M+1})]_{+}^{q} \\
     \end{split}
 \end{equation}
 
 Aqui $B_{l(M+1)}(x)$ é uma das funções bases $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variável preditora, não
-representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1), v(M+1) e t_{M+1}$ que definem as
+representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1)$, $v(M+1)$ e $t_{M+1}$ que definem as
 duas novas funções bases, são escolhidos para serem os que melhor melhoram o fitting do "novo" modelo com os dados.
 
 Para pequenas amostras o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem, e com grandes amostras, 
@@ -852,9 +851,9 @@ computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com bas
     \hline
         Complexidade & Nome & Eficiente \\ \hline
         $O(1)$ & Constante & Sim \\ \hline
-        $O(log n)$ & Logarítmica & Sim \\ \hline
+        $O(log(n))$ & Logarítmica & Sim \\ \hline
         $O(n)$ & Linear & Sim \\ \hline
-        $O(n log n)$ & "Linearítmica" & Sim \\ \hline
+        $O(n \space log(n))$ & "Linearítmica" & Sim \\ \hline
         $O(n^2)$ & Quadrática & Sim \\ \hline
         $O(n^3)$ & Cúbica & Sim \\ \hline
         $O(2^n)$ & Exponencial & Não \\ \hline
@@ -884,7 +883,7 @@ O insertion sort é um algoritmo eficiente para ordena uma sequência pequena de
 como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia, e a cada momento, pegamos uma
 carta da mesa e a inserimos na mão em sua posição correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
 
-Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada,  o algoritmo representado pelo
+Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada, o algoritmo representado pelo
 pseudocódigo \ref{fig:insertion_sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
 armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
 
@@ -1021,7 +1020,7 @@ Assim conseguimos chegar a seguinte análise do algoritmo \ref{fig:insertion_sor
 \end{table}
 
 O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ passos para executar
-e execute $n$ vezes ira contribuir com $c_in$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
+e execute $n$ vezes ira contribuir com $c_i \cdot n$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
 sort \ref{fig:insertion_sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{tab:analise_insertion_sort}:
 
 \begin{equation}
@@ -1045,7 +1044,7 @@ O pior caso no algoritmo \ref{fig:insertion_sort}, pode ser representado pela se
     \end{split}
 \end{equation}
 
-Podemos expressar a equação \ref{eq:pior_caso_insertion_sort}, como $an^2 + bn - c$, para constantes $a, b$ e $c$, que dependem do custo de
+Podemos expressar a equação \ref{eq:pior_caso_insertion_sort}, como $an^2 + bn - c$, para constantes $a$, $b$ e $c$, que dependem do custo de
 $c_i$. Mas é a taxa de crescimento que realmente nos interessa, logo consideramos apenas o maior termo da equação, isto é $an^2$, já que
 os outros termos são insignificantes para valores muitos grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto
 o pior caso de tempo de execução como $\theta(n^2)$.
@@ -1064,7 +1063,7 @@ análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
 No algoritmo de insertion sort, temos as seguintes variáveis:
 
 \begin{itemize}
-    \item $Vetor A$ a sequência de $n$ inteiros;
+    \item $Vetor \space A$ a sequência de $n$ inteiros;
     \item $key$ uma variável que armazena um valor presente no vetor $A$;
     \item $i$ um valor inteiro que representa uma posição na sequência;
     \item $j$ um valor inteiro que representa uma posição na sequência;
@@ -1124,7 +1123,7 @@ tipo de suavização sendo a splines de regressão cúbicas \cite{gam_exemplo}.
 A linha $library(mgcv)$ é a responsável por indicar qual package estamos usando, neste caso o mgcv, mas poderia ser outro ou mais 
 de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamento interno é mascarado 
 para o usuário, precisamos apenas "configurar" alguns parâmetros como a $data$, os dados que o modelo ira utilizar, e quais campos 
-dos dados iramos usar $Overall ~ s(Income, bs = "cr")$.  
+dos dados iramos usar \verb|Overall ~ s(Income, bs = "cr")|.  
 
 Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
 os pormenores da execução em si, apenas passar os parâmetros necessários de modo correto.
