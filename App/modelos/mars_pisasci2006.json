@@ -1,8 +1,0 @@
-[
-  {
-    "model": "modelos/mars_pisasci2006.rds",
-    "response_name": "Overall",
-    "predictors_name": "Issues|Income",
-    "data_name": "data/test_pisasci2006.csv"
-  }
-]

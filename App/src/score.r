@@ -32,7 +32,7 @@ percent_unic <- (unic_values * 100) / all_values
 col_class <- class(val_response)
 
 if ((col_class == "factor" || col_class == "character") &&  percent_unic < 10){
-  score_categorico(model, data_test) # O dado é categorico
+  score_categorico(model, data_test, json_dado) # O dado é categorico
 }else {
   score_continuo(model, data_test, json_dado) # O dado é continuo
 }

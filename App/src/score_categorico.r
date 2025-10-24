@@ -1,4 +1,5 @@
 library(mgcv)
+library(jsonlite)
 
 # Função que calcula as metricas
 err_metric <- function(confusion_matrix){
@@ -21,7 +22,7 @@ err_metric <- function(confusion_matrix){
   metrics
 }
 
-score_categorico <- function(model, data_test){
+score_categorico <- function(model, data_test, json){
   # Extrai o nome da coluan de resposta
   response_col_name <- all.vars(formula(model))[1]
 
@@ -32,5 +33,11 @@ score_categorico <- function(model, data_test){
   cm <- table(y_actual, y_pred)
 
   metrics_df <- err_metric(cm)
-  return(metrics_df)
+  json_content <- toJSON(metrics_df, pretty = TRUE)
+  
+  # Cria o JSON
+  name <- gsub("modelos/", "modelos/resp/", json$model)
+  name <- gsub(".rds", ".json", name)
+
+  write(json_content, name)
 }

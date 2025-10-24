@@ -23,6 +23,9 @@ data <- read_csv(file.path("data", file_name))
 
 # Sanitize column names and align arguments
 names(data) <- make.names(names(data))
+# Keep original response and predictor names for display
+response_original <- response
+predictors_original <- predictors
 response <- make.names(response)
 predictors <- make.names(predictors)
 

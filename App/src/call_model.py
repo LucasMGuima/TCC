@@ -79,9 +79,26 @@ def run_model(data_name: str, data: pd.DataFrame, model: str, response: str, pre
             mapping_path = os.path.join("data", f"{response}_mapping_{data_name}.csv")
             mapping.to_csv(mapping_path, index=False, encoding="utf-8")
             print(f"Mapping salvo: {mapping_path} ({len(uniques)} níveis)")
+
         print(f"📊 Criando datasets de treino e teste para {data_name}")
         # Separa o dataset em treino e teste
         test, train = split_data(20, data, response)
+
+        # Aplicar mapping nos dados de treino E teste para consistência
+        for predictor in predictors:
+            if pd.api.types.is_categorical_dtype(train[predictor]) or pd.api.types.is_object_dtype(train[predictor]):
+                predictor_mapping = pd.read_csv(f"data/{predictor}_mapping_{data_name}.csv")
+                train[predictor] = train[predictor].map(predictor_mapping.set_index(predictor)["code"])
+                test[predictor] = test[predictor].map(predictor_mapping.set_index(predictor)["code"])
+
+        if pd.api.types.is_categorical_dtype(train[response]) or pd.api.types.is_object_dtype(train[response]):
+            response_mapping = pd.read_csv(f"data/{response}_mapping_{data_name}.csv")
+            train[response] = train[response].map(response_mapping.set_index("level")["code"])
+            test[response] = test[response].map(response_mapping.set_index("level")["code"])
+
+        # Sanitize column names for R compatibility
+        test.columns = [col.replace(' ', '.') for col in test.columns]
+        train.columns = [col.replace(' ', '.') for col in train.columns]
 
         # Salva os arquivos CSV corretamente
         test.to_csv(path_test, index=False, encoding='utf-8')

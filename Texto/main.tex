@@ -326,13 +326,13 @@ mais acessíveis \cite{introductionAnalysis}, e ser possível a construção de 
 Os pontos levantados anteriormente podem afetar a acurácia de um modelo, mesmo atendendo os requisitos, 
 de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenham uma boa acurácia, 
 quando trabalham somente com dados de ocorrência, assim como uma melhor avaliação computacional, se vê vantajoso para 
-situações em que queremos criar uma análise inicial de um determinado senário.
+situações em que queremos criar uma análise inicial de um determinado cenário.
 
 \section{Objetivo}
 
 Este trabalho tem como objetivo avaliar e comparar a implementação encontrada
 nas bibliotecas mda e mgcv da linguagem R, dos modelos de distribuição de espécies,
-GAM, GML e MARS, levantando o custo computacional de cada um destes a partir de
+GAM, GLM e MARS, levantando o custo computacional de cada um destes a partir de
 uma análise de complexidade e espaço. Encontrando um modelo que melhor apresente
 um equilíbrio entre a acurácia e o custo computacional
 
@@ -489,7 +489,7 @@ de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_reg
 
 \begin{equation}
     \label{eq_reg_simples_geral}
-    Y_i = \beta_0 + _beta_iX_i + \epsilon_i
+    Y_i = \beta_0 + _beta_i X_i + \epsilon_i
 \end{equation}
 
 Onde:
@@ -716,7 +716,7 @@ operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores
 associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
 
 Se assumirmos $x$ sendo um valor inteiro, que $wn$ é ímpar, então a abrangência da vizinhança $w$ mais próxima simétrica conterá
-$wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$-ézimo ponto. Assumindo que os dodos
+$wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$-ézimo ponto. Assumindo que os dados
 estão ordenados de forma crescente em $x$, uma definição formal seria \cite{GAM}:
 
 \begin{equation}
@@ -724,7 +724,7 @@ estão ordenados de forma crescente em $x$, uma definição formal seria \cite{G
     N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
 \end{equation}
 
-A vizinhança fica truncada proxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
+A vizinhança fica truncada próxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
 controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dados a serem usados \cite{GAM}. Se
 $Ave$ representar a média aritmética, então $\hat{s}(.)$ é a running lines smoother, e sua definição para estimar valores
 de $x$ é:
@@ -762,11 +762,11 @@ $f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fen�
 
 A função de $n$-dimensões $f$ captura a relação de predição de $y$ em $x_1,...,x_n$, onde o alvo da análise regressiva
 é usar os dados para construir a função $\hat{f}(x_1,...,x_n)$ que serve como uma aproximação razoavel para
-$f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS provê uma abordagem natural para a modelagem de vairaveis
+$f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS provê uma abordagem natural para a modelagem de variáveis
 categóricas, variáveis aninhadas (variável que contem outra variável ) e valores faltantes \cite{intro_mars}.
 
 O procedimento MARS, é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
-apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função splien de aproximação $\hat{f}_q(x)$ é obtida por
+apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
 dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
 
 \begin{equation}
@@ -855,7 +855,7 @@ computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com bas
         $O(1)$ & Constante & Sim \\ \hline
         $O(log n)$ & Logarítmica & Sim \\ \hline
         $O(n)$ & Linear & Sim \\ \hline
-        $O(n log n)$ & "Linearítimica" & Sim \\ \hline
+        $O(n log n)$ & "Linearítmica" & Sim \\ \hline
         $O(n^2)$ & Quadrática & Sim \\ \hline
         $O(n^3)$ & Cúbica & Sim \\ \hline
         $O(2^n)$ & Exponencial & Não \\ \hline
