@@ -37,7 +37,6 @@
 \usepackage{microtype}          % para melhorias de justificação
 \usepackage{listings}
 \usepackage{amsmath} % Required for the split environment
-\usepackage{indentfirst}
 \usepackage{float}
 \usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 
@@ -261,10 +260,10 @@ Texto do resumo
 
 \section{Contexto}
 
-O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. Uma destas aplicações são os modelos de distribuição 
-de espécies, que são capazes de fornecer uma visualização da situação 
-da fauna e flora de determinada região, podendo mostrar como estas estão se 
-comportando no decorrer do tempo \cite{speciesDistributionModels}.
+O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. 
+Uma destas aplicações são os modelos de distribuição de espécies, que são capazes de fornecer uma visualização 
+da situação da fauna e flora de determinada região, podendo mostrar como estas estão se comportando no 
+decorrer do tempo \cite{speciesDistributionModels}.
 
 Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
 e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
@@ -428,29 +427,29 @@ A essa reta, é dado o nome de reta de regressão linear, esta que depende de ci
     \item Desvio padrão de $X$: $S_x = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (X_i - \overline{X})^2 }$;
     \item Média de $Y$: $\overline{Y} = \frac{1}{N} \sum_{i=1}^{N} Y_i$;
     \item Desvio padrão de $Y$: $S_y = \sqrt{ \frac{1}{N} \sum_{i=1}^{N} (Y_i - \overline{Y})^2 }$;
-    \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} . \frac{Y_i - \overline{Y}}{S_Y}$
+    \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} \cdot \frac{Y_i - \overline{Y}}{S_Y}$
 \end{enumerate}
 
 Com estas estatísticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
 ($\overline{X}, \overline{Y}$). A inclinação da reta será dada por:
 
 \begin{equation}
-    \label{inclinacao_reta}
-    \beta_1 = \frac{r.S_y}{S_x}
+    \label{eq:inclinacao_reta}
+    \beta_1 = \frac{r \cdot S_y}{S_x}
 \end{equation}
 
 E o intercepto da reta de regressão, onde a reta corta um dos eixos do plano cartesiano, 
 será dado por:
 
 \begin{equation}
-    \label{intercepto_reta}
+    \label{eq:intercepto_reta}
     \beta_0 = \overline{Y} - \beta_1 \overline{X}
 \end{equation}
 
 Assim resultamos na seguinte equação:
 
 \begin{equation}
-\label{eq_reg_simples}
+\label{eq:reg_simples}
     Y = \beta_0 + \beta_1X
 \end{equation}
 
@@ -462,34 +461,34 @@ Onde:
     \item ($\beta_1$) é a inclinação da reta. 
 \end{itemize}
 
-Porém, a equação \ref{eq_reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
+Porém, a equação \ref{eq:reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
 os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a variável  $X$ que afeta os valores de
 $Y$ quando tratamos de ocorrência no mundo real, assim incluímos um termo de erro $\epsilon$, que é
 o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
-    \label{eq_reg_simples_erro}
+    \label{eq:reg_simples_erro}
     Y = \beta_0 + \beta_1X + \epsilon
 \end{equation}
 
-Agora com a equação \ref{eq_reg_simples_erro}, podemos criar a reta de regressão, que pode ser
+Agora com a equação \ref{eq:reg_simples_erro}, podemos criar a reta de regressão, que pode ser
 representada graficamente, possuindo uma estrutura semelhante ao gráfico a seguir:
 
 \begin{figure}[H]
     \centering
-    \caption{\label{Regressão Linear Simples}Regressão Linear Simples}
+    \caption{\label{fig:reg_linear_simples}Regressão Linear Simples}
     \includegraphics[width=0.50\textwidth]{../Imgs/reg_linear_simples.png}
     \legend{Fonte: \citeonline{regressao_linear}}
 \end{figure}
 
-A equação \ref{eq_reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nossos dados
+A equação \ref{eq:reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nossos dados
 podemos trabalhar com conjuntos de valores, agrupando valores de $Y$ distintos, para cada valor de $X$.
 Por exemplo, dados que representam a qualidade de vida nos estados brasileiro com o número de postos 
-de saúde. Assim a equação \ref{eq_reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
+de saúde. Assim a equação \ref{eq:reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
 
 \begin{equation}
-    \label{eq_reg_simples_geral}
-    Y_i = \beta_0 + _beta_i X_i + \epsilon_i
+    \label{eq:reg_simples_geral}
+    Y_i = \beta_0 + \beta_i X_i + \epsilon_i
 \end{equation}
 
 Onde:
@@ -508,7 +507,7 @@ para este modelo de regressão pode ser representada da seguinte forma, onde tem
 explicativas \cite{modelos_regressao_linear}:
 
 \begin{equation}
-    \label{rq_reg_multipla}
+    \label{eq:reg_multipla}
     Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \epsilon
 \end{equation}
 
@@ -526,7 +525,7 @@ um gráfico de três dimensões.
 
 \begin{figure}[H]
     \centering
-    \caption{\label{Regressão Linear Multipla}Regressão Linear Multipla}
+    \caption{\label{fig:reg_linear_multipla}Regressão Linear Multipla}
     \includegraphics[width=0.50\textwidth]{../Imgs/reg_linear_multipla.png}
     \legend{Fonte: \citeonline{regressao_linear_multipla_img}}
 \end{figure}
@@ -537,12 +536,11 @@ mas ainda podemos tratar o problema como uma reta.
 \subsection{Metodos de avaliação de Modelos Computacionais}
 
 Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
-categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão
-\cite{acuracia_matriz}:
+categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão:
 
 \begin{table}[H]
     \centering
-    \caption{\label{Matriz de Confusão}Matriz de Confusão}
+    \caption{\label{fig:matrix_confusao}Matriz de Confusão}
     \begin{tabular}{|c|c|c|}
     \hline
                       & Verdadeiro Positivo & Verdadeiro Negativo   \\ \hline
@@ -585,7 +583,7 @@ A acurácia é um modo de avaliar a performance de um modelo, assim identificand
 ser considerados válidos ou não. Para chegarmos na acurácia utilizamos a seguinte fórmula:
 
 \begin{equation}
-    \label{conta_acuracia}
+    \label{eq:acuracia}
     A = \frac{PC}{TP}
 \end{equation}
 
@@ -596,7 +594,7 @@ Onde:
     \item ($TP$) é o Total de Previsões, encontrada pela soma de $PC + Falsos Verdadeiros + Falsos Negativos$.
 \end{itemize}
 
-Como a acurácia incorpora por completo a matriz de confusão \ref{Matriz de Confusão}, em um conjunto de dados equilibrado, 
+Como a acurácia incorpora por completo a matriz de confusão \ref{fig:matrix_confusao}, em um conjunto de dados equilibrado, 
 com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma medida grosseira da qualidade 
 de um modelo \cite{acuracia_matriz}.
 
@@ -641,11 +639,11 @@ exponenciais (Gaussiana, Poisson ou Binomial), e a função de ligação pode se
 diferenciável, como a logarítmica \cite{GAMeGLM_especie_estudo}.
 
 No GLM as variáveis de predição $X_j$, onde $j = 1, ..., p$ com $p$ sendo a quantidade de $X$s, são combinadas para se formar um 
-preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável  de reposta $Y$ atráves de uma função de ligação $g()$ 
+preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável de reposta $Y$ atráves de uma função de ligação $g()$ 
 \cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte fórmula: 
 
 \begin{equation}
-    \label{GLM_general_eq}
+    \label{eq:lp_general}
     g(E(Y)) = LP = \alpha + X^T \beta
 \end{equation}
 
@@ -660,7 +658,7 @@ Assim escrevemos o modelo para variáveis $X$ e $Y$ genéricas. Os termos corres
 amostra são \cite{GAMeGLM_especie_estudo}:
 
 \begin{equation}
-    \label{GLM_observ_eq}
+    \label{eq:glm_general}
     g(\mu_i) = \alpha + \beta_1X_{i1} + \beta_2X_{i2} + ... + \beta_pX_{ip}
 \end{equation}
 
@@ -692,21 +690,21 @@ $\eta = \sum_{1}^{p}s_j(X_j)$, onde $s_j(X_j)$ é uma função de suavização d
 para a estimativa pelo modelo de regressão linear, possui a seguinte característica \cite{GAM}:
 
 \begin{equation}
-    \label{reg_linear_estimativa}
+    \label{eq:reg_linear_estimativa}
     E(Y|X_1,X_2,...,X_p) = \beta_0 + \beta_1X_1 + ... + \beta_pX_p.
 \end{equation}
 
-Enquanto no GAM, generaliza-se o modelo de regressão linear, tornando a equação \ref{reg_linear_estimativa}:
+Enquanto no GAM, generaliza-se o modelo de regressão linear, tornando a equação \ref{eq:reg_linear_estimativa}:
 
 \begin{equation}
-    \label{reg_linear_generalizada}
+    \label{eq:reg_linear_generalizada}
     E(Y|X_1,X_2,...,X_p) = s_0 + \sum_{j=1}^{p} s_j(X_j)
 \end{equation}
 
 Como exemplo, tomemos o caso de um preditor simples, neste, nosso modelo seria:
 
 \begin{equation}
-    \label{preditor_simples}
+    \label{eq:preditor_simples}
     E(Y|X) = s(X)
 \end{equation}
 
@@ -720,8 +718,8 @@ $wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do
 estão ordenados de forma crescente em $x$, uma definição formal seria \cite{GAM}:
 
 \begin{equation}
-    \label{eq_vizinhanaça}
-    N_i = {max(i-\frac{wn-1}{2},1),...,i-1,i,i+1,...,min(i-\frac{wn-1}{2},n)}
+    \label{eq:vizinhanca}
+    N_i = {\max{i-\frac{wn-1}{2},1},...,i-1,i,i+1,...,\min{i-\frac{wn-1}{2},n}}
 \end{equation}
 
 A vizinhança fica truncada próxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
@@ -730,14 +728,14 @@ $Ave$ representar a média aritmética, então $\hat{s}(.)$ é a running lines s
 de $x$ é:
 
 \begin{equation}
-    \label{running_lines_smoother}
+    \label{eq:running_lines_smoother}
     \hat{s}(x_i) = \hat{\beta}_{0i} + \hat{\beta}_{1i}x_i
 \end{equation}
 
 Onde $\hat{\beta}_{0i}$ e $\hat{\beta}_{1i}$ são as estimativas por least square para os pontos de dados de $N_i$:
 
 \begin{equation}
-    \label{least_square_betas}
+    \label{eq:least_square_betas}
     \begin{split}
         &\hat{\beta}_{1i} = \frac{\sum_{j \in N_i}(x_j - \overline{x}_i)y_j}{\sum_{j \in N_i}(x_j - \overline{x}_i)^2}, \\
         &\hat{\beta}_{0i} = \overline{y}_i - \hat{\beta}_{1i}\overline{x}_i, \\
@@ -756,7 +754,7 @@ $f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fen�
 \cite{MARS}. 
 
 \begin{equation}
-    \label{mars_eq_base}
+    \label{eq:mars_base}
     y = f(x_1,...,x_n) + \epsilon
 \end{equation}
 
@@ -766,15 +764,15 @@ $f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS provê uma abordag
 categóricas, variáveis aninhadas (variável que contem outra variável ) e valores faltantes \cite{intro_mars}.
 
 O procedimento MARS, é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
-apenas um preditor, $x (n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
+apenas um preditor, $x(n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
 dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
 
 \begin{equation}
-    \label{funcao_spline_aproximacao}
+    \label{eq:aproximacao_spline}
     \hat{f}_q(x) = \sum_{k=0}^{k+q}a_kB_k^{(q)}(x)
 \end{equation}
 
-Onde $\left\{B_k^{(q)(x)}\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
+Onde $\left\{B_k^{(q)}(x)\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
 valor do coeficiente de expansão, sendo sem limitadores \cite{intro_mars}.
 
 A base mais popular é a 'B-spline', possuindo superioridade em número de propriedades usadas em conjunto com o least-squares 
@@ -793,7 +791,7 @@ menor número possível de retas, sendo essa quantidade de retas o prametro $q$,
 
 \begin{figure}[H]
     \centering
-    \caption{\label{Curva Spline}Curva Spline}
+    \caption{\label{fig:curva_spline}Curva Spline}
     \includegraphics[width=0.50\textwidth]{../Imgs/B-spline_curve.png}
     \legend{Fonte: \citeonline{b_spline}}
 \end{figure}
@@ -809,29 +807,29 @@ candidatas \cite{intro_mars}.
 O passo de forward começa com uma única função base no modelo:
 
 \begin{equation}
-    \label{inicio_funcao_base}
+    \label{eq:inicio_funcao_base}
     B_0(x) = 1
 \end{equation}
 
 Após a $M$-ézimo iteração teremos $2M+1$ funções:
 
 \begin{equation}
-    \label{funcao_base}
+    \label{eq:funcao_base}
     \left\{B_m(\mathbf{x})\right\}_{0}^{2M}
 \end{equation}
 
 No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
 
 \begin{equation}
-    \label{novas_funcoes}
+    \label{eq:novas_funcoes}
     \begin{split}
-        & B_{2M+1}(x) = B_{l(M+1)}(x)\left\{+(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
-        & B_{2M+2}(x) = B_{l(M+1)}(x)\left\{-(x_{v(M+1)}-t_{M+1})\right\}_{+}^{q} \\
+        & B_{2M+1}(x) = B_{l(M+1)}(x)[+(x_{v(M+1)}-t_{M+1})]_{+}^{q} \\
+        & B_{2M+2}(x) = B_{l(M+1)}(x)[-(x_{v(M+1)}-t_{M+1})]_{+}^{q} \\
     \end{split}
 \end{equation}
 
 Aqui $B_{l(M+1)}(x)$ é uma das funções bases $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variável preditora, não
-representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1), v(M+1) e t_{M+1}$ que definem as
+representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1)$, $v(M+1)$ e $t_{M+1}$ que definem as
 duas novas funções bases, são escolhidos para serem os que melhor melhoram o fitting do "novo" modelo com os dados.
 
 Para pequenas amostras o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem, e com grandes amostras, 
@@ -848,14 +846,14 @@ computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com bas
 
 \begin{table}[H]
     \centering
-    \caption{\label{Notação Assintótica}Notação Assintótica}
+    \caption{\label{fig:notacao_assintótica}Notação Assintótica}
     \begin{tabular}{|c|c|c|}
     \hline
         Complexidade & Nome & Eficiente \\ \hline
         $O(1)$ & Constante & Sim \\ \hline
-        $O(log n)$ & Logarítmica & Sim \\ \hline
+        $O(log(n))$ & Logarítmica & Sim \\ \hline
         $O(n)$ & Linear & Sim \\ \hline
-        $O(n log n)$ & "Linearítmica" & Sim \\ \hline
+        $O(n \space log(n))$ & "Linearítmica" & Sim \\ \hline
         $O(n^2)$ & Quadrática & Sim \\ \hline
         $O(n^3)$ & Cúbica & Sim \\ \hline
         $O(2^n)$ & Exponencial & Não \\ \hline
@@ -885,12 +883,12 @@ O insertion sort é um algoritmo eficiente para ordena uma sequência pequena de
 como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia, e a cada momento, pegamos uma
 carta da mesa e a inserimos na mão em sua posição correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
 
-Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada,  o algoritmo representado pelo
-pseudocódigo \ref{Insertion-Sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
+Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada, o algoritmo representado pelo
+pseudocódigo \ref{fig:insertion_sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
 armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
 
 \lstset{style=psceudo}
-\begin{lstlisting}[caption={\label{Insertion-Sort}Insertion-Sort}]
+\begin{lstlisting}[caption={\label{fig:insertion_sort}Insertion-Sort}]
     Insertion-Sort(A)
     for j = 2 to n
         key = A[j]
@@ -903,11 +901,11 @@ armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a s
 \legend{Fonte: \citeonline{introductionAlgorthms}}
 
 Para visualizar a sequência de passos que o insertion sort executa para a ordenação de dado vetor, 
-tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem \ref{Operação do Insertion Sort}.
+tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem \ref{fig:operacao_insertion_sort}.
 
 \begin{figure}[H]
     \centering
-    \caption{\label{Operação do Insertion Sort}Operação do Insertion Sort}
+    \caption{\label{fig:operacao_insertion_sort}Operação do Insertion Sort}
     \begin{tikzpicture}[
         box/.style={draw, rectangle, minimum width=0.8cm, minimum height=0.6cm, align=center},
         label/.style={above=0.1cm},
@@ -984,12 +982,12 @@ tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem 
 
 \end{figure}
 
-A figura \ref{Operação do Insertion Sort}, mostra que o algoritmo \ref{Insertion-Sort} funciona para se ordenar um vetor,
+A figura \ref{fig:operacao_insertion_sort}, mostra que o algoritmo \ref{fig:insertion_sort} funciona para se ordenar um vetor,
 onde, no início de cada interação do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
 de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados e $j$ é o elemento
 que está sendo verificado \cite{introductionAlgorthms}.
 
-Agora com o algoritmo \ref{Insertion-Sort}, conseguimos analisar o custo computacional do insertion sort, mas primeiro
+Agora com o algoritmo \ref{fig:insertion_sort}, conseguimos analisar o custo computacional do insertion sort, mas primeiro
 precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada", que segundo \cite{introductionAlgorthms} é:
 
 \begin{itemize}
@@ -999,15 +997,15 @@ precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada"
     que mesmo cada passo levando um tempo diferente doso utros, o tempo do $i$ passo é sempre uma constante, $c_i$.  
 \end{itemize}
 
-Em nosso algoritmo \ref{Insertion-Sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
+Em nosso algoritmo \ref{fig:insertion_sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
 o loop while da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
 executado uma vez a mais do que o corpo do loop.
 
-Assim conseguimos chegar a seguinte análise do algoritmo \ref{Insertion-Sort}:
+Assim conseguimos chegar a seguinte análise do algoritmo \ref{fig:insertion_sort}:
 
 \begin{table}[H]
     \centering
-    \caption{\label{Análise-Insertion-Sort} Análise Insertion Sort}
+    \caption{\label{tab:analise_insertion_sort} Análise Insertion Sort}
     \begin{tabular}{lll}
         \textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\
         2 & $c_2$ & $n$ \\
@@ -1022,11 +1020,11 @@ Assim conseguimos chegar a seguinte análise do algoritmo \ref{Insertion-Sort}:
 \end{table}
 
 O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ passos para executar
-e execute $n$ vezes ira contribuir com $c_in$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
-sort \ref{Insertion-Sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{Análise-Insertion-Sort}:
+e execute $n$ vezes ira contribuir com $c_i \cdot n$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
+sort \ref{fig:insertion_sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{tab:analise_insertion_sort}:
 
 \begin{equation}
-    \label{tempo-execução-insertion-sort}
+    \label{eq:tempo_execucao_insertion_sort}
     T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
 \end{equation}
 
@@ -1034,10 +1032,10 @@ O tempo de execução de um algoritmo varia dependendo do dado de entrada, onde 
 análise de complexidade, leva-se em consideração apenas o pior caso \cite{introductionAlgorthms}, onde, no nosso caso de exemplo, 
 o algoritmo será executado por completo percorrendo cada elemento do vetor, que ocorre quando o vetor se encontra em ordem decrescente.
 
-O pior caso no algoritmo \ref{Insertion-Sort}, pode ser representado pela seguinte equação:
+O pior caso no algoritmo \ref{fig:insertion_sort}, pode ser representado pela seguinte equação:
 
 \begin{equation}
-    \label{pior-caso-insertion-sort}
+    \label{eq:pior_caso_insertion_sort}
     \begin{split}
         T(n)& = c_2n + c_3(n - 1) + c_4(n - 1) + c_5(\frac{n(n+1)}{2}-1) + \\
             &   c_6(\frac{n(n-1)}{2}) + c_7(\frac{n(n+1)}{2}) + c_8(n-1) \\
@@ -1046,14 +1044,14 @@ O pior caso no algoritmo \ref{Insertion-Sort}, pode ser representado pela seguin
     \end{split}
 \end{equation}
 
-Podemos expressar a equação \ref{pior-caso-insertion-sort}, como $an^2 + bn - c$, para constantes $a, b$ e $c$, que dependem do custo de
+Podemos expressar a equação \ref{eq:pior_caso_insertion_sort}, como $an^2 + bn - c$, para constantes $a$, $b$ e $c$, que dependem do custo de
 $c_i$. Mas é a taxa de crescimento que realmente nos interessa, logo consideramos apenas o maior termo da equação, isto é $an^2$, já que
 os outros termos são insignificantes para valores muitos grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto
 o pior caso de tempo de execução como $\theta(n^2)$.
 
-Agora para encontrarmos a qual classe apresentada na tabela \ref{Notação Assintótica} o algoritmo \ref{Insertion-Sort} pertence, convertemos
+Agora para encontrarmos a qual classe apresentada na tabela \ref{fig:notacao_assintótica} o algoritmo \ref{fig:insertion_sort} pertence, convertemos
 da notação $\theta$ (theta) para a $O$ (O-grande), esta conversão é simples já que o grupo de problemas abordados pela notação $\theta$ engloba
-a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a função de crescimento ($n^2$), portanto, o algoritmo \ref{Insertion-Sort}
+a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a função de crescimento ($n^2$), portanto, o algoritmo \ref{fig:insertion_sort}
 é $O(n^2)$ logo pertence ao grupo de problemas Quadráticos \cite{introductionAlgorthms}.
 
 \subsection{Análise de espaço}
@@ -1065,8 +1063,8 @@ análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
 No algoritmo de insertion sort, temos as seguintes variáveis:
 
 \begin{itemize}
-    \item $Vetor A$ a sequência de $n$ inteiros;
-    \item $key$ uma variável  que armazena um valor presente no vetor $A$;
+    \item $Vetor \space A$ a sequência de $n$ inteiros;
+    \item $key$ uma variável que armazena um valor presente no vetor $A$;
     \item $i$ um valor inteiro que representa uma posição na sequência;
     \item $j$ um valor inteiro que representa uma posição na sequência;
 \end{itemize}
@@ -1075,7 +1073,7 @@ Assim, o algoritmo não cria nenhuma variável a mais durante sua execução, ac
 Sendo o tamanho de 3 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho n da sequência de inteiros.
 
 Logo, o consumo de memória pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequência de entrada, portanto 
-o crescimento do algoritmo \ref{Insertion-Sort} é do tipo linear.
+o crescimento do algoritmo \ref{fig:insertion_sort} é do tipo linear.
 
 \section{Linguagem R}
 
@@ -1112,20 +1110,20 @@ junto ao RNB per capita (Paridade do Poder de Compra, valores de 2005), Índice 
 Índice de Desenvolvimento Humano, segundo dados da ONU \cite{gam_exemplo}.
 
 \lstset{style=r_code}
-\begin{lstlisting}[caption={\label{Exemplo uso de package}Exemplo uso de package}]
+\begin{lstlisting}[caption={\label{list:exemp_package}Exemplo uso de package}]
     library(mgcv)
     pisa = read_csv('data/pisasci2006.csv')
     mod_gam = gam(Overall ~ s(Income, bs = "cr"), data = pisa)
 \end{lstlisting}
 \legend{Fonte: \citeonline{gam_exemplo}}
 
-O código \ref{Exemplo uso de package} gera um Generalized Additive Model, determinando os termos de suavização pela função $s()$ com o
+O código \ref{list:exemp_package} gera um Generalized Additive Model, determinando os termos de suavização pela função $s()$ com o
 tipo de suavização sendo a splines de regressão cúbicas \cite{gam_exemplo}. 
 
 A linha $library(mgcv)$ é a responsável por indicar qual package estamos usando, neste caso o mgcv, mas poderia ser outro ou mais 
 de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamento interno é mascarado 
 para o usuário, precisamos apenas "configurar" alguns parâmetros como a $data$, os dados que o modelo ira utilizar, e quais campos 
-dos dados iramos usar $Overall ~ s(Income, bs = "cr")$.  
+dos dados iramos usar \verb|Overall ~ s(Income, bs = "cr")|.  
 
 Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
 os pormenores da execução em si, apenas passar os parâmetros necessários de modo correto.
@@ -1220,7 +1218,7 @@ Sobre os dados, de onde vieram, e como devem ser cuidados.
 
 \partapendices
 
-\chapter{\label{AnexoA} Cronograma}
+\chapter{\label{anexo:a} Cronograma}
 \begin{figure}[h]
     \centering
     \includegraphics[angle=90, width=0.35\textwidth]{../Imgs/Cronograma.jpg}
