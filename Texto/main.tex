@@ -1171,27 +1171,52 @@ computacionais preditivos. Abrangendo as ferramentas e bibliotecas utilizdas, al
 Detalhamento da arquitetura gerada para a aplicação.
 
 \section{Recursos tecnologicos}
+Uma breve explicação dos recursos e tecnologias utilizadas no projeto, e suas versões.
 \begin{itemize}
-  \item Python texto
-  \item R texto
-  \item Streamlit texto
-  \item Supabase texto
-  \item subprocess texto
+  \item Python 3.10.0: Linguagem de alto nível, interpretada, com uma forte presença no campo da Ciência de Dados, Aprendizado de
+  Máquina e Inteligência Artificial. Esta linguagem foi escolhida pela suas bibliotecas que facilitam o tratamento de dados, e a
+  integração de scripts em outras linguagens de programação.
+  \item R 4.1.2: Linguagem de alto nível, interpretada, assim como o Python, possui uma forte presença na Ciência de Dados e Aprendizado
+  de Máquina, mas se destaca também no campo da Análise Estatística. Esta linguagem foi escolhida pela sua implementação robusta dos
+  modelos GAM, GLM e MARS.
+  \item Streamlit 1.48.1: Biblioteca para a linguagem Python, desenvolvida com o intuito de facilitar a criação e compartilhamento
+  de aplicações web, com foco em Aprendizado de Máquina e Ciência de Dados. Utilizada para a construção da interface gráfica do projeto.
+  \item Supabase: Plataforma de \textit{Backend as a Service} (BaaS) de código aberto, sendo seus principais serviços, banco de dados
+  PostgreSQL, APIs instantâneas, Autenticação e Armazenamento. Escolhida pela sua capacidade de Armazenamento e a fácil integração com a
+  linguagem Python. 
+  \item subprocess: Biblioteca nativa do Python, possibilita que durante a execução de um \textit{script} Python, seja chamado outro
+  \textit{script} ou programa. Utilizado para a integração do \textit{Python} com os \textit{scripts} em R.
 \end{itemize}
 
 \section{Dados}
 
+Os tipos de dados suportados pelo sistema.
+
 \subsection{Preparo}
 
-Sobre os dados, de onde vieram, e como devem ser cuidados.
+Como esses dados devem ser preparados para serem inseridos no programa.
 
 \subsection{Armazenamento}
 
+Como e onde esses dados são armazenados, quando estão dentro do sistema.
+E como o sistema lida com a perca da internet
+
 \section{Implementação}
 
-\subsection{Treinando um modelo}
+Como a arquitetura apresentada foi implementada em código.
 
-\subsection{Avaliando o modelo}
+\subsection{Modelos}
+
+Como os modelos são gerados, e oque os mesmo geram como arquivos auxiliares.
+
+\subsubsection{Treinamento}
+
+Como o sistema lida com o treinamento dos modelos, o armazenamento e pos utilização.
+
+\subsubsection{Avaliação}
+
+Como o sistema faz para avaliar o modelo de modo coerente com base no tipo de dado
+que está sento trabalhado.
 
 % ========================================================================
 % RESULTADOS
