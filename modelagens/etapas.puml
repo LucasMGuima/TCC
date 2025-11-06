@@ -1,0 +1,23 @@
+@startuml
+actor Cliente
+participant API
+participant Servidor
+database BD
+
+Cliente -> API: Enviar solicitação de login
+activate API
+API -> Servidor: Validar credenciais
+activate Servidor
+Servidor -> BD: Consultar usuário
+BD --> Servidor: Usuário encontrado
+Servidor --> API: Login bem-sucedido
+deactivate Servidor
+
+alt Login válido
+    API --> Cliente: Retorna token JWT
+else Login inválido
+    API --> Cliente: Erro 401 - Credenciais incorretas
+end
+
+deactivate API
+@enduml

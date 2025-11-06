@@ -1,0 +1,34 @@
+@startuml
+' Define o título do diagrama
+title Batata
+
+' Definição de classes
+class Livro {
+  - titulo : String
+  - autor : String
+  - isbn : String
+  - disponivel : Boolean
+  + emprestar() : void
+  + devolver() : void
+}
+
+class Usuario {
+  - nome : String
+  - matricula : String
+  + emprestarLivro(livro : Livro) : void
+  + devolverLivro(livro : Livro) : void
+}
+
+class Biblioteca {
+  - nome : String
+  - endereco : String
+  + adicionarLivro(livro : Livro) : void
+  + registrarUsuario(usuario : Usuario) : void
+}
+
+' Relacionamentos
+Biblioteca "1" o-- "*" Livro : contém >
+Biblioteca "1" o-- "*" Usuario : gerencia >
+Usuario "1" --> "*" Livro : empresta >
+
+@enduml

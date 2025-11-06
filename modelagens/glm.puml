@@ -1,0 +1,24 @@
+@startuml
+actor App
+participant GLM
+participant SCORE
+database Database
+
+App -> Database : Modelos disponíveis
+activate Database
+App <- Database
+App -> Database : Dados disponíveis
+App <- Database
+deactivate Database
+
+App -> GLM : Treino do modelo
+activate GLM
+App <- GLM
+deactivate GLM
+
+App -> SCORE : Avalia o modelo
+activate SCORE
+App <- SCORE
+deactivate SCORE 
+
+@enduml

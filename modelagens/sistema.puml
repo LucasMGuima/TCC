@@ -1,0 +1,69 @@
+@startuml
+title Funcionmaneto sistema
+
+' Definição de classes
+class App { }
+
+class call_model {
+    + split_data() : tuple
+    + run_model() : String | void
+    + run_teste() : void
+}
+
+class Database {
+    - _instance : Self@Conection
+    + start_conection() : Client
+    + contentIn_bucket() : List
+    + contentIn_folder() : List
+    + list_local_files() : List
+    + upload_content() : void
+}
+
+class src.score { 
+    - args : String
+}
+
+class src.score_continuo { 
+    + score_continuo() : void
+}
+
+class src.score_categorico {
+    + err_metric() : table
+    + score_categorico() : void
+}
+
+class models.gam {
+    - args : String
+    - data : DataFrame
+}
+
+class models.glm { 
+    - args : String
+    - data : DataFrame
+}
+
+class models.mars {
+    - args : String
+    - data : DataFrame
+}
+
+class models.utils {
+    + save_json() : void
+    + save_formula_csv() : File
+    + save_model() : String
+}
+
+' Relacionamentos
+App --> Database : Gerencia dos dados
+App --> call_model : Treino e Avaliação dos modelos
+call_model --> models.gam : Treino do GAM
+call_model --> models.glm : Treino do GLM
+call_model --> models.mars : Treino do MARS
+call_model --> src.score : Avaliação dos modelos
+models.gam --> models.utils : Funções auxiliares
+models.glm --> models.utils : Funções auxiliares
+models.mars --> models.utils : Funções auxiliares
+src.score --> src.score_categorico : Modelo categorico
+src.score --> src.score_continuo : Modelo continuo
+
+@enduml

@@ -1168,7 +1168,48 @@ computacionais preditivos. Abrangendo as ferramentas e bibliotecas utilizdas, al
 
 \section{Arquitetura}
 
-Detalhamento da arquitetura gerada para a aplicação.
+A arquitetura proposta para a aplicação, foi idealizada para ser robusta e adaptavel, tornando a aplicação utilizavel com e sem
+conexão a rede de internet, assim como a possivel inserção de novos modelos preditivos.
+Sua estrutura segue como referencia o seguinte esquema, que pode ser encontrado no Anexo \ref{anexo:arquitetura_sistema}.
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:arquitetura_sistema} Arquitetura do sistema}
+    \includegraphics[width=0.90\textwidth]{../modelagens/sistema.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+No sistema idealizado, a parte de controlo da aplicação é responsabilidade da classe App, a classe de \textit{call\_model},
+age como uma interface entre o App e os modelos disponíveis, responsavel por informar quais modelos estão disponíveis, 
+rodar seus respectivos treinos e teste.
+Os modelos implementandos possuem um processo de treino semelhante, seus fluxos são respresentados nos sequintes
+diagramas de sequência, assim como a sua avaliação.
+
+Para os modelos feitos com o GLM.
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:diagrama_sequencia_glm} Diagrama de Sequência - GLM}
+    \includegraphics[width=0.50\textwidth]{../modelagens/glm.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+Para os modelos feitos com o GAM.
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:diagrama_sequencia_gam} Diagrama de Sequência - GAM}
+    \includegraphics[width=0.50\textwidth]{../modelagens/gam.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+E para os modelos feitos com o MARS.
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:diagrama_sequencia_mars} Diagrama de Sequência - MARS}
+    \includegraphics[width=0.50\textwidth]{../modelagens/mars.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+Tanto para os modelos disponíveis quanto para os dados, o sistema possue a capacidade de armazenar os mesmo em um serviço armazenamento
+pela internet quanto em um armazenamento local. Tornando o mesmo independente de uma conexão contínua com a internet.
 
 \section{Recursos tecnologicos}
 Uma breve explicação dos recursos e tecnologias utilizadas no projeto, e suas versões.
@@ -1243,10 +1284,10 @@ que está sento trabalhado.
 
 \partapendices
 
-\chapter{\label{anexo:a} Cronograma}
+\chapter{\label{anexo:arquitetura_sistema} Arquitetura do sistema}
 \begin{figure}[h]
     \centering
-    \includegraphics[angle=90, width=0.35\textwidth]{../Imgs/Cronograma.jpg}
+    \includegraphics[angle=90, width=0.85\textwidth]{../modelagens/sistema.png}
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
