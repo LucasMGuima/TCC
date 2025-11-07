@@ -1181,6 +1181,10 @@ Sua estrutura segue como referencia o seguinte esquema, que pode ser encontrado 
 No sistema idealizado, a parte de controlo da aplicação é responsabilidade da classe App, a classe de \textit{call\_model},
 age como uma interface entre o App e os modelos disponíveis, responsavel por informar quais modelos estão disponíveis, 
 rodar seus respectivos treinos e teste.
+
+Está mesma intergace possibilita a adição de novos modelos, sendo necessário se adequar ao modo como os dados são passdos e
+como o sistema espera encontrar seus modelos treinados e respectivas respostas.
+
 Os modelos implementandos possuem um processo de treino semelhante, seus fluxos são respresentados nos sequintes
 diagramas de sequência, assim como a sua avaliação.
 
@@ -1208,11 +1212,12 @@ E para os modelos feitos com o MARS.
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
-Tanto para os modelos disponíveis quanto para os dados, o sistema possue a capacidade de armazenar os mesmo em um serviço armazenamento
+Tanto para os modelos disponíveis quanto para os dados, o sistema possue a capacidade de armazenar os mesmo em um serviço de armazenamento
 pela internet quanto em um armazenamento local. Tornando o mesmo independente de uma conexão contínua com a internet.
 
 \section{Recursos tecnologicos}
-Uma breve explicação dos recursos e tecnologias utilizadas no projeto, e suas versões.
+Nesta seção é apresentado os recursos utilizados para a confecção da aplicação, assim como uma breve justificativa em relação a escolha 
+de cada uma.
 \begin{itemize}
   \item Python 3.10.0: Linguagem de alto nível, interpretada, com uma forte presença no campo da Ciência de Dados, Aprendizado de
   Máquina e Inteligência Artificial. Esta linguagem foi escolhida pela suas bibliotecas que facilitam o tratamento de dados, e a
@@ -1231,16 +1236,28 @@ Uma breve explicação dos recursos e tecnologias utilizadas no projeto, e suas 
 
 \section{Dados}
 
-Os tipos de dados suportados pelo sistema.
+A aplicação foi desenvolvida para aceitar dados armazenados em um arquivo no formato \textit{.csv} (Comma-separated value). Com a 
+capacidade de armazenar estes dados em um serviço de armazenamento online ou de modo local.
 
-\subsection{Preparo}
+O sistema se encarrega de fazer um leve tratamento dos dados a serem usados, não utilizando de entradas com dados faltantes que podem
+atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema divide os dados em dois grupos, dados
+para teste e dados para treinos, de modod aleatorio, separando 80\% dos dados para treino e 20\% dos dados para teste.
 
-Como esses dados devem ser preparados para serem inseridos no programa.
+Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmo forem dados
+continuos as métricas avalaitivas são diferentes na situação onde os dados são categoricos. Assim como o nome das colunas é usado para
+selecionar quais serão os parametros dependente e independentes.
 
 \subsection{Armazenamento}
 
-Como e onde esses dados são armazenados, quando estão dentro do sistema.
-E como o sistema lida com a perca da internet
+Os dados locais são armazenados dentro da pasta \textit{data\\dados}, e os dados que estão armazenados no \textit{Supabase} podem ser
+encontrados no \textit{storage} data dentro da pasta \textit{dados}. 
+
+Para os modelos, o seu armazenamento ocorre de modo semelhante, quando em um senario local, são ecnontrados na pasta \textit{models}, e
+e quando estamos em um funcionamento online, os mdoelos são encontrados no \textit{storage} data, porém na pasta \textit{models}.
+
+A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}, se falhar ela se inicia altomaticamente em
+modo offline, e passa a procrar os arquivos em suas pastas locais, do contrário, sempre busca no \textit{storage} configurado no 
+\textit{Supabase}.
 
 \section{Implementação}
 
@@ -1249,6 +1266,32 @@ Como a arquitetura apresentada foi implementada em código.
 \subsection{Modelos}
 
 Como os modelos são gerados, e oque os mesmo geram como arquivos auxiliares.
+
+Para se gerar um modelo, primeiro precisamos escolhar qual dataset será utilizado. E qual o tipo de modelo a ser gerado, aqui é possivel
+escolher mais de um tipo de modelo, para crianção em conjunto. 
+
+Tendo os dados e o tipo do modelo sido escolhido o sistema nos informa quais os parametros podem ser utilizados como preditores e 
+repostas, permitindo a escolha de um número variado de váriaveis em ambos os casos.
+
+Durante o treino do modelo, os dados são separdos em dois conjunto, um pra o trieno em si e o segundo para os testes posteriores, se estes
+dados já não tiverem sido separados durante a criação de outros modelo. Ao terminar de criar o modelo, a aplicação gera um arquivo 
+\textit{JSON} contendo os dados do modelo, como apresentado a baixo.
+
+\lstset{style=r_code} % CRIAR ESTILO PARA JSON %
+\begin{lstlisting}
+[
+  {
+    "model": "modelos/gam_sao_paulo.rds",
+    "response_name": "COMMON.NAME",
+    "predictors_name": "LATITUDE|LONGITUDE",
+    "data_name": "data/test_sao_paulo.csv"
+  }
+]
+\end{lstlisting}
+
+Onde, \textit{model} identifica onde esta salvo o modelo gerado, \textit{response\_name} a(s) variavel(is) de repostas, 
+\textit{predictors\_name} os preditores usados separados por "\textbar" e \textit{data\_name} onde se encontra os dados a serem usados 
+para teste.
 
 \subsubsection{Treinamento}
 
