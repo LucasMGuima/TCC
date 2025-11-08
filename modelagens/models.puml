@@ -1,6 +1,6 @@
 @startuml
 actor App
-participant GAM
+participant MODELS
 participant SCORE
 database Database
 
@@ -11,10 +11,10 @@ App -> Database : Dados disponíveis
 App <- Database
 deactivate Database
 
-App -> GAM : Treino do modelo
-activate GAM
-App <- GAM
-deactivate GAM
+App -> MODELS : Treino do modelo
+activate MODELS
+App <- MODELS
+deactivate MODELS
 
 App -> SCORE : Avalia o modelo
 activate SCORE

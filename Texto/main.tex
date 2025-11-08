@@ -121,6 +121,48 @@
     showstringspaces=false,
 }
 
+\definecolor{delim}{RGB}{20,105,176}
+\definecolor{numb}{RGB}{106, 109, 32}
+\definecolor{string}{rgb}{0.64,0.08,0.08}
+
+\lstdefinelanguage{json}{
+    numbers=left,
+    numberstyle=\small,
+    rulecolor=\color{black},
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
+    breakatwhitespace=true,
+    basicstyle=\ttfamily\small,
+    upquote=true,
+    morestring=[b]",
+    stringstyle=\color{string},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\lstdefinelanguage{python}{
+    morekeywords={from, import, def, return, class, self, if, else, elif, while, for, in, try, except, finally, with, as, pass, break, continue, yield, lambda, True, False, None},
+    morecomment=[l]{\#},
+    morestring=[b]",
+    alsodigit={_},
+    alsoletter={_}
+}
+
 % informações do PDF
 \makeatletter
 \hypersetup{
@@ -1188,27 +1230,10 @@ como o sistema espera encontrar seus modelos treinados e respectivas respostas.
 Os modelos implementandos possuem um processo de treino semelhante, seus fluxos são respresentados nos sequintes
 diagramas de sequência, assim como a sua avaliação.
 
-Para os modelos feitos com o GLM.
 \begin{figure}[H]
     \centering
-    \caption{\label{fig:diagrama_sequencia_glm} Diagrama de Sequência - GLM}
-    \includegraphics[width=0.50\textwidth]{../modelagens/glm.png}
-    \legend{Fonte: Elaboração do autor}
-\end{figure}
-
-Para os modelos feitos com o GAM.
-\begin{figure}[H]
-    \centering
-    \caption{\label{fig:diagrama_sequencia_gam} Diagrama de Sequência - GAM}
-    \includegraphics[width=0.50\textwidth]{../modelagens/gam.png}
-    \legend{Fonte: Elaboração do autor}
-\end{figure}
-
-E para os modelos feitos com o MARS.
-\begin{figure}[H]
-    \centering
-    \caption{\label{fig:diagrama_sequencia_mars} Diagrama de Sequência - MARS}
-    \includegraphics[width=0.50\textwidth]{../modelagens/mars.png}
+    \caption{\label{fig:diagrama_sequencia_model} Diagrama de Sequência - MODELO}
+    \includegraphics[width=0.50\textwidth]{../modelagens/models.png}
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
@@ -1261,46 +1286,212 @@ modo offline, e passa a procrar os arquivos em suas pastas locais, do contrário
 
 \section{Implementação}
 
-Como a arquitetura apresentada foi implementada em código.
+O aplicativo foi majoritariamente desenvovlido utilizando da linguagem de programação Python,
+e os modelos são implementados utilizando a linguagem de programação R, assim como os metodos
+de avaliação.
+
+O parte principal da aplicação foi implementada no arquivo \textit{app.py}, onde é tratado a
+conexão com o \textit{Supabase} assim como o preparo para o treino de um novo modelo.
+
+A conexão é tratada no seguinte pedaço de código.
+
+\begin{lstlisting}[language=python]
+    try:
+        db = database.Conection()
+        if db.offline_mode:
+            st.warning("Executando em modo offline. Usando dados locais.")
+        else:
+            st.success("Conectado ao Supabase")
+    except Exception as e:
+        st.error(f"Erro na conexao: {e}")
+        st.stop()
+\end{lstlisting}
+
+Onde se não for possivel a conexão com o Supabase por qualquer motivo,
+o aplicativo é iniciado no modo offline, utilizando dos dodos e modelos
+disponíveis localmente.
+
+A parte visual do aplicação é gerenciada pela biblioteca \textit{Streamlit}.
+
+A utilização dessa biblioteca pode ser visto nas função utilizadas para gerar
+os campos de seleção que serão variados dependendo do conteudo disponivel.
+
+\begin{lstlisting}[language=python, caption={\label{code:selecao_variavel}}]
+    sb_response = widgets.creat_selectbox(
+        lst_param,
+        'Selecione o parametro de resposta (variavel dependente)'
+    )
+\end{lstlisting}
+
+Onde o funcionamento da biblioteca \textit{Streamlit} esta encapsulado pelos script
+\textit{widgets}, para ver com maior detalhes, podemos usar a função utilizada no
+código \ref{code:selecao_variavel}.
+
+\begin{lstlisting}[language=python]
+    def creat_selectbox(list: list, label: str|None):
+        return st.selectbox(label, list)
+\end{lstlisting}
+
+Assim que o programa tem um modelo selecionado, podemos escolher os parâmetros de
+reposta e os preditores. Isso está implementado na seguinte parte do programa.
+
+\begin{lstlisting}[language=python]
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        sb_response = widgets.creat_selectbox(
+            lst_param,
+            'Selecione o parametro de resposta (variavel dependente)'
+        )
+        
+    with col2:
+        # Remove a variavel de resposta da lista de preditores
+        predictor_options = [col for col in lst_param if col != sb_response] if sb_response else lst_param
+        sb_predictor = widgets.creat_multselect(
+            predictor_options,
+            'Selecione um ou mais preditores (variaveis independentes)'
+        )
+\end{lstlisting}
+
+Tendo os parâmetro selecionados, o treino do modelo pode ser efetuado. Para isso
+é necessário utilizar das funções implementadas dentro do script \textit{call\_model}.
+Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}.
+
+\begin{lstlisting}[language=python]
+    try:
+        result = src.call_model.run_model(db_data, data, model, sb_response, sb_predictor)
+        results.append({
+            'modelo': model,
+            'status': 'Sucesso',
+            'resultado': result
+        })
+        st.success(f'{model} executado com sucesso!')
+    except Exception as e:
+        results.append({
+            'modelo': model,
+            'status': f'Erro: {str(e)}',
+            'resultado': None
+        })
+        st.error(f'Erro ao executar {model}: {str(e)}')
+\end{lstlisting}
+
+Tendo os modelos treinados, a lógica dos teste começa no script \textit{pages\\testes.py}. Este
+que por sua vez, chama o script em R responsavel por gerenciar os testes, atravez da
+função \textit{run\_teste}.
+
+\begin{lstlisting}[language=python]
+    for avaliableModel in db_avaliableModels:
+        model = f"modelos/{avaliableModel}"
+
+        src.call_model.run_teste(model)
+\end{lstlisting}
+
+A função \textit{run\_teste} chama o seguinte script em R.
+
+\begin{lstlisting}[style=r_code]
+    library(jsonlite)
+
+    source("src/score_categorico.r")
+    source("src/score_continuo.r")
+
+    ## Pega os argumentos modelo e dados
+
+    args <- commandArgs(trailingOnly = TRUE)
+
+    if (length(args) < 1) {
+        stop("O argumento passado nao e valido.", call. = FALSE)
+    }
+
+    # Carrega o JSON
+    json_file <- args[1]
+    json_dado <- fromJSON(json_file)
+
+    model <- readRDS(json_dado$model) # Carrega o modelo
+    data_test <- read.csv(json_dado$data_name) # Carrega os dados de test
+
+    ## Verifica o dado alvo
+    # Chama o script correspondendo para categorico ou continuo
+
+    response_col_name <- json_dado$response_name
+    val_response <- data_test[response_col_name]
+
+    unic_values <- length(unique(val_response)) # Qtd de valores unicos
+    all_values <- length(val_response) # Qtd geral de valores
+
+    percent_unic <- (unic_values * 100) / all_values
+
+    col_class <- class(val_response)
+
+    if ((col_class == "factor" || col_class == "character") &&  percent_unic < 10){
+        score_categorico(model, data_test, json_dado) # O dado e categorico
+    }else {
+        score_continuo(model, data_test, json_dado) # O dado e continuo
+    }
+\end{lstlisting}
+
+Por sua vez, esse script em R, identifica o qual metodo de avalaiação será usado,
+com base no tipo de dados, que é inferido apartir da porcentagem de dados valores
+unicos e o tipo de classe da coluna sendo avalaiada.
+
+Tento avalido os modelos, o script retorno ao aplicativo as metricas usadas e seus
+respectivos valores.
 
 \subsection{Modelos}
-
-Como os modelos são gerados, e oque os mesmo geram como arquivos auxiliares.
 
 Para se gerar um modelo, primeiro precisamos escolhar qual dataset será utilizado. E qual o tipo de modelo a ser gerado, aqui é possivel
 escolher mais de um tipo de modelo, para crianção em conjunto. 
 
+O código para gerar um modelo, possui alguns pontos importantes. Como ele recebe os dados para se treinar o modelo e como deve ser
+o retorno para o aplicativo. As informações necessárias são passadas atravez de argumentos de comando, e para extrai-los, usamos a
+seguinte parte do scritp em R.
+
+\begin{lstlisting}[style=r_code]
+    args <- commandArgs(trailingOnly = TRUE)
+
+    if (length(args) < 3){
+        stop("O argumento passado nao e valido.", call. = FALSE)
+    }
+
+    file_name <- args[1]
+    response <- args[2]
+    predictors <- args[3:length(args)]
+\end{lstlisting}
+
 Tendo os dados e o tipo do modelo sido escolhido o sistema nos informa quais os parametros podem ser utilizados como preditores e 
 repostas, permitindo a escolha de um número variado de váriaveis em ambos os casos.
 
-Durante o treino do modelo, os dados são separdos em dois conjunto, um pra o trieno em si e o segundo para os testes posteriores, se estes
-dados já não tiverem sido separados durante a criação de outros modelo. Ao terminar de criar o modelo, a aplicação gera um arquivo 
-\textit{JSON} contendo os dados do modelo, como apresentado a baixo.
+Durante o treino do modelo, os dados são separdos em dois conjunto, um pra o treino em si e o segundo para os testes posteriores, se estes
+dados já não tiverem sido separados durante a criação de outros modelo. Ao terminar de criar, a aplicação gera um arquivo \textit{JSON} 
+contendo os dados do modelo, como apresentado a baixo.
 
-\lstset{style=r_code} % CRIAR ESTILO PARA JSON %
-\begin{lstlisting}
-[
-  {
-    "model": "modelos/gam_sao_paulo.rds",
-    "response_name": "COMMON.NAME",
-    "predictors_name": "LATITUDE|LONGITUDE",
-    "data_name": "data/test_sao_paulo.csv"
-  }
-]
+\begin{lstlisting}[language=json]
+    [
+        {
+            "model": "modelos/gam_sao_paulo.rds",
+            "response_name": "COMMON.NAME",
+            "predictors_name": "LATITUDE|LONGITUDE",
+            "data_name": "data/test_sao_paulo.csv"
+        }
+    ]
 \end{lstlisting}
 
 Onde, \textit{model} identifica onde esta salvo o modelo gerado, \textit{response\_name} a(s) variavel(is) de repostas, 
 \textit{predictors\_name} os preditores usados separados por "\textbar" e \textit{data\_name} onde se encontra os dados a serem usados 
 para teste.
 
-\subsubsection{Treinamento}
-
-Como o sistema lida com o treinamento dos modelos, o armazenamento e pos utilização.
+Esse arquivo \textit{JSON} recebe o nome do modelo junto com o nome do dataset utilizado.
 
 \subsubsection{Avaliação}
 
-Como o sistema faz para avaliar o modelo de modo coerente com base no tipo de dado
-que está sento trabalhado.
+Para avaliar o modelo, primeiro a aplicação identifica qual o tipo de dados que seram
+utilizados, se são categoricos ou continuos. A patir dessa indentificação o aplicativo
+escolhe quais as metricas de avaliação melhor se adequão para o teste.
+
+Ao final do processo de avaliação o modelo retorno todas os resultados obtidos, sendo
+possível efetuar o teste em vários modelos gerados simultaneamente.
+
+Deste modo, se é possivel identificar qual modelo escolhido atua melhor com os dados
+desejados, e o modelo pode ser utilizado para processos futuros.
 
 % ========================================================================
 % RESULTADOS
