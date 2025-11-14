@@ -226,7 +226,7 @@
 % ========================================================================
 % AGRADECIMENTOS
 % ========================================================================
- \begin{agradecimentos}
+\begin{agradecimentos}
 \end{agradecimentos}
 
 % ========================================================================
@@ -244,7 +244,6 @@
 % ========================================================================
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
-
 Texto do resumo
 
 \textbf{Palavras-chaves}: palavra-chave 1, palavra-chave 2, palavra-chave 3.
@@ -370,24 +369,21 @@ situações em que queremos criar uma análise inicial de um determinado cenári
 
 \section{Objetivo}
 
-Este trabalho tem como objetivo avaliar e comparar a implementação encontrada
-nas bibliotecas mda e mgcv da linguagem R, dos modelos de distribuição de espécies,
-GAM, GLM e MARS, levantando o custo computacional de cada um destes a partir de
-uma análise de complexidade e espaço. Encontrando um modelo que melhor apresente
-um equilíbrio entre a acurácia e o custo computacional.
+Este trabalho tem como objetivo a criação de um sistema maleável capaz de criar modelos de regressão
+com conjuntos de dados contínuos e categóricos, e avaliá-los, inferindo a partir dos dados quais métricas
+avaliativas aplicar e identificar se os dados são contínuos ou categóricos.
 
 \subsection{Objetivos Específicos}
 
 \begin{enumerate}
-    \item Análise de complexidade e espaço dos modelos.
+    \item Implementar o treino e teste automatizado dos modelos.
     \begin{itemize}
         \item Generalized Additive Model;
         \item Generalized Linear Model;
         \item Multivariate Adaptive Regression Spline;
     \end{itemize}
-    \item Avaliação da acurácia dos modelos com dados de ocorrência.
-    \item Comparação dos modelos.
-    \item Avaliação dos modelos com base na relação custo x acurácia.
+    \item Identificar qual o melhor método de avaliação.
+    \item Avaliação dos modelos com base nas métricas escolhidas.
 \end{enumerate}
 
 % ========================================================================
@@ -1253,7 +1249,7 @@ de cada um.
 \begin{itemize}
   \item Python 3.10.0: Linguagem de alto nível, interpretada, com uma forte presença no campo da Ciência de Dados, Aprendizado de
 Máquina e Inteligência Artificial. Esta linguagem foi escolhida por suas bibliotecas que facilitam o tratamento de dados e a
-integração de scripts em outras linguagens de programação.
+integração de \textit{scripts} em outras linguagens de programação.
   \item R 4.1.2: Linguagem de alto nível, interpretada, assim como o Python, possui uma forte presença na Ciência de Dados e Aprendizado
 de Máquina, mas se destaca também no campo da Análise Estatística. Esta linguagem foi escolhida por sua implementação robusta dos
 modelos GAM, GLM e MARS.
@@ -1331,7 +1327,7 @@ os campos de seleção, que serão variados dependendo do conteúdo disponível.
     )
 \end{lstlisting}
 
-Onde o funcionamento da biblioteca \textit{Streamlit} está encapsulado pelo script
+Onde o funcionamento da biblioteca \textit{Streamlit} está encapsulado pelo \textit{script}
 \textit{widgets}. Para ver com maiores detalhes, podemos usar a função utilizada no
 código visto anteriormente.
 
@@ -1361,8 +1357,8 @@ resposta e os preditores. Isso está implementado na seguinte parte do programa:
 \end{lstlisting}
 
 Tendo os parâmetros selecionados, o treino do modelo pode ser efetuado. Para isso,
-é necessário utilizar as funções implementadas dentro do script \textit{call\_model}.
-Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}:
+é necessário utilizar as funções implementadas dentro do \textit{script} \textit{call\_model}.
+Seu uso pode ser visto dentro da seguinte parte do \textit{script} \textit{app.py}:
 
 \begin{lstlisting}[language=python]
     try:
@@ -1382,8 +1378,8 @@ Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}:
         st.error(f'Erro ao executar {model}: {str(e)}')
 \end{lstlisting}
 
-Tendo os modelos treinados, a lógica dos testes começa no script \textit{testes.py} 
-encontrado na pasta \textit{pages}. Este, por sua vez, chama o script em R responsável 
+Tendo os modelos treinados, a lógica dos testes começa no \textit{script} \textit{testes.py} 
+encontrado na pasta \textit{pages}. Este, por sua vez, chama o \textit{script} em R responsável 
 por gerenciar os testes, através da função \textit{run\_teste}.
 
 \begin{lstlisting}[language=python]
@@ -1393,7 +1389,7 @@ por gerenciar os testes, através da função \textit{run\_teste}.
         src.call_model.run_teste(model)
 \end{lstlisting}
 
-A função \textit{run\_teste} chama o seguinte script em R:
+A função \textit{run\_teste} chama o seguinte \textit{script} em R:
 
 \begin{lstlisting}[style=r_code]
     library(jsonlite)
@@ -1430,21 +1426,21 @@ A função \textit{run\_teste} chama o seguinte script em R:
     }
 \end{lstlisting}
 
-Por sua vez, esse script em R identifica qual método de avaliação será usado,
+Por sua vez, esse \textit{script} em R identifica qual método de avaliação será usado,
 com base no tipo de dados, que é inferido a partir da porcentagem de valores
 únicos e o tipo de classe da coluna sendo avaliada.
 
-Tendo avaliado os modelos, o script retorna ao aplicativo as métricas usadas e seus
+Tendo avaliado os modelos, o \textit{script} retorna ao aplicativo as métricas usadas e seus
 respectivos valores.
 
 \subsection{Modelos}
 
 Para se gerar um modelo, primeiro precisamos escolher qual dataset será utilizado e qual o tipo de modelo a ser gerado. Aqui, é possível
-\textit{escolher mais de um tipo de modelo para criação em conjunto}. 
+escolher mais de um tipo de modelo para criação em conjunto. 
 
-O código para gerar um modelo possui alguns pontos importantes, como a forma como ele recebe os dados para treinar o modelo e como deve ser
+O código para gerar um modelo possui alguns pontos importantes, a forma como ele recebe os dados para treinar o modelo e como deve ser
 o retorno para o aplicativo. As informações necessárias são passadas através de argumentos de comando e, para extraí-los, usamos a
-seguinte parte do script em R:
+seguinte parte do \textit{script} em R:
 
 \begin{lstlisting}[style=r_code]
     args <- commandArgs(trailingOnly = TRUE)
@@ -1461,8 +1457,8 @@ seguinte parte do script em R:
 Tendo os dados e o tipo do modelo sido escolhidos, o sistema nos informa quais os parâmetros podem ser utilizados como preditores e 
 respostas, permitindo a escolha de um número variado de variáveis em ambos os casos.
 
-É de responsabilidade do script que gera o modelo criar a equação para a geração do mesmo. Tomando como exemplo, temos o
-script que gera um modelo GLM feito em R:
+É de responsabilidade do \textit{script} que gera o modelo criar a equação para a geração do mesmo. Tomando como exemplo, temos o
+\textit{script} que gera um modelo GLM feito em R:
 
 \begin{lstlisting}[style=r_code]
     response_original <- response
@@ -1505,7 +1501,7 @@ Para avaliar o modelo, primeiro a aplicação identifica qual o tipo de dados qu
 utilizados, se são categóricos ou contínuos. A partir dessa identificação, o aplicativo
 escolhe quais as métricas de avaliação melhor se adequam para o teste.
 
-A parte do script responsável pela identificação é encontrada codificada em R no seguinte
+A parte do \textit{script} responsável pela identificação é encontrada codificada em R no seguinte
 código:
 
 \begin{lstlisting}[style=r_code]
@@ -1520,7 +1516,7 @@ código:
     col_class <- class(val_response)
 \end{lstlisting}
 
-Com os dados armazenados nas variáveis \textit{percent\_unic} e \textit{col\_class}, o script em
+Com os dados armazenados nas variáveis \textit{percent\_unic} e \textit{col\_class}, o \textit{script} em
 R infere com qual tipo de dados estamos trabalhando e decide qual procedimento de avaliação
 a ser efetuado.
 
