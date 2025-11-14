@@ -577,7 +577,15 @@ mas ainda podemos tratar o problema como uma reta.
 \subsection{Métodos de avaliação de Modelos Computacionais}
 
 Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode alcançar,
-categorizando sua previsão como correta ou não. Estes tipos são representados pela matriz de confusão:
+categorizando sua previsão como correta ou não. Para modelos categoricos utilizamos a matriz de confusão, e
+quando nosso modelo atua com dados continuos, utilizamos as metricas MAE e RMSE. 
+
+\subsubsection{MAE e RMSE}
+% =====================
+% Discorrer sobre as metricas MAE e RMSE
+% =====================
+
+\subsubsection{Matriz de Confusão}
 
 \begin{table}[H]
     \centering
@@ -618,7 +626,7 @@ A precisão apresenta uma métrica de avaliação onde se aceita o erro de um fa
 é algo prejudicial à previsão. Isso, fazendo com que um local sem ocorrência da espécie analisada pelo modelo possa ser indicado como 
 um lugar de ocorrência, torna a métrica por acurácia mais confiável neste caso.
 
-\subsection{Acurácia}
+\subsubsection{Acurácia}
 
 A acurácia é um modo de avaliar a performance de um modelo, identificando se seus resultados podem
 ser considerados válidos ou não. Para chegarmos na acurácia, utilizamos a seguinte fórmula:
@@ -1263,9 +1271,10 @@ linguagem Python.
 A aplicação foi desenvolvida para aceitar dados armazenados em um arquivo no formato \textit{.csv} (Comma-separated value), com a 
 capacidade de armazenar estes dados em um serviço de armazenamento online ou de modo local.
 
-O sistema se encarrega de fazer um leve tratamento dos dados a serem usados, não utilizando entradas com dados faltantes que podem
-atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema os divide em dois grupos, dados
-para teste e dados para treino, de um modo aleatório, separando 80\% dos dados para treino e 20\% dos dados para teste.
+O sistema se encarrega de conver os nomes das colunas para um formato aceitado pelo sistema e não utilizando entradas com dados 
+faltantes que podem atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema os divide 
+em dois grupos, dados para teste e dados para treino, de um modo aleatório, separando 80\% dos dados para treino e 20\% dos 
+dados para teste.
 
 Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmos forem dados
 contínuos, as métricas avaliativas são diferentes das usadas na situação onde os dados são categóricos. Assim como o nome das colunas é 
@@ -1273,8 +1282,8 @@ usado para selecionar quais serão os parâmetros dependentes e independentes.
 
 \subsection{Armazenamento}
 
-Os dados locais são armazenados dentro da pasta \textit{data\\dados}, e os dados que estão armazenados no \textit{Supabase} podem ser
-encontrados no \textit{storage} dentro da pasta \textit{dados}. 
+Os dados locais são armazenados dentro da subpasta \textit{dados} encontrada dentro da pasta \textit{data}, e os dados que estão 
+armazenados no \textit{Supabase} podem ser encontrados no \textit{storage} dentro da pasta \textit{dados}. 
 
 Para os modelos, seu armazenamento ocorre de modo semelhante. Quando em um cenário local, são encontrados na pasta \textit{models}, e
 quando em um funcionamento online, os modelos são encontrados no \textit{storage}, porém na pasta \textit{models}.
@@ -1315,7 +1324,7 @@ A parte visual da aplicação é gerenciada pela biblioteca \textit{Streamlit}.
 A utilização dessa biblioteca pode ser vista nas funções utilizadas para gerar
 os campos de seleção, que serão variados dependendo do conteúdo disponível.
 
-\begin{lstlisting}[language=python, caption={\label{code:selecao_variavel}}]
+\begin{lstlisting}[language=python]
     sb_response = widgets.creat_selectbox(
         lst_param,
         'Selecione o parametro de resposta (variavel dependente)'
@@ -1324,7 +1333,7 @@ os campos de seleção, que serão variados dependendo do conteúdo disponível.
 
 Onde o funcionamento da biblioteca \textit{Streamlit} está encapsulado pelo script
 \textit{widgets}. Para ver com maiores detalhes, podemos usar a função utilizada no
-código \ref{code:selecao_variavel}.
+código visto anteriormente.
 
 \begin{lstlisting}[language=python]
     def creat_selectbox(list: list, label: str|None):
@@ -1344,7 +1353,6 @@ resposta e os preditores. Isso está implementado na seguinte parte do programa:
         )
         
     with col2:
-        # Remove a variavel de resposta da lista de preditores
         predictor_options = [col for col in lst_param if col != sb_response] if sb_response else lst_param
         sb_predictor = widgets.creat_multselect(
             predictor_options,
@@ -1374,9 +1382,9 @@ Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}:
         st.error(f'Erro ao executar {model}: {str(e)}')
 \end{lstlisting}
 
-Tendo os modelos treinados, a lógica dos testes começa no script \textit{pages\\testes.py}. Este,
-por sua vez, chama o script em R responsável por gerenciar os testes, através da
-função \textit{run\_teste}.
+Tendo os modelos treinados, a lógica dos testes começa no script \textit{testes.py} 
+encontrado na pasta \textit{pages}. Este, por sua vez, chama o script em R responsável 
+por gerenciar os testes, através da função \textit{run\_teste}.
 
 \begin{lstlisting}[language=python]
     for avaliableModel in db_avaliableModels:
@@ -1393,38 +1401,32 @@ A função \textit{run\_teste} chama o seguinte script em R:
     source("src/score_categorico.r")
     source("src/score_continuo.r")
 
-    ## Pega os argumentos modelo e dados
-
     args <- commandArgs(trailingOnly = TRUE)
 
     if (length(args) < 1) {
         stop("O argumento passado nao e valido.", call. = FALSE)
     }
 
-    # Carrega o JSON
     json_file <- args[1]
     json_dado <- fromJSON(json_file)
 
-    model <- readRDS(json_dado$model) # Carrega o modelo
-    data_test <- read.csv(json_dado$data_name) # Carrega os dados de test
-
-    ## Verifica o dado alvo
-    # Chama o script correspondendo para categorico ou continuo
+    model <- readRDS(json_dado$model)
+    data_test <- read.csv(json_dado$data_name)
 
     response_col_name <- json_dado$response_name
     val_response <- data_test[response_col_name]
 
-    unic_values <- length(unique(val_response)) # Qtd de valores unicos
-    all_values <- length(val_response) # Qtd geral de valores
+    unic_values <- length(unique(val_response))
+    all_values <- length(val_response)
 
     percent_unic <- (unic_values * 100) / all_values
 
     col_class <- class(val_response)
 
     if ((col_class == "factor" || col_class == "character") &&  percent_unic < 10){
-        score_categorico(model, data_test, json_dado) # O dado e categorico
+        score_categorico(model, data_test, json_dado)
     }else {
-        score_continuo(model, data_test, json_dado) # O dado e continuo
+        score_continuo(model, data_test, json_dado)
     }
 \end{lstlisting}
 
@@ -1510,8 +1512,8 @@ código:
     response_col_name <- json_dado$response_name
     val_response <- data_test[response_col_name]
 
-    unic_values <- length(unique(val_response)) # Qtd de valores unicos
-    all_values <- length(val_response) # Qtd geral de valores
+    unic_values <- length(unique(val_response))
+    all_values <- length(val_response)
 
     percent_unic <- (unic_values * 100) / all_values
 
@@ -1524,9 +1526,9 @@ a ser efetuado.
 
 \begin{lstlisting}[style=r_code]
     if ((col_class == "factor" || col_class == "character") &&  percent_unic < 10){
-  score_categorico(model, data_test, json_dado) # Dado categorico
+  score_categorico(model, data_test, json_dado)
     }else {
-    score_continuo(model, data_test, json_dado) # Dado continuo
+    score_continuo(model, data_test, json_dado)
     }
 \end{lstlisting}
 
@@ -1571,12 +1573,12 @@ Os resultados encontrados para esse caso foram:
     \legend{Fonte: Autoria do autor}
 \end{table}
 
-O conjunto de dados \textit{sao\_paulo.csv} foi criado filtrando apenas as entradas que
-têm como localidade a cidade de São Paulo, encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
+O conjunto de dados \textit{sao\_paulo.csv} foi criado filtrando apenas as entradas que têm como 
+localidade a cidade de São Paulo, encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
 fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parâmetro mundial.
 
 Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE} e
-\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. 
+\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}.
 
 % ========================================================================
 % CONCLUSÃO
@@ -1588,9 +1590,6 @@ Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LAT
 Durante o desenvolvimento deste trabalho, foi identificado que adicionar a capacidade de
 se utilizar dos modelos criados dentro da mesma aplicação para efetuar predições seria
 relevante.
-
-Assim como identificar o principal problema com dados categóricos, que atualmente não
-retornam as métricas geradas em seus respectivos testes.
 
 \postextual
 
