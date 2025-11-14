@@ -23,15 +23,15 @@
     brazil              % o último idioma é o principal do documento
     ]{abntex2}
 
-% ---
+% --- 
 % Pacotes básicos 
-% ---
+% --- 
 \usepackage{tikz}
 \usepackage{lmodern}            % Usa a fonte Latin Modern          
-\usepackage[T1]{fontenc}        % Selecao de codigos de fonte.
+\usepackage[T1]{fontenc}        % Selecao de codigos de fonte. 
 \usepackage[utf8]{inputenc}     % Codificacao do documento (conversão automática dos acentos)
 \usepackage{lastpage}           % Usado pela Ficha catalográfica
-\usepackage{indentfirst}        % Indenta o primeiro parágrafo de cada seção.
+\usepackage{indentfirst}        % Indenta o primeiro parágrafo de cada seção. 
 \usepackage{color}              % Controle das cores
 \usepackage{graphicx}           % Inclusão de gráficos
 \usepackage{microtype}          % para melhorias de justificação
@@ -41,9 +41,9 @@
 \usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 \usepackage{csvsimple}
 
-% ---
+% --- 
 % Pacotes de citações
-% ---
+% --- 
 \usepackage[brazilian,hyperpageref]{backref}     % Paginas com as citações na bibl
 \usepackage[alf]{abntex2cite}   % Citações padrão ABNT
 
@@ -56,13 +56,13 @@
 \renewcommand{\backref}{}
 % Define os textos da citação
 \renewcommand*{\backrefalt}[4]{
-    \ifcase #1 %
-        Nenhuma citação no texto.%
+    \ifcase #1 % 
+        Nenhuma citação no texto.% 
     \or
-        Citado na página #2.%
+        Citado na página #2.% 
     \else
-        Citado #1 vezes nas páginas #2.%
-    \fi}%
+        Citado #1 vezes nas páginas #2.% 
+    \fi}
 
 \usetikzlibrary{arrows.meta, shapes.geometric}
 
@@ -168,7 +168,7 @@
 \makeatletter
 \hypersetup{
         %pagebackref=true,
-        pdftitle={\@title}, 
+        pdftitle={\@title},
         pdfauthor={\@author},
         pdfsubject={\imprimirpreambulo},
         pdfcreator={LaTeX with abnTeX2},
@@ -216,7 +216,7 @@
 % ========================================================================
 % DEDICATÓRIA
 % ========================================================================
- \begin{dedicatoria}
+ \begin{dedicatoria} 
    \vspace*{\fill}
    \centering
    \noindent
@@ -227,14 +227,12 @@
 % AGRADECIMENTOS
 % ========================================================================
  \begin{agradecimentos}
- Texto de agradecimento.
-
- \end{agradecimentos}
+\end{agradecimentos}
 
 % ========================================================================
 % EPÍGRAFE
 % ========================================================================
- \begin{epigrafe}
+ \begin{epigrafe} 
      \vspace*{\fill}
     \begin{flushright}
         \textit{}
@@ -303,71 +301,71 @@ Texto do resumo
 
 \section{Contexto}
 
-O uso de modelos computacionais, na Biologia, possibilita o avanço de diferentes estudos \cite{modelagem_comp}. 
-Uma destas aplicações são os modelos de distribuição de espécies, que são capazes de fornecer uma visualização 
-da situação da fauna e flora de determinada região, podendo mostrar como estas estão se comportando no 
-decorrer do tempo \cite{speciesDistributionModels}.
+O uso de modelos computacionais na Biologia possibilita o avanço de diferentes estudos \cite{modelagem_comp}. 
+Uma dessas aplicações são os modelos de distribuição de espécies, que são capazes de fornecer uma visualização 
+da situação da fauna e da flora de determinada região, podendo mostrar como estas se comportam ao 
+longo do tempo \cite{speciesDistributionModels}.
 
 Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
 e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
 estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
-das variáveis explanatórias, sendo o GLM uma extensão de modelos lineares que não
-forçam o dado a escalas não naturais, e o GAM uma extensão semi-parametrizada do GLM,
-tendo a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
+das variáveis explicativas, sendo o GLM uma extensão de modelos lineares que não
+forçam os dados a escalas não naturais, e o GAM uma extensão semiparametrizada do GLM,
+com a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
 
-Já o Multivariate Adaptive Regression Spline (MARS) combina partição recursiva e ajustes
-por splines, de modo a manter seus aspectos positivos, enquanto sendo menos vulnerável a 
-suas propriedades não favoráveis. Gerando um conjunto de regras para prever
-valores futuros a partir de uma análise regressiva. \cite{MARS} 
+O Multivariate Adaptive Regression Spline (MARS) combina partição recursiva e ajustes
+por splines, de modo a manter seus aspectos positivos, sendo menos vulnerável a 
+suas propriedades não favoráveis. Isso gera um conjunto de regras para prever
+valores futuros a partir de uma análise regressiva \cite{MARS}. 
 
-Sendo as aplicações destes modelos encontradas codificadas na linguagem de programação R, que por
-sua vez é a linguagem de programação mais utilizada quando tratamos de ciência de dados, sendo conhecida
+As aplicações desses modelos são encontradas, em sua maioria, codificadas na linguagem de programação R, que, por
+sua vez, é a linguagem de programação mais utilizada quando se trata de ciência de dados, sendo conhecida
 como a linguagem mais robusta para a área de dados, tendo sido pensada para o uso em cálculos e
 análises estatísticas \cite{linguagem_r}.
 
-Porém, estes modelos podem requisitar uma alta demanda de processamento e memória do computador hospedeiro, 
-como citado por \cite{modelagem_comp}, ponto este, que não é repassado nos trabalhos referentes a análise 
+No entanto, esses modelos podem exigir alta demanda de processamento e memória do computador hospedeiro, 
+como citado por \cite{modelagem_comp}, ponto este que não é repassado nos trabalhos referentes à análise 
 ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um computador, tais modelos
 requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
-a necessidade de se alugar máquinas virtuais para esta finalidade \cite{global_cloud_maketing}. 
+a necessidade de se alugar máquinas virtuais para essa finalidade \cite{global_cloud_maketing}. 
 
-E quando se coloca a necessidade de se manter um controle das populações de espécies, dentro ou próximo
-a centros urbanos, a velocidade de preparo destes modelos se torna mais crítica, já que é necessário ir
+Quando se considera a necessidade de manter um controle das populações de espécies, dentro ou próximo
+a centros urbanos, a velocidade de preparação desses modelos se torna mais crítica, já que é necessário ir
 desde a coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
  
 \section{Justificativa}
 
 Identificar a distribuição de espécies em um dado ambiente, em um determinado intervalo de tempo, 
-é importante para termos noção de como as espécies estão respondendo a mudanças no ambiente, no aumento 
-ou diminuição de outra espécie.
+é importante para termos noção de como as espécies respondem a mudanças no ambiente, no aumento 
+ou na diminuição de outra espécie.
 
 Uma vez que essas mudanças podem ser geradas pela ação humana, na construção civil e de infraestrutura 
-\cite{impactConstruction}, conseguir estimar o impacto dessas ações é vantajoso para a preservação de espécies.
+\cite{impactConstruction}, conseguir estimar o impacto dessas ações é vantajoso para a preservação das espécies.
 
-Além disso, estas abordagens aumentam as possibilidades para integrar a infraestrutura necessária, 
+Além disso, essas abordagens aumentam as possibilidades para integrar a infraestrutura necessária, 
 contribuindo para a sobrevivência de espécies que estão em níveis populacionais baixos.
 
-Modelos estatísticos, que tem a capacidade de demonstrar estes eventos, aplicam de maneiras diferentes algumas 
-linhas de abordagem. O Generalized Additive Models (GAM), Generalized Linear Model (GLM), e o 
+Modelos estatísticos, que têm a capacidade de demonstrar esses eventos, aplicam de maneiras diferentes algumas 
+linhas de abordagem. O Generalized Additive Models (GAM), o Generalized Linear Model (GLM), e o 
 Multivariate Adaptive Regression Spline (MARS), ambos com uma abordagem de Maximum likelihood (ML), 
-variando em sua capacidade de atuar com um determinado tipo de dado e o custo levado para seu treinamento 
+variam em sua capacidade de atuar com um determinado tipo de dado e no custo de seu treinamento 
 e utilização \cite{predPerform33models}.
 
 Modelos que são utilizados na modelagem de distribuição de espécies necessitam de uma quantidade elevada de dados 
 \cite{sampleSize}, de ocorrência e ausência, sendo os dados de ausência não necessários em todos os tipos de modelos.
 
-Nem todas as espécies são facilmente modeláveis devido à dificuldade de coleta de dados, seja pela sua raridade ou habitat 
+Nem todas as espécies são facilmente modeláveis devido à dificuldade de coleta de dados, seja por sua raridade ou habitat 
 \cite{especiesDificies}. A colaboração de cidadãos na coleta de dados pode auxiliar na identificação de áreas prioritárias 
 para pesquisa. Portanto, a identificação de bons modelos que trabalham com esses dados é vantajosa.
 
-Dentro destes modelos, além da quantidade e tipo de dados necessários, precisamos levar em consideração, o custo necessário de 
-processamento e o espaço de memória utilizado pelo mesmo, para este fim utilizamos a análise de complexidade 
+Nesses modelos, além da quantidade e do tipo de dados necessários, precisamos levar em consideração o custo de 
+processamento e o espaço de memória utilizado pelo mesmo. Para este fim, utilizamos a análise de complexidade 
 e espaço \cite{introductionAlgorthms}, já que um modelo mais barato nesse quesito pode ser criado em computadores 
 mais acessíveis \cite{introductionAnalysis}, e ser possível a construção de mais de um modelo de modo simultâneo.
 
-Os pontos levantados anteriormente podem afetar a acurácia de um modelo, mesmo atendendo os requisitos, 
-de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenham uma boa acurácia, 
-quando trabalham somente com dados de ocorrência, assim como uma melhor avaliação computacional, se vê vantajoso para 
+Os pontos levantados anteriormente podem afetar a acurácia de um modelo. Mesmo atendendo aos requisitos, 
+de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenha uma boa acurácia, 
+quando trabalha somente com dados de ocorrência, assim como uma melhor avaliação computacional, se vê vantajoso para 
 situações em que queremos criar uma análise inicial de um determinado cenário.
 
 \section{Objetivo}
@@ -376,7 +374,7 @@ Este trabalho tem como objetivo avaliar e comparar a implementação encontrada
 nas bibliotecas mda e mgcv da linguagem R, dos modelos de distribuição de espécies,
 GAM, GLM e MARS, levantando o custo computacional de cada um destes a partir de
 uma análise de complexidade e espaço. Encontrando um modelo que melhor apresente
-um equilíbrio entre a acurácia e o custo computacional
+um equilíbrio entre a acurácia e o custo computacional.
 
 \subsection{Objetivos Específicos}
 
@@ -400,69 +398,69 @@ um equilíbrio entre a acurácia e o custo computacional
 
 \section{Modelos Computacionais}
 
-Modelos computacionais são modelos que representam fenômenos de modo simplificado, gerando uma aproximação
-do evento real, tendo em vista a visualização ou o entendimento de determinado fenômeno, codificados em 
-alguma linguagem computacional para ser executado em um computador. Estes modelos podem ser criados
-por especialistas utilizando equações matemáticas ou, automaticamente utilizando de técnicas de
-inteligência artificial. \cite{modelos_computacionais}
+Modelos computacionais são representações simplificadas de fenômenos, que geram uma aproximação
+do evento real, com o objetivo de visualizar ou entender determinado fenômeno, codificados em 
+alguma linguagem computacional para serem executados em um computador. Estes modelos podem ser criados
+por especialistas utilizando equações matemáticas ou, automaticamente, por meio de técnicas de
+inteligência artificial \cite{modelos_computacionais}.
 
-Ao processo de criação destes modelos, damos o nome de modelagem computacional, podendo ser aplicada em
-qualquer situação onde uma análise de um sistema complexo se vê necessária, sendo suas principais
-aplicações encontradas nas seguintes áreas, como apresentado por \cite{modelagem_computacional}:
+Ao processo de criação desses modelos, damos o nome de modelagem computacional, que pode ser aplicada em
+qualquer situação onde uma análise de um sistema complexo se faz necessária. Suas principais
+aplicações são encontradas nas seguintes áreas, como apresentado por \cite{modelagem_computacional}:
 
 \begin{enumerate}
     \item \textbf{Ciência e Pesquisa}: Permite o teste de hipóteses de maneira mais rápida e eficiente.
     \item \textbf{Engenharia}: Essencial para projetos de larga escala, utilizada para testar estruturas antes de
-    começar sua construção.
-    \item \textbf{Medicina}: Permite a modelagem de epidemias, assim prevendo como doenças podem se espalhar em dada
+    iniciar sua construção.
+    \item \textbf{Medicina}: Permite a modelagem de epidemias, prevendo como doenças podem se espalhar em uma dada
     população, ajudando a planejar métodos de controle.
 \end{enumerate}
 
-O tipo da modelagem depende do tipo de fenômeno ou problema que queremos tratar, onde os tipos principais,
-segundo \cite{modelagem_computacional} são:
+O tipo da modelagem depende do tipo de fenômeno ou problema que queremos tratar. Os tipos principais,
+segundo \cite{modelagem_computacional}, são:
 
 \begin{enumerate}
     \item \textbf{Modelagem determinística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
-    entrada sempre produzem os mesmos resultados. Mais visto no campo da Física e Engenharia, onde os 
-    fenômenos naturais seguem um conjunto de regras bem definido.
-    \item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriedade, o sistema pode apresentar
-    resultados diferentes para o mesmo conjunto de parâmetros de entrada. Comumente usada onde o acaso 
-    desempenha um papel importante, como na Biologia e Economia.
-    \item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, essencial em áreas como a
-    Ecologia e Epidemiologia, onde é preciso prever a evolução de sistemas biológicos ou a propagação
-    de doenças. 
+entrada sempre produzem os mesmos resultados. É mais comum no campo da Física e da Engenharia, onde os 
+fenômenos naturais seguem um conjunto de regras bem definido.
+    \item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriedade, e o sistema pode apresentar
+resultados diferentes para o mesmo conjunto de parâmetros de entrada. É comumente usada onde o acaso 
+desempenha um papel importante, como na Biologia e na Economia.
+    \item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, é essencial em áreas como a
+Ecologia e a Epidemiologia, onde é preciso prever a evolução de sistemas biológicos ou a propagação
+de doenças. 
 \end{enumerate}
 
 \subsection{Modelos Lineares}
 
-Modelos lineares são modelos que preveem uma resposta linear utilizando como base a relação entre o resultado
-e as propriedades dadas como parâmetros. Sendo uma opção mais simples, possuem propriedades mais fáceis de
+Modelos lineares preveem uma resposta linear utilizando como base a relação entre o resultado
+e as propriedades dadas como parâmetros. Por serem uma opção mais simples, possuem propriedades mais fáceis de
 serem entendidas e um tempo de desenvolvimento mais curto quando comparados a outros tipos de modelos,
-como redes neurais, ou árvores de decisão, empregadas no mesmo problema. \cite{modelos_lineares}
+como redes neurais ou árvores de decisão, empregadas no mesmo problema \cite{modelos_lineares}.
 
-A linearidade destes modelos, implica que matematicamente a variação dos parâmetros independentes não
+A linearidade desses modelos implica que, matematicamente, a variação dos parâmetros independentes não
 possui relações entre si, e podem ser separados em dois grupos clássicos \cite{tipos_modelos_lineares}.
 \begin{itemize}
     \item \textbf{Modelos de Regressão}:
     Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
-    valores de possível representação numérica, indicando quantidade ou magnitude. Com o intuito de estimar
-    parâmetros, explicando relações ou para fazer predições.
+valores de possível representação numérica, indicando quantidade ou magnitude, com o intuito de estimar
+parâmetros, explicando relações ou para fazer predições.
     \item \textbf{Modelos de Análise de Variância}:
-    Estes modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
-    variável de resposta. Para encontrar a relação entre grupos de análise, de modo a identificar o que
-    gera a diferença entre os grupos estudados.
+    Esses modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
+variável de resposta, para encontrar a relação entre grupos de análise, de modo a identificar o que
+gera a diferença entre os grupos estudados.
 \end{itemize}
 
 Ambas as abordagens ao modelo linear gerarão uma regressão linear, que é um modelo matemático que descreve 
 a relação entre as variáveis dependentes e independentes usadas, tendo a possibilidade de ser representado 
-graficamente. Podendo ser de dois tipos: simples ou múltipla.
+ograficamente. Pode ser de dois tipos: simples ou múltipla.
 
 Na regressão linear simples, queremos estimar os valores de $a$ e $b$ da equação da reta, $y$ = $a$ + $bx$
-, a partir de um conjunto de dados $x$ e $y$, onde $y$ representa a variável dependente e $x$ à variável 
+, a partir de um conjunto de dados $x$ e $y$, onde $y$ representa a variável dependente e $x$ a variável 
 independente, que melhor represente a relação entre $x$ e $y$. Em outras palavras, queremos estimar a 
-inclinação da reta, esta que nos indica o efeito em $y$ das mudanças ocorridas em $x$ \cite{modelos_regressao_linear}.
+inclinação da reta, que nos indica o efeito em $y$ das mudanças ocorridas em $x$ \cite{modelos_regressao_linear}.
 
-A essa reta, é dado o nome de reta de regressão linear, esta que depende de cinco estatísticas básicas
+A essa reta, é dado o nome de reta de regressão linear, que depende de cinco estatísticas básicas
 \cite{modelos_regressao_linear}:
 
 \begin{enumerate}
@@ -473,7 +471,7 @@ A essa reta, é dado o nome de reta de regressão linear, esta que depende de ci
     \item Correlação de $X$ e $Y$: $r = \frac{1}{n} \sum_{i=1}^{N} \frac{X_i - \overline{X}}{S_X} \cdot \frac{Y_i - \overline{Y}}{S_Y}$
 \end{enumerate}
 
-Com estas estatísticas podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
+Com estas estatísticas, podemos traçar a reta de regressão, sabendo que esta passa pelo ponto médio
 ($\overline{X}, \overline{Y}$). A inclinação da reta será dada por:
 
 \begin{equation}
@@ -489,7 +487,7 @@ será dado por:
     \beta_0 = \overline{Y} - \beta_1 \overline{X}
 \end{equation}
 
-Assim resultamos na seguinte equação:
+Assim, resultamos na seguinte equação:
 
 \begin{equation}
 \label{eq:reg_simples}
@@ -506,7 +504,7 @@ Onde:
 
 Porém, a equação \ref{eq:reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
 os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a variável  $X$ que afeta os valores de
-$Y$ quando tratamos de ocorrência no mundo real, assim incluímos um termo de erro $\epsilon$, que é
+$Y$ quando tratamos de ocorrências no mundo real. Assim, incluímos um termo de erro $\epsilon$, que é
 o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
@@ -514,7 +512,7 @@ o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cit
     Y = \beta_0 + \beta_1X + \epsilon
 \end{equation}
 
-Agora com a equação \ref{eq:reg_simples_erro}, podemos criar a reta de regressão, que pode ser
+Agora, com a equação \ref{eq:reg_simples_erro}, podemos criar a reta de regressão, que pode ser
 representada graficamente, possuindo uma estrutura semelhante ao gráfico a seguir:
 
 \begin{figure}[H]
@@ -524,10 +522,10 @@ representada graficamente, possuindo uma estrutura semelhante ao gráfico a segu
     \legend{Fonte: \citeonline{regressao_linear}}
 \end{figure}
 
-A equação \ref{eq:reg_simples_erro}, pode ser escrita de forma mais geral. Visto que em nossos dados
-podemos trabalhar com conjuntos de valores, agrupando valores de $Y$ distintos, para cada valor de $X$.
-Por exemplo, dados que representam a qualidade de vida nos estados brasileiro com o número de postos 
-de saúde. Assim a equação \ref{eq:reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
+A equação \ref{eq:reg_simples_erro} pode ser escrita de forma mais geral. Visto que em nossos dados
+podemos trabalhar com conjuntos de valores, agrupando valores de $Y$ distintos para cada valor de $X$.
+Por exemplo, dados que representam a qualidade de vida nos estados brasileiros com o número de postos 
+de saúde. Assim, a equação \ref{eq:reg_simples_erro} ficaria \cite{modelos_regressao_linear}:
 
 \begin{equation}
     \label{eq:reg_simples_geral}
@@ -536,16 +534,16 @@ de saúde. Assim a equação \ref{eq:reg_simples_erro} ficaria \cite{modelos_reg
 
 Onde:
 \begin{itemize}
-    \item ($i$) representa um agrupamento de dados, um estado brasileiro seguindo o exemplo dado acima;
+    \item ($i$) representa um agrupamento de dados, um estado brasileiro, seguindo o exemplo dado acima;
     \item ($Y_i$) é a variável dependente;
-    \item ($X_i$) é a variável independente, representaria o número de postos de saúde em dado estado.
+    \item ($X_i$) é a variável independente, que representaria o número de postos de saúde em um dado estado;
     \item ($\beta_0$) é o intercepto;
-    \item ($\beta_1$) é a inclinação, e o efeito médio de $X_i$ sobre $Y_i$;
+    \item ($\beta_1$) é a inclinação e o efeito médio de $X_i$ sobre $Y_i$;
     \item ($\epsilon$) é o erro médio ao se estimar $Y_i$ por meio de $X_i$;
 \end{itemize}
 
-Já quando tratamos da regressão linear múltipla, é levado em conta que outros fatores podem afetar a 
-variável de resposta, estes que também podem ser correlacionados com a variável independente. A fórmula 
+Já quando tratamos da regressão linear múltipla, leva-se em conta que outros fatores podem afetar a 
+variável de resposta, os quais também podem ser correlacionados com a variável independente. A fórmula 
 para este modelo de regressão pode ser representada da seguinte forma, onde temos k variáveis 
 explicativas \cite{modelos_regressao_linear}:
 
@@ -557,29 +555,29 @@ explicativas \cite{modelos_regressao_linear}:
 Onde:
 \begin{itemize}
     \item ($\beta_0$) é o intercepto;
-    \item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função
+    \item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função;
     \item ($\epsilon$) é o termo de erro.
 \end{itemize}
 
-Aqui temos $\beta_1$ até $\beta_k$ como coeficientes parceais da regressão \cite{modelos_regressao_linear}. 
-Neste caso, a visualização por meio de um gráfico, fica comprometida, visto que temos um número $k$ de 
-$X$, para ilustrar, usemos uma situação onde temos dois $X$, aqui podemos representar os valores por 
+Aqui, temos $\beta_1$ até $\beta_k$ como coeficientes parciais da regressão \cite{modelos_regressao_linear}. 
+Neste caso, a visualização por meio de um gráfico fica comprometida, visto que temos um número $k$ de 
+$X$. Para ilustrar, usemos uma situação onde temos dois $X$; aqui, podemos representar os valores por 
 um gráfico de três dimensões.
 
 \begin{figure}[H]
     \centering
-    \caption{\label{fig:reg_linear_multipla}Regressão Linear Multipla}
+    \caption{\label{fig:reg_linear_multipla}Regressão Linear Múltipla}
     \includegraphics[width=0.50\textwidth]{../Imgs/reg_linear_multipla.png}
     \legend{Fonte: \citeonline{regressao_linear_multipla_img}}
 \end{figure}
 
-Quando temos mais de dois valores de $X$ a representação gráfica fica confusa para o entendimento humano,
+Quando temos mais de dois valores de $X$, a representação gráfica fica confusa para o entendimento humano,
 mas ainda podemos tratar o problema como uma reta.
 
-\subsection{Metodos de avaliação de Modelos Computacionais}
+\subsection{Métodos de avaliação de Modelos Computacionais}
 
-Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode chegar,
-categorizando a sua previsão como correta ou não, estes tipos são representados pela matriz de confusão:
+Antes de apontarmos as métricas, precisamos explicar os tipos de classificação que um modelo pode alcançar,
+categorizando sua previsão como correta ou não. Estes tipos são representados pela matriz de confusão:
 
 \begin{table}[H]
     \centering
@@ -601,29 +599,29 @@ Onde:
     \item \textbf{Negativos Verdadeiros}: São as classificações negativas corretas;
 \end{itemize}
 
-Existem várias métricas para se avaliar a qualidade de um modelo computacional, sendo os metodos mais
-comuns a acurácia, precisão, recall, F1-Score e área da curva ROC (AUC-ROC) \cite{metricas_aval_modelo} onde:
+Existem várias métricas para se avaliar a qualidade de um modelo computacional, sendo os métodos mais
+comuns a acurácia, precisão, recall, F1-Score e a área da curva ROC (AUC-ROC) \cite{metricas_aval_modelo}, onde:
 
 \begin{itemize}
-    \item Acurácia: Uma métrica simples e amplamente utilizada que mede a proporção de precisões corretas feitas pelo modelo;
-    \item Precisão: Uma métrica que mede a proporção de previsões positivas corretas feitas pelo modelos, muito utilizada 
-    quando um falso positivo agrega um custo muito alto;
+    \item Acurácia: Uma métrica simples e amplamente utilizada que mede a proporção de previsões corretas feitas pelo modelo;
+    \item Precisão: Uma métrica que mede a proporção de previsões positivas corretas feitas pelo modelo, muito utilizada 
+quando um falso positivo agrega um custo muito alto;
     \item Recall: Uma métrica que mede a proporção de exemplos positivos que foram corretamente identificados pelo modelo;
-    \item F1-Score: É uma média harmônica entre a Precisão e Recall, fornece um equilíbrio entre essas duas métricas, utilizado
-    quando se quer levar em consideração tanto os falsos positivos quantos os falsos negativos;
+    \item F1-Score: É uma média harmônica entre a Precisão e o Recall, que fornece um equilíbrio entre essas duas métricas, utilizado
+quando se quer levar em consideração tanto os falsos positivos quanto os falsos negativos;
     \item AUC-ROC: Avalia o desempenho de modelos de classificação binária em diferentes limites de decisão, onde quanto
-    maior o valor melhor o modelo separa essas classes.
+maior o valor, melhor o modelo separa essas classes.
 \end{itemize}
 
-Como cada métrica possue um campo de atuação, para o problema abordado neste trabalho, as relevantes são a acurácia e precisão,
-onde a precisão apresenta uma métrica de avaliação onde se aceita o erro de um falso negativo, pos o erro de um falso positivo
-é algo prejudicial a previsão, isso fazendo um local sem ocorrencia da éspecia analisada pelo modelo poderia ser indicado como 
-um lugar de ocorrencia, torna assim a métrica por acurácia mais confiavel neste caso.
+Como cada métrica possui um campo de atuação, para o problema abordado neste trabalho, as relevantes são a acurácia e a precisão.
+A precisão apresenta uma métrica de avaliação onde se aceita o erro de um falso negativo, pois o erro de um falso positivo
+é algo prejudicial à previsão. Isso, fazendo com que um local sem ocorrência da espécie analisada pelo modelo possa ser indicado como 
+um lugar de ocorrência, torna a métrica por acurácia mais confiável neste caso.
 
 \subsection{Acurácia}
 
-A acurácia é um modo de avaliar a performance de um modelo, assim identificando se seus resultados podem
-ser considerados válidos ou não. Para chegarmos na acurácia utilizamos a seguinte fórmula:
+A acurácia é um modo de avaliar a performance de um modelo, identificando se seus resultados podem
+ser considerados válidos ou não. Para chegarmos na acurácia, utilizamos a seguinte fórmula:
 
 \begin{equation}
     \label{eq:acuracia}
@@ -632,48 +630,48 @@ ser considerados válidos ou não. Para chegarmos na acurácia utilizamos a segu
 
 Onde:
 \begin{itemize}
-    \item ($A$) é a Acurácia
-    \item ($PC$) é o total de Previsões Corretas, encontrada pela soma de $Positivos Verdadeiros + Negativos Verdadeiros$;
-    \item ($TP$) é o Total de Previsões, encontrada pela soma de $PC + Falsos Verdadeiros + Falsos Negativos$.
+    \item ($A$) é a Acurácia;
+    \item ($PC$) é o total de Previsões Corretas, encontrado pela soma de $Positivos Verdadeiros + Negativos Verdadeiros$;
+    \item ($TP$) é o Total de Previsões, encontrado pela soma de $PC + Falsos Verdadeiros + Falsos Negativos$.
 \end{itemize}
 
 Como a acurácia incorpora por completo a matriz de confusão \ref{fig:matrix_confusao}, em um conjunto de dados equilibrado, 
-com uma quantidade de exempols semelhante para as duas classes, ela pode ser usada como uma medida grosseira da qualidade 
+com uma quantidade de exemplos semelhante para as duas classes, ela pode ser usada como uma medida geral da qualidade 
 de um modelo \cite{acuracia_matriz}.
 
 Onde temos mais exemplos de uma classe do que de outras, é importante considerar outras métricas de avaliação, já que esses
 modelos são considerados desbalanceados \cite{acuracia}.
 
-\subsection{Modelos de Distribuição de espécies}
+\subsection{Modelos de Distribuição de Espécies}
 
-Definimos um Modelo de Distribuição de Espécies, SDM (Species Distribution Model), como um modelo que relaciona dados de 
-distribuição de espécies, com informações sobre as características ambientais e/ou espaciais de certas localidades, podendo 
+Definimos um Modelo de Distribuição de Espécies (SDM - Species Distribution Model) como um modelo que relaciona dados de 
+distribuição de espécies com informações sobre as características ambientais e/ou espaciais de certas localidades, podendo 
 ser usados para entender e/ou prever a distribuição de uma espécie em uma dada localidade \cite{speciesDistributionModels}.
 
-SDMs contemporâneos combinam conceitos de ecologia e história natural com os avanços mais recentes em estatísticas e 
-tecnologia da informação, as raízes destes modelos são encontradas nos estudos mais antigos que descrevem padrões biológicos 
-em termos de relações com geografia e/ou gradientes ambientais, e estudos que indicam a resposta individual de espécies 
-para seus ambientes, provêndo um forte argumento conceitual para se modelar espécies de modo individual \cite{speciesDistributionModels}.
+SDMs contemporâneos combinam conceitos de ecologia e história natural com os avanços mais recentes em estatística e 
+tecnologia da informação. As raízes desses modelos são encontradas nos estudos mais antigos que descrevem padrões biológicos 
+em termos de relações com a geografia e/ou gradientes ambientais, e estudos que indicam a resposta individual de espécies 
+para seus ambientes, provendo um forte argumento conceitual para se modelar espécies de modo individual \cite{speciesDistributionModels}.
 
-Segundo \cite{tiposDados_sdm} as principais fontes de informações para a criação destes modelos são: 
+Segundo \cite{tiposDados_sdm}, as principais fontes de informações para a criação destes modelos são: 
 \begin{itemize}
-    \item Dado de ocorrência: Geralmente coordenadas de latitude e longitude onde a espéciefoi observada, conhecida como
-    dado de ocorrência, alguns modelos fazem uso de dados de ausência, que são coordenadas geograficas 
-    onde se sabe que a espécie não ocorre;
-    \item Dado ambiental: São a descrição do ambiente, podendo conter medições de temperatura e precipitação, como
-    também, a ocorrência e ausência de outras espécies, como predadores, competidores ou fontes de alimento.
+    \item Dados de ocorrência: Geralmente coordenadas de latitude e longitude onde a espécie foi observada, conhecidas como
+dados de ocorrência. Alguns modelos fazem uso de dados de ausência, que são coordenadas geográficas 
+onde se sabe que a espécie não ocorre;
+    \item Dados ambientais: São a descrição do ambiente, podendo conter medições de temperatura e precipitação, como
+também, a ocorrência e ausência de outras espécies, como predadores, competidores ou fontes de alimento.
 \end{itemize}
 
 Dentro dos SDMs, temos vários frameworks de modelagem, sendo os mais utilizados o Generalized Linear Model (GLM), 
-Generalized Additive Model (GAM) e Multivariate Adaptive Regression Spline (MARS), que são encontradas nos
+o Generalized Additive Model (GAM) e o Multivariate Adaptive Regression Spline (MARS), que são encontrados nos
 softwares mais amigáveis ao usuário e bem documentados \cite{predPerform33models}, assim como podem ser encontrados em 
-bibliotecas de linguagens de programação, como R nas bibliotecas \lstinline|mda|, onde encontramos o GLM e GAM \cite{mda},
-e \lstinline|mgcv| onde encontramos o MARS\cite{mgcv}.
+bibliotecas de linguagens de programação, como R, nas bibliotecas \lstinline|mda|, onde encontramos o GLM e o GAM \cite{mda},
+e \lstinline|mgcv|, onde encontramos o MARS \cite{mgcv}.
 
 \subsubsection{GLM - Generalized Linear Model}
 
 Generalized Linear Models (GLMs) agrupam uma grande quantidade de modelos discretos e contínuos, sendo particularmente úteis 
-para se trabalhar com dados discretos, sendo uma extensão de General Linear Models, apresentada por Nelder e Wedderburn 
+para se trabalhar com dados discretos. São uma extensão de General Linear Models, apresentada por Nelder e Wedderburn 
 (1972), que consiste na inserção da família exponencial de distribuições de erro junto com a distribuição normal \cite{GLM}.
 
 Ao contrário dos modelos lineares clássicos, assim como o General Linear Model, que propõem uma distribuição Gaussiana (normal) 
@@ -681,9 +679,9 @@ e uma função de ligação dos valores de $X$ e $Y$, os GLMs permitem que a fun
 exponenciais (Gaussiana, Poisson ou Binomial), e a função de ligação pode ser qualquer função monotônica 
 diferenciável, como a logarítmica \cite{GAMeGLM_especie_estudo}.
 
-No GLM as variáveis de predição $X_j$, onde $j = 1, ..., p$ com $p$ sendo a quantidade de $X$s, são combinadas para se formar um 
-preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável de reposta $Y$ atráves de uma função de ligação $g()$ 
-\cite{GAMeGLM_especie_estudo}, assim podemos chegar a seguinte fórmula: 
+No GLM, as variáveis de predição $X_j$, onde $j = 1, ..., p$ com $p$ sendo a quantidade de $X$s, são combinadas para se formar um 
+preditor linear (LP), que é relacionado ao valor esperado $\mu = E(Y)$ da variável de resposta $Y$ através de uma função de ligação $g()$ 
+\cite{GAMeGLM_especie_estudo}. Assim, podemos chegar à seguinte fórmula: 
 
 \begin{equation}
     \label{eq:lp_general}
@@ -694,10 +692,10 @@ Onde:
 \begin{itemize}
     \item $\alpha$: é uma constante, chamada de intercepto;
     \item $X$: é um vetor de $p$ preditores, $(X_1, ..., X_p)$;
-    \item $\beta$: é um vetor de $p$ coeficientes de regressão, uma para cada preditor, $(\beta_1, ..., \beta_p)$.
+    \item $\beta$: é um vetor de $p$ coeficientes de regressão, um para cada preditor, $(\beta_1, ..., \beta_p)$.
 \end{itemize}
 
-Assim escrevemos o modelo para variáveis $X$ e $Y$ genéricas. Os termos correspondes para uma dada observação $i$ da 
+Assim, escrevemos o modelo para variáveis $X$ e $Y$ genéricas. Os termos correspondentes para uma dada observação $i$ da 
 amostra são \cite{GAMeGLM_especie_estudo}:
 
 \begin{equation}
@@ -705,32 +703,32 @@ amostra são \cite{GAMeGLM_especie_estudo}:
     g(\mu_i) = \alpha + \beta_1X_{i1} + \beta_2X_{i2} + ... + \beta_pX_{ip}
 \end{equation}
 
-Aqui a variânciade $Y$ depende de $\mu = E(Y)$ atravez da função de variância $V(\mu)$, dado $Var(Y) = \phi V(\mu)$, onde $\phi$ (phi)
-é o parâmetro de dispersão. Quando se espera um $\phi$ maior que o valor antecipado dado a distribuição escolhida, o parâmetro de
+Aqui, a variância de $Y$ depende de $\mu = E(Y)$ através da função de variância $V(\mu)$, dado $Var(Y) = \phi V(\mu)$, onde $\phi$ (phi)
+é o parâmetro de dispersão. Quando se espera um $\phi$ maior que o valor antecipado dada a distribuição escolhida, o parâmetro de
 escala pode ser estimado utilizando-se de quasi-likelihood \cite{GAMeGLM_especie_estudo}.
 
-Por sua vez, quasi-likelihood é um metodo de se generalizar a abordagem pr likelihood-based para GLMs, permitendo se estimar so valores
-de $\beta$ de tal forma que não é necessário se especificar uma distribuição para a saída. Normalmente utilizado como um mecanismo
-para lidar com dados muitos dispersos, ou quando não se deseja fazer afirmações sólidas de distribuição sobre as variáveis de saída 
+Por sua vez, quasi-likelihood é um método de se generalizar a abordagem por likelihood-based para GLMs, permitindo que se estimem os valores
+de $\beta$ de tal forma que não é necessário se especificar uma distribuição para a saída. Normalmente, é utilizado como um mecanismo
+para lidar com dados muito dispersos, ou quando não se deseja fazer afirmações sólidas de distribuição sobre as variáveis de saída 
 \cite{quase-likehood}.
 
 \subsubsection{GAM - Generalized Additive Model}
 
-Gerados a partir do GLM, este modelo possui uma automatização para se identificar os termos de polinômio apropriado
-e as transformações dos preditores que melhoram a qualidade do modelo linear. Logo podemos dizer que os GAMs estão
-aninhados dentro do GLMs que por sua vez estão aninhados em modelos lineares, LM \cite{GAMeGLM_especie_estudo}:
+Gerados a partir do GLM, este modelo possui uma automatização para se identificar os termos de polinômio apropriados
+e as transformações dos preditores que melhoram a qualidade do modelo linear. Logo, podemos dizer que os GAMs estão
+aninhados dentro dos GLMs, que por sua vez estão aninhados em modelos lineares, LM \cite{GAMeGLM_especie_estudo}:
 
 \begin{equation}
     LM \subset GLM \subset GAM
 \end{equation}
 
 GAMs são parametrizados como os GLMs, porém alguns preditores podem ser modelados de modo não parametrizado em 
-adção a termos lineares e polinomiais para outros preditores. Um passo crucial para aplicar GAMs é selecionar
+adição a termos lineares e polinomiais para outros preditores. Um passo crucial para aplicar GAMs é selecionar
 o nível apropriado de "suavização" para os preditores.
 
-Nestes substitui-se a função de predição linear $\eta = \sum_{1}^{p}\beta_jX_j$ pela função de predição aditiva 
+Nestes, substitui-se a função de predição linear $\eta = \sum_{1}^{p}\beta_jX_j$ pela função de predição aditiva 
 $\eta = \sum_{1}^{p}s_j(X_j)$, onde $s_j(X_j)$ é uma função de suavização do valor $X_j$. A forma assumida
-para a estimativa pelo modelo de regressão linear, possui a seguinte característica \cite{GAM}:
+para a estimativa pelo modelo de regressão linear possui a seguinte característica \cite{GAM}:
 
 \begin{equation}
     \label{eq:reg_linear_estimativa}
@@ -744,20 +742,20 @@ Enquanto no GAM, generaliza-se o modelo de regressão linear, tornando a equaç�
     E(Y|X_1,X_2,...,X_p) = s_0 + \sum_{j=1}^{p} s_j(X_j)
 \end{equation}
 
-Como exemplo, tomemos o caso de um preditor simples, neste, nosso modelo seria:
+Como exemplo, tomemos o caso de um preditor simples. Neste, nosso modelo seria:
 
 \begin{equation}
     \label{eq:preditor_simples}
     E(Y|X) = s(X)
 \end{equation}
 
-Para estimarmos $s(x)$ a partir de nossos dados, podemos usar uma estimativa razoável de $E(Y|X=x)$, sendo uma dessas 
-classes de estimativas as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in N_i}(Yj)$, onde $Ave$ representa uma
-operação de média como a média e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão proximos a $x_i$, em
-associação com a vizinhança, temos o tamanho $w$ da janela, isto é a proporção de pontos contidos em cada janela \cite{GAM}.
+Para estimarmos $s(x)$ a partir de nossos dados, podemos usar uma estimativa razoável de $E(Y|X=x)$. Uma dessas 
+classes de estimativas são as estimativas médias locais, $\hat{s}(x_i) = Ave_{j \in N_i}(Yj)$, onde $Ave$ representa uma
+operação de média, como a média, e $N_i$ é a vizinhança de $x_i$, os valores $x$ que estão próximos a $x_i$. Em
+associação com a vizinhança, temos o tamanho $w$ da janela, isto é, a proporção de pontos contidos em cada janela \cite{GAM}.
 
-Se assumirmos $x$ sendo um valor inteiro, que $wn$ é ímpar, então a abrangência da vizinhança $w$ mais próxima simétrica conterá
-$wn$ pontos, o $i$-ézimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$-ézimo ponto. Assumindo que os dados
+Se assumirmos que $x$ é um valor inteiro e que $wn$ é ímpar, então a abrangência da vizinhança $w$ mais próxima simétrica conterá
+$wn$ pontos, o $i$-ésimo ponto mais $\frac{(wn - 1)}{2}$ pontos em cada lado do $i$-ésimo ponto. Assumindo que os dados
 estão ordenados de forma crescente em $x$, uma definição formal seria \cite{GAM}:
 
 \begin{equation}
@@ -766,7 +764,7 @@ estão ordenados de forma crescente em $x$, uma definição formal seria \cite{G
 \end{equation}
 
 A vizinhança fica truncada próxima aos pontos finais se os pontos $\frac{wn-1}{2}$ não estão disponíveis. A abrangência de $w$
-controla a suavidade dos resultados estimados, e geralmente é escolhido com base nos dados a serem usados \cite{GAM}. Se
+controla a suavidade dos resultados estimados e geralmente é escolhida com base nos dados a serem usados \cite{GAM}. Se
 $Ave$ representar a média aritmética, então $\hat{s}(.)$ é a running lines smoother, e sua definição para estimar valores
 de $x$ é:
 
@@ -792,8 +790,8 @@ trabalhar tão bem quanto ou melhor do que o running lines smoother \cite{GAM}.
 
 \subsubsection{MARS - Multivariate Adaptive Regression Spline}
 
-O foco na modelagem por regressão, é estimar uma função $\hat{f}(x_1,...x_n)$, que melhor se assemelhe à função 
-$f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fenômeno, e o seu resultado real.
+O foco na modelagem por regressão é estimar uma função $\hat{f}(x_1,...x_n)$, que melhor se assemelhe à função 
+$f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fenômeno e o seu resultado real
 \cite{MARS}. 
 
 \begin{equation}
@@ -802,13 +800,13 @@ $f(x_1,...,x_n)$, que descreve a relação entre as propriedades de um dado fen�
 \end{equation}
 
 A função de $n$-dimensões $f$ captura a relação de predição de $y$ em $x_1,...,x_n$, onde o alvo da análise regressiva
-é usar os dados para construir a função $\hat{f}(x_1,...,x_n)$ que serve como uma aproximação razoavel para
-$f(x_1,...,x_n)$ sobre um dominio $D$ de interesse. Onde MARS provê uma abordagem natural para a modelagem de variáveis
-categóricas, variáveis aninhadas (variável que contem outra variável ) e valores faltantes \cite{intro_mars}.
+é usar os dados para construir a função $\hat{f}(x_1,...,x_n)$ que serve como uma aproximação razoável para
+$f(x_1,...,x_n)$ sobre um domínio $D$ de interesse. Onde MARS provê uma abordagem natural para a modelagem de variáveis
+categóricas, variáveis aninhadas (variável que contém outra variável) e valores faltantes \cite{intro_mars}.
 
-O procedimento MARS, é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
-apenas um preditor, $x(n = 1)$, para se estimar a função $f(x)$, uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
-dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
+O procedimento MARS é baseado em uma generalização de métodos de spline para ajuste de funções. Consideramos o caso de
+apenas um preditor, $x(n = 1)$, para se estimar a função $f(x)$. Uma função spline de aproximação $\hat{f}_q(x)$ é obtida por
+dividir a abrangência de valores de $x$ em $k+1$ regiões separadas por $k$ pontos \cite{intro_mars}.
 
 \begin{equation}
     \label{eq:aproximacao_spline}
@@ -818,10 +816,10 @@ dividir a abrangência de $x$ valore em $k+1$ regiões separadas por $k$ pontos 
 Onde $\left\{B_k^{(q)}(x)\right\}_{0}^{k+q}$ é um conjunto de funções base que englobam todo o espaço da função spline de ordem $q$ e $a_k$ é o
 valor do coeficiente de expansão, sendo sem limitadores \cite{intro_mars}.
 
-A base mais popular é a 'B-spline', possuindo superioridade em número de propriedades usadas em conjunto com o least-squares 
-fitting. Sendo a 'B-spline' definida por, $K+2$ locais de pontos adjacentes, onde a função limitadora tem o maior suporte
-mas é definida cada uma por um único local. Para a seleção destas funções bases, que gera um grupo de resultados
-não válidos será removida, se tivermos um modelo aditivo, onde
+A base mais popular é a 'B-spline', que possui superioridade em número de propriedades usadas em conjunto com o least-squares 
+fitting. A 'B-spline' é definida por $K+2$ locais de pontos adjacentes, onde a função limitadora tem o maior suporte,
+mas é definida cada uma por um único local. Para a seleção destas funções base, um grupo de resultados
+não válidos será removido. Se tivermos um modelo aditivo, onde
 
 \begin{equation}
     \hat{f}(x) = \sum_{j=1}^{n}f_j(x_j)
@@ -829,8 +827,8 @@ não válidos será removida, se tivermos um modelo aditivo, onde
 
 fosse considerado adequado, qualquer função que envolvesse mais de uma variável se tornaria ilegítima para inclusão no modelo \cite{intro_mars}.
 
-Em outras palavras, podemos definir um spline, como a aproximação de uma curva de formato complexo utilizando do 
-menor número possível de retas, sendo essa quantidade de retas o prametro $q$, como pode ser visto na figura a seguir:
+Em outras palavras, podemos definir um spline como a aproximação de uma curva de formato complexo utilizando o 
+menor número possível de retas, sendo essa quantidade de retas o parâmetro $q$, como pode ser visto na figura a seguir:
 
 \begin{figure}[H]
     \centering
@@ -839,12 +837,12 @@ menor número possível de retas, sendo essa quantidade de retas o prametro $q$,
     \legend{Fonte: \citeonline{b_spline}}
 \end{figure}
 
-O algoritmo MARS usa de uma estrategia de passos forward/backward para produzir o seu conjunto de funções base. A parte de forward é um
-processo recursivo, a cada iteração, simultaneamente constrói uma lista expansiva de funções base a serem consideradas e então decide 
-quais considerar naquele passo, se repetindo até uma quantidade relativamente grande de funções bases forem selecionada. 
+O algoritmo MARS usa uma estratégia de passos forward/backward para produzir seu conjunto de funções base. A parte de forward é um
+processo recursivo. A cada iteração, simultaneamente constrói uma lista expansiva de funções base a serem consideradas e então decide 
+quais considerar naquele passo, repetindo-se até que uma quantidade relativamente grande de funções base seja selecionada. 
 
 Um conjunto final de funções base de tamanho apropriado é então selecionado por meio de um procedimento de seleção de subconjunto de 
-variáveis passo a passo regressivo, usando as funções bases produzidas pelo algoritmo progressivo como 'variáveis' 
+variáveis passo a passo regressivo, usando as funções base produzidas pelo algoritmo progressivo como 'variáveis' 
 candidatas \cite{intro_mars}.
 
 O passo de forward começa com uma única função base no modelo:
@@ -854,14 +852,14 @@ O passo de forward começa com uma única função base no modelo:
     B_0(x) = 1
 \end{equation}
 
-Após a $M$-ézimo iteração teremos $2M+1$ funções:
+Apos a $M$-ésima iteração, teremos $2M+1$ funções:
 
 \begin{equation}
     \label{eq:funcao_base}
     \left\{B_m(\mathbf{x})\right\}_{0}^{2M}
 \end{equation}
 
-No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
+No modelo, cada iteração $(M + 1)$ adiciona duas novas funções base:
 
 \begin{equation}
     \label{eq:novas_funcoes}
@@ -871,21 +869,21 @@ No modelo, cada iteração $(M + 1)$ adiciona duas novas funções bases:
     \end{split}
 \end{equation}
 
-Aqui $B_{l(M+1)}(x)$ é uma das funções bases $2M + 1$ já selecionada, $0 \leq l(M+1) \leq 2M, v(M+1)$ é uma variável preditora, não
+Aqui, $B_{l(M+1)}(x)$ é uma das $2M + 1$ funções base já selecionadas, $0 \leq l(M+1) \leq 2M$, $v(M+1)$ é uma variável preditora, não
 representada em $B_{l(M_1)}(x)$, e $t_{M+1}$ é um ponto nesta variável. Os três parâmetros $l(M+1)$, $v(M+1)$ e $t_{M+1}$ que definem as
-duas novas funções bases, são escolhidos para serem os que melhor melhoram o fitting do "novo" modelo com os dados.
+duas novas funções base são escolhidos para serem os que melhoram o fitting do "novo" modelo com os dados.
 
-Para pequenas amostras o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem, e com grandes amostras, 
-ele favorecerá interações de alta ordem para os possíveis candidatos.
+Para pequenas amostras, o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem e, com grandes amostras, 
+\textit{ele favorecerá interações de alta ordem para os possíveis candidatos.}
 
 \section{Análise de Algoritmos}
 
 A análise de algoritmos é o processo de identificar uma fórmula matemática que melhor represente o custo de
 utilização de um dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
-de dados, ou de espaço, quanto da memória do computador o algoritmo ira usar durante seu processo.
+de dados, ou de espaço, quanto da memória do computador o algoritmo irá usar durante seu processo.
 
-Neste processo identificamos a qual família de problemas esse algoritmo pertence, que corresponde ao seu custo de
-computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com base na notação assintótica.
+Neste processo, identificamos a qual família de problemas esse algoritmo pertence, que corresponde ao seu custo de
+computação \cite{introductionAlgorthms}, e assim podemos categorizá-lo com base na notação assintótica.
 
 \begin{table}[H]
     \centering
@@ -906,11 +904,11 @@ computação \cite{introductionAlgorthms} e assim podemos categorizá-lo com bas
 \end{table}
 
 A fórmula matemática identificada como a representação do custo computacional é "arredondada" para uma das famílias
-apresentadas acima, reduzindo a fórmula a sua característica mais presente, visto que aqui assumimos que $n$ seja
+apresentadas acima, reduzindo a fórmula à sua característica mais presente, visto que aqui assumimos que $n$ seja
 um valor muito grande. 
 
-Por exemplo uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, pode ser reduzida a $n^2$, 
-já que esta parte terá maior peso durante a computação, a caracterizando-a como $O(n^2)$, onde $O$ é a notação 
+Por exemplo, uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, pode ser reduzida a $n^2$, 
+\textit{já que esta parte terá maior peso durante a computação}, caracterizando-a como $O(n^2)$, onde $O$ é a notação 
 "O grande", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
 
 Com esta análise, encontramos um algoritmo que melhor se encaixe em determinado problema, antes de se
@@ -920,15 +918,15 @@ cega, podendo perder em tempo e em consumo desnecessário de memória.
 \subsection{Análise de Complexidade}
 
 Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado uma entrada de tamanho $n$, analisando 
-seus comandos, como exemplo podemos utilizar o algoritmo de ordenação insertion sort. 
+seus comandos. Como exemplo, podemos utilizar o algoritmo de ordenação insertion sort. 
 
-O insertion sort é um algoritmo eficiente para ordena uma sequência pequena de números, funciona de modo semelhante a
-como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia, e a cada momento, pegamos uma
+O insertion sort é um algoritmo eficiente para ordenar uma sequência pequena de números e funciona de modo semelhante a
+como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia e, a cada momento, pegamos uma
 carta da mesa e a inserimos na mão em sua posição correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
 
 Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada, o algoritmo representado pelo
 pseudocódigo \ref{fig:insertion_sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
-armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
+armazenado fora do vetor a cada dado momento. Ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
 
 \lstset{style=psceudo}
 \begin{lstlisting}[caption={\label{fig:insertion_sort}Insertion-Sort}]
@@ -943,8 +941,8 @@ armazenado fora do vetor a cada dado momento, ao final, o vetor $A$ conterá a s
 \end{lstlisting}
 \legend{Fonte: \citeonline{introductionAlgorthms}}
 
-Para visualizar a sequência de passos que o insertion sort executa para a ordenação de dado vetor, 
-tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem \ref{fig:operacao_insertion_sort}.
+Para visualizar a sequência de passos que o insertion sort executa para a ordenação de um dado vetor, 
+tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$. A sequência pode ser vista na imagem \ref{fig:operacao_insertion_sort}.
 
 \begin{figure}[H]
     \centering
@@ -1025,45 +1023,45 @@ tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$, a sequência pode ser vista na imagem 
 
 \end{figure}
 
-A figura \ref{fig:operacao_insertion_sort}, mostra que o algoritmo \ref{fig:insertion_sort} funciona para se ordenar um vetor,
-onde, no início de cada interação do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
-de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados e $j$ é o elemento
+A figura \ref{fig:operacao_insertion_sort} mostra que o algoritmo \ref{fig:insertion_sort} funciona para se ordenar um vetor,
+onde, no início de cada iteração do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
+de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados, e $j$ é o elemento
 que está sendo verificado \cite{introductionAlgorthms}.
 
-Agora com o algoritmo \ref{fig:insertion_sort}, conseguimos analisar o custo computacional do insertion sort, mas primeiro
-precisamos definir, dois conceitos, "tempo de execução" e "tamanho da entrada", que segundo \cite{introductionAlgorthms} é:
+Agora, com o algoritmo \ref{fig:insertion_sort}, conseguimos analisar o custo computacional do insertion sort. Mas, primeiro,
+precisamos definir dois conceitos: "tempo de execução" e "tamanho da entrada", que, segundo \cite{introductionAlgorthms}, são:
 
 \begin{itemize}
     \item Tamanho da entrada: Varia dependendo do problema a ser abordado, porém é comumente o número de itens na entrada,
-    por exemplo, o tamanho do vetor $A$.
-    \item Tempo de execução: É o número de operações ou 'passos' executados, aqui desconsideramos o hardware, e assumimos
-    que mesmo cada passo levando um tempo diferente doso utros, o tempo do $i$ passo é sempre uma constante, $c_i$.  
+por exemplo, o tamanho do vetor $A$.
+    \item Tempo de execução: É o número de operações ou 'passos' executados. Aqui, desconsideramos o hardware e assumimos
+que, mesmo que cada passo leve um tempo diferente dos outros, o tempo do $i$-ésimo passo é sempre uma constante, $c_i$.  
 \end{itemize}
 
 Em nosso algoritmo \ref{fig:insertion_sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
-o loop while da linha 5 foi executado, para cada valor de $j$. Sempre que temos um loop for ou while o teste é
+o loop while da linha 5 foi executado para cada valor de $j$. Sempre que temos um loop for ou while, o teste é
 executado uma vez a mais do que o corpo do loop.
 
-Assim conseguimos chegar a seguinte análise do algoritmo \ref{fig:insertion_sort}:
+Assim, conseguimos chegar à seguinte análise do algoritmo \ref{fig:insertion_sort}:
 
 \begin{table}[H]
     \centering
     \caption{\label{tab:analise_insertion_sort} Análise Insertion Sort}
     \begin{tabular}{lll}
-        \textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\
-        2 & $c_2$ & $n$ \\
-        3 & $c_3$ & $n-1$ \\
-        4 & $c_4$ & $n-1$ \\
-        5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\
-        6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
-        7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\
-        8 & $c_8$ & $n-1$ \\
+        \textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\ \hline
+        2 & $c_2$ & $n$ \\ \hline
+        3 & $c_3$ & $n-1$ \\ \hline
+        4 & $c_4$ & $n-1$ \\ \hline
+        5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\ \hline
+        6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\ \hline
+        7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\ \hline
+        8 & $c_8$ & $n-1$ \\ \hline
     \end{tabular}
     \legend{Fonte: \citeonline{introductionAlgorthms}}
 \end{table}
 
 O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ passos para executar
-e execute $n$ vezes ira contribuir com $c_i \cdot n$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
+e execute $n$ vezes irá contribuir com $c_i \cdot n$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
 sort \ref{fig:insertion_sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{tab:analise_insertion_sort}:
 
 \begin{equation}
@@ -1071,11 +1069,11 @@ sort \ref{fig:insertion_sort}, em uma entrada de tamanho $n$, somamos o produto 
     T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
 \end{equation}
 
-O tempo de execução de um algoritmo varia dependendo do dado de entrada, onde podemos cair no melhor ou pior caso. Durante a
+O tempo de execução de um algoritmo varia dependendo do dado de entrada, onde podemos cair no melhor ou no pior caso. Durante a
 análise de complexidade, leva-se em consideração apenas o pior caso \cite{introductionAlgorthms}, onde, no nosso caso de exemplo, 
-o algoritmo será executado por completo percorrendo cada elemento do vetor, que ocorre quando o vetor se encontra em ordem decrescente.
+o algoritmo será executado por completo, percorrendo cada elemento do vetor, o que ocorre quando o vetor se encontra em ordem decrescente.
 
-O pior caso no algoritmo \ref{fig:insertion_sort}, pode ser representado pela seguinte equação:
+O pior caso no algoritmo \ref{fig:insertion_sort} pode ser representado pela seguinte equação:
 
 \begin{equation}
     \label{eq:pior_caso_insertion_sort}
@@ -1087,35 +1085,35 @@ O pior caso no algoritmo \ref{fig:insertion_sort}, pode ser representado pela se
     \end{split}
 \end{equation}
 
-Podemos expressar a equação \ref{eq:pior_caso_insertion_sort}, como $an^2 + bn - c$, para constantes $a$, $b$ e $c$, que dependem do custo de
-$c_i$. Mas é a taxa de crescimento que realmente nos interessa, logo consideramos apenas o maior termo da equação, isto é $an^2$, já que
-os outros termos são insignificantes para valores muitos grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto
+Podemos expressar a equação \ref{eq:pior_caso_insertion_sort} como $an^2 + bn - c$, para constantes $a$, $b$ e $c$, que dependem do custo de
+$c_i$. Mas é a taxa de crescimento que realmente nos interessa. Logo, consideramos apenas o maior termo da equação, isto é, $an^2$, já que
+os outros termos são insignificantes para valores muito grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto,
 o pior caso de tempo de execução como $\theta(n^2)$.
 
-Agora para encontrarmos a qual classe apresentada na tabela \ref{fig:notacao_assintótica} o algoritmo \ref{fig:insertion_sort} pertence, convertemos
-da notação $\theta$ (theta) para a $O$ (O-grande), esta conversão é simples já que o grupo de problemas abordados pela notação $\theta$ engloba
-a notação $O$, isto é $\theta(g(n)) \subseteq O(g(n))$ onde $g(n)$ é a função de crescimento ($n^2$), portanto, o algoritmo \ref{fig:insertion_sort}
-é $O(n^2)$ logo pertence ao grupo de problemas Quadráticos \cite{introductionAlgorthms}.
+Agora, para encontrarmos a qual classe apresentada na tabela \ref{fig:notacao_assintótica} o algoritmo \ref{fig:insertion_sort} pertence, convertemos
+da notação $\theta$ (theta) para a $O$ (O-grande). Esta conversão é simples, já que o grupo de problemas abordados pela notação $\theta$ engloba
+a notação $O$, isto é, $\theta(g(n)) \subseteq O(g(n))$, onde $g(n)$ é a função de crescimento ($n^2$). Portanto, o algoritmo \ref{fig:insertion_sort}
+é $O(n^2)$, logo, pertence ao grupo de problemas Quadráticos \cite{introductionAlgorthms}.
 
 \subsection{Análise de espaço}
 
-Na análise de espaço, levamos em conta as variáveis que o algoritmo utiliza e/ou cria, como por exemplo, estruturas auxiliares como vetores ou 
+Na análise de espaço, levamos em conta as variáveis que o algoritmo utiliza e/ou cria, como, por exemplo, estruturas auxiliares como vetores ou 
 matrizes. Conseguimos representar o consumo esperado de memória através de uma fórmula matemática \cite{introductionAnalysis}, assim como na 
 análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
 
 No algoritmo de insertion sort, temos as seguintes variáveis:
 
 \begin{itemize}
-    \item $Vetor \space A$ a sequência de $n$ inteiros;
-    \item $key$ uma variável que armazena um valor presente no vetor $A$;
-    \item $i$ um valor inteiro que representa uma posição na sequência;
-    \item $j$ um valor inteiro que representa uma posição na sequência;
+    \item $Vetor \space A$: a sequência de $n$ inteiros;
+    \item $key$: uma variável que armazena um valor presente no vetor $A$;
+    \item $i$: um valor inteiro que representa uma posição na sequência;
+    \item $j$: um valor inteiro que representa uma posição na sequência;
 \end{itemize}
 
 Assim, o algoritmo não cria nenhuma variável a mais durante sua execução, acarretando um custo de memória constante durante a sua execução. 
 Sendo o tamanho de 3 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho n da sequência de inteiros.
 
-Logo, o consumo de memória pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequência de entrada, portanto 
+Logo, o consumo de memória pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequência de entrada. Portanto, 
 o crescimento do algoritmo \ref{fig:insertion_sort} é do tipo linear.
 
 \section{Linguagem R}
@@ -1126,7 +1124,7 @@ e ser altamente extensível \cite{ling_r}.
 
 Devido ao seu desenvolvimento focado em aplicações de computação estatística, ser semelhante e compatível com a linguagem S já existente, 
 e capaz de atuar com códigos feitos nas linguagens C, C++ e Fortran \cite{ling_r}, tornou o R uma linguagem popular dentro da área 
-de computação estatística. \cite{linguagem_r}.
+de computação estatística \cite{linguagem_r}.
 
 O ambiente do R pode ser facilmente incrementado, utilizando-se de bibliotecas, nomeadas como packages. Por padrão, temos oito packages 
 que são encontrados junto da distribuição comum do R. Outros packages podem ser encontrados em sites especializados na distribuição dos 
@@ -1139,15 +1137,15 @@ packages \cite{rstudio}.
 \subsection{Packages}
 
 Packages, também conhecidos como bibliotecas ou pacotes, dentro do cenário de computação, referem-se a agrupamentos de códigos 
-desenvolvidos por terceiros ou por si mesmo, para encapsular alguma atividade ou processo que pode ser utilizado em mais de um projeto.
+desenvovidos por terceiros ou por si mesmo, para encapsular alguma atividade ou processo que pode ser utilizado em mais de um projeto.
 
-Como exemplo, podemos utilizar os packages, mda e mgcv, presentes neste trabalho, o package mda engloba funções para se aplicar
+Como exemplo, podemos utilizar os packages mda e mgcv, presentes neste trabalho. O package mda engloba funções para se aplicar
 um grupo de modelagem de dados, sendo estes o Mixture and Flexible Discriminant Analysis, Multivariate Adaptive Regression 
-Splines (MARS) e Vector-response Smoothing Splines \cite{mda}, o mgcv, engloba Generalized Additive Model e algumas de suas variações
-, Generalized Cross Validation e similares \cite{mgcv} os Generalized Linear Models podem ser encontrados na biblioteca stats que
-vem por padrão na linguagem R.
+Splines (MARS) e Vector-response Smoothing Splines \cite{mda}. O mgcv engloba Generalized Additive Model e algumas de suas variações,
+Generalized Cross Validation e similares \cite{mgcv}. Os Generalized Linear Models podem ser encontrados na biblioteca stats, que
+vém por padrão na linguagem R.
 
-Para demonstrar a uso de um package, tomemos a utilização da função referente ao GAM encontrada no package mgcv, um conjunto de dados
+Para demonstrar o uso de um package, tomemos a utilização da função referente ao GAM encontrada no package mgcv, um conjunto de dados
 criado contendo pontuações médias em ciências por país, segundo o Programa Internacional de Avaliação de Estudantes (PISA) de 2006,
 junto ao RNB per capita (Paridade do Poder de Compra, valores de 2005), Índice de Educação, Índice de Saúde e 
 Índice de Desenvolvimento Humano, segundo dados da ONU \cite{gam_exemplo}.
@@ -1164,11 +1162,11 @@ O código \ref{list:exemp_package} gera um Generalized Additive Model, determina
 tipo de suavização sendo a splines de regressão cúbicas \cite{gam_exemplo}. 
 
 A linha $library(mgcv)$ é a responsável por indicar qual package estamos usando, neste caso o mgcv, mas poderia ser outro ou mais 
-de um package, assim quando chamamos a função $gam()$ a mesma é buscada dentro do package. E seu funcionamento interno é mascarado 
-para o usuário, precisamos apenas "configurar" alguns parâmetros como a $data$, os dados que o modelo ira utilizar, e quais campos 
-dos dados iramos usar \verb|Overall ~ s(Income, bs = "cr")|.  
+de um package. Assim, quando chamamos a função $gam()$, a mesma é buscada dentro do package. E seu funcionamento interno é mascarado 
+para o usuário. Precisamos apenas "configurar" alguns parâmetros, como a $data$, os dados que o modelo irá utilizar, e quais campos 
+dos dados iremos usar \verb|Overall ~ s(Income, bs = "cr")|.  
 
-Estes packages permitem ao usuário, apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
+Estes packages permitem ao usuário apenas chamar a função que representa o processo a ser executado, não precisando se preocupar com
 os pormenores da execução em si, apenas passar os parâmetros necessários de modo correto.
 
 \section{Trabalhos relacionados}
@@ -1177,20 +1175,20 @@ O estudo "A comprehensive evaluation of predictive performance of 33 species dis
 \cite{predPerform33models} teve como foco a avaliação de 33 modelos distintos de distribuição de espécies, questionando a
 performance de cada um trabalhando com comunidades e com espécies específicas.
 
-Neste trabalho, os autores, identificam os parâmetros de cada modelo, e seus tipos, mostrando quais são esperados que trabalhem melhor
+Neste trabalho, os autores identificam os parâmetros de cada modelo e seus tipos, mostrando quais são esperados que trabalhem melhor
 com comunidades ou com espécies únicas, identificando dentro dos modelos selecionados que os cinco melhores são os HMSC.3, GLM.5,
 MISTN.1, MARS.1 e GNN.1.
 
-Onde performance final é influenciada por três fatores, o modelo escolhido, o foco de predição e a qualidade dos dados. O modelo
-que obteve a melhor performance quando considerado todas as espécies (comunidade) foi o HMSC.1 e quando apenas uma 
-espécies foi levada em consideração o modelo GLM.4 teve uma performance melhor.
+Onde a performance final é influenciada por três fatores: o modelo escolhido, o foco de predição e a qualidade dos dados. O modelo
+que obteve a melhor performance quando considerado todas as espécies (comunidade) foi o HMSC.1, e quando apenas uma 
+espécie foi levada em consideração, o modelo GLM.4 teve uma performance melhor.
 
-Podemos ver neste trabalho dois dos três tipos de modelos de SDM mais comuns: GLM (GLM.4 e GLM.5) e MARS (MARS.1), mostrando que
-além do acesso relativamente fácil a estes e de possuírem um software bem documenta e amigavel \cite{predPerform33models}, sua 
+Podemos ver neste trabalho dois dos três tipos de modelos de SDM mais comuns: GLM (GLM.4 e GLM.5) e MARS (MARS.1), mostrando que,
+além do acesso relativamente fácil a estes e de possuírem um software bem documentado e amigável \cite{predPerform33models}, sua 
 qualidade de performance ajuda a torná-los modelos relevantes.
 
 No estudo "Generalized linear and generalized additive models in studies of species distributions: setting the scene" 
-\cite{GAMeGLM_especie_estudo}, os autores fazem uma breve revisão sobre modelos lineares, GLMs e GAMs. Apresentando algumas
+\cite{GAMeGLM_especie_estudo}, os autores fazem uma breve revisão sobre modelos lineares, GLMs e GAMs, apresentando algumas
 de suas características e as relações entre os mesmos.
 
 Uma descrição mais teórica dos modelos GLM, GAM e MARS são encontradas nos seguintes trabalhos, respectivamente: "The generalized 
@@ -1198,7 +1196,7 @@ linear model and extensions: a review and some biological and environmental appl
 \cite{GAM} e "An introduction to multivariate adaptive regression splines" \cite{MARS}.
 
 Nestes, temos uma dissertação sobre a parte matemática dos modelos, como é feita a inferência de cada um de seus parâmetros e 
-como o mesmo atua sobre os dados de entrada. Em alguns, temos exemplos de uso de cada modelo, e suas variações mostrando onde estas 
+como o mesmo atua sobre os dados de entrada. Em alguns, temos exemplos de uso de cada modelo e suas variações, mostrando onde estas 
 são diferentes do modelo que é tratado no estudo.
 
 % ========================================================================
@@ -1206,14 +1204,14 @@ são diferentes do modelo que é tratado no estudo.
 % ========================================================================
 \chapter{Desenvolvimento}
 
-Neste cápitulo sera abordado a arquitetura e o preocesso de desenvolvimento de uma aplicação avaliadora de possiveis modelos
-computacionais preditivos. Abrangendo as ferramentas e bibliotecas utilizdas, algoritmos desenvolvidos e a execução do projeto.
+Neste capítulo, será abordada a arquitetura e o processo de desenvolvimento de uma aplicação avaliadora de possíveis modelos
+computacionais preditivos, abrangendo as ferramentas e bibliotecas utilizadas, os algoritmos desenvolvidos e a execução do projeto.
 
 \section{Arquitetura}
 
-A arquitetura proposta para a aplicação, foi idealizada para ser robusta e adaptavel, tornando a aplicação utilizavel com e sem
-conexão a rede de internet, assim como a possivel inserção de novos modelos preditivos.
-Sua estrutura segue como referencia o seguinte esquema, que pode ser encontrado no Anexo \ref{anexo:arquitetura_sistema}.
+A arquitetura proposta para a aplicação foi idealizada para ser robusta e adaptável, tornando a aplicação utilizável com e sem
+conexão à rede de internet, assim como a possível inserção de novos modelos preditivos.
+Sua estrutura segue como referência o seguinte esquema, que pode ser encontrado no Anexo \ref{anexo:arquitetura_sistema}.
 \begin{figure}[H]
     \centering
     \caption{\label{fig:arquitetura_sistema} Arquitetura do sistema}
@@ -1221,14 +1219,14 @@ Sua estrutura segue como referencia o seguinte esquema, que pode ser encontrado 
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
-No sistema idealizado, a parte de controlo da aplicação é responsabilidade da classe App, a classe de \textit{call\_model},
-age como uma interface entre o App e os modelos disponíveis, responsavel por informar quais modelos estão disponíveis, 
-rodar seus respectivos treinos e teste.
+No sistema idealizado, a parte de controle da aplicação é responsabilidade da classe App. A classe \textit{call\_model}
+age como uma interface entre o App e os modelos disponíveis, responsável por informar quais modelos estão disponíveis, 
+e rodar seus respectivos treinos e testes.
 
-Está mesma interface possibilita a adição de novos modelos, sendo necessário se adequar ao modo como os dados são passdos e
+Essa mesma interface possibilita a adição de novos modelos, sendo necessário se adequar ao modo como os dados são passados e
 como o sistema espera encontrar seus modelos treinados e respectivas respostas.
 
-Os modelos implementandos possuem um processo de treino semelhante, seus fluxos são respresentados nos sequintes
+Os modelos implementados possuem um processo de treino semelhante. Seus fluxos são representados nos seguintes
 diagramas de sequência, assim como a sua avaliação.
 
 \begin{figure}[H]
@@ -1238,63 +1236,63 @@ diagramas de sequência, assim como a sua avaliação.
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
-Tanto para os modelos disponíveis quanto para os dados, o sistema possue a capacidade de armazenar os mesmo em um serviço de armazenamento
-pela internet quanto em um armazenamento local. Tornando o mesmo independente de uma conexão contínua com a internet.
+Tanto para os modelos disponíveis quanto para os dados, o sistema possui a capacidade de armazenar os mesmos em um serviço de armazenamento
+pela internet, quanto em um armazenamento local, tornando o mesmo independente de uma conexão contínua com a internet.
 
-\section{Recursos tecnologicos}
-Nesta seção é apresentado os recursos utilizados para a confecção da aplicação, assim como uma breve justificativa em relação a escolha 
-de cada uma.
+\section{Recursos tecnológicos}
+Nesta seção, são apresentados os recursos utilizados para a confecção da aplicação, assim como uma breve justificativa em relação à escolha 
+de cada um.
 \begin{itemize}
   \item Python 3.10.0: Linguagem de alto nível, interpretada, com uma forte presença no campo da Ciência de Dados, Aprendizado de
-  Máquina e Inteligência Artificial. Esta linguagem foi escolhida pela suas bibliotecas que facilitam o tratamento de dados, e a
-  integração de scripts em outras linguagens de programação.
+Máquina e Inteligência Artificial. Esta linguagem foi escolhida por suas bibliotecas que facilitam o tratamento de dados e a
+integração de scripts em outras linguagens de programação.
   \item R 4.1.2: Linguagem de alto nível, interpretada, assim como o Python, possui uma forte presença na Ciência de Dados e Aprendizado
-  de Máquina, mas se destaca também no campo da Análise Estatística. Esta linguagem foi escolhida pela sua implementação robusta dos
-  modelos GAM, GLM e MARS.
-  \item Streamlit 1.48.1: Biblioteca para a linguagem Python, desenvolvida com o intuito de facilitar a criação e compartilhamento
-  de aplicações web, com foco em Aprendizado de Máquina e Ciência de Dados. Utilizada para a construção da interface gráfica do projeto.
-  \item Supabase: Plataforma de \textit{Backend as a Service} (BaaS) de código aberto, sendo seus principais serviços, banco de dados
-  PostgreSQL, APIs instantâneas, Autenticação e Armazenamento. Escolhida pela sua capacidade de Armazenamento e a fácil integração com a
-  linguagem Python. 
-  \item subprocess: Biblioteca nativa do Python, possibilita que durante a execução de um \textit{script} Python, seja chamado outro
-  \textit{script} ou programa. Utilizado para a integração do \textit{Python} com os \textit{scripts} em R.
+de Máquina, mas se destaca também no campo da Análise Estatística. Esta linguagem foi escolhida por sua implementação robusta dos
+modelos GAM, GLM e MARS.
+  \item Streamlit 1.48.1: Biblioteca para a linguagem Python, desenvolvida com o intuito de facilitar a criação e o compartilhamento
+de aplicações web, com foco em Aprendizado de Máquina e Ciência de Dados. Utilizada para a construção da interface gráfica do projeto.
+  \item Supabase: Plataforma de \textit{Backend as a Service} (BaaS) de código aberto, sendo seus principais serviços: banco de dados
+PostgreSQL, APIs instantâneas, Autenticação e Armazenamento. Escolhida por sua capacidade de Armazenamento e a fácil integração com a
+linguagem Python. 
+  \item subprocess: Biblioteca nativa do Python, que possibilita que durante a execução de um \textit{script} Python, seja chamado outro
+\textit{script} ou programa. Utilizado para a integração do \textit{Python} com os \textit{scripts} em R.
 \end{itemize}
 
 \section{Dados}
 
-A aplicação foi desenvolvida para aceitar dados armazenados em um arquivo no formato \textit{.csv} (Comma-separated value). Com a 
+A aplicação foi desenvolvida para aceitar dados armazenados em um arquivo no formato \textit{.csv} (Comma-separated value), com a 
 capacidade de armazenar estes dados em um serviço de armazenamento online ou de modo local.
 
-O sistema se encarrega de fazer um leve tratamento dos dados a serem usados, não utilizando de entradas com dados faltantes que podem
-atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema os divide me dois gurpos, dados
-para teste e dados para treinos, de um modo aleatorio, separando 80\% dos dados para treino e 20\% dos dados para teste.
+O sistema se encarrega de fazer um leve tratamento dos dados a serem usados, não utilizando entradas com dados faltantes que podem
+atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema os divide em dois grupos, dados
+para teste e dados para treino, de um modo aleatório, separando 80\% dos dados para treino e 20\% dos dados para teste.
 
-Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmo forem dados
-continuos as métricas avalaitivas são diferentes das usadas na situação onde os dados são categoricos. Assim como o nome das colunas é 
-usado para selecionar quais serão os parametros dependente e independentes.
+Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmos forem dados
+contínuos, as métricas avaliativas são diferentes das usadas na situação onde os dados são categóricos. Assim como o nome das colunas é 
+usado para selecionar quais serão os parâmetros dependentes e independentes.
 
 \subsection{Armazenamento}
 
 Os dados locais são armazenados dentro da pasta \textit{data\\dados}, e os dados que estão armazenados no \textit{Supabase} podem ser
 encontrados no \textit{storage} dentro da pasta \textit{dados}. 
 
-Para os modelos, o seu armazenamento ocorre de modo semelhante, quando em um senario local, são ecnontrados na pasta \textit{models}, e
-e quando em um funcionamento online, os mdoelos são encontrados no \textit{storage}, porém na pasta \textit{models}.
+Para os modelos, seu armazenamento ocorre de modo semelhante. Quando em um cenário local, são encontrados na pasta \textit{models}, e
+quando em um funcionamento online, os modelos são encontrados no \textit{storage}, porém na pasta \textit{models}.
 
-A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}, se falhar, inicia altomaticamente em
-modo offline, e passa a procrar os arquivos em suas pastas locais, do contrário, sempre busca no \textit{storage} configurado no 
+A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}. Se falhar, inicia automaticamente em
+modo offline e passa a procurar os arquivos em suas pastas locais. Do contrário, sempre busca no \textit{storage} configurado no 
 \textit{Supabase}.
 
 \section{Implementação}
 
-O aplicativo foi majoritariamente desenvovlido utilizando da linguagem de programação Python,
-e os modelos são implementados utilizando a linguagem de programação R, assim como os metodos
+O aplicativo foi majoritariamente desenvolvido utilizando a linguagem de programação Python,
+e os modelos são implementados utilizando a linguagem de programação R, assim como os métodos
 de avaliação.
 
-O parte principal da aplicação foi implementada no arquivo \textit{app.py}, onde é tratado a
-conexão com o \textit{Supabase} assim como o preparo para o treino de um novo modelo.
+A parte principal da aplicação foi implementada no arquivo \textit{app.py}, onde é tratada a
+conexão com o \textit{Supabase}, assim como o preparo para o treino de um novo modelo.
 
-A conexão é tratada no seguinte pedaço de código.
+A conexão é tratada no seguinte trecho de código:
 
 \begin{lstlisting}[language=python]
     try:
@@ -1308,14 +1306,14 @@ A conexão é tratada no seguinte pedaço de código.
         st.stop()
 \end{lstlisting}
 
-Onde se não for possivel a conexão com o Supabase por qualquer motivo,
-o aplicativo é iniciado no modo offline, utilizando dos dodos e modelos
+Onde, se não for possível a conexão com o Supabase por qualquer motivo,
+o aplicativo é iniciado no modo offline, utilizando dos dados e modelos
 disponíveis localmente.
 
-A parte visual do aplicação é gerenciada pela biblioteca \textit{Streamlit}.
+A parte visual da aplicação é gerenciada pela biblioteca \textit{Streamlit}.
 
-A utilização dessa biblioteca pode ser visto nas função utilizadas para gerar
-os campos de seleção que serão variados dependendo do conteudo disponivel.
+A utilização dessa biblioteca pode ser vista nas funções utilizadas para gerar
+os campos de seleção, que serão variados dependendo do conteúdo disponível.
 
 \begin{lstlisting}[language=python, caption={\label{code:selecao_variavel}}]
     sb_response = widgets.creat_selectbox(
@@ -1324,8 +1322,8 @@ os campos de seleção que serão variados dependendo do conteudo disponivel.
     )
 \end{lstlisting}
 
-Onde o funcionamento da biblioteca \textit{Streamlit} esta encapsulado pelos script
-\textit{widgets}, para ver com maior detalhes, podemos usar a função utilizada no
+Onde o funcionamento da biblioteca \textit{Streamlit} está encapsulado pelo script
+\textit{widgets}. Para ver com maiores detalhes, podemos usar a função utilizada no
 código \ref{code:selecao_variavel}.
 
 \begin{lstlisting}[language=python]
@@ -1334,7 +1332,7 @@ código \ref{code:selecao_variavel}.
 \end{lstlisting}
 
 Assim que o programa tem um modelo selecionado, podemos escolher os parâmetros de
-reposta e os preditores. Isso está implementado na seguinte parte do programa.
+resposta e os preditores. Isso está implementado na seguinte parte do programa:
 
 \begin{lstlisting}[language=python]
     col1, col2 = st.columns(2)
@@ -1354,9 +1352,9 @@ reposta e os preditores. Isso está implementado na seguinte parte do programa.
         )
 \end{lstlisting}
 
-Tendo os parâmetro selecionados, o treino do modelo pode ser efetuado. Para isso
-é necessário utilizar das funções implementadas dentro do script \textit{call\_model}.
-Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}.
+Tendo os parâmetros selecionados, o treino do modelo pode ser efetuado. Para isso,
+é necessário utilizar as funções implementadas dentro do script \textit{call\_model}.
+Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}:
 
 \begin{lstlisting}[language=python]
     try:
@@ -1376,8 +1374,8 @@ Seu uso pode ser visto dentro da seguinte parte do script \textit{app.py}.
         st.error(f'Erro ao executar {model}: {str(e)}')
 \end{lstlisting}
 
-Tendo os modelos treinados, a lógica dos teste começa no script \textit{pages\\testes.py}. Este
-que por sua vez, chama o script em R responsavel por gerenciar os testes, atravez da
+Tendo os modelos treinados, a lógica dos testes começa no script \textit{pages\\testes.py}. Este,
+por sua vez, chama o script em R responsável por gerenciar os testes, através da
 função \textit{run\_teste}.
 
 \begin{lstlisting}[language=python]
@@ -1387,7 +1385,7 @@ função \textit{run\_teste}.
         src.call_model.run_teste(model)
 \end{lstlisting}
 
-A função \textit{run\_teste} chama o seguinte script em R.
+A função \textit{run\_teste} chama o seguinte script em R:
 
 \begin{lstlisting}[style=r_code]
     library(jsonlite)
@@ -1430,21 +1428,21 @@ A função \textit{run\_teste} chama o seguinte script em R.
     }
 \end{lstlisting}
 
-Por sua vez, esse script em R, identifica o qual metodo de avalaiação será usado,
-com base no tipo de dados, que é inferido apartir da porcentagem de dados valores
-unicos e o tipo de classe da coluna sendo avalaiada.
+Por sua vez, esse script em R identifica qual método de avaliação será usado,
+com base no tipo de dados, que é inferido a partir da porcentagem de valores
+únicos e o tipo de classe da coluna sendo avaliada.
 
-Tento avalido os modelos, o script retorno ao aplicativo as metricas usadas e seus
+Tendo avaliado os modelos, o script retorna ao aplicativo as métricas usadas e seus
 respectivos valores.
 
 \subsection{Modelos}
 
-Para se gerar um modelo, primeiro precisamos escolhar qual dataset será utilizado. E qual o tipo de modelo a ser gerado, aqui é possivel
-escolher mais de um tipo de modelo, para crianção em conjunto. 
+Para se gerar um modelo, primeiro precisamos escolher qual dataset será utilizado e qual o tipo de modelo a ser gerado. Aqui, é possível
+\textit{escolher mais de um tipo de modelo para criação em conjunto}. 
 
-O código para gerar um modelo, possui alguns pontos importantes. Como ele recebe os dados para se treinar o modelo e como deve ser
-o retorno para o aplicativo. As informações necessárias são passadas atravez de argumentos de comando, e para extrai-los, usamos a
-seguinte parte do scritp em R.
+O código para gerar um modelo possui alguns pontos importantes, como a forma como ele recebe os dados para treinar o modelo e como deve ser
+o retorno para o aplicativo. As informações necessárias são passadas através de argumentos de comando e, para extraí-los, usamos a
+seguinte parte do script em R:
 
 \begin{lstlisting}[style=r_code]
     args <- commandArgs(trailingOnly = TRUE)
@@ -1458,11 +1456,11 @@ seguinte parte do scritp em R.
     predictors <- args[3:length(args)]
 \end{lstlisting}
 
-Tendo os dados e o tipo do modelo sido escolhido o sistema nos informa quais os parametros podem ser utilizados como preditores e 
-repostas, permitindo a escolha de um número variado de váriaveis em ambos os casos.
+Tendo os dados e o tipo do modelo sido escolhidos, o sistema nos informa quais os parâmetros podem ser utilizados como preditores e 
+respostas, permitindo a escolha de um número variado de variáveis em ambos os casos.
 
-Sendo de responsabilidade do scirpt do que gera o modelo, criar a equação para a geração do modelo, tomando como exemplo temos o
-script que gera um modelo GLM feito em R.
+É de responsabilidade do script que gera o modelo criar a equação para a geração do mesmo. Tomando como exemplo, temos o
+script que gera um modelo GLM feito em R:
 
 \begin{lstlisting}[style=r_code]
     response_original <- response
@@ -1474,13 +1472,13 @@ script que gera um modelo GLM feito em R.
     formula <- as.formula(string)
 \end{lstlisting}
 
-Neste pedaço de codigo, montamos a equação que é utilizada pelo modelo para gerar a regressão linear utilizada para fazer
-as inferencias necessárias. Assim como tratamaos os nomes e sertificamos que a equação esteja de acordo com oque é
-esperado pela função que treinarar o modelo.
+Neste trecho de código, montamos a equação que é utilizada pelo modelo para gerar a regressão linear utilizada para fazer
+as inferências necessárias, assim como tratamos os nomes e certificamos que a equação esteja de acordo com o que é
+esperado pela função que treinará o modelo.
 
-Durante o treino do modelo, os dados são separdos em dois conjunto, um pra o treino em si e o segundo para os testes posteriores, se estes
-dados já não tiverem sido separados durante a criação de outros modelo. Ao terminar de criar, a aplicação gera um arquivo \textit{JSON} 
-contendo os dados do modelo, como apresentado a baixo.
+Durante o treino do modelo, os dados são separados em dois conjuntos, um para o treino em si e o segundo para os testes posteriores, se estes
+dados já não tiverem sido separados durante a criação de outros modelos. Ao terminar de criar, a aplicação gera um arquivo \textit{JSON} 
+contendo os dados do modelo, como apresentado abaixo:
 
 \begin{lstlisting}[language=json]
     [
@@ -1493,20 +1491,20 @@ contendo os dados do modelo, como apresentado a baixo.
     ]
 \end{lstlisting}
 
-Onde, \textit{model} identifica onde esta salvo o modelo gerado, \textit{response\_name} a(s) variavel(is) de repostas, 
-\textit{predictors\_name} os preditores usados separados por "\textbar" e \textit{data\_name} onde se encontra os dados a serem usados 
+Onde \textit{model} identifica onde está salvo o modelo gerado, \textit{response\_name} a(s) variável(is) de respostas, 
+\textit{predictors\_name} os preditores usados, separados por "\textbar", e \textit{data\_name} onde se encontram os dados a serem usados 
 para teste.
 
 Esse arquivo \textit{JSON} recebe o nome do modelo junto com o nome do dataset utilizado.
 
 \subsubsection{Avaliação}
 
-Para avaliar o modelo, primeiro a aplicação identifica qual o tipo de dados que seram
-utilizados, se são categoricos ou continuos. A patir dessa indentificação o aplicativo
-escolhe quais as metricas de avaliação melhor se adequão para o teste.
+Para avaliar o modelo, primeiro a aplicação identifica qual o tipo de dados que serão
+utilizados, se são categóricos ou contínuos. A partir dessa identificação, o aplicativo
+escolhe quais as métricas de avaliação melhor se adequam para o teste.
 
-A parte do script responsavel pela indentificação é encontrada codificada em R no seguinte
-código.
+A parte do script responsável pela identificação é encontrada codificada em R no seguinte
+código:
 
 \begin{lstlisting}[style=r_code]
     response_col_name <- json_dado$response_name
@@ -1520,8 +1518,8 @@ código.
     col_class <- class(val_response)
 \end{lstlisting}
 
-Com os dados armazenados nas váriaveis \textit{percent\_unic} e \textit{col\_class} e scritp em
-R infere com qual tipode dados estamos trabalhando, e descicde qual procedimento de avaliação
+Com os dados armazenados nas variáveis \textit{percent\_unic} e \textit{col\_class}, o script em
+R infere com qual tipo de dados estamos trabalhando e decide qual procedimento de avaliação
 a ser efetuado.
 
 \begin{lstlisting}[style=r_code]
@@ -1532,13 +1530,13 @@ a ser efetuado.
     }
 \end{lstlisting}
 
-Sendo para dados continuos, utilizadas as metricas de MAE e RMSE, e para dados categoricos
+Sendo para dados contínuos, utilizadas as métricas de MAE e RMSE, e para dados categóricos,
 o aplicativo calcula a matriz de confusão por completo.
 
-Ao final do processo de avaliação o modelo retorna todos os resultados obtidos, sendo
+Ao final do processo de avaliação, o modelo retorna todos os resultados obtidos, sendo
 possível efetuar o teste em vários modelos simultaneamente.
 
-Deste modo, se é possivel identificar qual modelo escolhido atua melhor com os dados
+Deste modo, é possível identificar qual modelo escolhido atua melhor com os dados
 desejados, e o modelo pode ser utilizado para processos futuros.
 
 % ========================================================================
@@ -1546,23 +1544,23 @@ desejados, e o modelo pode ser utilizado para processos futuros.
 % ========================================================================
 \chapter{Resultados}
 
-Para identifcar a viabilidade da aplicação, foi efetuado teste utilizando dois conjuntos de dados 
+Para identificar a viabilidade da aplicação, foi efetuado um teste utilizando dois conjuntos de dados 
 distintos, sendo um deles utilizado para verificar a capacidade avaliativa quando tratamos de dados
-continuos e o outro para avaliar quando temos dados categoricos.
+contínuos e o outro para avaliar quando temos dados categóricos.
 
-Para os dados continuos, foi utilizado o conjunto de dados, \textit{psiasci2006.csv}, este conjunto 
+Para os dados contínuos, foi utilizado o conjunto de dados \textit{psiasci2006.csv}. Este conjunto 
 de dados foi construído utilizando as pontuações médias em Ciências por país do Programa Internacional 
 de Avaliação de Alunos (PISA) de 2006, juntamente com a RNB per capita (Paridade do Poder de Compra, 
 dólares de 2005), o Índice Educacional, o Índice de Saúde e o Índice de Desenvolvimento Humano, 
 com base em dados da ONU.
 
-O modelo gerado apartir destes dados, utilizou como parametros os valores de, \textit{Issue}, \textit{Interest},
-\textit{Support}, \textit{Income}, \textit{Health} e \textit{Edu}, para estimar o valro de \textit{HDI}.
-Os resultados encontrados para esse caso foram. 
+O modelo gerado a partir destes dados utilizou como parâmetros os valores de \textit{Issue}, \textit{Interest},
+\textit{Support}, \textit{Income}, \textit{Health} e \textit{Edu}, para estimar o valor de \textit{HDI}.
+Os resultados encontrados para esse caso foram:
 
 \begin{table}[H]
     \centering
-    \caption{\label{tab:resultados_continuos} Metricas de um modelo continuo}
+    \caption{\label{tab:resultados_continuos} Métricas de um modelo contínuo}
     \begin{tabular}{|c|c|c|}
         \hline
         \textbf{Modelo} & \textbf{MAE} & \textbf{RMSE} \\ \hline
@@ -1573,11 +1571,11 @@ Os resultados encontrados para esse caso foram.
     \legend{Fonte: Autoria do autor}
 \end{table}
 
-O conjunto de dados \textit{sao\_paulo.csv}, foi criado filtrando apenas as entradas que
-tem como localidade a cidade de São Paulo encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
-fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parametro mundial.
+O conjunto de dados \textit{sao\_paulo.csv} foi criado filtrando apenas as entradas que
+têm como localidade a cidade de São Paulo, encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
+fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parâmetro mundial.
 
-Neste caso os modelos gerados usaram como parametros so valores de, \textit{Latitude}, \textit{longitude} e
+Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE} e
 \textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. 
 
 % ========================================================================
@@ -1591,8 +1589,8 @@ Durante o desenvolvimento deste trabalho, foi identificado que adicionar a capac
 se utilizar dos modelos criados dentro da mesma aplicação para efetuar predições seria
 relevante.
 
-Assim como identificar o principal problema com dados categoricos que atualmente não
-retornam as metricas geradas em seus respectivos testes.
+Assim como identificar o principal problema com dados categóricos, que atualmente não
+retornam as métricas geradas em seus respectivos testes.
 
 \postextual
 
