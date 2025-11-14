@@ -1,0 +1,4 @@
+﻿,Model,mae,rmse
+0,gam_pisasci2006.json,0.0008,0.0009
+1,glm_pisasci2006.json,0.0012,0.0015
+2,mars_pisasci2006.json,0.0009,0.001

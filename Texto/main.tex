@@ -39,6 +39,7 @@
 \usepackage{amsmath} % Required for the split environment
 \usepackage{float}
 \usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
+\usepackage{csvsimple}
 
 % ---
 % Pacotes de citações
@@ -1224,7 +1225,7 @@ No sistema idealizado, a parte de controlo da aplicação é responsabilidade da
 age como uma interface entre o App e os modelos disponíveis, responsavel por informar quais modelos estão disponíveis, 
 rodar seus respectivos treinos e teste.
 
-Está mesma intergace possibilita a adição de novos modelos, sendo necessário se adequar ao modo como os dados são passdos e
+Está mesma interface possibilita a adição de novos modelos, sendo necessário se adequar ao modo como os dados são passdos e
 como o sistema espera encontrar seus modelos treinados e respectivas respostas.
 
 Os modelos implementandos possuem um processo de treino semelhante, seus fluxos são respresentados nos sequintes
@@ -1265,22 +1266,22 @@ A aplicação foi desenvolvida para aceitar dados armazenados em um arquivo no f
 capacidade de armazenar estes dados em um serviço de armazenamento online ou de modo local.
 
 O sistema se encarrega de fazer um leve tratamento dos dados a serem usados, não utilizando de entradas com dados faltantes que podem
-atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema divide os dados em dois grupos, dados
-para teste e dados para treinos, de modod aleatorio, separando 80\% dos dados para treino e 20\% dos dados para teste.
+atrapalhar na criação dos modelos e seus respectivos testes. Para a separação dos dados, o sistema os divide me dois gurpos, dados
+para teste e dados para treinos, de um modo aleatorio, separando 80\% dos dados para treino e 20\% dos dados para teste.
 
 Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmo forem dados
-continuos as métricas avalaitivas são diferentes na situação onde os dados são categoricos. Assim como o nome das colunas é usado para
-selecionar quais serão os parametros dependente e independentes.
+continuos as métricas avalaitivas são diferentes das usadas na situação onde os dados são categoricos. Assim como o nome das colunas é 
+usado para selecionar quais serão os parametros dependente e independentes.
 
 \subsection{Armazenamento}
 
 Os dados locais são armazenados dentro da pasta \textit{data\\dados}, e os dados que estão armazenados no \textit{Supabase} podem ser
-encontrados no \textit{storage} data dentro da pasta \textit{dados}. 
+encontrados no \textit{storage} dentro da pasta \textit{dados}. 
 
 Para os modelos, o seu armazenamento ocorre de modo semelhante, quando em um senario local, são ecnontrados na pasta \textit{models}, e
-e quando estamos em um funcionamento online, os mdoelos são encontrados no \textit{storage} data, porém na pasta \textit{models}.
+e quando em um funcionamento online, os mdoelos são encontrados no \textit{storage}, porém na pasta \textit{models}.
 
-A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}, se falhar ela se inicia altomaticamente em
+A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}, se falhar, inicia altomaticamente em
 modo offline, e passa a procrar os arquivos em suas pastas locais, do contrário, sempre busca no \textit{storage} configurado no 
 \textit{Supabase}.
 
@@ -1460,6 +1461,23 @@ seguinte parte do scritp em R.
 Tendo os dados e o tipo do modelo sido escolhido o sistema nos informa quais os parametros podem ser utilizados como preditores e 
 repostas, permitindo a escolha de um número variado de váriaveis em ambos os casos.
 
+Sendo de responsabilidade do scirpt do que gera o modelo, criar a equação para a geração do modelo, tomando como exemplo temos o
+script que gera um modelo GLM feito em R.
+
+\begin{lstlisting}[style=r_code]
+    response_original <- response
+    predictors_original <- predictors
+    response <- make.names(response)
+    predictors <- make.names(predictors)
+
+    string <- paste(response, "~", paste0(predictors, collapse = "+"))
+    formula <- as.formula(string)
+\end{lstlisting}
+
+Neste pedaço de codigo, montamos a equação que é utilizada pelo modelo para gerar a regressão linear utilizada para fazer
+as inferencias necessárias. Assim como tratamaos os nomes e sertificamos que a equação esteja de acordo com oque é
+esperado pela função que treinarar o modelo.
+
 Durante o treino do modelo, os dados são separdos em dois conjunto, um pra o treino em si e o segundo para os testes posteriores, se estes
 dados já não tiverem sido separados durante a criação de outros modelo. Ao terminar de criar, a aplicação gera um arquivo \textit{JSON} 
 contendo os dados do modelo, como apresentado a baixo.
@@ -1487,8 +1505,38 @@ Para avaliar o modelo, primeiro a aplicação identifica qual o tipo de dados qu
 utilizados, se são categoricos ou continuos. A patir dessa indentificação o aplicativo
 escolhe quais as metricas de avaliação melhor se adequão para o teste.
 
-Ao final do processo de avaliação o modelo retorno todas os resultados obtidos, sendo
-possível efetuar o teste em vários modelos gerados simultaneamente.
+A parte do script responsavel pela indentificação é encontrada codificada em R no seguinte
+código.
+
+\begin{lstlisting}[style=r_code]
+    response_col_name <- json_dado$response_name
+    val_response <- data_test[response_col_name]
+
+    unic_values <- length(unique(val_response)) # Qtd de valores unicos
+    all_values <- length(val_response) # Qtd geral de valores
+
+    percent_unic <- (unic_values * 100) / all_values
+
+    col_class <- class(val_response)
+\end{lstlisting}
+
+Com os dados armazenados nas váriaveis \textit{percent\_unic} e \textit{col\_class} e scritp em
+R infere com qual tipode dados estamos trabalhando, e descicde qual procedimento de avaliação
+a ser efetuado.
+
+\begin{lstlisting}[style=r_code]
+    if ((col_class == "factor" || col_class == "character") &&  percent_unic < 10){
+  score_categorico(model, data_test, json_dado) # Dado categorico
+    }else {
+    score_continuo(model, data_test, json_dado) # Dado continuo
+    }
+\end{lstlisting}
+
+Sendo para dados continuos, utilizadas as metricas de MAE e RMSE, e para dados categoricos
+o aplicativo calcula a matriz de confusão por completo.
+
+Ao final do processo de avaliação o modelo retorna todos os resultados obtidos, sendo
+possível efetuar o teste em vários modelos simultaneamente.
 
 Deste modo, se é possivel identificar qual modelo escolhido atua melhor com os dados
 desejados, e o modelo pode ser utilizado para processos futuros.
@@ -1496,13 +1544,55 @@ desejados, e o modelo pode ser utilizado para processos futuros.
 % ========================================================================
 % RESULTADOS
 % ========================================================================
- \chapter{Resultados}
- 
+\chapter{Resultados}
+
+Para identifcar a viabilidade da aplicação, foi efetuado teste utilizando dois conjuntos de dados 
+distintos, sendo um deles utilizado para verificar a capacidade avaliativa quando tratamos de dados
+continuos e o outro para avaliar quando temos dados categoricos.
+
+Para os dados continuos, foi utilizado o conjunto de dados, \textit{psiasci2006.csv}, este conjunto 
+de dados foi construído utilizando as pontuações médias em Ciências por país do Programa Internacional 
+de Avaliação de Alunos (PISA) de 2006, juntamente com a RNB per capita (Paridade do Poder de Compra, 
+dólares de 2005), o Índice Educacional, o Índice de Saúde e o Índice de Desenvolvimento Humano, 
+com base em dados da ONU.
+
+O modelo gerado apartir destes dados, utilizou como parametros os valores de, \textit{Issue}, \textit{Interest},
+\textit{Support}, \textit{Income}, \textit{Health} e \textit{Edu}, para estimar o valro de \textit{HDI}.
+Os resultados encontrados para esse caso foram. 
+
+\begin{table}[H]
+    \centering
+    \caption{\label{tab:resultados_continuos} Metricas de um modelo continuo}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Modelo} & \textbf{MAE} & \textbf{RMSE} \\ \hline
+        gam\_pisasci2006.json & 0.0008 & 0.0009 \\ \hline
+        glm\_pisasci2006.json & 0.0012 & 0.0015 \\ \hline
+        mars\_pisasci2006.json & 0.0009 & 0.001 \\ \hline
+    \end{tabular}
+    \legend{Fonte: Autoria do autor}
+\end{table}
+
+O conjunto de dados \textit{sao\_paulo.csv}, foi criado filtrando apenas as entradas que
+tem como localidade a cidade de São Paulo encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
+fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parametro mundial.
+
+Neste caso os modelos gerados usaram como parametros so valores de, \textit{Latitude}, \textit{longitude} e
+\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. 
+
 % ========================================================================
 % CONCLUSÃO
 % ========================================================================
 \chapter{Conclusão}
+
+
 \section{Trabalhos Futuros}
+Durante o desenvolvimento deste trabalho, foi identificado que adicionar a capacidade de
+se utilizar dos modelos criados dentro da mesma aplicação para efetuar predições seria
+relevante.
+
+Assim como identificar o principal problema com dados categoricos que atualmente não
+retornam as metricas geradas em seus respectivos testes.
 
 \postextual
 
