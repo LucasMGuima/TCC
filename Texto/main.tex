@@ -912,7 +912,7 @@ apresentadas acima, reduzindo a fórmula à sua característica mais presente, v
 um valor muito grande. 
 
 Por exemplo, uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, pode ser reduzida a $n^2$, 
-\textit{já que esta parte terá maior peso durante a computação}, caracterizando-a como $O(n^2)$, onde $O$ é a notação 
+já que esta parte terá maior peso durante a computação, caracterizando-a como $O(n^2)$, onde $O$ é a notação 
 "O grande", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
 
 Com esta análise, encontramos um algoritmo que melhor se encaixe em determinado problema, antes de se
@@ -1574,7 +1574,21 @@ localidade a cidade de São Paulo, encontradas em um dataset maior, o \textit{da
 fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parâmetro mundial.
 
 Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE} e
-\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}.
+\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. Como aqui trabalhamos com
+dados categoricos, o sistem constroi os valores da matriz de confusão dos modelos encontrados.
+
+\begin{table}[H]
+    \centering
+    \caption{\label{tab:resultados_categoricos} Métricas de um modelo categorico}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Modelo}         & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Recall} & \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} \\ \hline
+        gam\_pisasci2006.json   & 0.0008            & 0.0009            & 0               & 0           & 0           & 0           & 0           \\ \hline
+        glm\_pisasci2006.json   & 0.0012            & 0.0015            & 0               & 0           & 0           & 0           & 0           \\ \hline
+        mars\_pisasci2006.json  & 0.0009            & 0.001             & 0               & 0           & 0           & 0           & 0           \\ \hline
+    \end{tabular}
+    \legend{Fonte: Autoria do autor}
+\end{table}
 
 % ========================================================================
 % CONCLUSÃO
