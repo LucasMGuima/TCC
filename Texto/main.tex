@@ -580,6 +580,25 @@ quando nosso modelo atua com dados continuos, utilizamos as metricas MAE e RMSE.
 % =====================
 % Discorrer sobre as metricas MAE e RMSE
 % =====================
+O erro medio absoluto (MAE), é um dos vários modos de comprar uma predição com seus valores reais, algumas de suas
+variações são, erro médio absoluto escalonado (MASE), erro médio absoluto logarítmico (MALE) e erro médio quadrático.
+Estes metodos resumem o modelo, desconsiderando a direção de superestimação e subestimação, para levar estes pontos
+em conta o poderia ser utilizado a diferença media com sinal \cite{mae&rmse}.
+
+A representação matematica do MAE, é a soma dos erros absolutos divido pelo tamanho da amostra utilizada.
+
+\begin{equation}
+    \label{eq:mae}
+    MAE = \frac{\sum_{i=1}^{n}|y_i - x_i|}{n}
+\end{equation}
+
+Em outras palavras o MAE é a diferença absoluta entre $X$ e $Y$, onde temos como alvo diminuir o valor do MAE
+assim representando um modelo melhor.
+
+Já o erro quadrático médio (RMSE), é a média quadrática da diferença entre os valores observados e os previstos,
+servindo para agregar as magnitudes dos erros nas previsões para vários pontos de dados em uma única medida, sendo
+uma medidad de precisão, usada para comparar os erros de previsão de diferentes modelos para um conjunto de 
+dados Específicos \cite{rmse}.
 
 \subsubsection{Matriz de Confusão}
 
@@ -1575,25 +1594,17 @@ fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parâmet
 
 Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE} e
 \textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. Como aqui trabalhamos com
-dados categoricos, o sistem constroi os valores da matriz de confusão dos modelos encontrados.
+dados categoricos, o sistema deveria construir a matriz de confusão dos modelos encontrados.
 
-\begin{table}[H]
-    \centering
-    \caption{\label{tab:resultados_categoricos} Métricas de um modelo categorico}
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
-        \hline
-        \textbf{Modelo}         & \textbf{Acurácia} & \textbf{Precisão} & \textbf{Recall} & \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} \\ \hline
-        gam\_pisasci2006.json   & 0.0008            & 0.0009            & 0               & 0           & 0           & 0           & 0           \\ \hline
-        glm\_pisasci2006.json   & 0.0012            & 0.0015            & 0               & 0           & 0           & 0           & 0           \\ \hline
-        mars\_pisasci2006.json  & 0.0009            & 0.001             & 0               & 0           & 0           & 0           & 0           \\ \hline
-    \end{tabular}
-    \legend{Fonte: Autoria do autor}
-\end{table}
+Mas foi encontrado um erro quando trabalhamos com dados categoricos, onde apenas o modelo GLM foi gerado
+corretamente, para os dois outros casos avaliados, GMA e MARS, as implementações utilizadas não conseguiram
+com o tamanho de amostra utilizado, gerar modelos para serem avaliados.
 
 % ========================================================================
 % CONCLUSÃO
 % ========================================================================
 \chapter{Conclusão}
+
 
 
 \section{Trabalhos Futuros}
