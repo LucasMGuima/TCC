@@ -1,4 +1,4 @@
-# Configurar caminho da biblioteca do usuário
+# Configurar caminggeho da biblioteca do usuário
 .libPaths(c(file.path(Sys.getenv("HOME"), "R", "library"), .libPaths()))
 
 library(mgcv)

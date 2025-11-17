@@ -244,9 +244,16 @@
 % ========================================================================
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
-Texto do resumo
+Modelos preditivos são utilizados nos mais diversos campos, desde a área de
+finanças à área da biologia, onde precisamos de modelos precisos para
+gerar um respaldo nas decisões tomadas, como exemplo, podemos citar
+o empacto do crescimento urbano na população avaria de uma dada região.
+Em vista desta necessidade, este trabalho tem como intuito a criação de 
+um processo semiautomatizado para facilitar a criação e avaliação de 
+modelos preditivos para futuras utilizações, sendo o mesmo capaz de 
+trabalhar com conjuntos de dados arbitrários.
 
-\textbf{Palavras-chaves}: palavra-chave 1, palavra-chave 2, palavra-chave 3.
+\textbf{Palavras-chaves}: Modelos Preditivos, GAM, GLM, MARS, Avaliação de Modelos.
 \end{resumo}
 
 % ========================================================================
@@ -254,9 +261,14 @@ Texto do resumo
 % ========================================================================
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-    Abstract text in english
+    Predictive models are used in a wide variety of fields, from finance to 
+    biology, where we need accurate models to support the decisions made. 
+    For example, we can cite the impact of urban growth on the population of a 
+    given region. In view of this need, this work aims to create a 
+    semi-automated process to facilitate the creation and evaluation of 
+    predictive models for future uses, capable of working with arbitrary datasets.
    
-   \textbf{Key-words}: keyword 1, keyword 2, keyword 3
+   \textbf{Key-words}: Predictive Models, GAM, GLM, MARS, Model Evaluation.
  \end{otherlanguage*}
 \end{resumo}
 
@@ -1605,12 +1617,29 @@ com o tamanho de amostra utilizado, gerar modelos para serem avaliados.
 % ========================================================================
 \chapter{Conclusão}
 
+O processo de se criar um modelo computacional necessita de uma sequência predefinida de ações, estas
+que variam de acordo com o conjunto de dados a ser usado, assim como o modo que devemos apresentar
+estas informações para quem está encarregado de treinar o modelo desejado.
 
+Tais processos são automatizados na maioria das linguagens que têm como uso ou foco a ciência de dados, porém
+a integração de um sistema que seja capaz de trabalhar com qualquer conjunto de dados para treinar um dado
+modelo arbitrário, se mostra complexa, visto que o método a se utilizar para avaliar um modelo varia de acordo
+com o tipo de dado que este trabalha.
+
+O sistema se mostrou capaz de criar e avaliar modelos quando atuando com dados contínuos. Quando
+tentamos treinar os modelos com dados categóricos, os \textit{scripts} de geração não foram capazes de
+entregar corretamente as especificações para o treino do modelo, assim, afetando a generalização do
+processo.
+
+Assim, a construção de um sistema generalista para a criação de modelos arbitrários com \textit{datasets} arbitrários,
+aparenta ser mais complexa do que o idealizado inicialmente, indicando ser necessária a criação de \textit{scripts}
+diferentes para o treino de um determinado modelo com um determinado tipo de dado, ou a criação de uma
+nova entidade responsável por gerenciar as informações necessárias para possibilitar o treino do modelo desejado.
 
 \section{Trabalhos Futuros}
-Durante o desenvolvimento deste trabalho, foi identificado que adicionar a capacidade de
-se utilizar dos modelos criados dentro da mesma aplicação para efetuar predições seria
-relevante.
+Para trabalhos futuros, é proposto a melhora na robustez do sistema em atuar com tipos de dados em uma escala
+maior, uma visualização gráfica das predições dos modelos gerados, facilitar a configuração de um
+banco de dados externo, e a capacidade de efetuar predições com os modelos gerados dentro do próprio sistema.
 
 \postextual
 
