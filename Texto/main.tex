@@ -72,7 +72,7 @@
 \definecolor{g}{rgb}{0.7,0.7,0.7}  % gray
 
 % Informações de dados para CAPA e FOLHA DE ROSTO
-\titulo{Sistema Flexível para Treino e Avaliação de Modelos de Regressão (GAM, GLM e MARS) com Conjuntos de Dados Arbitrários em R.}
+\titulo{Sistema Flexível para Treino e Avaliação de Modelos de Regressão (GAM, GLM e MARS) com Conjuntos de Dados Arbitrários.}
 \autor{Lucas da Mata Guimarães}
 \local{São Paulo - Brasil}
 \data{2025}
@@ -255,16 +255,30 @@
 % ========================================================================
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
-Modelos preditivos são utilizados nos mais diversos campos, desde a área de
-finanças à área da biologia, onde precisamos de modelos precisos para
-gerar um respaldo nas decisões tomadas, como exemplo, podemos citar
-o empacto do crescimento urbano na população avaria de uma dada região.
-Em vista desta necessidade, este trabalho tem como intuito a criação de 
-um processo semiautomatizado para facilitar a criação e avaliação de 
-modelos preditivos para futuras utilizações, sendo o mesmo capaz de 
-trabalhar com conjuntos de dados arbitrários.
+    Modelos preditivos são utilizados nos mais diversos campos, desde a área de
+    finanças à área da biologia, onde precisamos de modelos precisos para
+    gerar um respaldo nas decisões tomadas, como exemplo, podemos citar
+    o impacto do crescimento urbano na população vária de uma dada região.
 
-\textbf{Palavras-chaves}: Modelos Preditivos, GAM, GLM, MARS, Avaliação de Modelos.
+    Em vista desta necessidade, este trabalho tem como intuito a criação de 
+    um processo semiautomático para facilitar a criação e avaliação de 
+    modelos preditivos para futuras utilizações, sendo o mesmo capaz de 
+    trabalhar com conjuntos de dados arbitrários.
+
+    Para a validação do sistema proposto, foram utilizados dois conjuntos
+    de dados, representando uma predição com dados contínuos e com dados
+    categóricos, os quais foi de responsabilidade do sistema separar os 
+    dados para os respectivos testes e treinos, assim como fazer os
+    tratamentos identificados como necessários para tornar viável a
+    construção do modelo, e identificar quais métricas seriam melhores
+    para avaliá-lo.
+
+    Enquanto o sistema proposto se mostrou capaz de identificar corretamente
+    o tipo de dado, e com isso como prepará-lo e quais testes avaliativos
+    utilizar, quando trabalhando com dados categóricos o processo de criação
+    se mostrou falho quando aplicado a um escopo generalista. 
+
+\textbf{Palavras-chave}: Modelos Preditivos, GAM, GLM, MARS, Avaliação de Modelos.
 \end{resumo}
 
 % ========================================================================
@@ -272,12 +286,23 @@ trabalhar com conjuntos de dados arbitrários.
 % ========================================================================
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-    Predictive models are used in a wide variety of fields, from finance to 
-    biology, where we need accurate models to support the decisions made. 
-    For example, we can cite the impact of urban growth on the population of a 
-    given region. In view of this need, this work aims to create a 
-    semi-automated process to facilitate the creation and evaluation of 
-    predictive models for future uses, capable of working with arbitrary datasets.
+    Predictive models are used in a wide variety of fields, from finance to biology, 
+    where we need accurate models to support the decisions made. For example, we can 
+    cite the impact of urban growth on the population of a given region.
+
+    In view of this need, this work aims to create a semi-automatic process to 
+    facilitate the creation and evaluation of predictive models for future use, 
+    capable of working with arbitrary datasets.
+
+    For the validation of the proposed system, two datasets were used, representing a 
+    prediction with continuous data and with categorical data. The system was responsible 
+    for separating the data for the respective tests and training, as well as performing 
+    the treatments identified as necessary to make the construction of the model viable, 
+    and identifying which metrics would be best to evaluate it.
+
+    While the proposed system proved capable of correctly identifying the type of data, 
+    and thus how to prepare it and which evaluative tests to use, when working with 
+    categorical data the creation process proved flawed when applied to a general scope.
    
    \textbf{Key-words}: Predictive Models, GAM, GLM, MARS, Model Evaluation.
  \end{otherlanguage*}
@@ -1619,9 +1644,24 @@ Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LAT
 \textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. Como aqui trabalhamos com
 dados categoricos, o sistema deveria construir a matriz de confusão dos modelos encontrados.
 
-Mas foi encontrado um erro quando trabalhamos com dados categoricos, onde apenas o modelo GLM foi gerado
-corretamente, para os dois outros casos avaliados, GMA e MARS, as implementações utilizadas não conseguiram
-com o tamanho de amostra utilizado, gerar modelos para serem avaliados.
+Mas foi encontrado um erro quando trabalhamos com dados categóricos, onde apenas o modelo GLM foi gerado
+corretamente, para os dois outros casos avaliados, GAM e MARS, as implementações utilizadas não conseguiram
+gerar modelos para serem avaliados.
+
+Fora tentando a adaptação dos \textit{scripts} encarregados de geram os modelos, para que estes fossem
+capazes de corrigir este erro sem afetar a generalidade do projeto, porém sem sucesso, mas este processo
+levantou dois pontos fundamentais, que aparentam ser a raiz do problema, o tamanho do conjunto de dados
+e a implementação utilizada dos modelos GAM e MARS.
+
+Um dos erros encontrados quando fora tentando solucionar o problema, indica que o tamanho do conjunto
+de dados separados para treino não permitia a inferência de uma relação entre os parâmetros escolhidos
+para se gerar o modelo.
+
+A segundo erro encontrado, indica que as aplicações em R utilizados para a criação dos modelos GAM e MARS, 
+não são capazes de lidar com dados em formato de texto, a alternativa de transformação cada texto em um valor
+numérico criando uma tabela auxiliar de relação foi testada, porém esta abordagem retornava ao erro
+mencionado anteriormente, logo uma análise mais minuciosa das aplicações em R do GAM e MARS se vê 
+necessária, ou o teste com um conjunto de dados categóricos diferente e mais extensivo.
 
 % ========================================================================
 % CONCLUSÃO
@@ -1646,6 +1686,11 @@ Assim, a construção de um sistema generalista para a criação de modelos arbi
 aparenta ser mais complexa do que o idealizado inicialmente, indicando ser necessária a criação de \textit{scripts}
 diferentes para o treino de um determinado modelo com um determinado tipo de dado, ou a criação de uma
 nova entidade responsável por gerenciar as informações necessárias para possibilitar o treino do modelo desejado.
+
+Logo, podemos concluir que um sistema generalista para a construção e avaliação de modelos se aparenta
+viável, porém sua concepção aparenta ser inicialmente simples porém a generalização dos \textit{scprits} encarregados de
+treinar e testar os modelos se torna o principal gargalo para a concepção de tal sistema, visto os problemas
+encontrados ao tentar criar modelos GAM e MARS utilizando de dados categóricos.
 
 \section{Trabalhos Futuros}
 Para trabalhos futuros, é proposto a melhora na robustez do sistema em atuar com tipos de dados em uma escala
