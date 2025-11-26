@@ -255,28 +255,21 @@
 % ========================================================================
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
-    Modelos preditivos são utilizados nos mais diversos campos, desde a área de
-    finanças à área da biologia, onde precisamos de modelos precisos para
-    gerar um respaldo nas decisões tomadas, como exemplo, podemos citar
-    o impacto do crescimento urbano na população vária de uma dada região.
+    Modelos preditivos são ferramentas essenciais em diversas áreas, como finanças e biologia, 
+    fornecendo suporte quantitativo para a tomada de decisões. Um exemplo prático é a avaliação 
+    do impacto do crescimento urbano na população de espécies de uma determinada região.
 
-    Em vista desta necessidade, este trabalho tem como intuito a criação de 
-    um processo semiautomático para facilitar a criação e avaliação de 
-    modelos preditivos para futuras utilizações, sendo o mesmo capaz de 
-    trabalhar com conjuntos de dados arbitrários.
+    Este trabalho propõe a criação de um processo semiautomático para facilitar a construção e 
+    avaliação de modelos preditivos, projetado para operar com conjuntos de dados arbitrários.
 
-    Para a validação do sistema proposto, foram utilizados dois conjuntos
-    de dados, representando uma predição com dados contínuos e com dados
-    categóricos, os quais foi de responsabilidade do sistema separar os 
-    dados para os respectivos testes e treinos, assim como fazer os
-    tratamentos identificados como necessários para tornar viável a
-    construção do modelo, e identificar quais métricas seriam melhores
-    para avaliá-lo.
+    Para validar o sistema, foram utilizados dois conjuntos de dados distintos: um com dados 
+    contínuos e outro com dados categóricos. O sistema foi responsável por particionar os dados 
+    para treino e teste, aplicar os pré-processamentos necessários para a modelagem e 
+    selecionar as métricas de avaliação mais adequadas para cada caso.
 
-    Enquanto o sistema proposto se mostrou capaz de identificar corretamente
-    o tipo de dado, e com isso como prepará-lo e quais testes avaliativos
-    utilizar, quando trabalhando com dados categóricos o processo de criação
-    se mostrou falho quando aplicado a um escopo generalista. 
+    O sistema demonstrou ser capaz de identificar corretamente o tipo de dado (contínuo ou categórico), 
+    adaptando o pré-processamento e as métricas de avaliação de acordo. Contudo, a geração de modelos 
+    a partir de dados categóricos apresentou falhas em uma abordagem generalista.
 
 \textbf{Palavras-chave}: Modelos Preditivos, GAM, GLM, MARS, Avaliação de Modelos.
 \end{resumo}
@@ -287,8 +280,8 @@
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
     Predictive models are used in a wide variety of fields, from finance to biology, 
-    where we need accurate models to support the decisions made. For example, we can 
-    cite the impact of urban growth on the population of a given region.
+    where accurate models are needed to support decision-making. For example, we can 
+    cite the impact of urban growth on the species population of a given region.
 
     In view of this need, this work aims to create a semi-automatic process to 
     facilitate the creation and evaluation of predictive models for future use, 
@@ -296,13 +289,10 @@
 
     For the validation of the proposed system, two datasets were used, representing a 
     prediction with continuous data and with categorical data. The system was responsible 
-    for separating the data for the respective tests and training, as well as performing 
-    the treatments identified as necessary to make the construction of the model viable, 
-    and identifying which metrics would be best to evaluate it.
+    for separating the data for testing and training, performing the necessary treatments to make the model's construction viable, 
+    and identifying the most suitable metrics for its evaluation.
 
-    While the proposed system proved capable of correctly identifying the type of data, 
-    and thus how to prepare it and which evaluative tests to use, when working with 
-    categorical data the creation process proved flawed when applied to a general scope.
+    Although the proposed system proved capable of correctly identifying the data type, and consequently how to prepare it and which evaluation tests to use, the creation process for models working with categorical data was flawed when applied to a generalist scope.
    
    \textbf{Key-words}: Predictive Models, GAM, GLM, MARS, Model Evaluation.
  \end{otherlanguage*}
@@ -348,90 +338,75 @@
 
 \section{Contexto}
 
-O uso de modelos computacionais na Biologia possibilita o avanço de diferentes estudos \cite{modelagem_comp}. 
-Uma dessas aplicações são os modelos de distribuição de espécies, que são capazes de fornecer uma visualização 
-da situação da fauna e da flora de determinada região, podendo mostrar como estas se comportam ao 
-longo do tempo \cite{speciesDistributionModels}.
+A modelagem computacional tem impulsionado avanços significativos em diversas áreas da Biologia \cite{modelagem_comp}. 
+Entre suas aplicações, destacam-se os modelos de distribuição de espécies (SDMs), que permitem visualizar e prever 
+a dinâmica de populações da fauna e da flora em uma determinada região ao longo do tempo \cite{speciesDistributionModels}.
 
-Entre esses modelos, os mais utilizados são o Generalized Additive Models (GAM) \cite{GAM}
-e o Generalized Linear Model (GLM) \cite{GLM}. Esses dois modelos usam uma função para 
-estabelecer uma relação entre a média da variável de resposta e uma função 'suavizada'
-das variáveis explicativas, sendo o GLM uma extensão de modelos lineares que não
-forçam os dados a escalas não naturais, e o GAM uma extensão semiparametrizada do GLM,
-com a capacidade de atuar com relações não lineares e não monótonas \cite{GAMeGLM_especie_estudo}. 
+Dentre os SDMs mais proeminentes, encontram-se o \textit{Generalized Additive Models} (GAM) \cite{GAM} e o \textit{Generalized Linear Model} (GLM) \cite{GLM}. 
+O GLM é uma extensão dos modelos lineares tradicionais que permite modelar dados com distribuições de erro não normais. 
+O GAM, por sua vez, é uma extensão semiparamétrica do GLM, capaz de capturar relações não lineares e não monótonas entre as variáveis \cite{GAMeGLM_especie_estudo}.
 
-O Multivariate Adaptive Regression Spline (MARS) combina partição recursiva e ajustes
-por splines, de modo a manter seus aspectos positivos, sendo menos vulnerável a 
-suas propriedades não favoráveis. Isso gera um conjunto de regras para prever
-valores futuros a partir de uma análise regressiva \cite{MARS}. 
+Outro modelo relevante é o \textit{Multivariate Adaptive Regression Spline} (MARS), que combina particionamento recursivo e ajuste por \textit{splines} 
+para construir um modelo preditivo robusto a partir de uma análise regressiva \cite{MARS}.
 
-As aplicações desses modelos são encontradas, em sua maioria, codificadas na linguagem de programação R, que, por
-sua vez, é a linguagem de programação mais utilizada quando se trata de ciência de dados, sendo conhecida
-como a linguagem mais robusta para a área de dados, tendo sido pensada para o uso em cálculos e
-análises estatísticas \cite{linguagem_r}.
+A implementação desses modelos é frequentemente realizada na linguagem de programação R, uma ferramenta consolidada na comunidade de ciência de dados, 
+reconhecida por sua robustez em cálculos e análises estatísticas \cite{linguagem_r}.
 
-No entanto, esses modelos podem exigir alta demanda de processamento e memória do computador hospedeiro, 
-como citado por \cite{modelagem_comp}, ponto este que não é repassado nos trabalhos referentes à análise 
-ou uso dos modelos citados. Logo, mesmo com a facilidade de se adquirir um computador, tais modelos
-requerem computadores de alto desempenho para serem treinados, tornando esse processo lento ou criando 
-a necessidade de se alugar máquinas virtuais para essa finalidade \cite{global_cloud_maketing}. 
+Contudo, o treinamento desses modelos pode demandar um alto custo computacional, exigindo considerável poder de processamento e memória \cite{modelagem_comp}. 
+Essa característica, muitas vezes negligenciada em trabalhos que se concentram apenas na análise dos modelos, pode tornar o processo de treinamento lento 
+e dependente de computadores de alto desempenho ou de serviços de computação em nuvem \cite{global_cloud_maketing}.
 
-Quando se considera a necessidade de manter um controle das populações de espécies, dentro ou próximo
-a centros urbanos, a velocidade de preparação desses modelos se torna mais crítica, já que é necessário ir
-desde a coleta dos dados, ao treino e validação do modelo, e análise dos resultados obtidos.
+A necessidade de monitorar populações de espécies em ambientes urbanos ou em suas proximidades torna a eficiência do processo de modelagem um fator crítico. 
+A agilidade na obtenção de resultados é fundamental, considerando que o ciclo completo envolve desde a coleta de dados e o treinamento do modelo até a validação e a análise final.
  
 \section{Justificativa}
 
-Identificar a distribuição de espécies em um dado ambiente, em um determinado intervalo de tempo, 
-é importante para termos noção de como as espécies respondem a mudanças no ambiente, no aumento 
-ou na diminuição de outra espécie.
+A identificação da distribuição de espécies em um determinado ambiente e intervalo de tempo é fundamental 
+para compreender como as populações respondem a alterações ambientais, como a flutuação na abundância de outras espécies. 
+Muitas dessas alterações são impulsionadas pela atividade humana, como a expansão da construção civil e de infraestrutura 
+\cite{impactConstruction}. Portanto, a capacidade de estimar o impacto dessas ações é crucial para a conservação da biodiversidade.
 
-Uma vez que essas mudanças podem ser geradas pela ação humana, na construção civil e de infraestrutura 
-\cite{impactConstruction}, conseguir estimar o impacto dessas ações é vantajoso para a preservação das espécies.
+A aplicação de modelos estatísticos, como o \textit{Generalized Additive Models} (GAM), o \textit{Generalized Linear Model} (GLM) e o 
+\textit{Multivariate Adaptive Regression Spline} (MARS), permite analisar e prever esses fenômenos. Esses modelos, embora compartilhem 
+a abordagem de máxima verossimilhança (\textit{Maximum Likelihood} - ML), diferem em sua capacidade de lidar com diferentes tipos de dados, 
+bem como no custo computacional associado ao seu treinamento e utilização \cite{predPerform33models}.
 
-Além disso, essas abordagens aumentam as possibilidades para integrar a infraestrutura necessária, 
-contribuindo para a sobrevivência de espécies que estão em níveis populacionais baixos.
+A eficácia dos modelos de distribuição de espécies está diretamente ligada à disponibilidade de dados de ocorrência e, em alguns casos, 
+de ausência de espécies \cite{sampleSize}. No entanto, a coleta de dados pode ser um desafio para espécies raras ou de habitat restrito 
+\cite{especiesDificies}. Nesse contexto, a ciência cidadã surge como uma ferramenta valiosa, permitindo a colaboração de voluntários 
+na coleta de dados e na identificação de áreas prioritárias para pesquisa. A criação de modelos eficientes que possam utilizar esses 
+dados de forma otimizada é, portanto, altamente vantajosa.
 
-Modelos estatísticos, que têm a capacidade de demonstrar esses eventos, aplicam de maneiras diferentes algumas 
-linhas de abordagem. O Generalized Additive Models (GAM), o Generalized Linear Model (GLM), e o 
-Multivariate Adaptive Regression Spline (MARS), ambos com uma abordagem de Maximum likelihood (ML), 
-variam em sua capacidade de atuar com um determinado tipo de dado e no custo de seu treinamento 
-e utilização \cite{predPerform33models}.
+Além da qualidade e quantidade dos dados, o custo de processamento e o consumo de memória são fatores determinantes na escolha de um modelo. 
+A análise de complexidade de tempo e espaço \cite{introductionAlgorthms} permite avaliar a viabilidade de treinar um modelo em computadores 
+com recursos limitados, possibilitando, inclusive, a construção simultânea de múltiplos modelos para comparação.
 
-Modelos que são utilizados na modelagem de distribuição de espécies necessitam de uma quantidade elevada de dados 
-\cite{sampleSize}, de ocorrência e ausência, sendo os dados de ausência não necessários em todos os tipos de modelos.
+Finalmente, a acurácia do modelo é um requisito indispensável. Um modelo que não atende aos requisitos de desempenho computacional, 
+ou que produz resultados imprecisos, pode levar a conclusões equivocadas. Portanto, a identificação de um modelo que combine alta 
+acurácia, especialmente ao trabalhar apenas com dados de ocorrência, com um baixo custo computacional, é essencial para a realização 
+de análises preliminares robustas e confiáveis.
 
-Nem todas as espécies são facilmente modeláveis devido à dificuldade de coleta de dados, seja por sua raridade ou habitat 
-\cite{especiesDificies}. A colaboração de cidadãos na coleta de dados pode auxiliar na identificação de áreas prioritárias 
-para pesquisa. Portanto, a identificação de bons modelos que trabalham com esses dados é vantajosa.
+\section{Objetivo Geral}
 
-Nesses modelos, além da quantidade e do tipo de dados necessários, precisamos levar em consideração o custo de 
-processamento e o espaço de memória utilizado pelo mesmo. Para este fim, utilizamos a análise de complexidade 
-e espaço \cite{introductionAlgorthms}, já que um modelo mais barato nesse quesito pode ser criado em computadores 
-mais acessíveis \cite{introductionAnalysis}, e ser possível a construção de mais de um modelo de modo simultâneo.
-
-Os pontos levantados anteriormente podem afetar a acurácia de um modelo. Mesmo atendendo aos requisitos, 
-de pouco adianta se o mesmo nos entrega respostas que induzem ao erro. Identificar um modelo que tenha uma boa acurácia, 
-quando trabalha somente com dados de ocorrência, assim como uma melhor avaliação computacional, se vê vantajoso para 
-situações em que queremos criar uma análise inicial de um determinado cenário.
-
-\section{Objetivo}
-
-Este trabalho tem como objetivo a criação de um sistema maleável capaz de criar modelos de regressão
-com conjuntos de dados contínuos e categóricos, e avaliá-los, inferindo a partir dos dados quais métricas
-avaliativas aplicar e identificar se os dados são contínuos ou categóricos.
+O objetivo deste trabalho é desenvolver um sistema flexível para a criação e avaliação de modelos de regressão 
+(GAM, GLM e MARS), capaz de operar com conjuntos de dados arbitrários, contendo tanto variáveis contínuas quanto categóricas. 
+O sistema deverá ser capaz de inferir, a partir das características dos dados, o tipo de variável resposta e, consequentemente, 
+selecionar as métricas de avaliação mais adequadas.
 
 \subsection{Objetivos Específicos}
 
+Para alcançar o objetivo geral, foram definidos os seguintes objetivos específicos:
+
 \begin{enumerate}
-    \item Implementar o treino e teste automatizado dos modelos.
+    \item Implementar um fluxo de trabalho automatizado para o treinamento e teste dos seguintes modelos de regressão:
     \begin{itemize}
-        \item Generalized Additive Model;
-        \item Generalized Linear Model;
-        \item Multivariate Adaptive Regression Spline;
+        \item \textit{Generalized Additive Model} (GAM);
+        \item \textit{Generalized Linear Model} (GLM);
+        \item \textit{Multivariate Adaptive Regression Spline} (MARS).
     \end{itemize}
-    \item Identificar qual o melhor método de avaliação.
-    \item Avaliação dos modelos com base nas métricas escolhidas.
+    \item Desenvolver um mecanismo para a identificação automática do tipo de variável resposta (contínua ou categórica).
+    \item Implementar a seleção automática das métricas de avaliação com base no tipo de variável resposta identificada.
+    \item Realizar a avaliação comparativa do desempenho dos modelos implementados com base nas métricas selecionadas.
 \end{enumerate}
 
 % ========================================================================
@@ -444,7 +419,7 @@ avaliativas aplicar e identificar se os dados são contínuos ou categóricos.
 
 Modelos computacionais são representações simplificadas de fenômenos, que geram uma aproximação
 do evento real, com o objetivo de visualizar ou entender determinado fenômeno, codificados em 
-alguma linguagem computacional para serem executados em um computador. Estes modelos podem ser criados
+alguma linguagem de programação para serem executados em um computador. Estes modelos podem ser criados
 por especialistas utilizando equações matemáticas ou, automaticamente, por meio de técnicas de
 inteligência artificial \cite{modelos_computacionais}.
 
@@ -465,10 +440,10 @@ segundo \cite{modelagem_computacional}, são:
 
 \begin{enumerate}
     \item \textbf{Modelagem determinística}: O comportamento do sistema é previsível, onde os mesmos parâmetros de 
-entrada sempre produzem os mesmos resultados. É mais comum no campo da Física e da Engenharia, onde os 
+entrada sempre produzem os mesmos resultados. É mais comum nos campos da Física e da Engenharia, onde os 
 fenômenos naturais seguem um conjunto de regras bem definido.
     \item \textbf{Modelagem estocástica}: Inclui elementos de incerteza e aleatoriedade, e o sistema pode apresentar
-resultados diferentes para o mesmo conjunto de parâmetros de entrada. É comumente usada onde o acaso 
+resultados diferentes para o mesmo conjunto de parâmetros de entrada. É comumente usada em áreas onde o acaso 
 desempenha um papel importante, como na Biologia e na Economia.
     \item \textbf{Modelagem dinâmica}: Focada em sistemas que mudam ao longo do tempo, é essencial em áreas como a
 Ecologia e a Epidemiologia, onde é preciso prever a evolução de sistemas biológicos ou a propagação
@@ -480,14 +455,14 @@ de doenças.
 Modelos lineares preveem uma resposta linear utilizando como base a relação entre o resultado
 e as propriedades dadas como parâmetros. Por serem uma opção mais simples, possuem propriedades mais fáceis de
 serem entendidas e um tempo de desenvolvimento mais curto quando comparados a outros tipos de modelos,
-como redes neurais ou árvores de decisão, empregadas no mesmo problema \cite{modelos_lineares}.
+como redes neurais ou árvores de decisão, empregadas para o mesmo problema \cite{modelos_lineares}.
 
 A linearidade desses modelos implica que, matematicamente, a variação dos parâmetros independentes não
-possui relações entre si, e podem ser separados em dois grupos clássicos \cite{tipos_modelos_lineares}.
+possui relações entre si, e podem ser separados em dois grupos principais \cite{tipos_modelos_lineares}.
 \begin{itemize}
     \item \textbf{Modelos de Regressão}:
     Este grupo é utilizado para modelar relações entre variáveis quantitativas, que são um conjunto de
-valores de possível representação numérica, indicando quantidade ou magnitude, com o intuito de estimar
+valores passíveis de representação numérica, indicando quantidade ou magnitude, com o intuito de estimar
 parâmetros, explicando relações ou para fazer predições.
     \item \textbf{Modelos de Análise de Variância}:
     Esses modelos têm como questão principal comparar a importância de fatores sobre o comportamento da
@@ -497,14 +472,14 @@ gera a diferença entre os grupos estudados.
 
 Ambas as abordagens ao modelo linear gerarão uma regressão linear, que é um modelo matemático que descreve 
 a relação entre as variáveis dependentes e independentes usadas, tendo a possibilidade de ser representado 
-ograficamente. Pode ser de dois tipos: simples ou múltipla.
+graficamente. Pode ser de dois tipos: simples ou múltipla.
 
 Na regressão linear simples, queremos estimar os valores de $a$ e $b$ da equação da reta, $y$ = $a$ + $bx$
 , a partir de um conjunto de dados $x$ e $y$, onde $y$ representa a variável dependente e $x$ a variável 
 independente, que melhor represente a relação entre $x$ e $y$. Em outras palavras, queremos estimar a 
 inclinação da reta, que nos indica o efeito em $y$ das mudanças ocorridas em $x$ \cite{modelos_regressao_linear}.
 
-A essa reta, é dado o nome de reta de regressão linear, que depende de cinco estatísticas básicas
+A essa reta é dado o nome de reta de regressão linear, que depende de cinco estatísticas básicas
 \cite{modelos_regressao_linear}:
 
 \begin{enumerate}
@@ -547,8 +522,8 @@ Onde:
 \end{itemize}
 
 Porém, a equação \ref{eq:reg_simples} ainda não proporciona os valores de $Y$, mesmo possuindo
-os valores para $\beta_0$ e $\beta_1$, visto que não é apenas a variável  $X$ que afeta os valores de
-$Y$ quando tratamos de ocorrências no mundo real. Assim, incluímos um termo de erro $\epsilon$, que é
+os valores para $\beta_0$ e $\beta_1$, visto que, em ocorrências do mundo real, não é apenas a variável $X$ 
+que afeta os valores de $Y$. Assim, incluímos um termo de erro $\epsilon$, que é
 o erro que se comete ao estimar os valores de $Y$ por meio da variável $X$ \cite{modelos_regressao_linear}.
 
 \begin{equation}
@@ -578,7 +553,7 @@ de saúde. Assim, a equação \ref{eq:reg_simples_erro} ficaria \cite{modelos_re
 
 Onde:
 \begin{itemize}
-    \item ($i$) representa um agrupamento de dados, um estado brasileiro, seguindo o exemplo dado acima;
+    \item ($i$) representa um agrupamento de dados, um estado brasileiro, seguindo o exemplo anterior;
     \item ($Y_i$) é a variável dependente;
     \item ($X_i$) é a variável independente, que representaria o número de postos de saúde em um dado estado;
     \item ($\beta_0$) é o intercepto;
@@ -599,7 +574,7 @@ explicativas \cite{modelos_regressao_linear}:
 Onde:
 \begin{itemize}
     \item ($\beta_0$) é o intercepto;
-    \item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que na prática não sejam inclinações da função;
+    \item ($\beta_1,...,\beta_k$) são "inclinações", mesmo que, na prática, não sejam inclinações da função;
     \item ($\epsilon$) é o termo de erro.
 \end{itemize}
 
@@ -1668,34 +1643,69 @@ necessária, ou o teste com um conjunto de dados categóricos diferente e mais e
 % ========================================================================
 \chapter{Conclusão}
 
-O processo de se criar um modelo computacional necessita de uma sequência predefinida de ações, estas
-que variam de acordo com o conjunto de dados a ser usado, assim como o modo que devemos apresentar
-estas informações para quem está encarregado de treinar o modelo desejado.
+A criação de modelos computacionais envolve uma sequência de etapas que dependem intrinsecamente das características 
+do conjunto de dados e dos requisitos específicos do modelo a ser treinado. Embora muitas linguagens de programação 
+voltadas para a ciência de dados ofereçam ferramentas para automatizar partes desse processo, o desenvolvimento de um 
+sistema verdadeiramente genérico, capaz de lidar com conjuntos de dados e modelos arbitrários, apresenta desafios significativos. 
+A principal complexidade reside na necessidade de adaptar dinamicamente o método de avaliação ao tipo de dado em análise.
 
-Tais processos são automatizados na maioria das linguagens que têm como uso ou foco a ciência de dados, porém
-a integração de um sistema que seja capaz de trabalhar com qualquer conjunto de dados para treinar um dado
-modelo arbitrário, se mostra complexa, visto que o método a se utilizar para avaliar um modelo varia de acordo
-com o tipo de dado que este trabalha.
+O sistema desenvolvido neste trabalho demonstrou ser eficaz na criação e avaliação de modelos de regressão para dados contínuos. 
+No entanto, ao lidar com dados categóricos, os scripts responsáveis pela geração dos modelos GAM e MARS não conseguiram 
+interpretar corretamente as especificações para o treinamento, o que comprometeu a generalização do processo.
 
-O sistema se mostrou capaz de criar e avaliar modelos quando atuando com dados contínuos. Quando
-tentamos treinar os modelos com dados categóricos, os \textit{scripts} de geração não foram capazes de
-entregar corretamente as especificações para o treino do modelo, assim, afetando a generalização do
-processo.
+A construção de um sistema generalista para a criação e avaliação de modelos com conjuntos de dados arbitrários revelou-se, 
+portanto, mais complexa do que o previsto inicialmente. A dificuldade em generalizar os scripts de treinamento e teste 
+para diferentes tipos de dados e modelos constitui o principal obstáculo para a concepção de tal sistema. Isso sugere a 
+necessidade de abordagens mais sofisticadas, como a criação de scripts especializados para cada combinação de modelo e tipo 
+de dado, ou o desenvolvimento de uma nova abstração para gerenciar as informações necessárias ao treinamento.
 
-Assim, a construção de um sistema generalista para a criação de modelos arbitrários com \textit{datasets} arbitrários,
-aparenta ser mais complexa do que o idealizado inicialmente, indicando ser necessária a criação de \textit{scripts}
-diferentes para o treino de um determinado modelo com um determinado tipo de dado, ou a criação de uma
-nova entidade responsável por gerenciar as informações necessárias para possibilitar o treino do modelo desejado.
+Conclui-se que, embora a criação de um sistema generalista para a construção e avaliação de modelos seja um objetivo 
+alcançável, a sua implementação requer uma atenção especial à generalização dos scripts de treinamento e teste. 
+Os problemas enfrentados na criação dos modelos GAM e MARS com dados categóricos evidenciam a necessidade de uma 
+análise mais aprofundada das particularidades de cada modelo e da forma como eles interagem com diferentes tipos de dados.
 
-Logo, podemos concluir que um sistema generalista para a construção e avaliação de modelos se aparenta
-viável, porém sua concepção aparenta ser inicialmente simples porém a generalização dos \textit{scprits} encarregados de
-treinar e testar os modelos se torna o principal gargalo para a concepção de tal sistema, visto os problemas
-encontrados ao tentar criar modelos GAM e MARS utilizando de dados categóricos.
+
+\chapter{Conclusão}
+
+A criação de modelos computacionais envolve uma sequência de etapas que dependem intrinsecamente das características 
+do conjunto de dados e dos requisitos específicos do modelo a ser treinado. Embora muitas linguagens de programação 
+voltadas para a ciência de dados ofereçam ferramentas para automatizar partes desse processo, o desenvolvimento de um 
+sistema verdadeiramente genérico, capaz de lidar com conjuntos de dados e modelos arbitrários, apresenta desafios significativos. 
+A principal complexidade reside na necessidade de adaptar dinamicamente o método de avaliação ao tipo de dado em análise.
+
+O sistema desenvolvido neste trabalho demonstrou ser eficaz na criação e avaliação de modelos de regressão para dados contínuos. 
+No entanto, ao lidar com dados categóricos, os scripts responsáveis pela geração dos modelos GAM e MARS não conseguiram 
+interpretar corretamente as especificações para o treinamento, o que comprometeu a generalização do processo.
+
+A construção de um sistema generalista para a criação e avaliação de modelos com conjuntos de dados arbitrários revelou-se, 
+portanto, mais complexa do que o previsto inicialmente. A dificuldade em generalizar os scripts de treinamento e teste 
+para diferentes tipos de dados e modelos constitui o principal obstáculo para a concepção de tal sistema. Isso sugere a 
+necessidade de abordagens mais sofisticadas, como a criação de scripts especializados para cada combinação de modelo e tipo 
+de dado, ou o desenvolvimento de uma nova abstração para gerenciar as informações necessárias ao treinamento.
+
+Conclui-se que, embora a criação de um sistema generalista para a construção e avaliação de modelos seja um objetivo 
+alcançável, a sua implementação requer uma atenção especial à generalização dos scripts de treinamento e teste. 
+Os problemas enfrentados na criação dos modelos GAM e MARS com dados categóricos evidenciam a necessidade de uma 
+análise mais aprofundada das particularidades de cada modelo e da forma como eles interagem com diferentes tipos de dados.
+
 
 \section{Trabalhos Futuros}
-Para trabalhos futuros, é proposto a melhora na robustez do sistema em atuar com tipos de dados em uma escala
-maior, uma visualização gráfica das predições dos modelos gerados, facilitar a configuração de um
-banco de dados externo, e a capacidade de efetuar predições com os modelos gerados dentro do próprio sistema.
+
+Para aprimorar o sistema desenvolvido, propõem-se os seguintes trabalhos futuros:
+
+\begin{enumerate}
+    \item \textbf{Melhoria da Robustez para Diversos Tipos de Dados}: Aumentar a capacidade do sistema para lidar 
+    com uma gama mais ampla de tipos de dados, garantindo a correta interpretação e processamento, 
+    especialmente para variáveis categóricas complexas.
+    \item \textbf{Visualização Gráfica das Predições}: Implementar funcionalidades para a visualização gráfica 
+    das predições dos modelos gerados, permitindo uma análise mais intuitiva e compreensível dos resultados.
+    \item \textbf{Facilitação da Configuração de Banco de Dados Externos}: Desenvolver ferramentas que simplifiquem 
+    a configuração e a integração com bancos de dados externos, tornando o sistema mais versátil e adaptável 
+    a diferentes infraestruturas de dados.
+    \item \textbf{Capacidade de Efetuar Predições no Próprio Sistema}: Adicionar a funcionalidade de realizar 
+    predições diretamente no sistema, utilizando os modelos treinados, o que permitiria uma validação e aplicação 
+    mais ágil dos resultados.
+\end{enumerate}
 
 \postextual
 
