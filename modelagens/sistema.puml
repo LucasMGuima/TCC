@@ -1,5 +1,5 @@
 @startuml
-title Funcionmaneto sistema
+title Funcionamento sistema
 
 ' Definição de classes
 class App { }
