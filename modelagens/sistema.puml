@@ -54,16 +54,16 @@ class models.utils {
 }
 
 ' Relacionamentos
-App --> Database : Gerencia dos dados
-App --> call_model : Treino e Avaliação dos modelos
-call_model --> models.gam : Treino do GAM
-call_model --> models.glm : Treino do GLM
-call_model --> models.mars : Treino do MARS
-call_model --> src.score : Avaliação dos modelos
-models.gam --> models.utils : Funções auxiliares
-models.glm --> models.utils : Funções auxiliares
-models.mars --> models.utils : Funções auxiliares
-src.score --> src.score_categorico : Modelo categorico
-src.score --> src.score_continuo : Modelo continuo
+App -> Database : Gerencia dos dados
+App -> call_model : Treino e Avaliação dos modelos
+call_model -> models.gam : Treino do GAM
+call_model -> models.glm : Treino do GLM
+call_model -> models.mars : Treino do MARS
+call_model -> src.score : Avaliação dos modelos
+models.gam -> models.utils : Funções auxiliares
+models.glm -> models.utils : Funções auxiliares
+models.mars -> models.utils : Funções auxiliares
+src.score -> src.score_categorico : Modelo categorico
+src.score -> src.score_continuo : Modelo continuo
 
 @enduml

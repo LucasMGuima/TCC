@@ -922,246 +922,6 @@ duas novas funções base são escolhidos para serem os que melhoram o fitting d
 Para pequenas amostras, o algoritmo MARS tentará produzir modelos que envolvem interações de baixa ordem e, com grandes amostras, 
 \textit{ele favorecerá interações de alta ordem para os possíveis candidatos.}
 
-\section{Análise de Algoritmos}
-
-A análise de algoritmos é o processo de identificar uma fórmula matemática que melhor represente o custo de
-utilização de um dado algoritmo, podendo ser o tempo que o algoritmo leva para terminar com uma quantidade $n$
-de dados, ou de espaço, quanto da memória do computador o algoritmo irá usar durante seu processo.
-
-Neste processo, identificamos a qual família de problemas esse algoritmo pertence, que corresponde ao seu custo de
-computação \cite{introductionAlgorthms}, e assim podemos categorizá-lo com base na notação assintótica.
-
-\begin{table}[H]
-    \centering
-    \caption{\label{fig:notacao_assintótica}Notação Assintótica}
-    \begin{tabular}{|c|c|c|}
-    \hline
-        Complexidade & Nome & Eficiente \\ \hline
-        $O(1)$ & Constante & Sim \\ \hline
-        $O(log(n))$ & Logarítmica & Sim \\ \hline
-        $O(n)$ & Linear & Sim \\ \hline
-        $O(n \space log(n))$ & "Linearítmica" & Sim \\ \hline
-        $O(n^2)$ & Quadrática & Sim \\ \hline
-        $O(n^3)$ & Cúbica & Sim \\ \hline
-        $O(2^n)$ & Exponencial & Não \\ \hline
-        $O(n!)$ & Fatorial & Não \\ \hline
-    \end{tabular}
-    \legend{Fonte: \cite{introductionAlgorthms}}
-\end{table}
-
-A fórmula matemática identificada como a representação do custo computacional é "arredondada" para uma das famílias
-apresentadas acima, reduzindo a fórmula à sua característica mais presente, visto que aqui assumimos que $n$ seja
-um valor muito grande. 
-
-Por exemplo, uma função que tenha a forma de $n^2 + n + c$, onde $c$ é uma constante, pode ser reduzida a $n^2$, 
-já que esta parte terá maior peso durante a computação, caracterizando-a como $O(n^2)$, onde $O$ é a notação 
-"O grande", que representa a complexidade do algoritmo \cite{introductionAlgorthms}.
-
-Com esta análise, encontramos um algoritmo que melhor se encaixe em determinado problema, antes de se
-desenvolver o mesmo em uma linguagem de programação específica, ou de utilizar algoritmos já implementados de forma
-cega, podendo perder em tempo e em consumo desnecessário de memória.
-
-\subsection{Análise de Complexidade}
-
-Na análise de complexidade, estimamos o tempo de execução de um algoritmo dado uma entrada de tamanho $n$, analisando 
-seus comandos. Como exemplo, podemos utilizar o algoritmo de ordenação insertion sort. 
-
-O insertion sort é um algoritmo eficiente para ordenar uma sequência pequena de números e funciona de modo semelhante a
-como muitas pessoas organizam cartas de um baralho na mão. Começamos com uma mão vazia e, a cada momento, pegamos uma
-carta da mesa e a inserimos na mão em sua posição correta, verificando da direita para a esquerda \cite{introductionAlgorthms}.
-
-Recebendo um vetor $A[1..n]$ contendo a sequência de tamanho $n$ que será ordenada, o algoritmo representado pelo
-pseudocódigo \ref{fig:insertion_sort} ordena a sequência encontrada no vetor $A$, tendo no máximo um valor da sequência 
-armazenado fora do vetor a cada dado momento. Ao final, o vetor $A$ conterá a sequência ordenada \cite{introductionAlgorthms}.
-
-\lstset{style=psceudo}
-\begin{lstlisting}[caption={\label{fig:insertion_sort}Insertion-Sort}]
-    Insertion-Sort(A)
-    for j = 2 to n
-        key = A[j]
-        i = j - 1
-        while i > 0 and A[i] > key
-            A[i + 1] = A[i]
-            i = i - 1
-        A[i + 1] = key  
-\end{lstlisting}
-\legend{Fonte: \citeonline{introductionAlgorthms}}
-
-Para visualizar a sequência de passos que o insertion sort executa para a ordenação de um dado vetor, 
-tomemos o vetor $A = [5, 2, 4, 6, 1, 3]$. A sequência pode ser vista na imagem \ref{fig:operacao_insertion_sort}.
-
-\begin{figure}[H]
-    \centering
-    \caption{\label{fig:operacao_insertion_sort}Operação do Insertion Sort}
-    \begin{tikzpicture}[
-        box/.style={draw, rectangle, minimum width=0.8cm, minimum height=0.6cm, align=center},
-        label/.style={above=0.1cm},
-        arrow/.style={draw, -{Latex[length=2mm,width=1.5mm]}}
-    ]
-
-    % (a)
-    \node at (0, 0) {(a)};
-    \foreach \n/\c [count=\i] in {5/gray,2/black,4/white,6/white,1/white,3/white} {
-        \node[box, fill=\c!30] (box-\i-a) at (\i * 0.8, 0) {\n};
-        \node[label] at (\i * 0.8, 0.4) {\i};
-    }
-    \draw[arrow, color=gray] (box-1-a.south) -- ([yshift=-0.2cm]box-1-a.south) -| ([yshift=-0.2cm]box-2-a.south) -- (box-2-a.south);
-    \draw[arrow, color=black] (box-2-a.north) -- ([yshift=0.2cm]box-2-a.north) -| ([yshift=0.2cm]box-1-a.north) -- (box-1-a.north);
-
-    \vspace{0.5cm}
-
-    % (b)
-    \node at (5.8, 0) {(b)};
-    \foreach \n/\c [count=\i] in {2/gray,5/gray,4/black,6/white,1/white,3/white} {
-        \node[box, fill=\c!30] (box-\i-b) at (\i * 0.8 + 5.8, 0) {\n};
-        \node[label] at (\i * 0.8 + 5.8, 0.4) {\i};
-    }
-    \draw[arrow, color=gray] (box-2-b.south) -- ([yshift=-0.2cm]box-2-b.south) -| ([yshift=-0.2cm]box-3-b.south) -- (box-3-b.south);
-    \draw[arrow, color=black] (box-3-b.north) -- ([yshift=0.2cm]box-3-b.north) -| ([yshift=0.2cm]box-2-b.north) -- (box-2-b.north);
-
-    \vspace{0.5cm}
-
-    % (c)
-    \node at (0, -1.5) {(c)};
-    \foreach \n/\c [count=\i] in {2/white,4/white,5/gray,6/black,1/white,3/white} {
-        \node[box, fill=\c!30] (box-\i-c) at (\i * 0.8, -1.5) {\n};
-    }
-    \draw[arrow, color=black] ([xshift=0.15cm]box-4-c.north) -- ([xshift=0.15cm, yshift=0.2cm]box-4-c.north) -| ([xshift=-0.15cm, yshift=0.2cm]box-4-c.north) -- ([xshift=-0.15cm]box-4-c.north);
-
-    \vspace{0.5cm}
-
-    % (d)
-    \node at (5.8, -1.5) {(d)};
-    \foreach \n/\c [count=\i] in {2/gray,4/gray,5/gray,6/gray,1/black,3/white} {
-        \node[box, fill=\c!30] (box-\i-d) at (\i * 0.8 + 5.8, -1.5) {\n};
-    }
-    \draw[arrow, color=gray] (box-1-d.south) -- ([yshift=-0.2cm]box-1-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-2-d.south) -- ([xshift=-0.15cm]box-2-d.south);
-    \draw[arrow, color=gray] ([xshift=0.15cm]box-2-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-2-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-3-d.south) -- ([xshift=-0.15cm]box-3-d.south);
-    \draw[arrow, color=gray] ([xshift=0.15cm]box-3-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-3-d.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-d.south) -- ([xshift=-0.15cm]box-4-d.south);
-    \draw[arrow, color=gray] ([xshift=0.15cm]box-4-d.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-d.south) -| ([yshift=-0.2cm]box-5-d.south) -- (box-5-d.south);
-    \draw[arrow, color=black] (box-5-d.north) -- ([yshift=0.2cm]box-5-d.north) -| ([yshift=0.2cm]box-1-d.north) -- (box-1-d.north);
-
-    \vspace{0.5cm}
-
-    % (e)
-    \node at (0, -3.0) {(e)};
-    \foreach \n/\c [count=\i] in {1/white,2/gray,4/gray,5/gray,6/gray,3/black} {
-        \node[box, fill=\c!30] (box-\i-e) at (\i * 0.8, -3.0) {\n};
-    }
-    \draw[arrow, color=gray] (box-3-e.south) --  ([yshift=-0.2cm]box-3-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-4-e.south) -- ([xshift=-0.15cm]box-4-e.south);
-    \draw[arrow, color=gray]  ([xshift=0.15cm]box-4-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-4-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-5-e.south) -- ([xshift=-0.15cm]box-5-e.south);
-    \draw[arrow, color=gray]  ([xshift=0.15cm]box-5-e.south) -- ([xshift=0.15cm, yshift=-0.2cm]box-5-e.south) -| ([xshift=-0.15cm, yshift=-0.2cm]box-6-e.south) -- ([xshift=-0.15cm]box-6-e.south);
-    \draw[arrow, color=black] (box-6-e.north) -- ([yshift=0.2cm]box-6-e.north) -| ([yshift=0.2cm]box-3-e.north) -- (box-3-e.north);
-
-    \vspace{0.5cm}
-
-    % (f)
-    \node at (5.8, -3.0) {(f)};
-    \foreach \n/\c [count=\i] in {1/white,2/white,3/white,4/white,5/white,6/white} {
-        \node[box, fill=\c!30] (box-\i-f) at (\i * 0.8 + 5.8, -3.0) {\n};
-    }
-
-    \vspace{0.5cm}
-
-    \end{tikzpicture}
-
-    \legend{Fonte: \citeonline{introductionAlgorthms}}
-
-\end{figure}
-
-A figura \ref{fig:operacao_insertion_sort} mostra que o algoritmo \ref{fig:insertion_sort} funciona para se ordenar um vetor,
-onde, no início de cada iteração do loop for, controlado pelo valor de $j$, o subvetor de elementos $A[1..j-1]$ consiste
-de uma sequência ordenada, e os valores restantes $A[j+1..n]$ são os elementos ainda não verificados, e $j$ é o elemento
-que está sendo verificado \cite{introductionAlgorthms}.
-
-Agora, com o algoritmo \ref{fig:insertion_sort}, conseguimos analisar o custo computacional do insertion sort. Mas, primeiro,
-precisamos definir dois conceitos: "tempo de execução" e "tamanho da entrada", que, segundo \cite{introductionAlgorthms}, são:
-
-\begin{itemize}
-    \item Tamanho da entrada: Varia dependendo do problema a ser abordado, porém é comumente o número de itens na entrada,
-por exemplo, o tamanho do vetor $A$.
-    \item Tempo de execução: É o número de operações ou 'passos' executados. Aqui, desconsideramos o hardware e assumimos
-que, mesmo que cada passo leve um tempo diferente dos outros, o tempo do $i$-ésimo passo é sempre uma constante, $c_i$.  
-\end{itemize}
-
-Em nosso algoritmo \ref{fig:insertion_sort}, para cada $j = 2, 3, ..., n$, dizemos que $t_j$ representa o número de vezes que
-o loop while da linha 5 foi executado para cada valor de $j$. Sempre que temos um loop for ou while, o teste é
-executado uma vez a mais do que o corpo do loop.
-
-Assim, conseguimos chegar à seguinte análise do algoritmo \ref{fig:insertion_sort}:
-
-\begin{table}[H]
-    \centering
-    \caption{\label{tab:analise_insertion_sort} Análise Insertion Sort}
-    \begin{tabular}{lll}
-        \textbf{Linha} & \textbf{Custo} & \textbf{Vezes} \\ \hline
-        2 & $c_2$ & $n$ \\ \hline
-        3 & $c_3$ & $n-1$ \\ \hline
-        4 & $c_4$ & $n-1$ \\ \hline
-        5 & $c_5$ & $\sum_{j=2}^{n} t_j$ \\ \hline
-        6 & $c_6$ & $\sum_{j=2}^{n} (t_j - 1)$ \\ \hline
-        7 & $c_7$ & $\sum_{j=2}^{n} (t_j - 1)$ \\ \hline
-        8 & $c_8$ & $n-1$ \\ \hline
-    \end{tabular}
-    \legend{Fonte: \citeonline{introductionAlgorthms}}
-\end{table}
-
-O tempo de execução total do algoritmo será a soma dos tempos de cada linha, onde uma linha que leve $c_i$ passos para executar
-e execute $n$ vezes irá contribuir com $c_i \cdot n$ para o tempo total de execução. Para encontrar o tempo de execução do insertion-
-sort \ref{fig:insertion_sort}, em uma entrada de tamanho $n$, somamos o produto do Custo e Vezes da tabela \ref{tab:analise_insertion_sort}:
-
-\begin{equation}
-    \label{eq:tempo_execucao_insertion_sort}
-    T(n) = c_2n + c_3(n - 1) + c_4(n - 1) + c_5\sum_{j=2}^{n} t_j + c_6\sum_{j=2}^{n} (t_j - 1) + c_7\sum_{j=2}^{n} (t_j - 1) + c_8(n-1)
-\end{equation}
-
-O tempo de execução de um algoritmo varia dependendo do dado de entrada, onde podemos cair no melhor ou no pior caso. Durante a
-análise de complexidade, leva-se em consideração apenas o pior caso \cite{introductionAlgorthms}, onde, no nosso caso de exemplo, 
-o algoritmo será executado por completo, percorrendo cada elemento do vetor, o que ocorre quando o vetor se encontra em ordem decrescente.
-
-O pior caso no algoritmo \ref{fig:insertion_sort} pode ser representado pela seguinte equação:
-
-\begin{equation}
-    \label{eq:pior_caso_insertion_sort}
-    \begin{split}
-        T(n)& = c_2n + c_3(n - 1) + c_4(n - 1) + c_5(\frac{n(n+1)}{2}-1) + \\
-            &   c_6(\frac{n(n-1)}{2}) + c_7(\frac{n(n+1)}{2}) + c_8(n-1) \\
-            & = (\frac{c_5}{2} + \frac{c_6}{2} + \frac{c_7}{2})n^2 + (c_2 + c_3 + c_4 + \frac{c_5}{2} - \\
-            &   \frac{c_6}{2} - \frac{c_7}{2} + c_8)n - (c_3 + c_4 + c_5 + c_8) \\
-    \end{split}
-\end{equation}
-
-Podemos expressar a equação \ref{eq:pior_caso_insertion_sort} como $an^2 + bn - c$, para constantes $a$, $b$ e $c$, que dependem do custo de
-$c_i$. Mas é a taxa de crescimento que realmente nos interessa. Logo, consideramos apenas o maior termo da equação, isto é, $an^2$, já que
-os outros termos são insignificantes para valores muito grandes de $n$. Com isto, ficamos com o fator de $n^2$ para o crescimento, portanto,
-o pior caso de tempo de execução como $\theta(n^2)$.
-
-Agora, para encontrarmos a qual classe apresentada na tabela \ref{fig:notacao_assintótica} o algoritmo \ref{fig:insertion_sort} pertence, convertemos
-da notação $\theta$ (theta) para a $O$ (O-grande). Esta conversão é simples, já que o grupo de problemas abordados pela notação $\theta$ engloba
-a notação $O$, isto é, $\theta(g(n)) \subseteq O(g(n))$, onde $g(n)$ é a função de crescimento ($n^2$). Portanto, o algoritmo \ref{fig:insertion_sort}
-é $O(n^2)$, logo, pertence ao grupo de problemas Quadráticos \cite{introductionAlgorthms}.
-
-\subsection{Análise de espaço}
-
-Na análise de espaço, levamos em conta as variáveis que o algoritmo utiliza e/ou cria, como, por exemplo, estruturas auxiliares como vetores ou 
-matrizes. Conseguimos representar o consumo esperado de memória através de uma fórmula matemática \cite{introductionAnalysis}, assim como na 
-análise anterior. Como exemplo, tomemos o algoritmo insertion sort.
-
-No algoritmo de insertion sort, temos as seguintes variáveis:
-
-\begin{itemize}
-    \item $Vetor \space A$: a sequência de $n$ inteiros;
-    \item $key$: uma variável que armazena um valor presente no vetor $A$;
-    \item $i$: um valor inteiro que representa uma posição na sequência;
-    \item $j$: um valor inteiro que representa uma posição na sequência;
-\end{itemize}
-
-Assim, o algoritmo não cria nenhuma variável a mais durante sua execução, acarretando um custo de memória constante durante a sua execução. 
-Sendo o tamanho de 3 inteiros mais o tamanho de um inteiro multiplicado pelo tamanho n da sequência de inteiros.
-
-Logo, o consumo de memória pode ser descrito por uma função linear, $f(n) = n + 3$, onde $n$ é o tamanho da sequência de entrada. Portanto, 
-o crescimento do algoritmo \ref{fig:insertion_sort} é do tipo linear.
-
 \section{Linguagem R}
 
 R foi desenvolvido e pensado como uma linguagem e ambiente para computação estatística e gráficos. Possui a capacidade de trabalhar com 
@@ -1261,7 +1021,7 @@ Sua estrutura segue como referência o seguinte esquema, que pode ser encontrado
 \begin{figure}[H]
     \centering
     \caption{\label{fig:arquitetura_sistema} Arquitetura do sistema}
-    \includegraphics[width=0.90\textwidth]{../modelagens/sistema.png}
+    \includegraphics[width=0.90\textwidth]{../Imgs/sistema.png}
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
@@ -1278,7 +1038,7 @@ diagramas de sequência, assim como a sua avaliação.
 \begin{figure}[H]
     \centering
     \caption{\label{fig:diagrama_sequencia_model} Diagrama de Sequência - MODELO}
-    \includegraphics[width=0.50\textwidth]{../modelagens/models.png}
+    \includegraphics[width=0.75\textwidth]{../Imgs/model.png}
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
@@ -1594,6 +1354,9 @@ de Avaliação de Alunos (PISA) de 2006, juntamente com a RNB per capita (Parida
 dólares de 2005), o Índice Educacional, o Índice de Saúde e o Índice de Desenvolvimento Humano, 
 com base em dados da ONU.
 
+% Demonstrar o dataset
+
+
 O modelo gerado a partir destes dados utilizou como parâmetros os valores de \textit{Issue}, \textit{Interest},
 \textit{Support}, \textit{Income}, \textit{Health} e \textit{Edu}, para estimar o valor de \textit{HDI}.
 Os resultados encontrados para esse caso foram:
@@ -1649,33 +1412,14 @@ voltadas para a ciência de dados ofereçam ferramentas para automatizar partes 
 sistema verdadeiramente genérico, capaz de lidar com conjuntos de dados e modelos arbitrários, apresenta desafios significativos. 
 A principal complexidade reside na necessidade de adaptar dinamicamente o método de avaliação ao tipo de dado em análise.
 
-O sistema desenvolvido neste trabalho demonstrou ser eficaz na criação e avaliação de modelos de regressão para dados contínuos. 
-No entanto, ao lidar com dados categóricos, os scripts responsáveis pela geração dos modelos GAM e MARS não conseguiram 
-interpretar corretamente as especificações para o treinamento, o que comprometeu a generalização do processo.
+O sistema desenvolvido neste trabalho demonstrou ser eficaz na criação e avaliação de modelos de regressão para dados 
+contínuos. Onde este foi capaz de gerar corretamente os modelos GAM, GLM e MARS, assim como seus respectivos testes, e
+inferir apartir dos dados qual comainho de treino e avaliação seguir.
 
-A construção de um sistema generalista para a criação e avaliação de modelos com conjuntos de dados arbitrários revelou-se, 
-portanto, mais complexa do que o previsto inicialmente. A dificuldade em generalizar os scripts de treinamento e teste 
-para diferentes tipos de dados e modelos constitui o principal obstáculo para a concepção de tal sistema. Isso sugere a 
-necessidade de abordagens mais sofisticadas, como a criação de scripts especializados para cada combinação de modelo e tipo 
-de dado, ou o desenvolvimento de uma nova abstração para gerenciar as informações necessárias ao treinamento.
-
-Conclui-se que, embora a criação de um sistema generalista para a construção e avaliação de modelos seja um objetivo 
-alcançável, a sua implementação requer uma atenção especial à generalização dos scripts de treinamento e teste. 
-Os problemas enfrentados na criação dos modelos GAM e MARS com dados categóricos evidenciam a necessidade de uma 
-análise mais aprofundada das particularidades de cada modelo e da forma como eles interagem com diferentes tipos de dados.
-
-
-\chapter{Conclusão}
-
-A criação de modelos computacionais envolve uma sequência de etapas que dependem intrinsecamente das características 
-do conjunto de dados e dos requisitos específicos do modelo a ser treinado. Embora muitas linguagens de programação 
-voltadas para a ciência de dados ofereçam ferramentas para automatizar partes desse processo, o desenvolvimento de um 
-sistema verdadeiramente genérico, capaz de lidar com conjuntos de dados e modelos arbitrários, apresenta desafios significativos. 
-A principal complexidade reside na necessidade de adaptar dinamicamente o método de avaliação ao tipo de dado em análise.
-
-O sistema desenvolvido neste trabalho demonstrou ser eficaz na criação e avaliação de modelos de regressão para dados contínuos. 
-No entanto, ao lidar com dados categóricos, os scripts responsáveis pela geração dos modelos GAM e MARS não conseguiram 
-interpretar corretamente as especificações para o treinamento, o que comprometeu a generalização do processo.
+Para dados categóricos, o modelo GLM foi implementado com sucesso, indicando que os mecanismos de identificação 
+de variável resposta e seleção de métricas funcionam para este caso. No entanto, ao lidar com dados categóricos, os scripts 
+responsáveis pela geração dos modelos GAM e MARS não conseguiram interpretar corretamente as especificações para o 
+treinamento, o que comprometeu a generalização do processo e impediu a avaliação comparativa completa.
 
 A construção de um sistema generalista para a criação e avaliação de modelos com conjuntos de dados arbitrários revelou-se, 
 portanto, mais complexa do que o previsto inicialmente. A dificuldade em generalizar os scripts de treinamento e teste 
@@ -1724,7 +1468,7 @@ Para aprimorar o sistema desenvolvido, propõem-se os seguintes trabalhos futuro
 \chapter{\label{anexo:arquitetura_sistema} Arquitetura do sistema}
 \begin{figure}[h]
     \centering
-    \includegraphics[angle=90, width=0.85\textwidth]{../modelagens/sistema.png}
+    \includegraphics[angle=90, width=0.85\textwidth]{../Imgs/sistema.png}
     \legend{Fonte: Elaboração do autor}
 \end{figure}
 
