@@ -924,21 +924,21 @@ Para pequenas amostras, o algoritmo MARS tentará produzir modelos que envolvem 
 
 \section{Linguagem R}
 
-R foi desenvolvido e pensado como uma linguagem e ambiente para computação estatística e gráficos. Possui a capacidade de trabalhar com 
-vários processos estatísticos, como modelagem linear e não-linear, testes clássicos de estatística, séries temporais, entre outros, 
-e ser altamente extensível \cite{ling_r}.
+Diferente de linguagens de propósito geral como Python, o R foi concebido especificamente como um ambiente voltado à computação 
+estatística e análise de dados \cite{Ihaka1996}. Essa natureza especializada confere à linguagem uma sintaxe que se aproxima 
+da notação matemática e estatística, facilitando a implementação de modelos lineares, não-lineares, testes clássicos e análise de séries 
+temporais de forma nativa e intuitiva \cite{Field2012}.
 
-Devido ao seu desenvolvimento focado em aplicações de computação estatística, ser semelhante e compatível com a linguagem S já existente, 
-e capaz de atuar com códigos feitos nas linguagens C, C++ e Fortran \cite{ling_r}, tornou o R uma linguagem popular dentro da área 
-de computação estatística \cite{linguagem_r}.
+Um dos diferenciais críticos do R reside na robustez do seu ecossistema de pacotes. Enquanto outras linguagens dependem de bibliotecas 
+dispersas, o R centraliza sua distribuição no CRAN (Comprehensive R Archive Network), que impõe rigorosos testes de qualidade e 
+documentação, garantindo a reprodutibilidade científica \cite{Wickham2014}. Além disso, sua capacidade de integração com linguagens de 
+baixo nível, como C++ e Fortran, permite que processos computacionalmente intensivos sejam executados com alta performance, sem perder 
+a flexibilidade da linguagem de alto nível \cite{RCoreTeam2025}.
 
-O ambiente do R pode ser facilmente incrementado, utilizando-se de bibliotecas, nomeadas como packages. Por padrão, temos oito packages 
-que são encontrados junto da distribuição comum do R. Outros packages podem ser encontrados em sites especializados na distribuição dos 
-mesmos \cite{ling_r}.
-
-Além de ser de fácil incrementação, o ambiente R possui uma interface de desenvolvimento gratuita, o R Studio, onde a utilização da 
-linguagem fica concentrada em uma única aplicação, facilitando a visualização dos dados, gráficos, alteração e manutenção do código e 
-packages \cite{rstudio}.
+No campo da comunicação científica, o R destaca-se pela implementação da "Gramática dos Gráficos" \cite{Wilkinson2005}, traduzida no pacote 
+ggplot2. Essa abordagem permite a criação de visualizações de dados complexas e de alta fidelidade técnica, superiores às bibliotecas 
+genéricas de plotagem \cite{Wickham2016}. Por fim, o uso do ecossistema Tidyverse e da interface RStudio \cite{Posit2025} promove um fluxo de
+trabalho orientado à Ciência Aberta, facilitando a manutenção de códigos e a geração de relatórios dinâmicos e reprodutíveis.
 
 \subsection{Packages}
 
@@ -1075,13 +1075,31 @@ em dois grupos, dados para teste e dados para treino, de um modo aleatório, sep
 dados para teste.
 
 Os dados são utilizados no sistema para inferir quais testes devem ser usados para avaliar o modelo, visto que, se os mesmos forem dados
-contínuos, as métricas avaliativas são diferentes das usadas na situação onde os dados são categóricos. Assim como o nome das colunas é 
-usado para selecionar quais serão os parâmetros dependentes e independentes.
+contínuos, as métricas avaliativas são diferentes das usadas na situação onde os dados são categóricos. Tomemos como exemplo, um dos
+conjuntos de dados que fora utilizado neste trabalho. 
+
+Quando apresentado aos dados contiduos na tabela \textit{pisasci2006.csv}, onde o sistema é confrontado com 3 tipos diferentes de 
+dados, \textit{strings}, inteiros e decimais, onde o mesmo é capaz aparir da escolha do usuario de quais parametros utilizar 
+como preditores e qual será o valor a ser previsto, escolher qual caminho de treino e teste utilizar, de modo automatico.
+
+Para o conjunto de dados \textit{sao\_paulo.csv}, temos o caso onde o sistema necessita de adaptar o nome das propriedades para que
+seja possivel realizar os procedimentos seguintes, neste caso onde o sistema encontra o caracter de espaço no nome da coluna, o
+mesmo substitui pelo caracter ".", e alem dos tipos de valores encontrados no dataset anterior, aqui o sisteam precisa lidar com
+entradas de datas no padrão, ano, mês e dia.
+
+Assim como o nome das colunas é usado para selecionar quais serão os parâmetros dependentes e independentes.
 
 \subsection{Armazenamento}
 
 Os dados locais são armazenados dentro da subpasta \textit{dados} encontrada dentro da pasta \textit{data}, e os dados que estão 
 armazenados no \textit{Supabase} podem ser encontrados no \textit{storage} dentro da pasta \textit{dados}. 
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:supabase} Irtaface de armazenamento do Supabase}
+    \includegraphics[width=0.75\textwidth]{../Imgs/supabase.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
 
 Para os modelos, seu armazenamento ocorre de modo semelhante. Quando em um cenário local, são encontrados na pasta \textit{models}, e
 quando em um funcionamento online, os modelos são encontrados no \textit{storage}, porém na pasta \textit{models}.
@@ -1089,6 +1107,20 @@ quando em um funcionamento online, os modelos são encontrados no \textit{storag
 A aplicação sempre tenta entrar em modo online, tentando se conectar com o \textit{Supabase}. Se falhar, inicia automaticamente em
 modo offline e passa a procurar os arquivos em suas pastas locais. Do contrário, sempre busca no \textit{storage} configurado no 
 \textit{Supabase}.
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:app_offline} Aplicação em modo offline}
+    \includegraphics[width=0.75\textwidth]{../Imgs/app_offline.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:app_online} Aplicação em modo online}
+    \includegraphics[width=0.75\textwidth]{../Imgs/app_online.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
 
 \section{Implementação}
 
@@ -1139,7 +1171,16 @@ código visto anteriormente.
 \end{lstlisting}
 
 Assim que o programa tem um modelo selecionado, podemos escolher os parâmetros de
-resposta e os preditores. Isso está implementado na seguinte parte do programa:
+resposta e os preditores. 
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:modelo_selecionado} Interface de configuração de treino}
+    \includegraphics[width=0.75\textwidth]{../Imgs/modelo_selecionado.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+Isso está implementado na seguinte parte do programa:
 
 \begin{lstlisting}[language=python]
     col1, col2 = st.columns(2)
@@ -1158,8 +1199,17 @@ resposta e os preditores. Isso está implementado na seguinte parte do programa:
         )
 \end{lstlisting}
 
-Tendo os parâmetros selecionados, o treino do modelo pode ser efetuado. Para isso,
-é necessário utilizar as funções implementadas dentro do \textit{script} \textit{call\_model}.
+Tendo os parâmetros selecionados, o treino do modelo pode ser efetuado. Dentro da interface isto pode ser
+efetuado no seguinte campo.
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:treino_modelo} Campo de treino do modelo}
+    \includegraphics[width=0.75\textwidth]{../Imgs/treinando_modelo.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+Nesta parte é utilizado as funções implementadas dentro do \textit{script} \textit{call\_model}.
 Seu uso pode ser visto dentro da seguinte parte do \textit{script} \textit{app.py}:
 
 \begin{lstlisting}[language=python]
@@ -1180,7 +1230,18 @@ Seu uso pode ser visto dentro da seguinte parte do \textit{script} \textit{app.p
         st.error(f'Erro ao executar {model}: {str(e)}')
 \end{lstlisting}
 
-Tendo os modelos treinados, a lógica dos testes começa no \textit{script} \textit{testes.py} 
+Tendo os modelos treinados, podemos efetuar sua avaliação, este passo pode ser efetuado
+no seguinte campo, onde mais de um moldeo pode ser selecionado para teste simultâneo.
+
+\begin{figure}[H]
+    \centering
+    \caption{\label{fig:modelo_teste} Campo de teste dos modelos}
+    \includegraphics[width=0.75\textwidth]{../Imgs/teste_modelo.png}
+    \legend{Fonte: Elaboração do autor}
+\end{figure}
+
+
+A lógica dos testes começa no \textit{script} \textit{testes.py} 
 encontrado na pasta \textit{pages}. Este, por sua vez, chama o \textit{script} em R responsável 
 por gerenciar os testes, através da função \textit{run\_teste}.
 
@@ -1348,17 +1409,38 @@ Para identificar a viabilidade da aplicação, foi efetuado um teste utilizando 
 distintos, sendo um deles utilizado para verificar a capacidade avaliativa quando tratamos de dados
 contínuos e o outro para avaliar quando temos dados categóricos.
 
-Para os dados contínuos, foi utilizado o conjunto de dados \textit{psiasci2006.csv}. Este conjunto 
+Para os dados contínuos, foi utilizado o conjunto de dados \textit{pisasci2006.csv}. Este conjunto 
 de dados foi construído utilizando as pontuações médias em Ciências por país do Programa Internacional 
 de Avaliação de Alunos (PISA) de 2006, juntamente com a RNB per capita (Paridade do Poder de Compra, 
 dólares de 2005), o Índice Educacional, o Índice de Saúde e o Índice de Desenvolvimento Humano, 
 com base em dados da ONU.
 
-% Demonstrar o dataset
-
-
 O modelo gerado a partir destes dados utilizou como parâmetros os valores de \textit{Issue}, \textit{Interest},
 \textit{Support}, \textit{Income}, \textit{Health} e \textit{Edu}, para estimar o valor de \textit{HDI}.
+A natureza dos dados contidos nas respectivas colunas podem ser analisado na seguinte tabela.
+
+\begin{table}[h!]
+    \centering
+    \caption{Amostra dos dados pisasci2006}
+    \label{tab:pisasci2006}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Issues} & \textbf{Interest} & \textbf{Support} & \textbf{Income} & \textbf{Health} & \textbf{Edu} & \textbf{HDI} \\ \hline
+        NA & NA & NA & 0.599 & 0.886 & 0.716 & 0.724 \\ \hline
+        395 & 567 & 506 & 0.678 & 0.868 & 0.786 & 0.773 \\ \hline
+        535 & 465 & 487 & 0.826 & 0.965 & 0.978 & 0.92 \\ \hline
+        505 & 507 & 515 & 0.835 & 0.944 & 0.824 & 0.866 \\ \hline
+        353 & 612 & 542 & 0.566 & 0.78 & NA & NA \\ \hline
+    \end{tabular}
+    \legend{Fonte: Autoria do autor}
+\end{table}
+
+Onde \textit{Issue} é a representação númerica da identificação de porblemas ciêntificos, \textit{Interest} representação 
+númerica do interesse em ciências e \textit{Support} metrica que representa o apoio para à investigação ciêntifica, onde
+estes são valores continuos inteiros, já o \textit{Income} que representa o índice de renda, \textit{Health} o índice de saúde, 
+\textit{Edu} o índice de educação e \textit{HDI} é o índice de desenvolvimento humano, são valores de ponto flutuante. Como 
+queremos estimar o valor de \textit{HDI} o sistema inferiu corretamente aparitr do tipo do dado qual teste e treino fazer.
+
 Os resultados encontrados para esse caso foram:
 
 \begin{table}[H]
@@ -1378,9 +1460,29 @@ O conjunto de dados \textit{sao\_paulo.csv} foi criado filtrando apenas as entra
 localidade a cidade de São Paulo, encontradas em um dataset maior, o \textit{data\_2025.txt}, um dataset
 fornecido pelo site \textit{eBird}, contendo avistamentos de aves em um parâmetro mundial.
 
-Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE} e
-\textit{OBSERVATION DATE} para inferir o valor de \textit{SCIENTIFIC NAME}. Como aqui trabalhamos com
-dados categoricos, o sistema deveria construir a matriz de confusão dos modelos encontrados.
+Neste caso, os modelos gerados usaram como parâmetros os valores de \textit{LATITUDE}, \textit{LONGITUDE}
+que em conjunto representão a coordenada geográfica onde ocorreu o avistamento e \textit{OBSERVATION DATE}
+a data em que ocorreu o avistamento, para inferir o valor de \textit{SCIENTIFIC NAME}. Que podem ser 
+visto na sequinte tabela.
+
+\begin{table}[H]
+    \centering
+    \caption{\label{tab:sao_paulo} Amostra dos dados sao\_paulo}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{LATITUDE} & \textbf{LONGITUDE} & \textbf{OBSERVATION DATE} & \textbf{SCIENTIFIC NAME} \\ \hline
+        -23.6152057 & -46.6482683 & 1978-01-03 & Coereba flaveola \\ \hline
+        -23.6387607 & -46.623371 & 1977-07-17 & Thlypopsis sordida \\ \hline
+        -23.4615929 & -46.6377568 & 1977-07-15 & Thalurania glaucopis \\ \hline
+        -23.4615929 & -46.6377568 & 1977-07-15 & Thraupis ornata \\ \hline
+        -23.4615929 & -46.6377568 & 1977-07-15 & Basileuterus culicivorus \\ \hline
+    \end{tabular}
+    \legend{Fonte: Autoria do autor}
+\end{table}
+
+Apartir dos dadso encontrados na coluna alvo, \textit{SCIENTIFIC NAME}, o sistema foi capaz de identificar corretamente
+como um caso de dados categorico, e assim seguir pelo processo de teste e treino corretos, gerando a matrix de confusão
+para cada modelo gerado.
 
 Mas foi encontrado um erro quando trabalhamos com dados categóricos, onde apenas o modelo GLM foi gerado
 corretamente, para os dois outros casos avaliados, GAM e MARS, as implementações utilizadas não conseguiram
